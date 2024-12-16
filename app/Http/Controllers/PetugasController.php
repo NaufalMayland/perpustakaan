@@ -12,4 +12,11 @@ class PetugasController extends Controller
             'title' => "Dashboard",
         ]);
     }
+
+    public function user()
+    {
+        return view('petugas.user.index', [
+            'title' => "User"
+        ]);
+    }
 }

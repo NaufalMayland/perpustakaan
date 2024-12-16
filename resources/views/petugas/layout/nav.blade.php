@@ -13,7 +13,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-600 transition-all duration-100 ease-in-out  @if(Route::is('admin.user.*')) bg-gray-100 border-blue-600 border-l-4 @endif">
+                    <a href="{{route('petugas.user.index')}}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-600 transition-all duration-100 ease-in-out  @if(Route::is('petugas.user.*')) bg-gray-100 border-blue-600 border-l-4 @endif">
                         {{-- <i class="fa-solid fa-gear text-blue-600 text-lg"></i> --}}
                         <span>User</span>
                     </a>
