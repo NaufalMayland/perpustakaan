@@ -24,5 +24,26 @@
                 </a>
             </div>
         </div>
+        <div class="flex w-full mt-6">
+            <table class="w-full table-auto rounded text-sm">
+                <tr>
+                    <td class="p-2 text-center font-bold uppercase bg-slate-200">Username</td>
+                    <td class="p-2 text-center font-bold uppercase bg-slate-200">Email</td>
+                    <td class="p-2 text-center font-bold uppercase bg-slate-200">Hak akses</td>
+                    <td class="p-2 text-center font-bold uppercase bg-slate-200">Option</td>
+                </tr>
+                @foreach ($dataUser as $data)
+                    <tr>
+                        <td class="p-2">{{ $data->username }}</td>
+                        <td class="p-2">{{ $data->email }}</td>
+                        <td class="p-2 capitalize">{{ $data->role->role }}</td>
+                        <td class="p-2 flex gap-4">
+                            <a href="" class="py-1 rounded w-full text-center bg-blue-500 text-white">Edit</a>
+                            <a href="" class="py-1 rounded w-full text-center bg-red-500 text-white">Hapus</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
     </div>
 @endsection

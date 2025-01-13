@@ -17,7 +17,7 @@
                     <h1>PERPUSTAKAAN</h1>
                 </div>
                 @if ($errors->any())
-                    <div class="bg-red-500 text-white text-sm py-2 px-3 rounded text-left w-full">
+                    <div class="text-white bg-red-500 text-sm py-3 px-3 rounded text-left w-full">
                         <ul>
                             @foreach ($errors->all() as $item)
                                 <li>{{ $item }}</li>

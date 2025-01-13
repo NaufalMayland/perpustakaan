@@ -10,7 +10,7 @@ class PrintController extends Controller
     public function userPrint()
     {
         $userData = User::with('role')->get();
-        return view('petugas.user.print', [
+        return view('petugas.user.printUser', [
             'title' => "Print",
             'userData' => $userData
         ]);

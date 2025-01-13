@@ -38,7 +38,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if($user->role_id == 1){
-                return redirect(route('peminjam.home'));
+                return redirect(route('peminjam.home.index'));
             } elseif($user->role_id == 2){
                 return redirect(route('petugas.dashboard.index'));
             } else {
