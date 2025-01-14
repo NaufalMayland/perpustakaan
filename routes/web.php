@@ -8,11 +8,11 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PrintController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ AuthController::class, 'login'])->name('auth.login');
-Route::post('/login-action', [ AuthController::class, 'loginAction'])->name('auth.loginAction');
+Route::get('/', [ AuthController::class, 'login'])->name('auth.login')->middleware('guest');
+Route::post('/login-action', [ AuthController::class, 'loginAction'])->name('auth.loginAction')->middleware('guest');
 
-Route::get('/register', [ AuthController::class, 'register'])->name('auth.register');
-Route::post('/register-action', [ AuthController::class, 'registerAction'])->name('auth.registerAction');
+Route::get('/register', [ AuthController::class, 'register'])->name('auth.register')->middleware('guest');
+Route::post('/register-action', [ AuthController::class, 'registerAction'])->name('auth.registerAction')->middleware('guest');
 
 Route::post('/logout', [ AuthController::class, 'logout'])->name('auth.logout');
 
