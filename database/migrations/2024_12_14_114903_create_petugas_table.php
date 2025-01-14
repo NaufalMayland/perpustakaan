@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('prov')->nullable();
             $table->string('telepon')->nullable();
             $table->string('foto')->nullable();
-            $table->integer('role')->default(1);
+            $table->string('role')->default('admin');
             $table->timestamps();
         });
     }

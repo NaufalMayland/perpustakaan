@@ -25,22 +25,28 @@ Route::prefix('perpustakaan')->group(function () {
         Route::prefix('dashboard')->group(function () {
             Route::get('/', [PetugasController::class, 'dashboard'])->name('petugas.dashboard.index');
         });
-        Route::prefix('buku')->group(function (){
+        
+        Route::prefix('buku')->middleware('rolePetugas:admin')->group(function (){
             Route::get('/', [PetugasController::class, 'buku'])->name('petugas.buku.index');
         });
-        Route::prefix('kategori')->group(function (){
+
+        Route::prefix('kategori')->middleware('rolePetugas:admin')->group(function (){
             Route::get('/', [PetugasController::class, 'kategori'])->name('petugas.kategori.index');
         });
-        Route::prefix('listkategori')->group(function (){
+
+        Route::prefix('listkategori')->middleware('rolePetugas:admin')->group(function (){
             Route::get('/', [PetugasController::class, 'listKategori'])->name('petugas.listKategori.index');
         });
-        Route::prefix('peminjaman')->group(function (){
+
+        Route::prefix('peminjaman')->middleware('rolePetugas:petugas')->group(function (){
             Route::get('/', [PetugasController::class, 'peminjaman'])->name('petugas.peminjaman.index');
         });
-        Route::prefix('ulasan')->group(function (){
+
+        Route::prefix('ulasan')->middleware('rolePetugas:petugas')->group(function (){
             Route::get('/', [PetugasController::class, 'ulasan'])->name('petugas.ulasan.index');
         });
-        Route::prefix('user')->group(function () {
+
+        Route::prefix('user')->middleware('rolePetugas:petugas')->group(function () {
             Route::get('/', [PetugasController::class, 'user'])->name('petugas.user.index');
             Route::get('/tambah', [InputController::class, 'addUser'])->name('petugas.user.addUser');
             Route::post('/tambah-action', [InputController::class, 'addUserAction'])->name('petugas.user.addUserAction');
