@@ -28,7 +28,7 @@
                 <div class="grid text-sm gap-2 my-4">
                     <div class="grid">
                         <label class="text-black" for="email">Email</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" value="{{old('email')}}">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" value="{{ old('email') }}">
                     </div>
                     <div class="grid">
                         <label class="text-black" for="password">Password</label>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="flex justify-between items-center mt-8">
                     <div class="text-blue-600 hover:text-blue-900 text-sm">
-                        <a href="{{route('auth.register')}}">Belum punya akun?</a>
+                        <a href="{{ route('auth.register') }}">Belum punya akun?</a>
                     </div>
                     <div class="">
                         <button type="submit" class="text-sm font-semibold bg-blue-600 rounded text-white py-2 px-4 hover:bg-blue-900">Login</button>

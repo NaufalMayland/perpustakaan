@@ -22,6 +22,14 @@ class InputController extends Controller
 
     public function addUserAction(Request $request)
     {
+        $cekUser = User::all();
+        
+        foreach($cekUser as $user){
+            if($request->email == $user->email){
+                return redirect()->back()->withErrors('Email sudah tersedia, mohon gunakan email yang lain!')->withInput();
+            }
+        }
+
         User::create([
             'username' => $request->username,
             'email' => $request->email,

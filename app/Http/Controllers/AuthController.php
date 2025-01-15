@@ -56,6 +56,14 @@ class AuthController extends Controller
 
     public function RegisterAction(Request $request)
     {
+        $cekUser = User::all();
+
+        foreach($cekUser as $user){
+            if($request->email == $user->email){
+                return redirect()->back()->withErrors('Email sudah tersedia, mohon gunakan email yang lain!')->withInput();
+            }
+        }
+
         $dataRegist = User::create([
             'username' => $request->username,
             'email' => $request->email,

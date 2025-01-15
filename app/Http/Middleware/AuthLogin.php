@@ -19,7 +19,6 @@ class AuthLogin
         if(Auth::check()){
             return redirect()->back();
         } 
-        // return redirect()->back();
         return $next($request);
     }
 }
