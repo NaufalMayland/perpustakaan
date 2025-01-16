@@ -53,4 +53,6 @@ class InputController extends Controller
 
         return redirect(route('petugas.user.index'));
     }
+
+
 }
