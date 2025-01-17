@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite('resources/css/app.css')
-    <title>Perpustakaan | </title>
+    <title>Perpustakaan | {{ $title }}</title>
 </head>
 <body class="font-['poppins']">
     @include('peminjam.layout.nav')
-    @yield('content')
+    <div class="p-4">
+        @yield('content')
+    </div>
 </body>
 </html>

@@ -19,7 +19,7 @@ class cekRole
     public function handle(Request $request, Closure $next, $role): Response
     {
         if (!Auth::check()) {
-            return redirect('/')->withErrors('Harap login terlebih dahulu!')->withInput();
+            return redirect()->route('auth.login')->withErrors('Harap login terlebih dahulu!')->withInput();
         }
 
         $user = Auth::user();

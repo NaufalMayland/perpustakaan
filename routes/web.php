@@ -16,8 +16,8 @@ Route::prefix('perpustakaan')->group(function () {
         Route::post('/login-action', [ AuthController::class, 'loginAction'])->name('auth.loginAction')->middleware('guest');
     });
     
-    Route::prefix('login')->middleware('guest')->group(function (){
-        Route::get('/register', [ AuthController::class, 'register'])->name('auth.register')->middleware('guest');
+    Route::prefix('register')->middleware('guest')->group(function (){
+        Route::get('/', [ AuthController::class, 'register'])->name('auth.register')->middleware('guest');
         Route::post('/register-action', [ AuthController::class, 'registerAction'])->name('auth.registerAction')->middleware('guest');
     });
     

@@ -1,32 +1,38 @@
 <nav class="bg-white shadow py-4 px-6 flex justify-between items-center">
-    <div class="">
+    <div class="flex items-center gap-2">
+        <i class="fa-solid fa-book-open-reader text-blue-600"></i>
         <h1 class="font-bold text-lg text-blue-600">PERPUSTAKAAN</h1>
     </div>
     <div class="flex gap-6 text-sm items-center">
         <div class="">
-            <a href="" class="text-black">Peminjaman</a>
+            <a href="{{ route('peminjam.home.index') }}" class="hover:text-blue-600 @if (Route::is('peminjam.home.index')) text-blue-600 @endif">Home</a>
         </div>
         <div class="">
-            <a href="" class="text-black">Koleksi</a>
+            <a href="" class="text-black hover:text-blue-600">Peminjaman</a>
         </div>
         <div class="">
-            <a href="" class="text-black">Profil</a>
+            <a href="" class="text-black hover:text-blue-600">Koleksi</a>
         </div>
+        @if ($user == true) 
+            <div class="">
+                <a href="" class="text-black hover:text-blue-600">Profil</a>
+            </div>
+        @endif
         <div class="items-center ">
             @if ($user == true)
                 <form id="logoutForm" action="{{ route('auth.logout') }}" method="post">
                     @csrf
                 </form>
-                <button type="submit" class="text-white bg-blue-600 rounded-full py-2 px-4 border border-blue-600 hover:bg-white hover:text-blue-600 transition-all duration-100 ease-in-out" onclick="confirmLogout()">Sign in</button>    
+                <button type="submit" class="text-white bg-blue-600 rounded-full py-2 px-4 border border-blue-600 hover:bg-white hover:text-blue-600 transition-all duration-100 ease-in-out" onclick="confirmLogout()">Logout</button>    
             @else
-                <a href="{{ route('auth.login') }}" class="text-white bg-blue-600 rounded-full py-2 px-4 border border-blue-600 hover:bg-white hover:text-blue-600 transition-all duration-100 ease-in-out">Login</a>  
+                <a href="{{ route('auth.login') }}" class="text-white bg-blue-600 rounded-full py-2 px-4 border border-blue-600 hover:bg-white hover:text-blue-600 transition-all duration-100 ease-in-out">Sign in</a>  
             @endif
         </div>
     </div>
 </nav>
 
 <script>
-        function confirmLogout() {
+    function confirmLogout() {
         Swal.fire({
         title: 'Logout',
         text: "Anda yakin untuk logout?",
