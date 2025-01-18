@@ -8,7 +8,8 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PrintController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PeminjamController::class, 'home'])->name('peminjam.home.index')->middleware('multirole');
+// Route::get('/', [PeminjamController::class, 'home'])->name('peminjam.home.index')->middleware('multirole');
+Route::get('/', [AuthController::class, 'index'])->name('auth.index')->middleware('guest');
 
 Route::prefix('perpustakaan')->group(function () {
     Route::prefix('login')->middleware('guest')->group(function (){
@@ -22,6 +23,10 @@ Route::prefix('perpustakaan')->group(function () {
     });
     
     Route::post('/logout', [ AuthController::class, 'logout'])->name('auth.logout');
+
+    Route::prefix('home')->middleware('role:peminjam')->group(function () {
+        Route::get('/', [PeminjamController::class, 'home'])->name('peminjam.home.index');
+    });
 
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {
         Route::prefix('dashboard')->group(function () {

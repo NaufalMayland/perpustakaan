@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function index()
+    {
+        return view('auth.index', [
+            'title' => "Perpustakaan",
+        ]);
+    }
     public function login()
     {
         return view('auth.login', [
@@ -89,6 +95,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect(route('peminjam.home.index'));
+        return redirect(route('auth.index'));
     }
 }

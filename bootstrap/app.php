@@ -20,7 +20,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => cekRole::class,
             'rolePetugas' => CekRolePetugas::class,
             'guest' => AuthLogin::class,
-            'multirole' => MultiRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -13,20 +13,14 @@
         <div class="">
             <a href="" class="text-black hover:text-blue-600">Koleksi</a>
         </div>
-        @if ($user == true) 
-            <div class="">
-                <a href="" class="text-black hover:text-blue-600">Profil</a>
-            </div>
-        @endif
+        <div class="">
+            <a href="" class="text-black hover:text-blue-600">Profil</a>
+        </div>
         <div class="items-center ">
-            @if ($user == true)
-                <form id="logoutForm" action="{{ route('auth.logout') }}" method="post">
-                    @csrf
-                </form>
-                <button type="submit" class="text-white bg-blue-600 rounded-full py-2 px-4 border border-blue-600 hover:bg-white hover:text-blue-600 transition-all duration-100 ease-in-out" onclick="confirmLogout()">Logout</button>    
-            @else
-                <a href="{{ route('auth.login') }}" class="text-white bg-blue-600 rounded-full py-2 px-4 border border-blue-600 hover:bg-white hover:text-blue-600 transition-all duration-100 ease-in-out">Sign in</a>  
-            @endif
+            <form id="logoutForm" action="{{ route('auth.logout') }}" method="post">
+                @csrf
+            </form>
+            <button type="submit" class="text-white bg-blue-600 rounded-full py-2 px-4 border border-blue-600 hover:bg-white hover:text-blue-600 transition-all duration-100 ease-in-out" onclick="confirmLogout()">Logout</button>    
         </div>
     </div>
 </nav>
