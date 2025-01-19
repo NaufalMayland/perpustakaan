@@ -16,14 +16,12 @@
         </div>
         <div class="w-full">
             <div class="flex items-center justify-center">
-                <img src="{{ asset('storage/image/readingBook.png') }}" alt="" class="w-9/12">
+                <img src="{{ asset('storage/image/readingBook1.png') }}" alt="" class="">
             </div>
         </div>
     </div>
     <div class="bg-gray-200 flex p-10 h-screen">
         <div class="">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae assumenda animi quae laboriosam, expedita nam? Ullam, accusamus esse molestias ratione fugiat ad laborum. Asperiores tempora illum quaerat perspiciatis eligendi ad!
         </div>
     </div>
-
 @endsection
