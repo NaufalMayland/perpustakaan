@@ -4,7 +4,7 @@
         <div class="grid w-full">
             <div class="gap-4">
                 <div class="">
-                    <h1 class="text-2xl font-bold text-blue-600">Tentang Kami</h1>
+                    <h1 class="text-2xl font-bold text-blue-600">Perpustakaan Digital</h1>
                 </div>
                 <div class="text-justify text-sm">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At nemo inventore eaque dolore sit ducimus iusto ipsam doloremque ipsa nihil. Doloribus eius dolorum perferendis sunt hic voluptate harum, cupiditate in!</p>
@@ -20,8 +20,11 @@
             </div>
         </div>
     </div>
-    <div class="bg-gray-200 flex p-10 h-screen">
-        <div class="">
+    <div class="bg-gray-100 p-10 h-screen">
+        <div class="justify-center text-center text-blue-600 font-bold flex">
+            <h1 class="text-2xl">Tentang Kami</h1>
+        </div>
+        <div class="flex">
         </div>
     </div>
 @endsection
