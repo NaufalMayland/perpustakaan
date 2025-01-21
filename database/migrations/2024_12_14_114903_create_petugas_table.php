@@ -16,10 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email');
             $table->string('uid');
-            $table->string('alamat')->nullable();
-            $table->string('kec')->nullable();
-            $table->string('kab')->nullable();
-            $table->string('prov')->nullable();
+            $table->json('alamat')->nullable();
             $table->string('telepon')->nullable();
             $table->string('foto')->nullable();
             $table->string('role')->default('admin');
