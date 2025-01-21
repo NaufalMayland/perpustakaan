@@ -1,6 +1,6 @@
 @extends('auth.layout.layout')
 @section('content')
-    <div class="flex flex-col-reverse lg:flex-row justify-between bg-white p-10 gap-4 items-center lg:h-screen h-auto">
+    <div class="flex flex-col-reverse lg:flex-row bg-white p-10 gap-4 items-center lg:h-screen h-auto">
         <div class="grid w-full">
             <div class="gap-6">
                 <div class="">
@@ -63,18 +63,18 @@
     <div class="p-10 h-screen" id="about">
         <div class="flex lg:flex-row flex-col items-center">
             <div class="w-full">
-                <div class="flex items-center">
-                    <img src="{{ asset('storage/image/readingBook1.png') }}" alt="" class="">
+                <div class="text-center">
+                    <span class="text-3xl font-bold"><span class="text-blue-600">MyLibrary</span> bukan sekedar perpustakaan digital</span>
+                </div>
+                <div class="text-sm text-center mt-4">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora deserunt iusto, corrupti ullam optio, illo laborum saepe pariatur repudiandae, placeat sequi perspiciatis commodi ducimus dolorum labore consequuntur. Cupiditate fugiat magnam molestias eos error consequatur quaerat dolore animi architecto accusamus modi, et corporis! Est quisquam consectetur ducimus totam sed voluptas modi sit animi necessitatibus distinctio debitis et, consequuntur illum explicabo, atque aliquam. Alias velit nemo iure rerum unde non odit officia.
                 </div>
             </div>
-            <div class="w-full">
-                <div class="text-right">
-                    <span class="bg-blue-600 py-2 px-4 text-white text-sm rounded-full">Tentang kami</span>
-                </div>
-                <div class="text-sm text-justify mt-4">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis hic tempora tempore placeat repudiandae veniam deserunt mollitia consectetur dolores, dolorem nesciunt voluptatibus quod, voluptate sit iure qui eum. Incidunt, natus!
-                </div>
-            </div>
+        </div>
+    </div>
+    <div class="p-10 flex bg-[#333]">
+        <div class="flex text-center justify-center items-center w-full">
+            <span class="text-white font-bold text-3xl">MyLibrary</span>
         </div>
     </div>
 @endsection
