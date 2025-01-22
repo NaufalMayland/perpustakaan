@@ -54,5 +54,10 @@ class InputController extends Controller
         return redirect(route('petugas.user.index'));
     }
 
-
+    public function addBuku()
+    {
+        return view('petugas.buku.addBuku', [
+            'title' => "Tambah Data"
+        ]);
+    }
 }

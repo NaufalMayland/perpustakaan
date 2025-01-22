@@ -35,6 +35,7 @@ Route::prefix('perpustakaan')->group(function () {
         
         Route::prefix('buku')->middleware('rolePetugas:admin')->group(function (){
             Route::get('/', [PetugasController::class, 'buku'])->name('petugas.buku.index');
+            Route::get('/tambah', [InputController::class, 'addBuku'])->name('petugas.buku.addBuku');
         });
 
         Route::prefix('kategori')->middleware('rolePetugas:admin')->group(function (){

@@ -12,10 +12,8 @@ class Petugas extends Model
         'email',
         'uid',
         'alamat',
-        'kec',
-        'kab',
-        'prov',
         'telepon',
-        'foto'
+        'foto',
+        'role'
     ];
 }

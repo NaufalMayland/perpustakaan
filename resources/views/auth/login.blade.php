@@ -13,7 +13,7 @@
         <form action="{{route('auth.loginAction')}}" method="POST" class="w-fit bg-[#fff] shadow-md rounded px-6 py-8">
             @csrf
             <div class="w-80">
-                <div class="text-2xl text-blue-600 font-bold w-full text-center mb-8">
+                <div class="text-2xl text-blue-900 font-bold w-full text-center mb-8">
                     <h1>PERPUSTAKAAN</h1>
                 </div>
                 @if ($errors->any())
@@ -36,11 +36,11 @@
                     </div>
                 </div>
                 <div class="flex justify-between items-center mt-8">
-                    <div class="text-blue-600 hover:text-blue-900 text-sm">
+                    <div class="text-blue-900 hover:text-blue-900 text-sm">
                         <a href="{{ route('auth.register') }}">Belum punya akun?</a>
                     </div>
                     <div class="">
-                        <button type="submit" class="text-sm font-semibold bg-blue-600 rounded text-white py-2 px-4 hover:bg-blue-900">Login</button>
+                        <button type="submit" class="text-sm font-semibold bg-blue-900 rounded text-white py-2 px-4 hover:bg-blue-900">Login</button>
                     </div>
                 </div>
             </div>

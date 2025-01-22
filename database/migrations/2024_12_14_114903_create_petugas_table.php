@@ -19,7 +19,7 @@ return new class extends Migration
             $table->json('alamat')->nullable();
             $table->string('telepon')->nullable();
             $table->string('foto')->nullable();
-            $table->string('role')->default('admin');
+            $table->enum('role', ['admin', 'petugas'])->default('admin');
             $table->timestamps();
         });
     }

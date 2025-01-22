@@ -12,10 +12,7 @@ class Peminjam extends Model
         'email',
         'uid',
         'alamat',
-        'kec',
-        'kab',
-        'prov',
         'telepon',
-        'foto'
+        'foto',
     ];
 }

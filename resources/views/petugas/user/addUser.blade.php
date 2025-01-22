@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="flex justify-end mt-4">
-            <button class="bg-blue-600 py-2 px-3 text-sm rounded text-white">Tambah</button>
+            <button class="bg-blue-900 py-2 px-3 text-sm rounded text-white">Tambah</button>
         </div>
     </form>
 @endsection
