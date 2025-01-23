@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\Peminjam;
 use App\Models\Petugas;
 use App\Models\Role;
@@ -9,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class InputController extends Controller
+    class InputController extends Controller
 {
     public function addUser()
     {
@@ -59,5 +60,21 @@ class InputController extends Controller
         return view('petugas.buku.addBuku', [
             'title' => "Tambah Data"
         ]);
+    }
+
+    public function addBukuAction(Request $request)
+    {
+        // dd($request->all());
+        Buku::insert([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+            'stok' => $request->stok,
+            'kode' => $request->kode,
+            'deskripsi' => $request->deskripsi
+        ]);
+
+        return redirect()->route('petugas.buku.index');
     }
 }

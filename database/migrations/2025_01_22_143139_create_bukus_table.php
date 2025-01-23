@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('tahun_terbit');
             $table->string('kode');
             $table->bigInteger('stok');
+            $table->string('cover');
             $table->timestamps();
         });
     }
