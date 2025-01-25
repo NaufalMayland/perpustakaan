@@ -64,17 +64,23 @@ use Illuminate\Support\Facades\Hash;
 
     public function addBukuAction(Request $request)
     {
-        // dd($request->all());
-        Buku::insert([
-            'judul' => $request->judul,
-            'penulis' => $request->penulis,
-            'penerbit' => $request->penerbit,
-            'tahun_terbit' => $request->tahun_terbit,
-            'stok' => $request->stok,
-            'kode' => $request->kode,
-            'deskripsi' => $request->deskripsi
-        ]);
+        // Buku::insert([
+        //     'judul' => $request->judul,
+        //     'penulis' => $request->penulis,
+        //     'penerbit' => $request->penerbit,
+        //     'tahun_terbit' => $request->tahun_terbit,
+        //     'stok' => $request->stok,
+        //     'kode' => $request->kode,
+        //     'deskripsi' => $request->deskripsi
+        // ]);
 
         return redirect()->route('petugas.buku.index');
+    }
+
+    public function addListKategori()
+    {
+        return view('petugas.listKategori.addListKategori', [
+            'title' => "Tambah Data"
+        ]);
     }
 }
