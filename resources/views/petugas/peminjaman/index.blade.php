@@ -18,7 +18,7 @@
                     <i class="fa-solid fa-file-import"></i>
                     <span>Import</span>
                 </a>
-                <a href="" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.peminjaman.addPeminjaman') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-plus"></i>
                     <span>Tambah</span>
                 </a>

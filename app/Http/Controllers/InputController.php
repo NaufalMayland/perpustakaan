@@ -8,6 +8,7 @@ use App\Models\Petugas;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
     class InputController extends Controller
@@ -81,6 +82,17 @@ use Illuminate\Support\Facades\Hash;
     {
         return view('petugas.listKategori.addListKategori', [
             'title' => "Tambah Data"
+        ]);
+    }
+
+    public function addPeminjaman()
+    {
+        $user = Auth::user();
+        $petugas = Petugas::where('email', $user->email)->first();
+
+        return view('petugas.peminjaman.addPeminjaman', [
+            'title' => "Tambah Data",
+            'petugas' => $petugas,
         ]);
     }
 }

@@ -49,6 +49,7 @@ Route::prefix('perpustakaan')->group(function () {
 
         Route::prefix('peminjaman')->middleware('rolePetugas:petugas')->group(function (){
             Route::get('/', [PetugasController::class, 'peminjaman'])->name('petugas.peminjaman.index');
+            Route::get('/tambah', [InputController::class, 'addPeminjaman'])->name('petugas.peminjaman.addPeminjaman');
         });
 
         Route::prefix('ulasan')->middleware('rolePetugas:petugas')->group(function (){
