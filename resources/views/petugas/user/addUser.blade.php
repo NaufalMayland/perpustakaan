@@ -14,20 +14,20 @@
         <div class="grid grid-cols-2 gap-4 text-sm mt-4">
             <div class="grid">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" class="w-full h-9 px-2 rounded bg-gray-100 border-gray-200 text-sm" value="{{ old('username') }}" required>
+                <input type="text" name="username" id="username" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('username') }}" required>
             </div>
             <div class="grid">
                 <label for="email">Email</label>
-                <input type="Email" name="email" id="email" class="w-full h-9 px-2 rounded bg-gray-100 border-gray-200 text-sm" value="{{ old('email') }}" required>
+                <input type="Email" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('email') }}" required>
             </div>
             <div class="grid">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="w-full h-9 px-2 rounded bg-gray-100 border-gray-200 text-sm" required>
+                <input type="password" name="password" id="password" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" required>
             </div>
             <div class="grid">
                 <label for="role">Hak Akses</label>
-                <select name="role" id="role" class="w-full h-9 px-2 rounded bg-gray-100 border-gray-200 text-sm" required>
-                    <option value="" disabled selected hidden>Pilih Hak Akses</option>
+                <select name="role" id="role" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm cursor-pointer capitalize" required>
+                    <option value="" disabled selected hidden>Pilih hak akses</option>
                     @foreach ($roleData as $data)
                         <option value="{{$data->id}}" class="capitalize">{{$data->role}}</option>
                     @endforeach

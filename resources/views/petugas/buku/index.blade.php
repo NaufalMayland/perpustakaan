@@ -24,5 +24,69 @@
                 </a>
             </div>
         </div>
+        <div class="mt-4">
+            <table class="text-sm" id="bukuTable">
+                <thead class="w-full">
+                    <tr>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Judul</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Penulis</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Penerbit</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Tahun Terbit</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Deskripsi</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Kode</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Stok</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Option</td>
+                    </tr>
+                </thead>
+                <tbody class="w-full">
+                    @foreach ($dataBuku as $data)
+                        <tr>
+                            <td class="p-2">{{ $data->judul }}</td>
+                            <td class="p-2">{{ $data->penulis }}</td>
+                            <td class="p-2">{{ $data->penerbit }}</td>
+                            <td class="p-2">{{ $data->tahun_terbit }}</td>
+                            <td class="p-2">{{ $data->deskripsi }}</td>
+                            <td class="p-2">{{ $data->kode }}</td>
+                            <td class="p-2">{{ $data->stok }}</td>
+                            <td class="p-2 flex gap-2 text-center justify-center">
+                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                    <i class="fa-solid fa-pencil text-sm"></i>
+                                </a>
+                                <form id="deleteBuku" action="{{ route('petugas.buku.deleteBuku', $data->id) }}" method="POST" class="hidden">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteUser()">
+                                    <i class="fa-solid fa-trash text-sm"></i>    
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <script>
+        $(document).ready( function () {
+            $('#bukuTable').DataTable();
+        } );
+
+        function deleteUser() {
+            Swal.fire({
+            title: 'Hapus',
+            text: "Anda yakin untuk logout?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#2563eb',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                document.getElementById('deleteBuku').submit();
+                }
+            });
+        }
+    </script>
 @endsection

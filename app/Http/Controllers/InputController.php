@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\ListKategori;
 use App\Models\Peminjam;
 use App\Models\Petugas;
 use App\Models\Role;
@@ -65,24 +67,35 @@ use Illuminate\Support\Facades\Hash;
 
     public function addBukuAction(Request $request)
     {
-        // Buku::insert([
-        //     'judul' => $request->judul,
-        //     'penulis' => $request->penulis,
-        //     'penerbit' => $request->penerbit,
-        //     'tahun_terbit' => $request->tahun_terbit,
-        //     'stok' => $request->stok,
-        //     'kode' => $request->kode,
-        //     'deskripsi' => $request->deskripsi
-        // ]);
+        Buku::insert([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+            'stok' => $request->stok,
+            'kode' => $request->kode,
+            'deskripsi' => $request->deskripsi
+        ]);
 
         return redirect()->route('petugas.buku.index');
     }
 
-    public function addListKategori()
+    public function addKategoriAction(Request $request)
     {
-        return view('petugas.listKategori.addListKategori', [
-            'title' => "Tambah Data"
+        Kategori::updateOrCreate([
+            'kategori' => $request->kategori,
         ]);
+
+        return redirect()->route('petugas.kategori.index');
+    }
+    public function addListKategoriAction(Request $request)
+    {
+        ListKategori::create([
+            'id_buku' => $request->buku,
+            'id_kategori' => $request->kategori,
+        ]);
+
+        return redirect()->route('petugas.listKategori.index');
     }
 
     public function addPeminjaman()

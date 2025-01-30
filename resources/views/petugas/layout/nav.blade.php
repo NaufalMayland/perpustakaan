@@ -60,7 +60,7 @@
             </ul>
         </nav>
         <div class="justify-center items-center text-center p-6">
-            <form id="logoutForm" action="{{route('auth.logout')}}" method="post">
+            <form id="logoutForm" action="{{ route('auth.logout') }}" method="post">
                 @csrf
             </form>
             <button type="submit" class="py-2 px-5 text-sm text-white rounded-full bg-blue-900  hover:bg-white hover:text-blue-900 border-0 hover:border hover:border-blue-900 transition-all duration-100 ease-in-out" onclick="confirmLogout()">logout</button>
@@ -84,39 +84,4 @@
             }
         });
     }
-
-    // document.querySelectorAll('[data-collapse-toggle]').forEach(button => {
-    //     button.addEventListener('click', () => {
-    //         const targetId = button.getAttribute('aria-controls');
-    //         const target = document.getElementById(targetId);
-    //         const parentDropdown = button.closest('.dropdown'); 
-    //         const currentRoute = "{{ Route::currentRouteName() }}";
-
-    //         document.querySelectorAll('.dropdown').forEach(dropdown => {
-    //             if (currentRoute !== 'user.dataPetugas.index' && currentRoute !== 'user.dataPeminjam.index') {
-    //                 dropdown.classList.remove('border-blue-900', 'border-l-4');
-    //                 const dropdownButton = dropdown.querySelector('button');
-    //                 if (dropdownButton) {
-    //                     dropdownButton.classList.remove('bg-gray-100', 'text-black');
-    //                 }
-    //             }
-    //         });
-
-    //         if (target) {
-    //             target.classList.toggle('hidden');
-    //             button.setAttribute('aria-expanded', !target.classList.contains('hidden'));
-
-    //             if (!target.classList.contains('hidden')) {
-    //                 parentDropdown.classList.add('border-blue-900', 'border-l-4');
-    //                 button.classList.add('bg-gray-100', 'text-black');
-    //             } else {
-    //                 if (currentRoute !== 'user.dataPetugas.index' && currentRoute !== 'user.dataPeminjam.index') {
-    //                     parentDropdown.classList.remove('bg-gray-100', 'border-blue-900', 'border-l-4');
-    //                 }
-    //             }
-    //         } else {
-    //             console.error(`Element with ID ${targetId} not found`);
-    //         }
-    //     });
-    // });
 </script>

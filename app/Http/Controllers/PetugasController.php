@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\ListKategori;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,29 +16,42 @@ class PetugasController extends Controller
         ]);
     }
 
+    public function buku() {
+        $dataBuku = Buku::all();
+
+        return view('petugas.buku.index', [
+            'title' => "Buku",
+            'dataBuku' => $dataBuku,
+        ]);
+    }
+
+    public function kategori() {
+        $dataKategori = Kategori::all();
+
+        return view('petugas.kategori.index', [
+            'title' => "Kategori",
+            'dataKategori' => $dataKategori,
+        ]);
+    }
+
+    public function listKategori() {
+        $dataBuku = Buku::all();
+        $dataKategori = Kategori::all();
+        $dataListKategori = ListKategori::with(['buku', 'kategori'])->get();
+        
+        return view('petugas.listKategori.index', [
+            'title' => "List Kategori",
+            'dataBuku' => $dataBuku,
+            'dataKategori' => $dataKategori,
+            'dataListKategori' => $dataListKategori,
+        ]);
+    }
+
     public function user() {
         $dataUser = User::with(['role'])->get();
         return view('petugas.user.index', [
             'title' => "User",
             'dataUser' => $dataUser
-        ]);
-    }
-
-    public function buku() {
-        return view('petugas.buku.index', [
-            'title' => "Buku",
-        ]);
-    }
-
-    public function kategori() {
-        return view('petugas.kategori.index', [
-            'title' => "Kategori",
-        ]);
-    }
-
-    public function listKategori() {
-        return view('petugas.listKategori.index', [
-            'title' => "List Kategori",
         ]);
     }
 

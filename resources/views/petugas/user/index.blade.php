@@ -24,26 +24,61 @@
                 </a>
             </div>
         </div>
-        <div class="flex w-full mt-6">
-            <table class="w-full table-auto rounded text-sm">
-                <tr>
-                    <td class="p-2 text-center font-bold uppercase bg-slate-200">Username</td>
-                    <td class="p-2 text-center font-bold uppercase bg-slate-200">Email</td>
-                    <td class="p-2 text-center font-bold uppercase bg-slate-200">Hak akses</td>
-                    <td class="p-2 text-center font-bold uppercase bg-slate-200">Option</td>
-                </tr>
-                @foreach ($dataUser as $data)
+        <div class="mt-4">
+            <table class="text-sm" id="usersTable">
+                <thead class="w-full">
                     <tr>
-                        <td class="p-2">{{ $data->username }}</td>
-                        <td class="p-2">{{ $data->email }}</td>
-                        <td class="p-2 capitalize">{{ $data->role->role }}</td>
-                        <td class="p-2 flex gap-4">
-                            <a href="" class="py-1 rounded w-full text-center bg-blue-500 text-white">Edit</a>
-                            <a href="" class="py-1 rounded w-full text-center bg-red-500 text-white">Hapus</a>
-                        </td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Username</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Email</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Hak akses</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Option</td>
                     </tr>
-                @endforeach
+                </thead>
+                <tbody class="w-full">
+                    @foreach ($dataUser as $data)
+                        <tr>
+                            <td class="p-2">{{ $data->username }}</td>
+                            <td class="p-2">{{ $data->email }}</td>
+                            <td class="p-2 capitalize">{{ $data->role->role }}</td>
+                            <td class="p-2 flex gap-2 text-center justify-center">
+                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                    <i class="fa-solid fa-pencil text-sm"></i>
+                                </a>
+                                <form id="deleteUser" action="{{ route('petugas.user.deleteUser', $data->id) }}" method="POST" class="hidden">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteUser()">
+                                    <i class="fa-solid fa-trash text-sm"></i>    
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        $(document).ready( function () {
+            $('#usersTable').DataTable();
+        } );
+
+        function deleteUser() {
+            Swal.fire({
+            title: 'Hapus',
+            text: "Anda yakin untuk logout?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#2563eb',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                document.getElementById('deleteUser').submit();
+                }
+            });
+        }
+    </script>
 @endsection

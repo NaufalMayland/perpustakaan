@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\ImportExcelController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\PeminjamController;
@@ -37,14 +38,19 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'buku'])->name('petugas.buku.index');
             Route::get('/tambah', [InputController::class, 'addBuku'])->name('petugas.buku.addBuku');
             Route::post('/tambah-action', [InputController::class, 'addBukuAction'])->name('petugas.buku.addBukuAction');
+            Route::delete('/delete/{id}', [DeleteController::class, 'deleteBuku'])->name('petugas.buku.deleteBuku');
         });
 
         Route::prefix('kategori')->middleware('rolePetugas:admin')->group(function (){
             Route::get('/', [PetugasController::class, 'kategori'])->name('petugas.kategori.index');
+            Route::post('/tambah-action', [InputController::class, 'addKategoriAction'])->name('petugas.kategori.addKategoriAction');
+            Route::delete('/delete/{id}', [DeleteController::class, 'deleteKategori'])->name('petugas.kategori.deleteKategori');
         });
 
         Route::prefix('listkategori')->middleware('rolePetugas:admin')->group(function (){
             Route::get('/', [PetugasController::class, 'listKategori'])->name('petugas.listKategori.index');
+            Route::post('/tambah-action', [InputController::class, 'addListKategoriAction'])->name('petugas.kategori.addListKategoriAction');
+            Route::delete('/delete/{id}', [DeleteController::class, 'deleteListKategori'])->name('petugas.listKategori.deleteListKategori');
         });
 
         Route::prefix('peminjaman')->middleware('rolePetugas:petugas')->group(function (){
@@ -60,6 +66,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'user'])->name('petugas.user.index');
             Route::get('/tambah', [InputController::class, 'addUser'])->name('petugas.user.addUser');
             Route::post('/tambah-action', [InputController::class, 'addUserAction'])->name('petugas.user.addUserAction');
+            Route::delete('/delete/{id}', [DeleteController::class, 'deleteUser'])->name('petugas.user.deleteUser');
             Route::get('/print', [PrintController::class, 'userPrint'])->name('petugas.user.printUser');
             Route::get('/import', [ImportExcelController::class, 'importUser'])->name('petugas.user.importUser');
             Route::get('/template', [ImportExcelController::class, 'templateUser'])->name('petugas.user.templateUser');
