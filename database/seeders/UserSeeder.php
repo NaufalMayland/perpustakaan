@@ -18,13 +18,13 @@ class UserSeeder extends Seeder
             [
                 'username' => 'petugas1',
                 'email' => 'petugas1@gmail.com',
-                'password' => Hash::make('petugas1'),
+                'password' => Hash::make('1'),
                 'role_id' => 2
             ],
             [
                 'username' => 'petugas2',
                 'email' => 'petugas2@gmail.com',
-                'password' => Hash::make('petugas2'),
+                'password' => Hash::make('2'),
                 'role_id' => 2
             ]
         ];

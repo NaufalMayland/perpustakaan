@@ -33,13 +33,19 @@
                 <label for="tanggal_pengembalian">Tanggal Pengembalian</label>
                 <input type="date" name="tanggal_pengembalian" id="tanggal_pengembalian" class="w-full py-2 px-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('tanggal_pengembalian') }}"  required>
             </div>
-            <div class="grid">
+            {{-- <div class="grid">
                 <label for="tanggal_pengembalian">Tanggal Dikembalikan</label>
                 <input type="date" name="tanggal_pengembalian" id="tanggal_pengembalian" class="w-full py-2 px-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('tanggal_pengembalian') }}">
-            </div>
+            </div> --}}
             <div class="grid">
                 <label for="status">Status</label>
-                <input type="number" name="status" id="status" class="w-full py-2 px-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('status') }}">
+                <select name="status" id="status" class="w-full py-2 px-2 rounded border bg-gray-100 border-gray-300 text-sm capitalize">
+                    <option value="" disabled selected hidden>Status</option>
+                    <option value="proses" class="capitalize">proses</option>
+                    <option value="dipinjam" class="capitalize">dipinjam</option>
+                    <option value="dikembalikan" class="capitalize">dikembalikan</option>
+                </select>
+                {{-- <input type="number" name="status" id="status" class="w-full py-2 px-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('status') }}"> --}}
             </div>
         </div>
         <div class="flex justify-end mt-4">

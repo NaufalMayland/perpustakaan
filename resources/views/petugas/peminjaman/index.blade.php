@@ -24,5 +24,40 @@
                 </a>
             </div>
         </div>
+        <div class="mt-4">
+            <table class="text-sm" id="peminjamanTable">
+                <thead class="w-full">
+                    <tr>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Kategori</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">option</td>
+                    </tr>
+                </thead>
+                <tbody class="w-full">
+                    {{-- @foreach ($dataKategori as $data)
+                        <tr>
+                            <td class="p-2">{{ $data->kategori }}</td>
+                            <td class="p-2 flex gap-2 text-center justify-center">
+                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                    <i class="fa-solid fa-pencil text-sm"></i>
+                                </a>
+                                <form id="deleteKategori" action="{{ route('petugas.kategori.deleteKategori', $data->id) }}" method="POST" class="hidden">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteKategori()">
+                                    <i class="fa-solid fa-trash text-sm"></i>    
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach --}}
+                </tbody>
+            </table>
+        </div>
     </div>
+    <script>
+        $(document).ready( function () {
+            $('#peminjamanTable').DataTable();
+            
+        } );
+    </script>
 @endsection

@@ -15,7 +15,7 @@
                 <div class="grid gap-2">
                     <div class="grid w-full text-black text-sm">
                         <label for="kategori">Kategori</label>
-                        <input type="text" name="kategori" id="kategori" class="w-80 p-2 rounded border bg-gray-100 border-gray-300 text-sm" required>
+                        <input type="text" name="kategori" id="kategori" class="w-80 p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukan Kategori" required>
                     </div>
                 </div>
                 <div class="flex items-center">

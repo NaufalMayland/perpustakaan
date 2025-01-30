@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
+use App\Models\Peminjaman;
 use App\Models\Petugas;
 use App\Models\Role;
 use App\Models\User;
