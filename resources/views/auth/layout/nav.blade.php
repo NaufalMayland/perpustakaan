@@ -1,4 +1,4 @@
-<nav class="bg-white shadow py-4 px-6 flex justify-between items-center fixed w-full">
+<nav class="bg-white shadow py-4 px-6 flex justify-between items-center fixed z-[999] w-full">
     <div class="flex items-center gap-2">
         <i class="fa-solid fa-book-open-reader text-blue-900"></i>
         <h1 class="font-bold text-lg text-blue-900">PERPUSTAKAAN</h1>

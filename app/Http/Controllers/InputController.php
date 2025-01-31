@@ -68,6 +68,16 @@ use Illuminate\Support\Facades\Hash;
 
     public function addBukuAction(Request $request)
     {
+        $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'stok' => 'required',
+            'kode' => 'required',
+            'deskripsi' => 'required',
+        ]);
+        
         Buku::insert([
             'judul' => $request->judul,
             'penulis' => $request->penulis,
