@@ -14,7 +14,7 @@ class DeleteController extends Controller
         $user = User::find($id);
         $user->delete();
         
-        return redirect(route('petugas.user.peminjam.index'));
+        return redirect(route('petugas.user.dpeminjam.index'));
     }
 
     public function deleteBuku($id)

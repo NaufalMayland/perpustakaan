@@ -14,11 +14,11 @@
                     <i class="fa-solid fa-file-export"></i>
                     <span>Eksport</span>
                 </a>
-                <a href="{{route('petugas.user.peminjam.importPeminjam')}}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{route('petugas.user.dpeminjam.importPeminjam')}}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-file-import"></i>
                     <span>Import</span>
                 </a>
-                <a href="{{route('petugas.user.peminjam.addPeminjam')}}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{route('petugas.user.dpeminjam.addPeminjam')}}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-plus"></i>
                     <span>Tambah</span>
                 </a>
@@ -30,7 +30,7 @@
                     <tr>
                         <td class="p-2 text-center font-bold uppercase bg-slate-200">Username</td>
                         <td class="p-2 text-center font-bold uppercase bg-slate-200">Email</td>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Hak akses</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Telepon</td>
                         <td class="p-2 text-center font-bold uppercase bg-slate-200">Option</td>
                     </tr>
                 </thead>
@@ -39,12 +39,12 @@
                         <tr>
                             <td class="p-2">{{ $data->username }}</td>
                             <td class="p-2">{{ $data->email }}</td>
-                            <td class="p-2 capitalize">{{ $data->role->role }}</td>
+                            <td class="p-2">{{ $data->telepon }}</td>
                             <td class="p-2 flex gap-2 text-center justify-center">
                                 <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
                                     <i class="fa-solid fa-pencil text-sm"></i>
                                 </a>
-                                <form id="deleteUser" action="{{ route('petugas.user.peminjam.deletePeminjam', $data->id) }}" method="POST" class="hidden">
+                                <form id="deleteUser" action="{{ route('petugas.user.dpeminjam.deletePeminjam', $data->id) }}" method="POST" class="hidden">
                                     @csrf
                                     @method('DELETE')
                                 </form>

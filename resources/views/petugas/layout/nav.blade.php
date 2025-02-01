@@ -14,6 +14,12 @@
                 </li>
                 @if ($sesPetugas->role == 'admin')                    
                     <li>
+                        <a href="{{ route('petugas.user.dpetugas.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.user.dpetugas*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                            {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
+                            <span>Petugas</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('petugas.buku.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.buku.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                             {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
                             <span>Buku</span>
@@ -33,7 +39,7 @@
                     </li>
                 @elseif ($sesPetugas->role == 'petugas')                    
                 <li>
-                    <a href="{{ route('petugas.user.peminjam.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.user.peminjam.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                    <a href="{{ route('petugas.user.dpeminjam.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.user.dpeminjam.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                         {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
                         <span>Peminjam</span>
                     </a>
