@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class PrintController extends Controller
 {
-    public function userPrint()
+    public function printPeminjam()
     {
         $userData = User::with('role')->get();
-        return view('petugas.user.printUser', [
+        return view('petugas.user.peminjam.printPeminjam', [
             'title' => "Print",
             'userData' => $userData
         ]);

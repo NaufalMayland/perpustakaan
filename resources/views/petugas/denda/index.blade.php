@@ -14,39 +14,44 @@
                     <i class="fa-solid fa-file-export"></i>
                     <span>Eksport</span>
                 </a>
-                <a href="{{ route('petugas.kategori.importKategori') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-file-import"></i>
                     <span>Import</span>
                 </a>
-                @include('petugas.kategori.modal.addKategori')
+                <a href="" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                    <i class="fa-solid fa-file-import"></i>
+                    <span>Tambah</span>
+                </a>
             </div>
         </div>
         <div class="mt-4">
-            <table class="text-sm" id="kategoriTable">
+            <table class="text-sm" id="dendaTable">
                 <thead class="w-full">
                     <tr>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Kategori</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Buku Pinjaman</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Peminjam</td>
                         <td class="p-2 text-center font-bold uppercase bg-slate-200">option</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">status</td>
                     </tr>
                 </thead>
                 <tbody class="w-full">
-                    @foreach ($dataKategori as $data)
-                        <tr>
-                            <td class="p-2">{{ $data->kategori }}</td>
-                            <td class="p-2 flex gap-2 text-center justify-center">
-                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
-                                    <i class="fa-solid fa-pencil text-sm"></i>
-                                </a>
-                                <form id="deleteKategori" action="{{ route('petugas.kategori.deleteKategori', $data->id) }}" method="POST" class="hidden">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                                <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteKategori()">
-                                    <i class="fa-solid fa-trash text-sm"></i>    
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach
+                    <tr>
+                        <td>..</td>
+                        <td>..</td>
+                        <td>..</td>
+                        <td class="p-2 flex gap-2 text-center justify-center">
+                            <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                <i class="fa-solid fa-pencil text-sm"></i>
+                            </a>
+                            <form id="deleteDenda" action="" method="POST" class="hidden">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                            <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteDenda()">
+                                <i class="fa-solid fa-trash text-sm"></i>    
+                            </button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -54,11 +59,11 @@
 
     <script>
         $(document).ready( function () {
-            $('#kategoriTable').DataTable();
+            $('#dendaTable').DataTable();
             
         } );
 
-        function deleteKategori() {
+        function deleteDenda() {
             Swal.fire({
             title: 'Hapus',
             text: "Anda yakin untuk logout?",
@@ -70,7 +75,7 @@
             })
             .then((result) => {
                 if (result.isConfirmed) {
-                document.getElementById('deleteKategori').submit();
+                document.getElementById('deleteDenda').submit();
                 }
             });
         }

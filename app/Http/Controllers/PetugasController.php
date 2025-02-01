@@ -47,10 +47,10 @@ class PetugasController extends Controller
         ]);
     }
 
-    public function user() {
+    public function peminjam() {
         $dataUser = User::with(['role'])->get();
-        return view('petugas.user.index', [
-            'title' => "User",
+        return view('petugas.user.peminjam.index', [
+            'title' => "Peminjam",
             'dataUser' => $dataUser
         ]);
     }
@@ -58,6 +58,12 @@ class PetugasController extends Controller
     public function peminjaman() {
         return view('petugas.peminjaman.index', [
             'title' => "Peminjaman",
+        ]);
+    }
+
+    public function denda() {
+        return view('petugas.denda.index', [
+            'title' => "Denda",
         ]);
     }
 

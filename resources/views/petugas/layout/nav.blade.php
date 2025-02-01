@@ -7,51 +7,51 @@
         <nav class="text-sm">
             <ul>
                 <li>
-                    <a href="{{route('petugas.dashboard.index')}}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out @if(Route::is('petugas.dashboard.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                    <a href="{{ route('petugas.dashboard.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out @if(Route::is('petugas.dashboard.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                         {{-- <i class="fa-solid fa-house text-blue-900 text-lg"></i> --}}
                         <span>Dashboard</span>
                     </a>
                 </li>
                 @if ($sesPetugas->role == 'admin')                    
                     <li>
-                        <a href="{{route('petugas.buku.index')}}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.buku.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                        <a href="{{ route('petugas.buku.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.buku.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                             {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
                             <span>Buku</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('petugas.kategori.index')}}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.kategori.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                        <a href="{{ route('petugas.kategori.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.kategori.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                             {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
                             <span>Kategori</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('petugas.listKategori.index')}}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.listKategori.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                        <a href="{{ route('petugas.listKategori.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.listKategori.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                             {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
                             <span>List Kategori</span>
                         </a>
                     </li>
                 @elseif ($sesPetugas->role == 'petugas')                    
                 <li>
-                    <a href="{{route('petugas.user.index')}}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.user.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                    <a href="{{ route('petugas.user.peminjam.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.user.peminjam.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                         {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
-                        <span>User</span>
+                        <span>Peminjam</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('petugas.peminjaman.index')}}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.peminjaman.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                    <a href="{{ route('petugas.peminjaman.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.peminjaman.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                         {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
                         <span>Peminjaman</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.denda.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                    <a href="{{ route('petugas.denda.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.denda.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                         {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
                         <span>Denda</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('petugas.ulasan.index')}}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.ulasan.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
+                    <a href="{{ route('petugas.ulasan.index') }}" class="py-3 pl-5 space-x-2 flex items-center border-0 hover:bg-gray-100 hover:border-l-4 hover:border-blue-900 transition-all duration-100 ease-in-out  @if(Route::is('petugas.ulasan.*')) bg-gray-100 border-blue-900 border-l-4 @endif">
                         {{-- <i class="fa-solid fa-gear text-blue-900 text-lg"></i> --}}
                         <span>Ulasan</span>
                     </a>

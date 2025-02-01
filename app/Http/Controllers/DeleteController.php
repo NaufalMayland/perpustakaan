@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 
 class DeleteController extends Controller
 {
-    public function deleteUser($id){
+    public function deletePeminjam($id){
         $user = User::find($id);
         $user->delete();
         
-        return redirect(route('petugas.user.index'));
+        return redirect(route('petugas.user.peminjam.index'));
     }
 
     public function deleteBuku($id)

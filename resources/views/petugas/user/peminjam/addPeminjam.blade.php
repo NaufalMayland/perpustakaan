@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <form method="POST" action="{{route('petugas.user.addUserAction')}}" class="bg-white p-4 shadow-md rounded">
+    <form method="POST" action="{{route('petugas.user.peminjam.addPeminjamAction')}}" class="bg-white p-4 shadow-md rounded">
         @csrf
         @if ($errors->any())
             <div class="bg-red-500 text-white text-sm p-3 rounded text-center w-full">

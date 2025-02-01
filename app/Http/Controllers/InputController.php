@@ -16,16 +16,16 @@ use Illuminate\Support\Facades\Hash;
 
     class InputController extends Controller
 {
-    public function addUser()
+    public function addPeminjam()
     {
         $roleData = Role::all();
-        return view('petugas.user.addUser', [
+        return view('petugas.user.peminjam.addPeminjam', [
             'title' => "Tambah Data",
             'roleData' => $roleData
         ]);
     }
 
-    public function addUserAction(Request $request)
+    public function addPeminjamAction(Request $request)
     {
         $cekUser = User::all();
         
@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\Hash;
             ]);
         }
 
-        return redirect(route('petugas.user.index'));
+        return redirect(route('petugas.user.peminjam.index'));
     }
 
     public function addBuku()

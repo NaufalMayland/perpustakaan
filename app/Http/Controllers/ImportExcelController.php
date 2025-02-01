@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 class ImportExcelController extends Controller
 {
-    public function importUser()
+    public function importPeminjam()
     {
-        return view('petugas.user.importUser', [
+        return view('petugas.user.peminjam.importPeminjam', [
             'title' => "Import"
         ]);
     }
 
-    public function templateUser()
+    public function templatePeminjam()
     {
         $templatePath = storage_path('app/public/templateExcel/UserTemplate.xlsx');
 
@@ -30,8 +30,31 @@ class ImportExcelController extends Controller
         return response()->download($templatePath, $fileName, $headers);
     }
 
-    public function importUserAction()
+    public function importBuku()
     {
-        
+        return view('petugas.buku.importBuku', [
+            'title' => "Import"
+        ]);
+    }
+
+    public function importKategori()
+    {
+        return view('petugas.kategori.importKategori', [
+            'title' => "Import"
+        ]);
+    }
+
+    public function importListKategori()
+    {
+        return view('petugas.listKategori.importListKategori', [
+            'title' => "Import"
+        ]);
+    }
+
+    public function importPeminjaman()
+    {
+        return view('petugas.peminjaman.importPeminjaman', [
+            'title' => "Import"
+        ]);
     }
 }
