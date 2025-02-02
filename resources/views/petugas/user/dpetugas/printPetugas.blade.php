@@ -33,16 +33,18 @@
                         <td class="text-sm text-center font-bold p-2">EMAIL</td>
                         <td class="text-sm text-center font-bold p-2">ALAMAT</td>
                         <td class="text-sm text-center font-bold p-2">TELEPON</td>
+                        <td class="text-sm text-center font-bold p-2">HAK AKSES</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($peminjam as $item)
+                    @foreach ($petugas as $item)
                         <tr>
                             <td class="text-sm p-2 text-center">{{$i++}}</td>
                             <td class="text-sm p-2">{{$item->nama}}</td>
                             <td class="text-sm p-2">{{$item->email}}</td>
                             <td class="text-sm p-2">{{$item->alamat}} @if ($item->alamat == null) - @endif</td>
                             <td class="text-sm p-2">{{$item->telepon}} @if ($item->telepon == null) - @endif</td>
+                            <td class="text-sm p-2">{{$item->role}}</td>
                         </tr>
                     @endforeach
                 </tbody>

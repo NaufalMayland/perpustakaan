@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\ListKategori;
+use App\Models\Peminjam;
+use App\Models\Petugas;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,10 +19,10 @@ class PetugasController extends Controller
     }
 
     public function dpetugas() {
-        $dataUser = User::with(['role'])->get();
+        $petugas = Petugas::all();
         return view('petugas.user.dpetugas.index', [
             'title' => "Petugas",
-            'dataUser' => $dataUser
+            'petugas' => $petugas
         ]);
     }
 
@@ -56,10 +58,10 @@ class PetugasController extends Controller
     }
 
     public function dpeminjam() {
-        $dataUser = User::with(['role'])->get();
+        $peminjam = Peminjam::all();
         return view('petugas.user.dpeminjam.index', [
             'title' => "Peminjam",
-            'dataUser' => $dataUser
+            'peminjam' => $peminjam
         ]);
     }
 

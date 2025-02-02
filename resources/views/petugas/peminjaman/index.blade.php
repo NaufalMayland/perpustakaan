@@ -6,7 +6,7 @@
                 <span>Data {{ $title }}</span>
             </div>
             <div class="flex gap-2 text-white text-sm w-full">
-                <a href="" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.peminjaman.printPeminjaman') }}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-print"></i>
                     <span>Print</span>
                 </a>
@@ -28,7 +28,13 @@
             <table class="text-sm" id="peminjamanTable">
                 <thead class="w-full">
                     <tr>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Kategori</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Peminjam</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Buku</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Petugas</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Tanggal Peminjaman</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Tanggal Pengembalian</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Tanggal Dikembalikan</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Status</td>
                         <td class="p-2 text-center font-bold uppercase bg-slate-200">option</td>
                     </tr>
                 </thead>

@@ -6,7 +6,7 @@
                 <span>Data {{ $title }}</span>
             </div>
             <div class="flex gap-2 text-white text-sm w-full">
-                <a href="{{route('petugas.user.printUser')}}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{route('petugas.user.dpeminjam.printUser')}}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-print"></i>
                     <span>Print</span>
                 </a>
@@ -35,16 +35,19 @@
                     </tr>
                 </thead>
                 <tbody class="w-full">
-                    @foreach ($dataUser as $data)
+                    @foreach ($peminjam as $item)
                         <tr>
-                            <td class="p-2">{{ $data->username }}</td>
-                            <td class="p-2">{{ $data->email }}</td>
-                            <td class="p-2">{{ $data->telepon }}</td>
+                            <td class="p-2">{{ $item->nama }}</td>
+                            <td class="p-2">{{ $item->email }}</td>
+                            <td class="p-2">{{ $item->telepon }} @if ($item->telepon == null) - @endif</td>
                             <td class="p-2 flex gap-2 text-center justify-center">
+                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                    <i class="fa-solid fa-eye text-sm"></i>
+                                </a>
                                 <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
                                     <i class="fa-solid fa-pencil text-sm"></i>
                                 </a>
-                                <form id="deleteUser" action="{{ route('petugas.user.dpeminjam.deletePeminjam', $data->id) }}" method="POST" class="hidden">
+                                <form id="deleteUser" action="{{ route('petugas.user.dpeminjam.deletePeminjam', $item->id) }}" method="POST" class="hidden">
                                     @csrf
                                     @method('DELETE')
                                 </form>

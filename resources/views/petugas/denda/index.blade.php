@@ -30,8 +30,8 @@
                     <tr>
                         <td class="p-2 text-center font-bold uppercase bg-slate-200">Buku Pinjaman</td>
                         <td class="p-2 text-center font-bold uppercase bg-slate-200">Peminjam</td>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">option</td>
                         <td class="p-2 text-center font-bold uppercase bg-slate-200">status</td>
+                        <td class="p-2 text-center font-bold uppercase bg-slate-200">option</td>
                     </tr>
                 </thead>
                 <tbody class="w-full">
@@ -56,6 +56,7 @@
             </table>
         </div>
     </div>
+    bagian print belum
 
     <script>
         $(document).ready( function () {

@@ -29,20 +29,16 @@
                 <thead>
                     <tr>
                         <td class="text-sm text-center font-bold p-2">NO</td>
-                        <td class="text-sm text-center font-bold p-2">USERNAME</td>
-                        <td class="text-sm text-center font-bold p-2">EMAIL</td>
-                        <td class="text-sm text-center font-bold p-2">ALAMAT</td>
-                        <td class="text-sm text-center font-bold p-2">TELEPON</td>
+                        <td class="text-sm text-center font-bold p-2">BUKU</td>
+                        <td class="text-sm text-center font-bold p-2">KATEGORI</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($peminjam as $item)
+                    @foreach ($listKategori as $item)
                         <tr>
                             <td class="text-sm p-2 text-center">{{$i++}}</td>
-                            <td class="text-sm p-2">{{$item->nama}}</td>
-                            <td class="text-sm p-2">{{$item->email}}</td>
-                            <td class="text-sm p-2">{{$item->alamat}} @if ($item->alamat == null) - @endif</td>
-                            <td class="text-sm p-2">{{$item->telepon}} @if ($item->telepon == null) - @endif</td>
+                            <td class="text-sm p-2">{{$item->buku->judul}}</td>
+                            <td class="text-sm p-2">{{$item->kategori->kategori}}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -38,6 +38,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'dpetugas'])->name('petugas.user.dpetugas.index');
             Route::get('/tambah', [InputController::class, 'addPetugas'])->name('petugas.user.dpetugas.addPetugas');
             Route::get('/import', [ImportExcelController::class, 'importPetugas'])->name('petugas.user.dpetugas.importPetugas');
+            Route::get('/print', [PrintController::class, 'printPetugas'])->name('petugas.user.dpetugas.printPetugas');
         });
         
         Route::prefix('buku')->middleware('rolePetugas:admin')->group(function (){
@@ -46,6 +47,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/tambah-action', [InputController::class, 'addBukuAction'])->name('petugas.buku.addBukuAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteBuku'])->name('petugas.buku.deleteBuku');
             Route::get('/import', [ImportExcelController::class, 'importBuku'])->name('petugas.buku.importBuku');
+            Route::get('/print', [PrintController::class, 'printBuku'])->name('petugas.buku.printBuku');
         });
 
         Route::prefix('kategori')->middleware('rolePetugas:admin')->group(function (){
@@ -53,6 +55,8 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/tambah-action', [InputController::class, 'addKategoriAction'])->name('petugas.kategori.addKategoriAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteKategori'])->name('petugas.kategori.deleteKategori');
             Route::get('/import', [ImportExcelController::class, 'importKategori'])->name('petugas.kategori.importKategori');
+            Route::get('/print', [PrintController::class, 'printKategori'])->name('petugas.kategori.printKategori');
+
         });
 
         Route::prefix('listkategori')->middleware('rolePetugas:admin')->group(function (){
@@ -60,16 +64,18 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/tambah-action', [InputController::class, 'addListKategoriAction'])->name('petugas.kategori.addListKategoriAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteListKategori'])->name('petugas.listKategori.deleteListKategori');
             Route::get('/import', [ImportExcelController::class, 'importListKategori'])->name('petugas.LisKategori.importListKategori');
+            Route::get('/print', [PrintController::class, 'printListKategori'])->name('petugas.ListKategori.printListKategori');
         });
-
+        
         Route::prefix('peminjam')->middleware('rolePetugas:petugas')->group(function () {
             Route::get('/', [PetugasController::class, 'dpeminjam'])->name('petugas.user.dpeminjam.index');
             Route::get('/tambah', [InputController::class, 'addPeminjam'])->name('petugas.user.dpeminjam.addPeminjam');
             Route::post('/tambah-action', [InputController::class, 'addPeminjamAction'])->name('petugas.user.dpeminjam.addPeminjamAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deletePeminjam'])->name('petugas.user.dpeminjam.deletePeminjam');
-            Route::get('/print', [PrintController::class, 'printPeminjam'])->name('petugas.user.dpetugas.printUser');
+            Route::get('/print', [PrintController::class, 'printPeminjam'])->name('petugas.user.dpeminjam.printUser');
             Route::get('/import', [ImportExcelController::class, 'importPeminjam'])->name('petugas.user.dpeminjam.importPeminjam');
             Route::get('/template', [ImportExcelController::class, 'templatePeminjam'])->name('petugas.user.dpeminjam.templatePeminjam');
+            Route::get('/print', [PrintController::class, 'printPeminjaman'])->name('petugas.peminjaman.printPeminjaman');
         });
 
         Route::prefix('peminjaman')->middleware('rolePetugas:petugas')->group(function (){

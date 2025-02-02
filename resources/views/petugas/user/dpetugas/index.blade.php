@@ -6,7 +6,7 @@
                 <span>Data {{ $title }}</span>
             </div>
             <div class="flex gap-2 text-white text-sm w-full">
-                <a href="" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.user.dpetugas.printPetugas') }}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-print"></i>
                     <span>Print</span>
                 </a>
@@ -36,24 +36,29 @@
                     </tr>
                 </thead>
                 <tbody class="w-full">
-                    <tr>
-                        <td>..</td>
-                        <td>..</td>
-                        <td>..</td>
-                        <td>..</td>
-                        <td class="p-2 flex gap-2 text-center justify-center">
-                            <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
-                                <i class="fa-solid fa-pencil text-sm"></i>
-                            </a>
-                            <form id="deleteDenda" action="" method="POST" class="hidden">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                            <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteDenda()">
-                                <i class="fa-solid fa-trash text-sm"></i>    
-                            </button>
-                        </td>
-                    </tr>
+                    @foreach ($petugas as $item) 
+                        <tr>
+                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->telepon }} @if ($item->telepon == null) - @endif</td>
+                            <td>{{ $item->role }}</td>
+                            <td class="p-2 flex gap-2 text-center justify-center">
+                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                    <i class="fa-solid fa-eye text-sm"></i>
+                                </a>
+                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                    <i class="fa-solid fa-pencil text-sm"></i>
+                                </a>
+                                <form id="deleteDenda" action="" method="POST" class="hidden">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteDenda()">
+                                    <i class="fa-solid fa-trash text-sm"></i>    
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

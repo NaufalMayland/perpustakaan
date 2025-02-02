@@ -29,20 +29,26 @@
                 <thead>
                     <tr>
                         <td class="text-sm text-center font-bold p-2">NO</td>
-                        <td class="text-sm text-center font-bold p-2">USERNAME</td>
-                        <td class="text-sm text-center font-bold p-2">EMAIL</td>
-                        <td class="text-sm text-center font-bold p-2">ALAMAT</td>
-                        <td class="text-sm text-center font-bold p-2">TELEPON</td>
+                        <td class="text-sm text-center font-bold p-2">JUDUL</td>
+                        <td class="text-sm text-center font-bold p-2">PENULIS</td>
+                        <td class="text-sm text-center font-bold p-2">PENERBIT</td>
+                        <td class="text-sm text-center font-bold p-2">TAHUN TERBIT</td>
+                        <td class="text-sm text-center font-bold p-2">DESKRIPSI</td>
+                        <td class="text-sm text-center font-bold p-2">KODE</td>
+                        <td class="text-sm text-center font-bold p-2">STOK</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($peminjam as $item)
+                    @foreach ($buku as $item)
                         <tr>
                             <td class="text-sm p-2 text-center">{{$i++}}</td>
-                            <td class="text-sm p-2">{{$item->nama}}</td>
-                            <td class="text-sm p-2">{{$item->email}}</td>
-                            <td class="text-sm p-2">{{$item->alamat}} @if ($item->alamat == null) - @endif</td>
-                            <td class="text-sm p-2">{{$item->telepon}} @if ($item->telepon == null) - @endif</td>
+                            <td class="text-sm p-2">{{$item->judul}}</td>
+                            <td class="text-sm p-2">{{$item->penulis}}</td>
+                            <td class="text-sm p-2">{{$item->penerbit}}</td>
+                            <td class="text-sm p-2">{{$item->tahun_terbit}}</td>
+                            <td class="text-sm p-2">{{$item->deskripsi}}</td>
+                            <td class="text-sm p-2">{{$item->kode}}</td>
+                            <td class="text-sm p-2">{{$item->stok}}</td>
                         </tr>
                     @endforeach
                 </tbody>
