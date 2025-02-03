@@ -6,7 +6,7 @@
                 <span>Data {{ $title }}</span>
             </div>
             <div class="flex gap-2 text-white text-sm w-full">
-                <a href="{{route('petugas.user.dpeminjam.printUser')}}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.user.dpeminjam.printPeminjam') }}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-print"></i>
                     <span>Print</span>
                 </a>
@@ -14,11 +14,11 @@
                     <i class="fa-solid fa-file-export"></i>
                     <span>Eksport</span>
                 </a>
-                <a href="{{route('petugas.user.dpeminjam.importPeminjam')}}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.user.dpeminjam.importPeminjam') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-file-import"></i>
                     <span>Import</span>
                 </a>
-                <a href="{{route('petugas.user.dpeminjam.addPeminjam')}}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.user.dpeminjam.addPeminjam') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
                     <i class="fa-solid fa-plus"></i>
                     <span>Tambah</span>
                 </a>

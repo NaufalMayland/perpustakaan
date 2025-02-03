@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <form method="POST" action="" class="bg-white p-4 shadow-md rounded">
+    <form method="POST" action="{{ route('petugas.user.dpetugas.addPetugasAction') }}" class="bg-white p-4 shadow-md rounded">
         @csrf
         @if ($errors->any())
             <div class="bg-red-500 text-white text-sm p-3 rounded text-center w-full">
@@ -28,6 +28,8 @@
                 <label for="role">Hak Akses</label>
                 <select name="role" id="role" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm cursor-pointer capitalize" required>
                     <option value="" disabled selected hidden>Pilih hak akses</option>
+                    <option value="admin" class="capitalize">admin</option>
+                    <option value="petugas" class="capitalize">petugas</option>
                 </select>
             </div>
         </div>

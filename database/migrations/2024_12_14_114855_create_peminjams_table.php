@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('email');
-            $table->string('uid');
             $table->json('alamat')->nullable();
             $table->string('telepon')->nullable();
             $table->string('foto')->nullable();

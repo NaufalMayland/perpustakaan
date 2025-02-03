@@ -10,7 +10,6 @@ class Peminjam extends Model
     protected $fillable = [
         'nama',
         'email',
-        'uid',
         'alamat',
         'telepon',
         'foto',

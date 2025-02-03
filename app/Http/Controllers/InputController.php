@@ -23,6 +23,34 @@ use Illuminate\Support\Facades\Hash;
         ]);
     }
 
+    public function addPetugasAction(Request $request) 
+    {
+        $cekUser = User::all();
+        
+        foreach($cekUser as $user){
+            if($request->email == $user->email){
+                return redirect()->back()->withErrors('Email sudah tersedia, mohon gunakan email yang lain!')->withInput();
+            }
+        }
+
+        $user = User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => 2
+        ]);
+
+        if($user){
+            Petugas::create([
+                'nama' => $request->username,
+                'email' => $request->email,
+                'role' => $request->role
+            ]);
+        }
+
+        return redirect(route('petugas.user.dpetugas.index'));
+    }
+
     public function addPeminjam()
     {
         $roleData = Role::all();
