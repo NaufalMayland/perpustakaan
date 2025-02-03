@@ -33,17 +33,19 @@
                     @foreach ($dataKategori as $data)
                         <tr>
                             <td class="p-2">{{ $data->kategori }}</td>
-                            <td class="p-2 flex gap-2 text-center justify-center">
-                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
-                                    <i class="fa-solid fa-pencil text-sm"></i>
-                                </a>
-                                <form id="deleteKategori" action="{{ route('petugas.kategori.deleteKategori', $data->id) }}" method="POST" class="hidden">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                                <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteKategori()">
-                                    <i class="fa-solid fa-trash text-sm"></i>    
-                                </button>
+                            <td class="p-2">
+                                <div class="flex gap-2 justify-center items-center">
+                                    <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                        <i class="fa-solid fa-pencil text-sm"></i>
+                                    </a>
+                                    <form id="deleteKategori" action="{{ route('petugas.kategori.deleteKategori', $data->id) }}" method="POST" class="hidden">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                    <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteKategori()">
+                                        <i class="fa-solid fa-trash text-sm"></i>    
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

@@ -42,20 +42,22 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->telepon }} @if ($item->telepon == null) - @endif</td>
                             <td>{{ $item->role }}</td>
-                            <td class="p-2 flex gap-2 text-center justify-center">
-                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
-                                    <i class="fa-solid fa-eye text-sm"></i>
-                                </a>
-                                <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
-                                    <i class="fa-solid fa-pencil text-sm"></i>
-                                </a>
-                                <form id="deleteDenda" action="" method="POST" class="hidden">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                                <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteDenda()">
-                                    <i class="fa-solid fa-trash text-sm"></i>    
-                                </button>
+                            <td class="p-2">
+                                <div class="flex gap-2 justify-center items-center">
+                                    <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                        <i class="fa-solid fa-eye text-sm"></i>
+                                    </a>
+                                    <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
+                                        <i class="fa-solid fa-pencil text-sm"></i>
+                                    </a>
+                                    <form id="deleteDenda" action="" method="POST" class="hidden">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                    <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteDenda()">
+                                        <i class="fa-solid fa-trash text-sm"></i>    
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

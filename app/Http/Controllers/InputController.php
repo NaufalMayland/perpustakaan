@@ -111,8 +111,15 @@ use Illuminate\Support\Facades\Hash;
             'stok' => 'required',
             'kode' => 'required',
             'deskripsi' => 'required',
+            'cover' => 'required',
         ]);
-        
+
+        if ($request->hasFile('cover')) {
+            $imagePath = $request->file('cover')->store('cover', 'public');
+        } else {
+            $imagePath = null; 
+        }
+
         Buku::insert([
             'judul' => $request->judul,
             'penulis' => $request->penulis,
@@ -120,7 +127,8 @@ use Illuminate\Support\Facades\Hash;
             'tahun_terbit' => $request->tahun_terbit,
             'stok' => $request->stok,
             'kode' => $request->kode,
-            'deskripsi' => $request->deskripsi
+            'deskripsi' => $request->deskripsi,
+            'cover' => $imagePath,
         ]);
 
         return redirect()->route('petugas.buku.index');
