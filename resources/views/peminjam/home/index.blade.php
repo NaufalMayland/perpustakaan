@@ -1,28 +1,17 @@
 @extends('peminjam.layout.layout')
 @section('content')
-    <div class="">
-        <div class="flex justify-center items-center">
-            <div class="">
-                <input type="text" class="w-96 rounded-full border-2 px-4 py-2 border-gray-300 bg-white text-sm focus:outline-blue-900" placeholder="Search...">
-            </div>
-        </div>
+    <div class="px-4">
         <div class="flex flex-col mt-4 gap-4">
-            <div class="flex">
-                <span class="capitalize text-lg font-bold flex text-left">Buku Teratas</span>
+            <div class="flex justify-between">
+                <span class="capitalize flex text-left">Buku Teratas</span>
+                <a href="#" class="capitalize flex text-left">Selengkapnya ></a>
             </div>
             <div class="flex gap-4">
-                <div class="bg-blue-900 flex w-full items-center rounded">
-                    <h1>anu</h1>
-                </div>
-                <div class="bg-blue-900 flex w-full items-center rounded">
-                    <h1>anu</h1>
-                </div>
-                <div class="bg-blue-900 flex w-full items-center rounded">
-                    <h1>anu</h1>
-                </div>
-                <div class="bg-blue-900 flex w-full items-center rounded">
-                    <h1>anu</h1>
-                </div>
+                @foreach ($buku as $item)
+                    <a href="#" class="flex flex-col">
+                        <img class="w-32 rounded transition-all ease-in-out" src="{{ asset('storage/' . $item->buku->cover) }}" alt="">
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
