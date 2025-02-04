@@ -26,7 +26,11 @@ Route::prefix('perpustakaan')->group(function () {
     Route::post('/logout', [ AuthController::class, 'logout'])->name('auth.logout');
 
     Route::prefix('home')->middleware('role:peminjam')->group(function () {
-        Route::get('/', [PeminjamController::class, 'home'])->name('peminjam.home.index');
+        Route::get('/', [PeminjamController::class, 'index'])->name('peminjam.index');
+    });
+
+    Route::prefix('buku')->middleware('role:peminjam')->group(function () {
+        Route::get('/{id}', [PeminjamController::class, 'detailBuku'])->name('peminjam.detailBuku');
     });
 
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {

@@ -44,9 +44,9 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if($user->role_id == 1){
-                return redirect(route('peminjam.home.index'));
+                return redirect()->route('peminjam.index');
             } elseif($user->role_id == 2){
-                return redirect(route('petugas.dashboard.index'));
+                return redirect()->route('petugas.dashboard.index');
             } else {
                 return redirect()->back()->withErrors('Akun tidak ada')->withInput();
             }

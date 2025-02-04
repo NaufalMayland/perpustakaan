@@ -8,10 +8,20 @@ use Illuminate\Http\Request;
 
 class PeminjamController extends Controller
 {
-    public function home(){
+    public function index()
+    {
         $buku = ListKategori::with(['buku', 'kategori'])->get();
-        return view('peminjam.home.index', [
+        return view('peminjam.index', [
             'title' => "Home",
+            'buku' => $buku
+        ]);
+    }
+
+    public function detailBuku($id)
+    {
+        $buku = ListKategori::with(['buku', 'kategori'])->where('id', $id)->first();
+        return view('peminjam.detailBuku', [
+            'title' => "Detail Buku",
             'buku' => $buku
         ]);
     }
