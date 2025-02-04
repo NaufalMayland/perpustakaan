@@ -51,16 +51,16 @@
                             <td class="p-2">{{ $item->stok }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="" class="py-1 px-2 w-full rounded text-center bg-blue-500 text-white">
+                                    <a href="" class="py-1 px-2 w-full rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-eye text-sm"></i>
                                     </a>
-                                    <a href="" class="py-1 px-2 w-full rounded text-center bg-blue-500 text-white">
+                                    <a href="" class="py-1 px-2 w-full rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-pencil text-sm"></i>
                                     </a>
                                     <form id="deleteBuku" action="{{ route('petugas.buku.deleteBuku', $item->id) }}" method="POST" class="">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="py-1 px-2 w-full rounded text-center bg-red-500 text-white" onclick="deleteUser()">
+                                        <button class="py-1 px-2 w-full rounded text-center bg-red-500 hover:bg-red-600 text-white" onclick="deleteUser()">
                                             <i class="fa-solid fa-trash text-sm"></i>    
                                         </button>
                                     </form>

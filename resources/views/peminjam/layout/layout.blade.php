@@ -14,7 +14,7 @@
 </head>
 <body class="font-['poppins']">
     @include('peminjam.layout.nav')
-    <div class="p-4">
+    <div class="px-14 py-4">
         @yield('content')
     </div>
 </body>

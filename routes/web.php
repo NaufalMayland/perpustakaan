@@ -41,6 +41,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::delete('/delete/{id}', [DeleteController::class, 'deletePetugas'])->name('petugas.user.dpetugas.deletePetugas');
             Route::get('/trash', [DeleteController::class, 'trashPetugas'])->name('petugas.user.dpetugas.trashPetugas');
             Route::post('/restore/{id}', [DeleteController::class, 'restorePetugas'])->name('petugas.user.dpetugas.restorePetugas');
+            Route::delete('/destroy/{id}', [DeleteController::class, 'destroyPetugas'])->name('petugas.user.dpetugas.destroyPetugas');
             Route::get('/import', [ImportExcelController::class, 'importPetugas'])->name('petugas.user.dpetugas.importPetugas');
             Route::get('/print', [PrintController::class, 'printPetugas'])->name('petugas.user.dpetugas.printPetugas');
         });
@@ -52,6 +53,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteBuku'])->name('petugas.buku.deleteBuku');
             Route::get('/trash', [DeleteController::class, 'trashBuku'])->name('petugas.buku.trashBuku');
             Route::post('/restore/{id}', [DeleteController::class, 'restoreBuku'])->name('petugas.buku.restoreBuku');
+            Route::delete('/destroy/{id}', [DeleteController::class, 'destroyBuku'])->name('petugas.buku.destroyBuku');
             Route::get('/import', [ImportExcelController::class, 'importBuku'])->name('petugas.buku.importBuku');
             Route::get('/print', [PrintController::class, 'printBuku'])->name('petugas.buku.printBuku');
         });
@@ -60,9 +62,10 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'kategori'])->name('petugas.kategori.index');
             Route::post('/tambah-action', [InputController::class, 'addKategoriAction'])->name('petugas.kategori.addKategoriAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteKategori'])->name('petugas.kategori.deleteKategori');
-            Route::get('/import', [ImportExcelController::class, 'importKategori'])->name('petugas.kategori.importKategori');
             Route::get('/trash', [DeleteController::class, 'trashKategori'])->name('petugas.kategori.trashKategori');
             Route::post('/restore/{id}', [DeleteController::class, 'restoreKategori'])->name('petugas.kategori.restoreKategori');
+            Route::delete('/destroy/{id}', [DeleteController::class, 'destroyKategori'])->name('petugas.kategori.destroyKategori');
+            Route::get('/import', [ImportExcelController::class, 'importKategori'])->name('petugas.kategori.importKategori');
             Route::get('/print', [PrintController::class, 'printKategori'])->name('petugas.kategori.printKategori');
 
         });
@@ -73,6 +76,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteListKategori'])->name('petugas.listKategori.deleteListKategori');
             Route::get('/trash', [DeleteController::class, 'trashListKategori'])->name('petugas.listKategori.trashListKategori');
             Route::post('/restore/{id}', [DeleteController::class, 'restoreListKategori'])->name('petugas.listKategori.restoreListKategori');
+            Route::delete('/destroy/{id}', [DeleteController::class, 'destroyListKategori'])->name('petugas.listKategori.destroyListKategori');
             Route::get('/import', [ImportExcelController::class, 'importListKategori'])->name('petugas.LisKategori.importListKategori');
             Route::get('/print', [PrintController::class, 'printListKategori'])->name('petugas.ListKategori.printListKategori');
         });
@@ -84,6 +88,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::delete('/delete/{id}', [DeleteController::class, 'deletePeminjam'])->name('petugas.user.dpeminjam.deletePeminjam');
             Route::get('/trash', [DeleteController::class, 'trashPeminjam'])->name('petugas.user.dpeminjam.trashPeminjam');
             Route::post('/restore/{id}', [DeleteController::class, 'restorePeminjam'])->name('petugas.user.dpeminjam.restorePeminjam');
+            Route::delete('/destroy/{id}', [DeleteController::class, 'destroyPeminjam'])->name('petugas.user.dpeminjam.destroyPeminjam');
             Route::get('/print', [PrintController::class, 'printPeminjam'])->name('petugas.user.dpeminjam.printPeminjam');
             Route::get('/import', [ImportExcelController::class, 'importPeminjam'])->name('petugas.user.dpeminjam.importPeminjam');
             Route::get('/template', [ImportExcelController::class, 'templatePeminjam'])->name('petugas.user.dpeminjam.templatePeminjam');

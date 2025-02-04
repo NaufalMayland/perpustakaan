@@ -1,6 +1,6 @@
 @extends('auth.layout.layout')
 @section('content')
-    <div class="flex flex-col-reverse lg:flex-row bg-white p-10 gap-4 items-center lg:h-screen h-auto">
+    <div class="flex flex-col-reverse lg:flex-row bg-white px-14 py-4 gap-4 items-center lg:h-screen h-auto">
         <div class="grid w-full">
             <div class="mb-6">
                 <h1 class="text-3xl lg:text-left text-center font-bold text-blue-900">MyLibrary</h1>
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-blue-900 p-10 h-auto w-full">
+    <div class="bg-blue-900 px-14 py-4 h-auto w-full">
         <div class="justify-center text-center font-bold flex px-10 pt-10">
             <h1 class="text-3xl text-white">Bagaimana cara kerja MyLibrary ?</h1>
         </div>
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    <div class="p-10 h-auto lg:h-screen flex items-center" id="about">
+    <div class="px-14 py-4 h-auto lg:h-screen flex items-center" id="about">
         <div class="flex lg:flex-row flex-col items-center gap-4">
             <div class="w-full">
                 <img src="{{ asset('storage/image/perpus.png') }}" alt="" class="">
@@ -73,7 +73,7 @@
             </div>
         </div>
     </div>
-    <div class="py-10 px-20 h-auto">
+    <div class="px-14 h-auto">
         <div class="bg-blue-900 rounded shadow p-4 border" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
             <div class="text-white font-semibold text-3xl text-center flex items-center justify-center p-10">
                 <h1>MyLibrary, Makes You Eazy!</h1>
@@ -98,7 +98,7 @@
             </div>
         </div>
     </div>
-    <div class="flex text-center justify-center items-center">
+    <div class="flex text-center justify-center items-center mt-10">
         <div class="flex items-center">
             <a href="{{ route('peminjam.home.index') }}" class="bg-white py-2 px-6 rounded-full border border-blue-900 flex gap-2 items-center hover:bg-blue-950 hover:text-white transition-all duration-100 ease-in-out" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
                 <span class="">Coba sekarang</span>
@@ -107,7 +107,7 @@
         </div>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#1e3a8a" fill-opacity="1" d="M0,224L80,218.7C160,213,320,203,480,213.3C640,224,800,256,960,272C1120,288,1280,288,1360,288L1440,288L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
-    <div class="p-10 flex bg-blue-900">
+    <div class="px-14 py-4 flex bg-blue-900">
         <div class="flex text-center justify-center items-center w-full">
             {{-- <span class="text-white font-bold text-3xl">MyLibrary</span> --}}
         </div>

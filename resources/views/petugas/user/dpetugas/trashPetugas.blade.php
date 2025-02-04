@@ -23,8 +23,15 @@
                                 <div class="flex gap-2 justify-center items-center">
                                     <form id="restorePetugas" action="{{ route('petugas.user.dpetugas.restorePetugas', $item->id) }}" method="POST" class="">
                                         @csrf
-                                        <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="restorePetugas()">
-                                            <i class="fa-solid fa-trash-can-arrow-up"></i>  
+                                        <button class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white" onclick="restorePetugas()">
+                                            <i class="fa-solid fa-recycle"></i>
+                                        </button>
+                                    </form>
+                                    <form id="destroyPetugas" action="{{ route('petugas.user.dpetugas.destroyPetugas', $item->id) }}" method="POST" class="">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="py-1 px-2 rounded text-center bg-red-500 hover:bg-red-600 text-white" onclick="destroyPetugas()">
+                                            <i class="fa-solid fa-trash"></i>  
                                         </button>
                                     </form>
                                 </div>

@@ -25,7 +25,7 @@ class DeleteController extends Controller
         
         return view('petugas.user.dpetugas.trashPetugas', [
             'title' => "Trash",
-            'trashPetugas' => $trash,
+            'trash' => $trash,
         ]);
     }
 
@@ -33,6 +33,14 @@ class DeleteController extends Controller
     {
         $restore = Petugas::onlyTrashed()->find($id);
         $restore->restore();
+
+        return redirect()->route('petugas.user.dpetugas.trashPetugas');
+    }
+
+    public function destroyPetugas($id)
+    {
+        $petugas = Petugas::onlyTrashed()->find($id);
+        $petugas->forceDelete();
 
         return redirect()->route('petugas.user.dpetugas.trashPetugas');
     }
@@ -70,6 +78,14 @@ class DeleteController extends Controller
         return redirect()->route('petugas.kategori.index');
     }
 
+    public function destroyBuku($id)
+    {
+        $buku = Buku::onlyTrashed()->find($id);
+        $buku->forceDelete();
+
+        return redirect()->route('petugas.buku.trashBuku');
+    }
+
     public function trashKategori()
     {
         $trash = Kategori::onlyTrashed()->get();
@@ -84,6 +100,14 @@ class DeleteController extends Controller
     {
         $restore = Kategori::onlyTrashed()->find($id);
         $restore->restore();
+
+        return redirect()->route('petugas.kategori.trashKategori');
+    }
+
+    public function destroyKategori($id)
+    {
+        $kategori = Kategori::onlyTrashed()->find($id);
+        $kategori->forceDelete();
 
         return redirect()->route('petugas.kategori.trashKategori');
     }
@@ -113,6 +137,14 @@ class DeleteController extends Controller
         return redirect()->route('petugas.listKategori.trashListKategori');
     }
 
+    public function destroyListKategori($id)
+    {
+        $listKategori = ListKategori::onlyTrashed()->find($id);
+        $listKategori->forceDelete();
+
+        return redirect()->route('petugas.listKategori.trashListKategori');
+    }
+
     public function deletePeminjam($id){
         $user = Peminjam::find($id);
         $user->delete();
@@ -134,6 +166,14 @@ class DeleteController extends Controller
     {
         $restore = Peminjam::onlyTrashed()->find($id);
         $restore->restore();
+
+        return redirect()->route('petugas.user.dpeminjam.trashPeminjam');
+    }
+
+    public function destroyPeminjam($id)
+    {
+        $peminjam = Peminjam::onlyTrashed()->find($id);
+        $peminjam->forceDelete();
 
         return redirect()->route('petugas.user.dpeminjam.trashPeminjam');
     }
