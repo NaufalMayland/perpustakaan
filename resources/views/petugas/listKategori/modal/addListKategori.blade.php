@@ -18,7 +18,7 @@
                         <select name="buku" id="buku" class="w-80 p-2 rounded border bg-gray-100 border-gray-300 text-sm">
                             <option value="" disabled selected hidden>Pilih buku</option>
                             @foreach ($dataBuku as $data)
-                                <option value="{{ $data->id }}">{{ $data->judul }}</option>
+                                <option value="{{ $data->id }}">{{ $data->kode.' - '.$data->judul }}</option>
                             @endforeach
                         </select>
                     </div>

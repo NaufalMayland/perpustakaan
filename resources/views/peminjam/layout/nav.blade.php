@@ -19,8 +19,11 @@
                 <i class="fa-solid fa-chevron-down"></i>
             </button>
             <div id="profilDropdown" class="absolute right-0 mt-2 w-40 bg-white border shadow-lg rounded-lg hidden">
-                <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100">Lihat Profil</a>
-                <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100">Logout</a>
+                <a href="#" class="block w-full text-left px-4 py-2 text-sm text-black hover:bg-gray-100">Lihat Profil</a>
+                <form id="logoutForm" action="{{ route('auth.logout') }}" method="post" hidden>
+                    @csrf
+                </form>
+                <button class="block w-full text-left px-4 py-2 text-sm text-black hover:bg-gray-100" onclick="confirmLogout()">Logout</button>
             </div>
         </div>
     </div>
@@ -39,4 +42,21 @@
             profilDropdown.classList.add('hidden');
         }
     });
+
+    function confirmLogout() {
+        Swal.fire({
+        title: 'Logout',
+        text: "Anda yakin untuk logout?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#2563eb',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+            document.getElementById('logoutForm').submit();
+            }
+        });
+    }
 </script>

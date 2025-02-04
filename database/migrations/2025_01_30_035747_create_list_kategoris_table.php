@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_buku');
             $table->unsignedBigInteger('id_kategori');
+            $table->softDeletes();
             $table->timestamps();
         });
 

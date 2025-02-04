@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('tanggal_kembali');
             $table->date('tanggal_dikembalikan')->nullable();
             $table->enum('status', ['proses', 'dipinjam', 'dikembalikan'])->default('proses');
+            $table->softDeletes();
             $table->timestamps();
         });
 

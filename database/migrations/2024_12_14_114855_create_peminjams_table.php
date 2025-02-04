@@ -18,6 +18,7 @@ return new class extends Migration
             $table->json('alamat')->nullable();
             $table->string('telepon')->nullable();
             $table->string('foto')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

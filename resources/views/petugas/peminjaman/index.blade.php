@@ -22,6 +22,9 @@
                     <i class="fa-solid fa-plus"></i>
                     <span>Tambah</span>
                 </a>
+                <a href="" class="py-2 px-4 justify-center rounded bg-red-500 flex gap-1 items-center hover:bg-red-600">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                </a>
             </div>
         </div>
         <div class="mt-4">

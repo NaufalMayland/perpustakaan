@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('telepon')->nullable();
             $table->string('foto')->nullable();
             $table->enum('role', ['admin', 'petugas'])->default('admin');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

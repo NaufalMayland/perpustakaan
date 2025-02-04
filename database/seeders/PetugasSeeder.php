@@ -23,6 +23,11 @@ class PetugasSeeder extends Seeder
                 'nama' => "petugas2",
                 'email' => "petugas2@gmail.com",
                 'role' => 'petugas'
+            ],
+            [
+                'nama' => "petugas3",
+                'email' => "petugas3@gmail.com",
+                'role' => 'petugas'
             ]
         ];
 

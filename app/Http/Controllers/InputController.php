@@ -111,7 +111,6 @@ use Illuminate\Support\Facades\Hash;
             'stok' => 'required',
             'kode' => 'required',
             'deskripsi' => 'required',
-            'cover' => 'required',
         ]);
 
         if ($request->hasFile('cover')) {

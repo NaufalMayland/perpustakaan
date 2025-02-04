@@ -6,21 +6,24 @@
                 <span>Data {{ $title }}</span>
             </div>
             <div class="flex gap-2 text-white text-sm w-full">
-                <a href="{{ route('petugas.user.dpetugas.printPetugas') }}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.user.dpetugas.printPetugas') }}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-950">
                     <i class="fa-solid fa-print"></i>
                     <span>Print</span>
                 </a>
-                <a href="" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-950">
                     <i class="fa-solid fa-file-export"></i>
                     <span>Eksport</span>
                 </a>
-                <a href="{{ route('petugas.user.dpetugas.importPetugas') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.user.dpetugas.importPetugas') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-950">
                     <i class="fa-solid fa-file-import"></i>
                     <span>Import</span>
                 </a>
-                <a href="{{ route('petugas.user.dpetugas.addPetugas') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
-                    <i class="fa-solid fa-file-import"></i>
+                <a href="{{ route('petugas.user.dpetugas.addPetugas') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-950">
+                    <i class="fa-solid fa-plus"></i>
                     <span>Tambah</span>
+                </a>
+                <a href="{{ route('petugas.user.dpetugas.trashPetugas') }}" class="py-2 px-4 justify-center rounded bg-red-500 flex gap-1 items-center hover:bg-red-600">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i>
                 </a>
             </div>
         </div>
@@ -36,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody class="w-full">
-                    @foreach ($petugas as $item) 
+                    @foreach ($petugas as $item)
                         <tr>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->email }}</td>
@@ -50,13 +53,13 @@
                                     <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
                                         <i class="fa-solid fa-pencil text-sm"></i>
                                     </a>
-                                    <form id="deleteDenda" action="" method="POST" class="hidden">
+                                    <form id="deletePetugas" action="{{ route('petugas.user.dpetugas.deletePetugas', $item->id) }}" method="POST" class="">
                                         @csrf
                                         @method('DELETE')
+                                        <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deletePetugas()">
+                                            <i class="fa-solid fa-trash text-sm"></i>    
+                                        </button>
                                     </form>
-                                    <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteDenda()">
-                                        <i class="fa-solid fa-trash text-sm"></i>    
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -71,22 +74,5 @@
             $('#dendaTable').DataTable();
             
         } );
-
-        function deleteDenda() {
-            Swal.fire({
-            title: 'Hapus',
-            text: "Anda yakin untuk logout?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#2563eb',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-            })
-            .then((result) => {
-                if (result.isConfirmed) {
-                document.getElementById('deleteDenda').submit();
-                }
-            });
-        }
     </script>
 @endsection

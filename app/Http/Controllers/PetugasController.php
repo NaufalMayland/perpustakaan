@@ -9,6 +9,7 @@ use App\Models\Peminjam;
 use App\Models\Petugas;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PetugasController extends Controller
 {
@@ -19,7 +20,10 @@ class PetugasController extends Controller
     }
 
     public function dpetugas() {
-        $petugas = Petugas::all();
+        $user = Auth::user();
+        $petugas = Petugas::whereNot('email', $user->email)->get();
+        // dd($petugas);
+
         return view('petugas.user.dpetugas.index', [
             'title' => "Petugas",
             'petugas' => $petugas

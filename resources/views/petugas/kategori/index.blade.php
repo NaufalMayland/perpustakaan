@@ -19,6 +19,9 @@
                     <span>Import</span>
                 </a>
                 @include('petugas.kategori.modal.addKategori')
+                <a href="{{ route('petugas.kategori.trashKategori') }}" class="py-2 px-4 justify-center rounded bg-red-500 flex gap-1 items-center hover:bg-red-600">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                </a>
             </div>
         </div>
         <div class="mt-4">
@@ -38,13 +41,13 @@
                                     <a href="" class="py-1 px-2 rounded text-center bg-blue-500 text-white">
                                         <i class="fa-solid fa-pencil text-sm"></i>
                                     </a>
-                                    <form id="deleteKategori" action="{{ route('petugas.kategori.deleteKategori', $data->id) }}" method="POST" class="hidden">
+                                    <form id="deleteKategori" action="{{ route('petugas.kategori.deleteKategori', $data->id) }}" method="POST" class="">
                                         @csrf
                                         @method('DELETE')
+                                        <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteKategori()">
+                                            <i class="fa-solid fa-trash text-sm"></i>    
+                                        </button>
                                     </form>
-                                    <button class="py-1 px-2 rounded text-center bg-red-500 text-white" onclick="deleteKategori()">
-                                        <i class="fa-solid fa-trash text-sm"></i>    
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -59,22 +62,5 @@
             $('#kategoriTable').DataTable();
             
         } );
-
-        function deleteKategori() {
-            Swal.fire({
-            title: 'Hapus',
-            text: "Anda yakin untuk logout?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#2563eb',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-            })
-            .then((result) => {
-                if (result.isConfirmed) {
-                document.getElementById('deleteKategori').submit();
-                }
-            });
-        }
     </script>
 @endsection

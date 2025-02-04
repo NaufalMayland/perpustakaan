@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('kode');
             $table->bigInteger('stok');
             $table->string('cover')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
