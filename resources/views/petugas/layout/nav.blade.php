@@ -69,7 +69,7 @@
             <form id="logoutForm" action="{{ route('auth.logout') }}" method="post">
                 @csrf
             </form>
-            <button type="submit" class="py-2 px-5 text-sm text-white rounded-full bg-blue-900  hover:bg-white hover:text-blue-900 border-0 hover:border hover:border-blue-900 transition-all duration-100 ease-in-out" onclick="confirmLogout()">logout</button>
+            <button type="submit" class="py-2 px-5 text-sm text-white rounded-full bg-blue-900  hover:bg-white hover:text-blue-950 border-0 hover:border hover:border-blue-900 transition-all duration-100 ease-in-out" onclick="confirmLogout()">logout</button>
         </div>
     </div>
 </div>

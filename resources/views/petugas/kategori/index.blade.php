@@ -6,15 +6,15 @@
                 <span>Data {{ $title }}</span>
             </div>
             <div class="flex gap-2 text-white text-sm w-full">
-                <a href="{{ route('petugas.kategori.printKategori') }}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.kategori.printKategori') }}" target="_blank" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-950">
                     <i class="fa-solid fa-print"></i>
                     <span>Print</span>
                 </a>
-                <a href="" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-950">
                     <i class="fa-solid fa-file-export"></i>
                     <span>Eksport</span>
                 </a>
-                <a href="{{ route('petugas.kategori.importKategori') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-900">
+                <a href="{{ route('petugas.kategori.importKategori') }}" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-950">
                     <i class="fa-solid fa-file-import"></i>
                     <span>Import</span>
                 </a>

@@ -36,11 +36,11 @@
                     </div>
                 </div>
                 <div class="flex justify-between items-center mt-8">
-                    <div class="text-blue-900 hover:text-blue-900 text-sm">
+                    <div class="text-blue-900 hover:text-blue-950 text-sm">
                         <a href="{{ route('auth.register') }}">Belum punya akun?</a>
                     </div>
                     <div class="">
-                        <button type="submit" class="text-sm font-semibold bg-blue-900 rounded text-white py-2 px-4 hover:bg-blue-900">Login</button>
+                        <button type="submit" class="text-sm font-semibold bg-blue-900 rounded text-white py-2 px-4 hover:bg-blue-950">Login</button>
                     </div>
                 </div>
             </div>

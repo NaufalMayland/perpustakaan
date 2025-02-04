@@ -5,16 +5,16 @@
     </div>
     <div class="flex gap-6 text-sm items-center">
         <div>
-            <a href="{{ route('peminjam.home.index') }}" class="hover:text-blue-900 @if (Route::is('peminjam.home.index')) text-blue-900 @endif">Home</a>
+            <a href="{{ route('peminjam.home.index') }}" class="hover:text-blue-950 @if (Route::is('peminjam.home.index')) text-blue-900 @endif">Home</a>
         </div>
         <div>
-            <a href="" class="text-black hover:text-blue-900">Peminjaman</a>
+            <a href="" class="text-black hover:text-blue-950">Peminjaman</a>
         </div>
         <div>
-            <a href="" class="text-black hover:text-blue-900">Koleksi</a>
+            <a href="" class="text-black hover:text-blue-950">Koleksi</a>
         </div>
         <div class="relative">
-            <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-900">
+            <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
                 <span>Profil</span>
                 <i class="fa-solid fa-chevron-down"></i>
             </button>
