@@ -27,7 +27,7 @@
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>
             <div id="profilDropdown" class="absolute right-0 mt-2 w-40 bg-white border shadow-lg rounded-lg hidden">
-                <a href="#" class="block w-full text-left px-4 py-2  text-black hover:bg-gray-100">Lihat Profil</a>
+                <a href="{{ route('peminjam.profil') }}" class="block w-full text-left px-4 py-2  text-black hover:bg-gray-100">Lihat Profil</a>
                 <form id="logoutForm" action="{{ route('auth.logout') }}" method="post" hidden>
                     @csrf
                 </form>
