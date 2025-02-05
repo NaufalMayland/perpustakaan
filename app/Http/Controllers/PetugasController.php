@@ -49,8 +49,8 @@ class PetugasController extends Controller
     }
 
     public function listKategori() {
-        $dataBuku = Buku::all();
-        $dataKategori = Kategori::all();
+        $dataBuku = Buku::withoutTrashed()->get();
+        $dataKategori = Kategori::withoutTrashed()->get();
         $dataListKategori = ListKategori::with(['buku', 'kategori'])->get();
         
         return view('petugas.listKategori.index', [

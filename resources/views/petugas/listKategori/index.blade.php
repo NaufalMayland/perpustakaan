@@ -38,7 +38,7 @@
                     @foreach ($dataListKategori as $item)
                         <tr>
                             <td class="p-2">
-                                <img src="{{ asset('storage/' . $item->buku->cover) }}" class="w-20" alt="cover">
+                                <img src="{{ asset('storage/' . $item->buku->cover) }} " class="w-20" alt="cover">
                             </td>
                             <td class="p-2">{{ $item->buku->judul }}</td>
                             <td class="p-2">{{ $item->kategori->kategori }}</td>

@@ -26,7 +26,7 @@
             </div>
             <div class="grid">
                 <label for="tahun_terbit">Tahun Terbit</label>
-                <input type="date" name="tahun_terbit" id="tahun_terbit" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('tahun_terbit') }}" required>
+                <input type="number" name="tahun_terbit" id="tahun_terbit" min="1800" max="2100" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('tahun_terbit') }}" placeholder="YYYY" required>
             </div>
             <div class="grid">
                 <label for="kode">Kode</label>

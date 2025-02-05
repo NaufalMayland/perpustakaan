@@ -18,11 +18,11 @@ class ListKategori extends Model
 
     public function buku()
     {
-        return $this->belongsTo(Buku::class, 'id_buku', 'id');
+        return $this->belongsTo(Buku::class, 'id_buku', 'id')->withTrashed();
     }
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id')->withTrashed();
     }
 }

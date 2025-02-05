@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('bukus', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('penulis');
+            $table->text('penulis');
             $table->string('penerbit');
             $table->text('deskripsi');
-            $table->date('tahun_terbit');
+            $table->integer('tahun_terbit');
             $table->string('kode');
             $table->bigInteger('stok');
             $table->string('cover')->nullable();
