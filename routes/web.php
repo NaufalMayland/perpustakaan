@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\EditController;
 use App\Http\Controllers\ImportExcelController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\PeminjamController;
@@ -58,6 +59,9 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'buku'])->name('petugas.buku.index');
             Route::get('/tambah', [InputController::class, 'addBuku'])->name('petugas.buku.addBuku');
             Route::post('/tambah-action', [InputController::class, 'addBukuAction'])->name('petugas.buku.addBukuAction');
+            Route::get('/detail/{id}', [PetugasController::class, 'detailBuku'])->name('petugas.buku.detailBuku');
+            Route::get('/edit/{id}', [EditController::class, 'editBuku'])->name('petugas.buku.editBuku');
+            Route::put('/edit-action/{id}', [EditController::class, 'editBukuAction'])->name('petugas.buku.editBukuAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteBuku'])->name('petugas.buku.deleteBuku');
             Route::get('/trash', [DeleteController::class, 'trashBuku'])->name('petugas.buku.trashBuku');
             Route::post('/restore/{id}', [DeleteController::class, 'restoreBuku'])->name('petugas.buku.restoreBuku');

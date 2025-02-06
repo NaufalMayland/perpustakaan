@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#dt-search-0{
+   border-radius: 0.25rem;
+   padding: 0.25rem;
+}
+
+.dt-search label{
+}

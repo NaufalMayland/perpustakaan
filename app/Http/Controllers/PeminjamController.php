@@ -32,10 +32,11 @@ class PeminjamController extends Controller
     public function profil()
     {
         $user = Auth::user();
-        $peminjam = Peminjam::where('email', $user->email)->get();
+        $peminjam = Peminjam::where('email', $user->email)->first();
         
         return view('peminjam.profil', [
             'title' => "Profil",
+            'user' => $user,
             'peminjam' => $peminjam
         ]);
     }

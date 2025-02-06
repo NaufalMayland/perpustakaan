@@ -30,13 +30,13 @@
         <div class="mt-4">
             <table class="text-sm" id="bukuTable">
                 <thead class="w-full">
-                    <tr>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Cover</td>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Judul</td>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Penulis</td>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Kode</td>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Stok</td>
-                        <td class="p-2 text-center font-bold uppercase bg-slate-200">Option</td>
+                    <tr class="">
+                        <td class="p-2 text-center font-bold uppercase bg-none">Cover</td>
+                        <td class="p-2 text-center font-bold uppercase bg-none">Judul</td>
+                        <td class="p-2 text-center font-bold uppercase bg-none">Penulis</td>
+                        <td class="p-2 text-center font-bold uppercase bg-none">Kode</td>
+                        <td class="p-2 text-center font-bold uppercase bg-none">Stok</td>
+                        <td class="p-2 text-center font-bold uppercase bg-none">Option</td>
                     </tr>
                 </thead>
                 <tbody class="w-full">
@@ -51,16 +51,13 @@
                             <td class="p-2">{{ $item->stok }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="" class="py-1 px-2 w-full rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
+                                    <a href="{{ route('petugas.buku.detailBuku', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-eye text-sm"></i>
-                                    </a>
-                                    <a href="" class="py-1 px-2 w-full rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
-                                        <i class="fa-solid fa-pencil text-sm"></i>
                                     </a>
                                     <form id="deleteBuku" action="{{ route('petugas.buku.deleteBuku', $item->id) }}" method="POST" class="">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="py-1 px-2 w-full rounded text-center bg-red-500 hover:bg-red-600 text-white" onclick="deleteUser()">
+                                        <button class="py-1 px-2 rounded text-center bg-red-500 hover:bg-red-600 text-white" onclick="deleteUser()">
                                             <i class="fa-solid fa-trash text-sm"></i>    
                                         </button>
                                     </form>

@@ -1,12 +1,8 @@
 <nav class="bg-white shadow py-2 px-6 flex justify-between items-center">
-    <div class="flex items-center justify-between gap-4">
+    <div class="flex items-center justify-start gap-4">
         <div class="flex items-center gap-2">
             <i class="fa-solid fa-book-open-reader text-blue-900"></i>
             <h1 class="font-bold text-lg text-blue-900">PERPUSTAKAAN</h1>
-        </div>
-        <div class="flex items-center  gap-2">
-            <a href="#" class="">Genre</a>
-            <i class="fa-solid fa-chevron-down text-xs"></i>
         </div>
     </div>
     <div class="flex justify-center items-center">
@@ -14,7 +10,11 @@
             <input type="text" class="w-96 rounded-full border-2 px-4 py-2 border-gray-300 bg-white  focus:outline-blue-900" placeholder="Search...">
         </div>
     </div>
-    <div class="flex gap-6  items-center">
+    <div class="flex gap-6 justify-end items-center">
+        <div class="flex items-center  gap-2">
+            <a href="#" class="">Genre</a>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+        </div>
         <div>
             <a href="" class="text-black hover:text-blue-950">Peminjaman</a>
         </div>

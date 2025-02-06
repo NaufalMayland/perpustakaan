@@ -29,12 +29,21 @@
                 </div>
             </div>
             
-            <div class="flex flex-row mt-2 gap-4 items-center w-full justify-start text-sm lg:text-base">
-                <a href="#" class="bg-blue-900 hover:bg-blue-950 text-white py-2 px-20 rounded-full">Pinjam</a>
-                <a href="#" class="rounded-full py-2 px-4 border border-gray-300 flex items-center justify-center">
-                    <i class="fa-solid fa-plus text-sm"></i>
-                </a>
+            <div class="justify-between flex w-full">
+                <div class="flex flex-row mt-2 gap-4 items-center lg:text-base">
+                    <a href="{{ route('peminjam.index') }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-8 rounded-full">
+                        <i class="fa-solid fa-arrow-left text-sm"></i>
+                        <span>Exit</span>
+                    </a>
+                </div>
+                <div class="flex flex-row mt-2 gap-4 items-center lg:text-base">
+                    <a href="#" class="bg-blue-900 hover:bg-blue-950 text-white py-2 px-20 rounded-full">Pinjam</a>
+                    <a href="#" class="rounded-full py-2 px-4 border border-gray-300 flex items-center justify-center">
+                        <i class="fa-solid fa-plus text-sm"></i>
+                    </a>
+                </div>
             </div>
+
         </div>
     </div>
 @endsection

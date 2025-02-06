@@ -39,6 +39,16 @@ class PetugasController extends Controller
         ]);
     }
 
+    public function detailBuku($id)
+    {
+        $buku = Buku::findOrFail($id);
+
+        return view('petugas.buku.detailBuku', [
+            'title' => "Detail",
+            'buku' => $buku
+        ]);
+    }
+
     public function kategori() {
         $dataKategori = Kategori::all();
 

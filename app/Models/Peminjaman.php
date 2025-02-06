@@ -15,6 +15,7 @@ class Peminjaman extends Model
         'id_peminjam',
         'id_buku',
         'id_petugas',
+        'jumlah',
         'tanggal_pinjam',
         'tanggal_kembali',
         'tanggal_dikembalikan',

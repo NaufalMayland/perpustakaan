@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+        <div class="grid gap-4 text-sm mt-4">
             <div class="grid">
                 <label for="peminjam">Peminjam</label>
                 <input type="text" name="peminjam" id="peminjam" class="w-full py-2 px-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('peminjam') }}" required>

@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+        <div class="grid gap-4 text-sm mt-4">
             <div class="grid">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('username') }}" placeholder="Masukan username" required>
