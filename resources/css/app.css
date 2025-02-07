@@ -7,5 +7,6 @@
    padding: 0.25rem;
 }
 
-.dt-search label{
+.dt-paging .dt-paging-button{
+   background-color: black;
 }

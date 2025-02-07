@@ -1,4 +1,4 @@
-<button input-modal-target="#addKategori" class="p-2 w-full justify-center rounded bg-blue-900 flex gap-1 items-center hover:bg-blue-950 cursor-pointer">
+<button input-modal-target="#addKategori" class="py-2 px-4 w-full justify-center text-white rounded bg-blue-900 flex gap-2 items-center hover:bg-blue-950 cursor-pointer">
     <i class="fa-solid fa-plus"></i>
     <span>Tambah</span>
 </button>

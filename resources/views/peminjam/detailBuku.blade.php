@@ -2,7 +2,7 @@
 @section('content')
     <div class="flex flex-col lg:flex-row gap-8 items-start">
         <div class="w-full lg:w-1/3 flex justify-center">
-            <img src="{{ asset('storage/'. ($buku->buku->cover)) }}" alt="Cover Buku" class="w-[70%] rounded bg-cover">
+            <img src="{{ asset('storage/'. ($buku->buku->cover)) }}" alt="Cover Buku" class="lg:w-[70%] w-[50%] rounded bg-cover">
         </div>
 
         <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm lg:text-base">

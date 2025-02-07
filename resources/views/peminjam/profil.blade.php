@@ -14,10 +14,6 @@
                 <input type="text" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->email }}" readonly>
             </div>
             <div class="grid">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $user->password }}" readonly>
-            </div>
-            <div class="grid">
                 <label for="alamat">Alamat</label>
                 <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->alamat ?? "-"}}" readonly>
             </div>
