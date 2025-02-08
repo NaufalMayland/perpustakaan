@@ -14,7 +14,7 @@
         </div>
         <div class="w-full">
             <div class="flex items-center">
-                <img src="{{ asset('storage/image/readingBook1.png') }}" alt="" class="">
+                <img src="{{ asset('storage/img/perpus.png') }}" alt="" class="">
             </div>
         </div>
     </div>
