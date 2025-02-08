@@ -27,7 +27,7 @@
                 <div class="">
                     <i class="fa-solid fa-globe text-blue-900 text-6xl"></i>
                 </div>
-                <div class="grid gap-2">
+                <div class="grid gap-4">
                     <h1 class="font-bold text-lg">Masuk Website MyLibrary</h1>
                     <p class="text-base">Kamu bisa search MyLibrary atau langsung masuk tautan MyLibrary.com</p>
                 </div>
