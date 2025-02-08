@@ -1,6 +1,6 @@
 @extends('auth.layout.layout')
 @section('content')
-    <div class="flex flex-col-reverse lg:flex-row bg-white px-14 py-4 gap-4 items-center lg:h-screen h-auto">
+    <div class="flex justify-between flex-col-reverse lg:flex-row bg-white px-14 py-4 gap-4 items-center lg:h-screen h-auto">
         <div class="grid w-full">
             <div class="mb-6">
                 <h1 class="text-3xl lg:text-left text-center font-bold text-blue-900">MyLibrary</h1>
@@ -13,12 +13,12 @@
             </div>
         </div>
         <div class="w-full">
-            <div class="flex items-center">
-                <img src="{{ asset('storage/img/perpus.png') }}" alt="" class="">
+            <div class="flex justify-center items-center w-full">
+                <img src="{{ asset('storage/img/perpus.png') }}" alt="" class="lg:w-[70%] w-[50%]">
             </div>
         </div>
     </div>
-    <div class="bg-blue-900 px-14 py-4 h-auto w-full">
+    <div class="bg-blue-900 px-14 py-4 h-auto w-full mt-4">
         <div class="justify-center text-center font-bold flex px-10 pt-10">
             <h1 class="text-3xl text-white">Bagaimana cara kerja MyLibrary ?</h1>
         </div>
@@ -60,8 +60,8 @@
     </div>
     <div class="px-14 py-4 h-auto lg:h-screen flex items-center" id="about">
         <div class="flex lg:flex-row flex-col items-center gap-4">
-            <div class="w-full">
-                <img src="{{ asset('storage/image/perpus.png') }}" alt="" class="">
+            <div class="w-full justify-center flex">
+                <img src="{{ asset('storage/img/perpus.png') }}" alt="" class="lg:w-[70%] w-[50%]">
             </div>
             <div class="w-full gap-4 flex flex-col">
                 <div class="text-center px-4">
