@@ -15,24 +15,23 @@
             </div>
             <div class="grid">
                 <label for="alamat">Alamat</label>
-                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->alamat ?? "-"}}" readonly>
+                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->alamat}}">
             </div>
             <div class="grid">
                 <label for="telepon">Telepon</label>
-                <input type="text" name="telepon" id="telepon" min="1800" max="2100" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->telepon ?? "-"}}" readonly>
+                <input type="text" name="telepon" id="telepon" min="1800" max="2100" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->telepon}}">
             </div>
             
             <div class="justify-between flex w-full items-center">
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                    <a href="" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
+                    <a href="{{ route('peminjam.profil') }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
                         <i class="fa-solid fa-arrow-left text-sm"></i>
                         <span>Kembali</span>
                     </a>
                 </div>
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                    <a href="{{ route('peminjam.editProfil', $peminjam->id) }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
-                        <i class="fa-solid fa-pencil text-sm"></i>
-                        <span>Edit</span>
+                    <a href="#" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
+                        <span>Simpan</span>
                     </a>
                 </div>
             </div>

@@ -32,6 +32,7 @@ Route::prefix('perpustakaan')->group(function () {
 
     Route::prefix('profil')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'profil'])->name('peminjam.profil');
+        Route::get('/edit/{id}', [EditController::class, 'editProfilPeminjam'])->name('peminjam.editProfil');
     });
 
     Route::prefix('buku')->middleware('role:peminjam')->group(function () {

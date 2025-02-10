@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Kategori;
+use App\Models\Peminjam;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EditController extends Controller
 {
@@ -82,5 +84,16 @@ class EditController extends Controller
     public function editPeminjamanAction()
     {
         
+    }
+
+    public function editProfilPeminjam($id)
+    {
+        $peminjam = Peminjam::findOrFail($id);
+        // dd($peminjam);
+
+        return view('peminjam.editProfil', [
+            'title' => "Edit Profil",
+            'peminjam' => $peminjam
+        ]);
     }
 }
