@@ -72,7 +72,10 @@ Route::prefix('perpustakaan')->group(function () {
 
         Route::prefix('kategori')->middleware('rolePetugas:admin')->group(function (){
             Route::get('/', [PetugasController::class, 'kategori'])->name('petugas.kategori.index');
+            Route::get('/tambah', [InputController::class, 'addKategori'])->name('petugas.kategori.addKategori');
             Route::post('/tambah-action', [InputController::class, 'addKategoriAction'])->name('petugas.kategori.addKategoriAction');
+            Route::get('/edit/{id}', [EditController::class, 'editKategori'])->name('petugas.kategori.editKategori');
+            Route::put('/edit-action/{id}', [EditController::class, 'editKategoriAction'])->name('petugas.kategori.editKategoriAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteKategori'])->name('petugas.kategori.deleteKategori');
             Route::get('/trash', [DeleteController::class, 'trashKategori'])->name('petugas.kategori.trashKategori');
             Route::post('/restore/{id}', [DeleteController::class, 'restoreKategori'])->name('petugas.kategori.restoreKategori');
@@ -84,12 +87,13 @@ Route::prefix('perpustakaan')->group(function () {
 
         Route::prefix('listkategori')->middleware('rolePetugas:admin')->group(function (){
             Route::get('/', [PetugasController::class, 'listKategori'])->name('petugas.listKategori.index');
-            Route::post('/tambah-action', [InputController::class, 'addListKategoriAction'])->name('petugas.kategori.addListKategoriAction');
+            Route::get('/tambah', [InputController::class, 'addListKategori'])->name('petugas.listKategori.addListKategori');
+            Route::post('/tambah-action', [InputController::class, 'addListKategoriAction'])->name('petugas.listKategori.addListKategoriAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteListKategori'])->name('petugas.listKategori.deleteListKategori');
             Route::get('/trash', [DeleteController::class, 'trashListKategori'])->name('petugas.listKategori.trashListKategori');
             Route::post('/restore/{id}', [DeleteController::class, 'restoreListKategori'])->name('petugas.listKategori.restoreListKategori');
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyListKategori'])->name('petugas.listKategori.destroyListKategori');
-            Route::get('/import', [ImportExcelController::class, 'importListKategori'])->name('petugas.ListKategori.importListKategori');
+            Route::get('/import', [ImportExcelController::class, 'importListKategori'])->name('petugas.listKategori.importListKategori');
             Route::get('/print', [PrintController::class, 'printListKategori'])->name('petugas.ListKategori.printListKategori');
         });
         

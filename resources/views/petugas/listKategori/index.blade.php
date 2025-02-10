@@ -10,10 +10,12 @@
                 <a href="#" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-file-export"></i> Export
                 </a>
-                <a href="{{ route('petugas.ListKategori.importListKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
+                <a href="{{ route('petugas.listKategori.importListKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-file-import"></i> Import
                 </a>
-                @include('petugas.listKategori.modal.addListKategori')
+                <a href="{{ route('petugas.listKategori.addListKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
+                    <i class="fa-solid fa-plus"></i> Tambah
+                </a>
                 <a href="{{ route('petugas.listKategori.trashListKategori') }}" class="px-4 py-2 rounded bg-red-500 text-white flex items-center gap-2 hover:bg-red-600">
                     <i class="fa-solid fa-trash-can-arrow-up"></i>
                 </a>
@@ -78,17 +80,7 @@
             $('#listKategoriTable').DataTable({
                 responsive: true,
                 autoWidth: false,
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Show _MENU_",
-                    info: "Show _START_ to _END_ of _TOTAL_ entries",
-                    paginate: {
-                        first: "<<",
-                        last: ">>",
-                        next: ">",
-                        previous: "<"
-                    }
-                }
+                
             });
         });
     </script>

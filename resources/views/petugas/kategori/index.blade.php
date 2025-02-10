@@ -13,7 +13,9 @@
                 <a href="{{ route('petugas.kategori.importKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-file-import"></i> Import
                 </a>
-                @include('petugas.kategori.modal.addKategori')
+                <a href="{{ route('petugas.kategori.addKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
+                    <i class="fa-solid fa-plus"></i> Tambah
+                </a>
                 <a href="{{ route('petugas.kategori.trashKategori') }}" class="px-4 py-2 rounded bg-red-500 text-white flex items-center gap-2 hover:bg-red-600">
                     <i class="fa-solid fa-trash-can-arrow-up"></i>
                 </a>
@@ -35,7 +37,7 @@
                             <td class="p-3 capitalize">{{ $item->kategori }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
+                                    <a href="{{ route('petugas.kategori.editKategori', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-pencil text-sm"></i>
                                     </a>
                                     <form id="deleteKategori" action="{{ route('petugas.kategori.deleteKategori', $item->id) }}" method="POST" class="">
@@ -73,17 +75,7 @@
             $('#kategoriTable').DataTable({
                 responsive: true,
                 autoWidth: false,
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Show _MENU_",
-                    info: "Show _START_ to _END_ of _TOTAL_ entries",
-                    paginate: {
-                        first: "<<",
-                        last: ">>",
-                        next: ">",
-                        previous: "<"
-                    }
-                }
+                
             });
         });
     </script>

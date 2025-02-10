@@ -80,17 +80,7 @@
             $('#dpeminjamTable').DataTable({
                 responsive: true,
                 autoWidth: false,
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Show _MENU_",
-                    info: "Show _START_ to _END_ of _TOTAL_ entries",
-                    paginate: {
-                        first: "<<",
-                        last: ">>",
-                        next: ">",
-                        previous: "<"
-                    }
-                }
+                
             });
         });
     </script>

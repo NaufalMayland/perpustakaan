@@ -133,14 +133,34 @@ use Illuminate\Support\Facades\Hash;
         return redirect()->route('petugas.buku.index');
     }
 
+    public function addKategori()
+    {
+        return view('petugas.kategori.addKategori', [
+            'title' => "Tambah Data"
+        ]);
+    }
+  
     public function addKategoriAction(Request $request)
     {
         Kategori::updateOrCreate([
             'kategori' => $request->kategori,
         ]);
-
+        
         return redirect()->route('petugas.kategori.index');
     }
+
+    public function addListKategori()
+    {
+        $dataBuku = Buku::withoutTrashed()->get();
+        $dataKategori = Kategori::withoutTrashed()->get();
+
+        return view('petugas.listKategori.addListKategori', [
+            'title' => "Tambah Data",
+            'dataBuku' => $dataBuku,
+            'dataKategori' => $dataKategori
+        ]);
+    }
+
     public function addListKategoriAction(Request $request)
     {
         ListKategori::create([

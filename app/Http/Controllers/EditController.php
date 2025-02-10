@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class EditController extends Controller
@@ -35,14 +36,22 @@ class EditController extends Controller
         return redirect()->route('petugas.buku.detailBuku', $id);
     }
 
-    public function editKategori()
+    public function editKategori($id)
     {
-        
+        $kategori = Kategori::findOrFail($id);
+
+        return view('petugas.kategori.editKategori', [
+            'title' => "Edit",
+            'kategori' => $kategori
+        ]);
     }
 
-    public function editKategoriAction()
+    public function editKategoriAction(Request $request, $id)
     {
-        
+        $kategori = Kategori::findOrFail($id);
+        $kategori->update($request->all());
+
+        return redirect()->route('petugas.kategori.index');
     }
 
     public function editListKategori()

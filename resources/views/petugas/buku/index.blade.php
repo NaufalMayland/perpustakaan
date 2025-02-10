@@ -48,7 +48,7 @@
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
                                     <a href="{{ route('petugas.buku.detailBuku', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
-                                        <i class="fa-solid fa-pencil text-sm"></i>
+                                        <i class="fa-solid fa-eye text-sm"></i>
                                     </a>
                                     <form id="deleteBuku" action="{{ route('petugas.buku.deleteBuku', $item->id) }}" method="POST" class="">
                                         @csrf
@@ -84,17 +84,6 @@
             $('#bukuTable').DataTable({
                 responsive: true,
                 autoWidth: false,
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Show _MENU_",
-                    info: "Show _START_ to _END_ of _TOTAL_ entries",
-                    paginate: {
-                        first: "<<",
-                        last: ">>",
-                        next: ">",
-                        previous: "<"
-                    }
-                }
             });
         });
     </script>
