@@ -14,4 +14,9 @@ class Kategori extends Model
     protected $fillable = [
         'kategori',
     ];
+
+    public function listKategori()
+    {
+        return $this->hasMany(ListKategori::class, 'id_kategori', 'id')->withTrashed();
+    }
 }

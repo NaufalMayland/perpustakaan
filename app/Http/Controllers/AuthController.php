@@ -85,7 +85,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect(route('auth.login'));
+        return redirect()->route('auth.login');
     }
 
     public function logout(Request $request)
@@ -95,6 +95,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect(route('auth.index'));
+        return redirect()->route('auth.index');
     }
 }

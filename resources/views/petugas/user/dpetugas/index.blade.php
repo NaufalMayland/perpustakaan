@@ -39,7 +39,7 @@
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
                             <td class="p-2">{{ $item->nama }}</td>
                             <td class="p-2">{{ $item->email }}</td>
-                            <td class="p-2">{{ $item->telepon }}</td>
+                            <td class="p-2">{{ $item->telepon ?? "-"}}</td>
                             <td class="p-2">{{ $item->role }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">

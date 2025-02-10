@@ -26,7 +26,7 @@
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">
                     <a href="#" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
                         <i class="fa-solid fa-arrow-left text-sm"></i>
-                        <span>Exit</span>
+                        <span>Kembali</span>
                     </a>
                 </div>
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">

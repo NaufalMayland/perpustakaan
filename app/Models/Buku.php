@@ -20,4 +20,9 @@ class Buku extends Model
         'kode',
         'stok',
     ];
+
+    public function listKategori()
+    {
+        return $this->hasMany(ListKategori::class, 'id_buku', 'id')->withTrashed();
+    }
 }
