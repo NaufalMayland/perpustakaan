@@ -163,10 +163,12 @@ use Illuminate\Support\Facades\Hash;
 
     public function addListKategoriAction(Request $request)
     {
-        ListKategori::create([
-            'id_buku' => $request->buku,
-            'id_kategori' => $request->kategori,
-        ]);
+        foreach ($request->kategori as $kategori) {
+            ListKategori::create([
+                'id_buku' => $request->buku,
+                'id_kategori' => $kategori,
+            ]);
+        }
 
         return redirect()->route('petugas.listKategori.index');
     }

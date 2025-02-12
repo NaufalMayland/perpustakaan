@@ -78,7 +78,7 @@
             <div class="text-white font-semibold text-3xl text-center flex items-center justify-center p-10">
                 <h1>MyLibrary, Makes You Eazy!</h1>
             </div>
-            <div class="p-6 flex lg:flex-row flex-col justify-center lg:justify-between items-center gap-4">
+            <div class="p-6 flex lg:flex-row flex-col justify-center w-full lg:justify-between items-center gap-4">
                 <div class="flex flex-row gap-4 items-center w-full" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
                     <i class="fa-solid fa-1 text-blue-300 text-2xl text-center items-center flex"></i>
                     <span class="text-base text-white text-left border-l-2 py-2 px-4">Mempermudah akses informasi</span>

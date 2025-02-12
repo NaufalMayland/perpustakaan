@@ -13,19 +13,19 @@
         @endif
         <div class="grid gap-4 text-sm mt-4">
             <div class="grid">
-                <label for="username">Username</label>
+                <label class="mb-1" for="username">Username</label>
                 <input type="text" name="username" id="username" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('username') }}" placeholder="Masukan username" required>
             </div>
             <div class="grid">
-                <label for="email">Email</label>
+                <label class="mb-1" for="email">Email</label>
                 <input type="Email" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('email') }}" placeholder="Masukan email" required>
             </div>
             <div class="grid">
-                <label for="password">Password</label>
+                <label class="mb-1" for="password">Password</label>
                 <input type="password" name="password" id="password" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukan password" required>
             </div>
             <div class="grid">
-                <label for="role">Hak Akses</label>
+                <label class="mb-1" for="role">Hak Akses</label>
                 <select name="role" id="role" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm cursor-pointer capitalize" required>
                     <option value="" disabled selected hidden>Pilih hak akses</option>
                     <option value="admin" class="capitalize">admin</option>

@@ -15,13 +15,13 @@ Route::get('/', [AuthController::class, 'index'])->name('auth.index')->middlewar
 
 Route::prefix('perpustakaan')->group(function () {
     Route::prefix('login')->middleware('guest')->group(function (){
-        Route::get('/', [ AuthController::class, 'login'])->name('auth.login')->middleware('guest');
-        Route::post('/login-action', [ AuthController::class, 'loginAction'])->name('auth.loginAction')->middleware('guest');
+        Route::get('/', [ AuthController::class, 'login'])->name('auth.login');
+        Route::post('/login-action', [ AuthController::class, 'loginAction'])->name('auth.loginAction');
     });
     
     Route::prefix('register')->middleware('guest')->group(function (){
-        Route::get('/', [ AuthController::class, 'register'])->name('auth.register')->middleware('guest');
-        Route::post('/register-action', [ AuthController::class, 'registerAction'])->name('auth.registerAction')->middleware('guest');
+        Route::get('/', [ AuthController::class, 'register'])->name('auth.register');
+        Route::post('/register-action', [ AuthController::class, 'registerAction'])->name('auth.registerAction');
     });
     
     Route::post('/logout', [ AuthController::class, 'logout'])->name('auth.logout');

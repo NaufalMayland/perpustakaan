@@ -13,7 +13,7 @@
         @endif
         <div class="grid gap-2 text-sm mt-4">
             <div class="grid">
-                <label for="kategori">Kategori</label>
+                <label class="mb-1" for="kategori">Kategori</label>
                 <input type="text" name="kategori" id="kategori" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('kategori') }}" placeholder="Masukan judul buku" required>
             </div>
             <div class="flex justify-end">
