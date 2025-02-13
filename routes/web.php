@@ -90,6 +90,8 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'listKategori'])->name('petugas.listKategori.index');
             Route::get('/tambah', [InputController::class, 'addListKategori'])->name('petugas.listKategori.addListKategori');
             Route::post('/tambah-action', [InputController::class, 'addListKategoriAction'])->name('petugas.listKategori.addListKategoriAction');
+            Route::get('/edit/{id}', [EditController::class, 'editListKategori'])->name('petugas.listKategori.editListKategori');
+            Route::put('/edit-action/{id}', [EditController::class, 'editListKategoriAction'])->name('petugas.listKategori.editListKategoriAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteListKategori'])->name('petugas.listKategori.deleteListKategori');
             Route::get('/trash', [DeleteController::class, 'trashListKategori'])->name('petugas.listKategori.trashListKategori');
             Route::post('/restore/{id}', [DeleteController::class, 'restoreListKategori'])->name('petugas.listKategori.restoreListKategori');

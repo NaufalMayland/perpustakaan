@@ -60,8 +60,20 @@ class PetugasController extends Controller
     }
 
     public function listKategori() {
-        $dataListKategori = ListKategori::with(['buku', 'kategori'])->get();
-        
+        $dataListKategori = DB::table('list_kategoris')
+        ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
+        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->whereNull('list_kategoris.deleted_at')
+        ->select(
+            'bukus.id',
+            'bukus.cover',
+            'bukus.judul',
+            DB::raw("GROUP_CONCAT(list_kategoris.id SEPARATOR ', ') as id_list"),
+            DB::raw("GROUP_CONCAT(kategoris.kategori SEPARATOR ', ') as kategori")
+        )
+        ->groupBy('bukus.id', 'bukus.judul')
+        ->get();
+
         return view('petugas.listKategori.index', [
             'title' => "List Kategori",
             'dataListKategori' => $dataListKategori,

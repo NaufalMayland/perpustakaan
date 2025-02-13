@@ -10,8 +10,6 @@
                 <a href="#" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-file-export"></i> Export
                 </a>
-                <a href="{{ route('petugas.listKategori.importListKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-import"></i> Import
                 </a>
                 <a href="{{ route('petugas.listKategori.addListKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-plus"></i> Tambah
@@ -37,13 +35,13 @@
                     @foreach ($dataListKategori as $item)
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
                             <td class="p-3 flex justify-center">
-                                <img src="{{ asset('storage/' . $item->buku->cover) }}" class="w-20 object-cover rounded" alt="cover">
+                                <img src="{{ asset('storage/' . $item->cover) }}" class="w-20 object-cover rounded" alt="cover">
                             </td>
-                            <td class="p-3">{{ $item->buku->judul }}</td>
-                            <td class="p-3 capitalize">{{ $item->kategori->kategori }}</td>
+                            <td class="p-3">{{ $item->judul }}</td>
+                            <td class="p-3 capitalize">{{ $item->kategori }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
+                                    <a href="{{ route('petugas.listKategori.editListKategori', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-pencil text-sm"></i>
                                     </a>
                                     <form id="deleteListKategori" action="{{ route('petugas.listKategori.deleteListKategori', $item->id) }}" method="POST" class="">

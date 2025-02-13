@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Kategori;
+use App\Models\ListKategori;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EditController extends Controller
 {
@@ -56,14 +58,27 @@ class EditController extends Controller
         return redirect()->route('petugas.kategori.index');
     }
 
-    public function editListKategori()
+    public function editListKategori($id)
     {
-        
+        $buku = Buku::where('id', $id)->first();
+        // dd($buku);
+        $kategori = Kategori::all();
+
+        $selectedKategori = ListKategori::where('id_buku', $id)->pluck('id_kategori')->toArray();
+
+        return view('petugas.listKategori.editListKategori', [
+            'title' => "Edit",
+            'buku' => $buku,
+            'kategori' => $kategori,
+            'selectedKategori' => $selectedKategori,
+        ]);        
     }
 
-    public function editListKategoriAction()
+    public function editListKategoriAction(Request $request, $id)
     {
-        
+        $listKategori = ListKategori::where('id_buku', $id)->get();
+
+        return redirect()->route('petugas.listKategori.index');
     }
 
     public function editPeminjam()

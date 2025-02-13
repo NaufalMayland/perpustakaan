@@ -9,6 +9,7 @@ use App\Models\Peminjam;
 use App\Models\Petugas;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DeleteController extends Controller
 {
@@ -71,19 +72,19 @@ class DeleteController extends Controller
            return redirect()->route('petugas.buku.trashBuku');
     }
 
-    public function deleteKategori($id){
-        $kategori = Kategori::find($id);
-        $kategori->delete();
-
-        return redirect()->route('petugas.kategori.index');
-    }
-
     public function destroyBuku($id)
     {
         $buku = Buku::onlyTrashed()->find($id);
         $buku->forceDelete();
 
         return redirect()->route('petugas.buku.trashBuku');
+    }
+
+    public function deleteKategori($id){
+        $kategori = Kategori::find($id);
+        $kategori->delete();
+
+        return redirect()->route('petugas.kategori.index');
     }
 
     public function trashKategori()
@@ -113,16 +114,27 @@ class DeleteController extends Controller
     }
 
     public function deleteListKategori($id){
-        $listKategori = ListKategori::find($id);
-        $listKategori->delete();
+        $listKategori = ListKategori::where('id_buku', $id)->delete(); 
 
         return redirect()->route('petugas.listKategori.index');
     }
 
     public function trashListKategori()
     {
-        $trash = ListKategori::onlyTrashed()->get();
-        
+        $trash = DB::table('list_kategoris')
+        ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
+        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->whereNotNull('list_kategoris.deleted_at')
+        ->select(
+            'bukus.id',
+            'bukus.cover',
+            'bukus.judul',
+            DB::raw("GROUP_CONCAT(list_kategoris.id SEPARATOR ', ') as id_list"),
+            DB::raw("GROUP_CONCAT(kategoris.kategori SEPARATOR ', ') as kategori")
+        )
+        ->groupBy('bukus.id', 'bukus.judul')
+        ->get();
+
         return view('petugas.listKategori.trashListKategori', [
             'title' => "Trash",
             'trash' => $trash
@@ -131,16 +143,14 @@ class DeleteController extends Controller
 
     public function restoreListKategori($id)
     {
-        $restore = ListKategori::onlyTrashed()->find($id);
-        $restore->restore();
+        $restore = ListKategori::onlyTrashed()->where('id_buku', $id)->restore();
 
         return redirect()->route('petugas.listKategori.trashListKategori');
     }
 
     public function destroyListKategori($id)
     {
-        $listKategori = ListKategori::onlyTrashed()->find($id);
-        $listKategori->forceDelete();
+        $listKategori = ListKategori::onlyTrashed()->where('id_buku', $id)->forceDelete();
 
         return redirect()->route('petugas.listKategori.trashListKategori');
     }

@@ -15,10 +15,10 @@
                     @foreach ($trash as $item)
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
                             <td class="p-2 flex justify-center">
-                                <img src="{{ asset('storage/' . $item->buku->cover) }}" class="w-20 object-cover rounded" alt="cover">
+                                <img src="{{ asset('storage/' . $item->cover) }}" class="w-20 object-cover rounded" alt="cover">
                             </td>
-                            <td class="p-2">{{ $item->buku->judul }}</td>
-                            <td class="p-2">{{ $item->kategori->kategori }}</td>
+                            <td class="p-2">{{ $item->judul }}</td>
+                            <td class="p-2">{{ $item->kategori }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
                                     <form id="restoreListKategori" action="{{ route('petugas.listKategori.restoreListKategori', $item->id) }}" method="POST" class="">
