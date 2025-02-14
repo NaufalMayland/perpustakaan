@@ -76,7 +76,15 @@ class EditController extends Controller
 
     public function editListKategoriAction(Request $request, $id)
     {
-        $listKategori = ListKategori::where('id_buku', $id)->get();
+        $checkedKategori = $request->kategori ?? [];
+        $listKategori = ListKategori::where('id_buku', $id)->delete();
+        
+        foreach($checkedKategori as $kategori) {
+            ListKategori::create([
+                'id_buku' => $id,
+                'id_kategori' => $kategori
+            ]);
+        }
 
         return redirect()->route('petugas.listKategori.index');
     }
