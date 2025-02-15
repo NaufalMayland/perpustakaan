@@ -77,7 +77,7 @@ class EditController extends Controller
     public function editListKategoriAction(Request $request, $id)
     {
         $checkedKategori = $request->kategori ?? [];
-        $listKategori = ListKategori::where('id_buku', $id)->delete();
+        $listKategori = ListKategori::where('id_buku', $id)->forceDelete();
         
         foreach($checkedKategori as $kategori) {
             ListKategori::create([

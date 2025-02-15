@@ -9,7 +9,7 @@
             <div class="w-full grid grid-cols-8 gap-4">
                 @foreach ($buku as $item) 
                     <a href="{{ route('peminjam.detailBuku', $item->id) }}" class="flex flex-col">
-                        <img class="w-full h-full bg-cover rounded transition-all ease-in-out" src="{{ asset('storage/'. $item->buku->cover) }}" alt="">                  
+                        <img class="w-full h-full bg-cover rounded transition-all ease-in-out" src="{{ asset('storage/'. $item->cover) }}" alt="">                  
                     </a>
                 @endforeach
             </div>

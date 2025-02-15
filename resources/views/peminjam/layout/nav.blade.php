@@ -1,4 +1,4 @@
-<nav class="bg-white shadow py-2 px-6 flex justify-between items-center">
+<nav class="bg-white shadow py-2 px-6 flex justify-between items-center sticky top-0">
     <div class="flex items-center justify-start gap-4">
         <div class="flex items-center gap-2">
             <i class="fa-solid fa-book-open-reader text-blue-900"></i>
@@ -27,7 +27,7 @@
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>
             <div id="profilDropdown" class="absolute right-0 mt-2 w-40 bg-white border shadow-lg rounded-lg hidden">
-                <a href="{{ route('peminjam.profil') }}" class="block w-full text-left px-4 py-2  text-black hover:bg-gray-100">Lihat Profil</a>
+                <a href="{{ route('peminjam.profil') }}" class="block w-full text-left px-4 py-2  text-black hover:bg-gray-100">Profil</a>
                 <form id="logoutForm" action="{{ route('auth.logout') }}" method="post" hidden>
                     @csrf
                 </form>

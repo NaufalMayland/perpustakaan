@@ -15,9 +15,10 @@
         <div class="grid gap-2 text-sm mt-4">
             <div class="grid">
                 <label class="mb-1" for="buku">Buku</label>
-                <select name="buku" id="buku" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" required>
+                <input type="text" name="buku" id="buku"  class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm focus:outline-none" value="{{ $buku->kode.' - '.$buku->judul }}" readonly>
+                {{-- <select name="buku" id="buku" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm">
                     <option value="{{ $buku->id }}">{{ $buku->kode.' - '.$buku->judul }}</option>
-                </select>
+                </select> --}}
             </div>
             <div class="grid">
                 <label class="mb-1" for="kategori">Kategori</label>
@@ -33,7 +34,7 @@
                 </div>                
             </div>
             <div class="flex justify-end">
-                <button class="bg-blue-900 py-2 px-3 text-sm rounded text-white">Tambah</button>
+                <button class="bg-blue-900 py-2 px-3 text-sm rounded text-white">Simpan</button>
             </div>
         </div>
     </form>

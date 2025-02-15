@@ -15,9 +15,7 @@
     <title>{{ $title }}</title>
 </head>
 <body class="font-['poppins']">
-    <div class="">
-        @include('auth.layout.nav')
-    </div>
+    @include('auth.layout.nav')
     <div class="">
         @yield('content')
     </div>

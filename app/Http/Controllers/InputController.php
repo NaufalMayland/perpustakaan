@@ -163,7 +163,9 @@ use Illuminate\Support\Facades\Hash;
 
     public function addListKategoriAction(Request $request)
     {
-        foreach ($request->kategori as $kategori) {
+        $checkedKategori = $request->kategori ?? [];
+
+        foreach ($checkedKategori as $kategori) {
             ListKategori::create([
                 'id_buku' => $request->buku,
                 'id_kategori' => $kategori,

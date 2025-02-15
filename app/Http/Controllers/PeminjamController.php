@@ -7,12 +7,23 @@ use App\Models\ListKategori;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamController extends Controller
 {
     public function index()
     {
-        $buku = ListKategori::with(['buku', 'kategori'])->get();
+        $buku = DB::table('list_kategoris')
+        ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
+        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->whereNull('list_kategoris.deleted_at')
+        ->select(
+            'bukus.id',
+            'bukus.cover',
+            'bukus.judul',
+        )
+        ->groupBy('bukus.id', 'bukus.judul')
+        ->get();
         
         return view('peminjam.index', [
             'title' => "Home",
@@ -22,10 +33,19 @@ class PeminjamController extends Controller
 
     public function detailBuku($id)
     {
-        $buku = ListKategori::with(['buku', 'kategori'])->where('id', $id)->first();
+        $buku = ListKategori::with(['buku', 'kategori'])->where('id_buku', $id)->first();
+        $getKategori = DB::table('list_kategoris')
+        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->where('list_kategoris.id_buku', $id)
+        ->select(
+            DB::raw("GROUP_CONCAT(kategoris.kategori SEPARATOR ', ') as kategori")
+        )
+        ->get();
+
         return view('peminjam.detailBuku', [
             'title' => $buku->buku->judul,
-            'buku' => $buku
+            'buku' => $buku,
+            'getKategori' => $getKategori
         ]);
     }
 

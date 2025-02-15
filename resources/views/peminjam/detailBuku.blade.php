@@ -25,7 +25,9 @@
                 </div>
                 <div>
                     <span class="font-semibold">Kategori:</span>
-                    <span class="capitalize">{{ $buku->kategori->kategori}}</span>
+                    @foreach ($getKategori as $item) 
+                        <span class="capitalize">{{ $item->kategori }}</span>
+                    @endforeach
                 </div>
             </div>
             
