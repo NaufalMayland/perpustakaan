@@ -15,7 +15,20 @@
             </div>
             <div class="grid">
                 <label for="alamat">Alamat</label>
-                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->alamat}}">
+                <div class="grid gap-4">
+                    <select name="kota" id="kota" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
+                        <option value="" disabled selected hidden>Pilih kota</option>
+                    </select>
+                    <select name="kabupaten" id="kabupaten" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
+                        <option value="" disabled selected hidden>Pilih kabupaten</option>
+                    </select>
+                    <select name="kecamatan" id="kecamatan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
+                        <option value="" disabled selected hidden>Pilih kecamatan</option>
+                    </select>
+                    <select name="kelurahan" id="kelurahan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
+                        <option value="" disabled selected hidden>Pilih kelurahan</option>
+                    </select>
+                </div>
             </div>
             <div class="grid">
                 <label for="telepon">Telepon</label>
