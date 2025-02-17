@@ -14,15 +14,15 @@
         <div class="grid gap-4 text-sm mt-4">
             <div class="grid">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('username') }}" placeholder="Masukan username" required>
+                <input type="text" name="username" id="username" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('username') }}" placeholder="Masukan username" autocomplete="off" required>
             </div>
             <div class="grid">
                 <label for="email">Email</label>
-                <input type="Email" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('email') }}" placeholder="Masukan email" required>
+                <input type="Email" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('email') }}" placeholder="Masukan email" autocomplete="off" required>
             </div>
             <div class="grid">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukan password" required>
+                <input type="password" name="password" id="password" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukan password" autocomplete="off" required>
             </div>
         </div>
         <div class="flex justify-end mt-4">

@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     <title>Perpustakaan | {{ $title }}</title>
 </head>
-<body class="font-['poppins']">
+<body class="font-['poppins'] bg-gray-50">
     @include('peminjam.layout.nav')
     <div class="px-10 lg:px-20 py-10">
         @yield('content')

@@ -10,11 +10,11 @@
                 <div class="grid gap-4 text-sm mt-4">
                     <div class="grid">
                         <label class="mb-1" for="username">Username</label>
-                        <input type="text" name="username" id="username" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $petugas->nama }}">
+                        <input type="text" name="username" id="username" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $petugas->nama }}" autocomplete="off" required>
                     </div>
                     <div class="grid">
                         <label class="mb-1" for="email">Email</label>
-                        <input type="Email" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $petugas->email }}">
+                        <input type="Email" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $petugas->email }}" autocomplete="off" required>
                     </div>
                     <div class="grid">
                         <label class="mb-1" for="email">Alamat</label>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="grid">
                         <label class="mb-1" for="email">Telepon</label>
-                        <input type="Email" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $petugas->telepon }}">
+                        <input type="Email" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $petugas->telepon }}" autocomplete="off">
                     </div>
                 </div>
                 

@@ -28,7 +28,7 @@
                 <div class="grid text-sm gap-2 my-4">
                     <div class="grid">
                         <label class="text-black" for="email">Email</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" value="{{ old('email') }}">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="off">
                     </div>
                     <div class="grid">
                         <label class="text-black" for="password">Password</label>

@@ -10,15 +10,15 @@
             <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm lg:text-base">
                 <div class="grid">
                     <label for="judul">Judul Buku</label>
-                    <input type="text" name="judul" id="judul" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->judul }}" placeholder="Masukan judul buku" required>
+                    <input type="text" name="judul" id="judul" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->judul }}" placeholder="Masukan judul buku" autocomplete="off" required>
                 </div>
                 <div class="grid">
                     <label for="penulis">Penulis</label>
-                    <input type="text" name="penulis" id="penulis" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->penulis }}" placeholder="Masukan penulis" required>
+                    <input type="text" name="penulis" id="penulis" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->penulis }}" placeholder="Masukan penulis" autocomplete="off" required>
                 </div>
                 <div class="grid">
                     <label for="penerbit">Penerbit</label>
-                    <input type="text" name="penerbit" id="penerbit" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->penerbit }}" placeholder="Masukan Penebit" required>
+                    <input type="text" name="penerbit" id="penerbit" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->penerbit }}" placeholder="Masukan Penebit" autocomplete="off" required>
                 </div>
                 <div class="grid">
                     <label for="tahun_terbit">Tahun Terbit</label>
@@ -26,11 +26,11 @@
                 </div>
                 <div class="grid">
                     <label for="kode">Kode</label>
-                    <input type="text" name="kode" id="kode" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->kode }}" placeholder="Masukan kode" required>
+                    <input type="text" name="kode" id="kode" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->kode }}" placeholder="Masukan kode" autocomplete="off" required>
                 </div>
                 <div class="grid">
                     <label for="stok">Stok</label>
-                    <input type="number" name="stok" id="stok" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->stok }}" placeholder="Masukan stok" required>
+                    <input type="number" name="stok" id="stok" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->stok }}" placeholder="Masukan stok" autocomplete="off" required>
                 </div>
                 <div class="grid text-sm">
                     <label for="cover">Cover Buku</label>

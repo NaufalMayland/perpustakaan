@@ -15,7 +15,7 @@
     @vite('resources/css/app.css')
     <title>Perpustakaan | {{$title}}</title>
 </head>
-<body class="font-['poppins'] bg-slate-50">
+<body class="font-['poppins'] bg-gray-50">
     <div class="flex">
         @include('petugas.layout.nav')
         <div class="w-full p-6">

@@ -28,15 +28,15 @@
                 <div class="grid text-sm gap-2 my-4">
                     <div class="grid">
                         <label class="text-black" for="username">Username</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="text" id="username" name="username" value="{{old('username')}}">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="text" id="username" name="username" autocomplete="off" value="{{old('username')}}">
                     </div>
                     <div class="grid">
                         <label class="text-black" for="email">Email</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" value="{{old('email')}}">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" autocomplete="off" value="{{old('email')}}">
                     </div>
                     <div class="grid">
                         <label class="text-black" for="password">Password</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="password" id="password">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="password" id="password" autocomplete="off">
                     </div>
                 </div>
                 <div class="flex justify-between items-center mt-8">
