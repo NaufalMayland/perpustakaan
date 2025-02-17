@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
 use App\Models\Petugas;
+use App\Models\Ulasan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -119,9 +120,37 @@ class PetugasController extends Controller
         ]);
     }
 
-    public function ulasan() {
+    public function ulasan() 
+    {
+        $buku = DB::table('list_kategoris')
+        ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
+        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->whereNull('list_kategoris.deleted_at')
+        ->select(
+            'bukus.id',
+            'bukus.cover',
+            'bukus.judul',
+            DB::raw("GROUP_CONCAT(list_kategoris.id SEPARATOR ', ') as id_list"),
+            DB::raw("GROUP_CONCAT(kategoris.kategori SEPARATOR ', ') as kategori")
+        )
+        ->groupBy('bukus.id', 'bukus.judul')
+        ->get();
+
         return view('petugas.ulasan.index', [
             'title' => "Ulasan",
+            'buku' => $buku,
+        ]);
+    }
+
+    public function detailUlasan($id)
+    {
+        $buku = Buku::where('id', $id)->first();
+        $ulasan = Ulasan::with(['buku', 'peminjam'])->where('id_buku', $id)->get();
+
+        return view('petugas.ulasan.detailUlasan', [
+            'title' => "Ulasan",
+            'ulasan' => $ulasan,
+            'buku' => $buku
         ]);
     }
 }

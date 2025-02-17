@@ -41,7 +41,7 @@
                 </div>
                 <div class="grid gap-2">
                     <h1 class="font-bold text-lg">Cari Buku</h1>
-                    <p class="text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p class="text-base">Cari buku yang ingin kamu pinjam</p>
                 </div>
             </div>
             <div class="" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="grid gap-2">
                     <h1 class="font-bold text-lg">Pinjam Buku</h1>
-                    <p class="text-base">Admin akan menginputkan data peminjaman dan kamu bisa ambil buku pinjamanmu</p>
+                    <p class="text-base">Petugas akan menginputkan data peminjaman dan kamu bisa ambil buku pinjamanmu</p>
                 </div>
             </div>
         </div>

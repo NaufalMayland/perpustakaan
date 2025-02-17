@@ -26,15 +26,13 @@
                 </div>
                 <div>
                     <span class="font-semibold">Kategori:</span>
-                    @foreach ($getKategori as $item) 
-                        <span class="capitalize">{{ $item->kategori }}</span>
-                    @endforeach
+                    <span class="capitalize">{{ $getKategori }}</span>
                 </div>
             </div>
             
             <div class="justify-between flex w-full">
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                    <a href="{{ url()->previous() }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
+                    <a href="" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">
                         <i class="fa-solid fa-arrow-left text-sm"></i>
                         <span>Kembali</span>
                     </a>
@@ -55,7 +53,7 @@
         <form action="{{ route('peminjam.addUlasanAction', $buku->buku->id) }}" method="POST" class="flex gap-3">
             @csrf
             <input type="text" name="ulasan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Berikan ulasanmu">
-            <button type="submit" class="bg-blue-900 hover:bg-blue-950 rounded py-2 px-5 text-white font-medium">Kirim</button>
+            <button type="submit" class="bg-blue-900 hover:bg-blue-950 rounded-full py-2 px-5 text-white font-medium">Kirim</button>
         </form>
         
         <div class="border-t pt-4">

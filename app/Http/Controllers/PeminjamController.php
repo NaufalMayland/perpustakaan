@@ -37,14 +37,7 @@ class PeminjamController extends Controller
     {
         $buku = ListKategori::where('id_buku', $id)->first();
         $ulasan = Ulasan::with(['peminjam'])->where('id_buku', $id)->get();
-        $getKategori = DB::table('list_kategoris')
-
-        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
-        ->where('list_kategoris.id_buku', $id)
-        ->select(
-            DB::raw("GROUP_CONCAT(kategoris.kategori SEPARATOR ', ') as kategori")
-        )
-        ->get();
+        $getKategori = ListKategori::with('kategori')->where('id_buku', $id)->get()->pluck('kategori.kategori')->implode(', ');
 
         return view('peminjam.detailBuku', [
             'title' => $buku->buku->judul,

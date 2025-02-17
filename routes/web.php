@@ -131,6 +131,7 @@ Route::prefix('perpustakaan')->group(function () {
 
         Route::prefix('ulasan')->middleware('rolePetugas:petugas')->group(function (){
             Route::get('/', [PetugasController::class, 'ulasan'])->name('petugas.ulasan.index');
+            Route::get('/{id}', [PetugasController::class, 'detailUlasan'])->name('petugas.ulasan.detailUlasan');
         });
     });
 });
