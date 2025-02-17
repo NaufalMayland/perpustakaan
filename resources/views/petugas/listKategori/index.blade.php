@@ -5,14 +5,17 @@
             <h2 class="font-semibold text-lg">Data {{ $title }}</h2>
             <div class="flex gap-2 text-sm text-white">
                 <a href="{{ route('petugas.ListKategori.printListKategori') }}" target="_blank" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-print"></i> Print
+                    <i class="fa-solid fa-print"></i> 
+                    <span class="hidden lg:block">Print</span>
                 </a>
                 <a href="#" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-export"></i> Export
+                    <i class="fa-solid fa-file-export"></i> 
+                    <span class="hidden lg:block">Export</span>
                 </a>
                 </a>
                 <a href="{{ route('petugas.listKategori.addListKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-plus"></i> Tambah
+                    <i class="fa-solid fa-plus"></i> 
+                    <span class="hidden lg:block">Tambah</span>
                 </a>
                 <a href="{{ route('petugas.listKategori.trashListKategori') }}" class="px-4 py-2 rounded bg-red-500 text-white flex items-center gap-2 hover:bg-red-600">
                     <i class="fa-solid fa-trash-can-arrow-up"></i>

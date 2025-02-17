@@ -1,20 +1,24 @@
 @extends('petugas.layout.layout')
 @section('content')
     <div class="bg-white p-4 rounded shadow-md">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center overflow-auto">
             <h2 class="font-semibold text-lg">Data {{ $title }}</h2>
             <div class="flex gap-2 text-sm">
                 <a href="{{ route('petugas.user.dpetugas.printPetugas') }}" target="_blank" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-print"></i> Print
+                    <i class="fa-solid fa-print"></i> 
+                    <span class="hidden lg:block">Print</span>
                 </a>
                 <a href="#" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-export"></i> Export
+                    <i class="fa-solid fa-file-export"></i> 
+                    <span class="hidden lg:block">Export</span>
                 </a>
                 <a href="{{ route('petugas.user.dpetugas.importPetugas') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-import"></i> Import
+                    <i class="fa-solid fa-file-import"></i> 
+                    <span class="hidden lg:block">Import</span>
                 </a>
                 <a href="{{ route('petugas.user.dpetugas.addPetugas') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-plus"></i>Tambah
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="hidden lg:block">Tambah</span>
                 </a>
                 <a href="{{ route('petugas.user.dpetugas.trashPetugas') }}" class="px-4 py-2 rounded bg-red-500 text-white flex items-center gap-2 hover:bg-red-600">
                     <i class="fa-solid fa-trash-can-arrow-up"></i>
@@ -23,7 +27,7 @@
         </div>
     </div>
     <div class="bg-white p-4 rounded shadow-md mt-4">
-        <div class="overflow-x-auto">
+        <div class="">
             <table id="dpetugasTable" class="min-w-full border border-gray-400 text-sm">
                 <thead class="bg-gray-400 w-full">
                     <tr class="text-gray-950">
@@ -43,8 +47,8 @@
                             <td class="p-2">{{ $item->role }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
-                                        <i class="fa-solid fa-pencil text-sm"></i>
+                                    <a href="{{ route('petugas.user.dpetugas.detailPetugas', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
+                                        <i class="fa-solid fa-eye"></i>
                                     </a>
                                     <form id="deletePetugas" action="{{ route('petugas.user.dpetugas.deletePetugas', $item->id) }}" method="POST" class="">
                                         @csrf

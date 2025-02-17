@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -33,8 +35,10 @@ class PeminjamController extends Controller
 
     public function detailBuku($id)
     {
-        $buku = ListKategori::with(['buku', 'kategori'])->where('id_buku', $id)->first();
+        $buku = ListKategori::where('id_buku', $id)->first();
+        $ulasan = Ulasan::with(['peminjam'])->where('id_buku', $id)->get();
         $getKategori = DB::table('list_kategoris')
+
         ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
         ->where('list_kategoris.id_buku', $id)
         ->select(
@@ -45,7 +49,8 @@ class PeminjamController extends Controller
         return view('peminjam.detailBuku', [
             'title' => $buku->buku->judul,
             'buku' => $buku,
-            'getKategori' => $getKategori
+            'ulasan' => $ulasan,
+            'getKategori' => $getKategori,
         ]);
     }
 
@@ -58,6 +63,30 @@ class PeminjamController extends Controller
             'title' => "Profil",
             'user' => $user,
             'peminjam' => $peminjam
+        ]);
+    }
+
+    public function searchBuku(Request $request)
+    {
+        $buku = DB::table('list_kategoris')
+        ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
+        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->whereNull('list_kategoris.deleted_at')
+        ->when($request->search, function ($query) use ($request) {
+            $query->where('bukus.judul', 'like', '%' . $request->search . '%');
+        })
+        ->select(
+            'bukus.id',
+            'bukus.cover',
+            'bukus.judul'
+        )
+        ->groupBy('bukus.id', 'bukus.judul', 'bukus.cover') // tambahkan 'bukus.cover' untuk menghindari error
+        ->get();
+
+
+        return view('peminjam.resultSearch', [
+            'title' => "Home",
+            'buku' => $buku
         ]);
     }
 }

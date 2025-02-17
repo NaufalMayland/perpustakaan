@@ -5,16 +5,20 @@
             <h2 class="font-semibold text-lg">Data {{ $title }}</h2>
             <div class="flex gap-2 text-sm">
                 <a href="{{ route('petugas.user.dpeminjam.printPeminjam') }}" target="_blank" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-print"></i> Print
+                    <i class="fa-solid fa-print"></i> 
+                    <span class="hidden lg:block">Print</span>
                 </a>
                 <a href="#" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-export"></i> Export
+                    <i class="fa-solid fa-file-export"></i> 
+                    <span class="hidden lg:block">Export</span>
                 </a>
                 <a href="{{ route('petugas.user.dpeminjam.importPeminjam') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-import"></i> Import
+                    <i class="fa-solid fa-file-import"></i> 
+                    <span class="hidden lg:block">Import</span>
                 </a>
                 <a href="{{ route('petugas.user.dpeminjam.addPeminjam') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-plus"></i>Tambah
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="hidden lg:block">Tambah</span>
                 </a>
                 <a href="{{ route('petugas.user.dpeminjam.trashPeminjam') }}" class="px-4 py-2 rounded bg-red-500 text-white flex items-center gap-2 hover:bg-red-600">
                     <i class="fa-solid fa-trash-can-arrow-up"></i>
@@ -30,7 +34,6 @@
                         <th class="p-2 text-center font-bold uppercase relative">Nama</th>
                         <th class="p-2 text-center font-bold uppercase relative">Email</th>
                         <th class="p-2 text-center font-bold uppercase relative">Telepon</th>
-                        <th class="p-2 text-center font-bold uppercase relative">Hak Akses</th>
                         <th class="p-2 text-center font-bold uppercase relative">Option</th>
                     </tr>
                 </thead>
@@ -39,12 +42,11 @@
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
                             <td class="p-2">{{ $item->nama }}</td>
                             <td class="p-2">{{ $item->email }}</td>
-                            <td class="p-2">{{ $item->telepon }}</td>
-                            <td class="p-2">{{ $item->role }}</td>
+                            <td class="p-2">{{ $item->telepon ?? "-" }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
-                                        <i class="fa-solid fa-pencil text-sm"></i>
+                                    <a href="{{ route('petugas.user.dpeminjam.detailPeminjam', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
+                                        <i class="fa-solid fa-eye"></i>
                                     </a>
                                     <form id="deletePeminjam" action="{{ route('petugas.user.dpeminjam.deletePeminjam', $item->id) }}" method="POST" class="">
                                         @csrf

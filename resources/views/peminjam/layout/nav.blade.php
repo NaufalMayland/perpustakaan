@@ -5,11 +5,17 @@
             <h1 class="font-bold text-lg text-blue-900">PERPUSTAKAAN</h1>
         </div>
     </div>
-    <div class="flex justify-center items-center">
+    <form class="flex justify-center items-center border rounded" action="{{ route('peminjam.searchBuku') }}" method="GET">
+        @csrf
         <div class="">
-            <input type="text" class="w-96 rounded-full border-2 px-4 py-2 border-gray-300 bg-white  focus:outline-blue-900" placeholder="Search...">
+            <input type="text" name="search" id="search" class="rounded px-4 py-2 focus:outline-none" value="{{ old('search') }}" placeholder="Search..." autocomplete="off">
         </div>
-    </div>
+        <div class="">
+            <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white px-4 py-2 rounded-r cursor-pointer">
+                <i class="fa-solid fa-magnifying-glass text-white"></i>
+            </button>
+        </div>
+    </form>
     <div class="flex gap-6 justify-end items-center">
         <div class="flex items-center  gap-2">
             <a href="#" class="">Genre</a>

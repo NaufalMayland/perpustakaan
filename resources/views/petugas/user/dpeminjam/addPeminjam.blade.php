@@ -24,15 +24,6 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukan password" required>
             </div>
-            <div class="grid">
-                <label for="role">Hak Akses</label>
-                <select name="role" id="role" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm cursor-pointer capitalize" required>
-                    <option value="" disabled selected hidden>Pilih hak akses</option>
-                    @foreach ($roleData as $data)
-                        <option value="{{$data->id}}" class="capitalize">{{$data->role}}</option>
-                    @endforeach
-                </select>
-            </div>
         </div>
         <div class="flex justify-end mt-4">
             <button class="bg-blue-900 py-2 px-3 text-sm rounded text-white">Tambah</button>

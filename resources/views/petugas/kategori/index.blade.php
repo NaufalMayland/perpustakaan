@@ -5,16 +5,20 @@
             <h2 class="font-semibold text-lg">Data {{ $title }}</h2>
             <div class="flex gap-2 text-sm text-white">
                 <a href="{{ route('petugas.kategori.printKategori') }}" target="_blank" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-print"></i> Print
+                    <i class="fa-solid fa-print"></i> 
+                    <span class="hidden lg:block">Print</span>
                 </a>
                 <a href="#" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-export"></i> Export
+                    <i class="fa-solid fa-file-export"></i> 
+                    <span class="hidden lg:block">Export</span>
                 </a>
                 <a href="{{ route('petugas.kategori.importKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-import"></i> Import
+                    <i class="fa-solid fa-file-import"></i> 
+                    <span class="hidden lg:block">Import</span>
                 </a>
                 <a href="{{ route('petugas.kategori.addKategori') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-plus"></i> Tambah
+                    <i class="fa-solid fa-plus"></i> 
+                    <span class="hidden lg:block">Tambah</span>
                 </a>
                 <a href="{{ route('petugas.kategori.trashKategori') }}" class="px-4 py-2 rounded bg-red-500 text-white flex items-center gap-2 hover:bg-red-600">
                     <i class="fa-solid fa-trash-can-arrow-up"></i>

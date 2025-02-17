@@ -14,15 +14,15 @@
         <div class="grid gap-2 text-sm mt-4">
             <div class="grid">
                 <label class="mb-1" for="judul">Judul Buku</label>
-                <input type="text" name="judul" id="judul" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('judul') }}" placeholder="Masukan judul buku" required>
+                <input type="text" name="judul" id="judul" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('judul') }}" placeholder="Masukan judul buku" autocomplete="off" required>
             </div>
             <div class="grid">
                 <label class="mb-1" for="penulis">Penulis</label>
-                <input type="text" name="penulis" id="penulis" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('penulis') }}" placeholder="Masukan penulis" required>
+                <input type="text" name="penulis" id="penulis" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('penulis') }}" placeholder="Masukan penulis" autocomplete="off" required>
             </div>
             <div class="grid">
                 <label class="mb-1" for="penerbit">Penerbit</label>
-                <input type="text" name="penerbit" id="penerbit" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('penerbit') }}" placeholder="Masukan Penebit" required>
+                <input type="text" name="penerbit" id="penerbit" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('penerbit') }}" placeholder="Masukan Penebit" autocomplete="off" required>
             </div>
             <div class="grid">
                 <label class="mb-1" for="tahun_terbit">Tahun Terbit</label>
@@ -30,11 +30,11 @@
             </div>
             <div class="grid">
                 <label class="mb-1" for="kode">Kode</label>
-                <input type="text" name="kode" id="kode" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('kode') }}" placeholder="Masukan kode" required>
+                <input type="text" name="kode" id="kode" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('kode') }}" placeholder="Masukan kode" autocomplete="off" required>
             </div>
             <div class="grid">
                 <label class="mb-1" for="stok">Stok</label>
-                <input type="number" name="stok" id="stok" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('stok') }}" placeholder="Masukan stok" required>
+                <input type="number" name="stok" id="stok" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('stok') }}" placeholder="Masukan stok" autocomplete="off" required>
             </div>
             <div class="grid text-sm">
                 <label class="mb-1" for="cover">Cover Buku</label>

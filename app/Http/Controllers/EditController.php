@@ -6,15 +6,21 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class EditController extends Controller
 {
-    public function editPetugas()
+    public function editPetugas($id)
     {
-        
+        $petugas = Petugas::findOrFail($id);
+
+        return view('petugas.user.dpetugas.editPetugas', [
+            'title' => "Edit",
+            'petugas' => $petugas
+        ]);
     }
 
     public function editPetugasAction()

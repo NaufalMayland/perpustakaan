@@ -74,14 +74,12 @@ class AuthController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 1,
         ]);
 
         if($dataRegist){
             Peminjam::create([
                 'nama' => $request->username,
                 'email' => $request->email,
-                'uid' => $request->password,
             ]);
         }
 

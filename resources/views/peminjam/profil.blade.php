@@ -24,7 +24,7 @@
             
             <div class="justify-between flex w-full items-center">
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                    <a href="" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
+                    <a href="{{ url()->previous() }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
                         <i class="fa-solid fa-arrow-left text-sm"></i>
                         <span>Kembali</span>
                     </a>

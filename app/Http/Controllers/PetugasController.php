@@ -23,10 +23,19 @@ class PetugasController extends Controller
     public function dpetugas() {
         $user = Auth::user();
         $petugas = Petugas::whereNot('email', $user->email)->get();
-        // dd($petugas);
 
         return view('petugas.user.dpetugas.index', [
             'title' => "Petugas",
+            'petugas' => $petugas
+        ]);
+    }
+
+    public function detailPetugas($id)
+    {
+        $petugas = Petugas::findOrFail($id);
+        
+        return view('petugas.user.dpetugas.detailPetugas', [
+            'title' => "Detail",
             'petugas' => $petugas
         ]);
     }
@@ -84,6 +93,16 @@ class PetugasController extends Controller
         $peminjam = Peminjam::all();
         return view('petugas.user.dpeminjam.index', [
             'title' => "Peminjam",
+            'peminjam' => $peminjam
+        ]);
+    }
+
+    public function detailPeminjam($id)
+    {
+        $peminjam = Peminjam::findOrFail($id);
+
+        return view('petugas.user.dpeminjam.detailPeminjam', [
+            'title' => "Detail",
             'peminjam' => $peminjam
         ]);
     }

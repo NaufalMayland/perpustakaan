@@ -9,6 +9,7 @@ use App\Models\Peminjam;
 use App\Models\Peminjaman;
 use App\Models\Petugas;
 use App\Models\Role;
+use App\Models\Ulasan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,24 +71,16 @@ use Illuminate\Support\Facades\Hash;
             }
         }
 
-        User::create([
+        $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => $request->role
         ]);
 
-        if($request->role == 1){
+        if($user){
             Peminjam::create([
                 'nama' => $request->username,
                 'email' => $request->email,
-                'uid' => $request->password,
-            ]);
-        } elseif($request->role == 2){
-            Petugas::create([
-                'nama' => $request->username,
-                'email' => $request->email,
-                'uid' => $request->password,
             ]);
         }
 
@@ -177,12 +170,22 @@ use Illuminate\Support\Facades\Hash;
 
     public function addPeminjaman()
     {
-        $user = Auth::user();
-        $petugas = Petugas::where('email', $user->email)->first();
-
         return view('petugas.peminjaman.addPeminjaman', [
             'title' => "Tambah Data",
-            'petugas' => $petugas,
         ]);
+    }
+
+    public function addUlasanAction(Request $request, $id)
+    {
+        $user = Auth::user();
+        $peminjam = Peminjam::where('email', $user->email)->first();
+
+        Ulasan::create([
+            'id_buku' => $id,
+            'id_peminjam' => $peminjam->id,
+            'ulasan' => $request->ulasan,
+        ]);
+
+        return redirect()->back();
     }
 }
