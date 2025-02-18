@@ -41,6 +41,8 @@ Route::prefix('perpustakaan')->group(function () {
         Route::get('/{id}', [PeminjamController::class, 'detailBuku'])->name('peminjam.detailBuku');
         Route::post('ulasan-action/{id}', [InputController::class, 'addUlasanAction'])->name('peminjam.addUlasanAction');
         Route::post('simpan-koleksi/{id}', [InputController::class, 'addKoleksiAction'])->name('peminjam.addKoleksiAction');
+        Route::delete('/destroy/{id}', [DeleteController::class, 'destroyUlasan'])->name('peminjam.destroyUlasan');
+
     });
 
     Route::prefix('koleksi')->middleware('role:peminjam')->group(function () {

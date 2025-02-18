@@ -7,8 +7,10 @@ use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
 use App\Models\Petugas;
+use App\Models\Ulasan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DeleteController extends Controller
@@ -186,5 +188,20 @@ class DeleteController extends Controller
         $peminjam->forceDelete();
 
         return redirect()->route('petugas.user.dpeminjam.trashPeminjam');
+    }
+
+    public function destroyUlasan($id)
+    {
+        $peminjam = Peminjam::where('email', Auth::user()->email)->first();
+        
+        Ulasan::whereHas('buku', function ($query) use ($id) {
+            $query->where('id', $id);
+        })
+        ->whereHas('peminjam', function ($query) use ($peminjam) {
+            $query->where('id', $peminjam->id);
+        })
+        ->forceDelete();
+
+        return redirect()->back();
     }
 }

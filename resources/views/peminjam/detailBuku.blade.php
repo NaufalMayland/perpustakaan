@@ -52,31 +52,38 @@
                 <input type="text" name="ulasan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 s" placeholder="Berikan ulasanmu" autocomplete="off">
                 <button type="submit" class="bg-blue-900 hover:bg-blue-950 rounded-full py-2 px-5 text-white font-medium">Kirim</button>
             </form>
-        @else
-            <div class="grid">
-                <div class="">
-                    <span>Ulasanmu</span>
-                </div>
-                <div class="grid grid-cols-3">
-                    <div class="p-4 bg-gray-100 rounded flex flex-col items-start shadow-sm border border-gray-300">
-                        <div class="flex w-full justify-between items-center">
-                            <span class="font-semibold text-blue-900">{{ $ulasanKu->peminjam->nama }}</span>
-                            <span class="text-xs text-gray-500">{{ $ulasanKu->created_at->diffForHumans() }}</span>
-                        </div>
-                        <div class="">
-                            <p class="text-gray-700 text-sm mt-1">{{ $ulasanKu->ulasan }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         @endif
         
         <div class=" grid grid-cols-3 gap-4">
+            @if ($ulasanKu) 
+                <div class="p-4 bg-gray-100 rounded flex flex-col items-start shadow-sm border border-gray-300">
+                    <div class="flex justify-between w-full items-center">
+                        <div class="flex w-full gap-1 items-center">
+                            <span class="font-semibold text-blue-900">{{ $ulasanKu->peminjam->nama }}</span>
+                            <span class="text-xs text-gray-500">-</span>
+                            <span class="text-xs text-gray-500">{{ $ulasanKu->created_at->diffForHumans() }}</span>
+                        </div>
+                        <form action="{{ route('peminjam.destroyUlasan', $buku->buku->id) }}" method="POST" class="">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">
+                                <i class="fa-solid fa-trash text-sm text-red-500"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="">
+                        <p class="text-gray-700 text-sm mt-1">{{ $ulasanKu->ulasan }}</p>
+                    </div>
+                </div>
+            @endif
             @foreach ($ulasan as $item)
                 <div class="p-4 bg-gray-100 rounded flex flex-col items-start shadow-sm border border-gray-300">
-                    <div class="flex w-full justify-between items-center">
-                        <span class="font-semibold text-blue-900">{{ $item->peminjam->nama }}</span>
-                        <span class="text-xs text-gray-500">{{ $item->created_at->diffForHumans() }}</span>
+                    <div class="flex justify-between w-full items-center">
+                        <div class="flex w-full gap-1 items-center">
+                            <span class="font-semibold text-blue-900">{{ $item->peminjam->nama }}</span>
+                            <span class="text-xs text-gray-500">-</span>
+                            <span class="text-xs text-gray-500">{{ $item->created_at->diffForHumans() }}</span>
+                        </div>
                     </div>
                     <div class="">
                         <p class="text-gray-700 text-sm mt-1">{{ $item->ulasan }}</p>
