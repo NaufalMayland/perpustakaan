@@ -29,6 +29,7 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('home')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'index'])->name('peminjam.index');
         Route::get('/search', [PeminjamController::class, 'searchBuku'])->name('peminjam.searchBuku');
+        Route::get('/kategori/{id}', [PeminjamController::class, 'searchByKategori'])->name('peminjam.searchByKategori');
     });
 
     Route::prefix('profil')->middleware('role:peminjam')->group(function () {
@@ -39,6 +40,11 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('buku')->middleware('role:peminjam')->group(function () {
         Route::get('/{id}', [PeminjamController::class, 'detailBuku'])->name('peminjam.detailBuku');
         Route::post('ulasan-action/{id}', [InputController::class, 'addUlasanAction'])->name('peminjam.addUlasanAction');
+        Route::post('simpan-koleksi/{id}', [InputController::class, 'addKoleksiAction'])->name('peminjam.addKoleksiAction');
+    });
+
+    Route::prefix('koleksi')->middleware('role:peminjam')->group(function () {
+        Route::get('/', [PeminjamController::class, 'koleksiBuku'])->name('peminjam.koleksiBuku');
     });
 
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {

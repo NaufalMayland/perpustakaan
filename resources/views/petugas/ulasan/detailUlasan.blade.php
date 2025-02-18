@@ -1,4 +1,4 @@
-@extends('peminjam.layout.layout')
+@extends('petugas.layout.layout')
 @section('content')
 <div class="grid gap-10">
     <div class="flex flex-col lg:flex-row gap-8 items-start">
@@ -9,9 +9,14 @@
         <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm lg:text-base">
             <div class="pt-4">
                 @foreach ($ulasan as $item)
-                    <div class="p-4 bg-gray-100 rounded shadow-sm mb-3">
-                        <span class="font-semibold text-blue-900">{{ $item->peminjam->nama }}</span>
-                        <p class="text-gray-700 text-sm mt-1">{{ $item->ulasan }}</p>
+                    <div class="p-4 bg-gray-100 rounded flex items-start justify-between shadow-sm mb-3">
+                        <div class="grid">
+                            <span class="font-semibold text-blue-900">{{ $item->peminjam->nama }}</span>
+                            <p class="text-gray-700 text-sm mt-1">{{ $item->ulasan }}</p>
+                        </div>
+                        <div class="">
+                            <span class="text-xs text-gray-500">{{ $item->created_at->diffForHumans() }}</span>
+                        </div>
                     </div>
                 @endforeach
             </div>

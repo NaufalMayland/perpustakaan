@@ -29,20 +29,34 @@ class PeminjamController extends Controller
         
         return view('peminjam.index', [
             'title' => "Home",
-            'buku' => $buku
+            'buku' => $buku,
         ]);
     }
 
     public function detailBuku($id)
     {
+        $peminjam = Peminjam::where('email', Auth::user()->email)->first();
         $buku = ListKategori::where('id_buku', $id)->first();
-        $ulasan = Ulasan::with(['peminjam'])->where('id_buku', $id)->get();
+        $ulasan = Ulasan::with(['peminjam'])
+        ->where('id_buku', $id)
+        ->whereNot('id_peminjam', $peminjam->id)
+        ->get();
+
+        $ulasanKu = Ulasan::whereHas('buku', function ($query) use ($id) {
+            $query->where('id', $id);
+        })
+        ->whereHas('peminjam', function ($query) use ($peminjam) {
+            $query->where('id', $peminjam->id);
+        })
+        ->first();
+    
         $getKategori = ListKategori::with('kategori')->where('id_buku', $id)->get()->pluck('kategori.kategori')->implode(', ');
 
         return view('peminjam.detailBuku', [
             'title' => $buku->buku->judul,
             'buku' => $buku,
             'ulasan' => $ulasan,
+            'ulasanKu' => $ulasanKu,
             'getKategori' => $getKategori,
         ]);
     }
@@ -73,13 +87,61 @@ class PeminjamController extends Controller
             'bukus.cover',
             'bukus.judul'
         )
-        ->groupBy('bukus.id', 'bukus.judul', 'bukus.cover') // tambahkan 'bukus.cover' untuk menghindari error
+        ->groupBy('bukus.id', 'bukus.judul', 'bukus.cover')
         ->get();
 
-
-        return view('peminjam.resultSearch', [
+        return view('peminjam.searchBuku', [
             'title' => "Home",
-            'buku' => $buku
+            'buku' => $buku,
+            'header' => $request->search
+        ]);
+    }
+
+    public function searchByKategori(Request $request, $id)
+    {
+        $buku = DB::table('list_kategoris')
+        ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
+        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->whereNull('list_kategoris.deleted_at')
+        ->when($id, function ($query) use ($id) {
+            $query->where('kategoris.id', $id);
+        })
+        ->select(
+            'bukus.id',
+            'bukus.cover',
+            'bukus.judul'
+        )
+        ->groupBy('bukus.id', 'bukus.judul', 'bukus.cover')
+        ->get(); 
+
+        $header = Kategori::where('id', $id)->first();
+
+        return view('peminjam.searchKategori', [
+            'title' => "Home",
+            'buku' => $buku,
+            'header' => $header,
+        ]);
+    }
+
+    public function koleksiBuku()
+    {
+        $koleksi = DB::table('koleksis')
+        ->join('bukus', 'bukus.id', '=', 'koleksis.id_buku')
+        ->join('list_kategoris', 'list_kategoris.id_buku', '=', 'bukus.id')
+        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->select(
+            'bukus.id',
+            'bukus.cover',
+            'bukus.judul',
+            'bukus.penulis',
+            DB::raw("GROUP_CONCAT(kategoris.kategori SEPARATOR ', ') as kategori")
+        )
+        ->groupBy('bukus.id', 'bukus.judul')
+        ->get();
+
+        return view('peminjam.koleksi', [
+            'title' => "Koleksi Buku",
+            'koleksi' => $koleksi,
         ]);
     }
 }

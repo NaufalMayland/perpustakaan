@@ -3,7 +3,7 @@
     <div class="grid gap-10">
         <div class="flex flex-col gap-4">
             <div class="flex justify-between">
-                <span class="capitalize flex text-left">Hasil Pencarian</span>
+                <span class="flex text-left">Hasil Pencarian {{ $header }}</span>
             </div>
             <div class="w-full grid grid-cols-8 gap-4">
                 @foreach ($buku as $item)

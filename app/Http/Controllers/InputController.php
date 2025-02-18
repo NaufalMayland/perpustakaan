@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Kategori;
+use App\Models\Koleksi;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
 use App\Models\Peminjaman;
@@ -184,6 +185,18 @@ use Illuminate\Support\Facades\Hash;
             'id_buku' => $id,
             'id_peminjam' => $peminjam->id,
             'ulasan' => $request->ulasan,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function addKoleksiAction($id)
+    {
+        $user = Auth::user();
+
+        Koleksi::create([
+            'id_peminjam' => $user->id,
+            'id_buku' => $id,
         ]);
 
         return redirect()->back();
