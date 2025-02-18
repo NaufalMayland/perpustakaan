@@ -42,13 +42,15 @@ class PeminjamController extends Controller
         ->whereNot('id_peminjam', $peminjam->id)
         ->get();
 
+        $ulasanCount = Ulasan::where('id_buku', $id)->count();
+
         $ulasanKu = Ulasan::whereHas('buku', function ($query) use ($id) {
             $query->where('id', $id);
         })
         ->whereHas('peminjam', function ($query) use ($peminjam) {
             $query->where('id', $peminjam->id);
         })
-        ->first();
+        ->get();
     
         $getKategori = ListKategori::with('kategori')->where('id_buku', $id)->get()->pluck('kategori.kategori')->implode(', ');
 
@@ -56,6 +58,7 @@ class PeminjamController extends Controller
             'title' => $buku->buku->judul,
             'buku' => $buku,
             'ulasan' => $ulasan,
+            'ulasanCount' => $ulasanCount,
             'ulasanKu' => $ulasanKu,
             'getKategori' => $getKategori,
         ]);

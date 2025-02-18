@@ -194,13 +194,7 @@ class DeleteController extends Controller
     {
         $peminjam = Peminjam::where('email', Auth::user()->email)->first();
         
-        Ulasan::whereHas('buku', function ($query) use ($id) {
-            $query->where('id', $id);
-        })
-        ->whereHas('peminjam', function ($query) use ($peminjam) {
-            $query->where('id', $peminjam->id);
-        })
-        ->forceDelete();
+        Ulasan::findOrFail($id)->forceDelete();
 
         return redirect()->back();
     }
