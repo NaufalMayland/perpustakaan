@@ -125,10 +125,14 @@ class EditController extends Controller
         ]);
     }
 
-    public function editProfilPeminjamAction(Request $request)
+    public function editProfilPeminjamAction(Request $request, $id)
     {
-        dd($request->all());
-        // $peminjam = Peminjam::findOrFail($id);
+        $peminjam = Peminjam::findOrFail($id);
+        $peminjam->update([
+            'alamat' => $request->wilayah,
+            'telepon' => $request->telepon,
+        ]);
+
         return redirect()->route('peminjam.profil');
     }
 }

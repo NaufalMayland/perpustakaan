@@ -1,6 +1,6 @@
 @extends('peminjam.layout.layout')
 @section('content')
-    <form action="{{ route('peminjam.editProfilAction') }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start">
+    <form action="{{ route('peminjam.editProfilAction', $peminjam->id) }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start">
         @csrf
         @method('PUT')
         <div class="w-full lg:w-1/4 flex justify-center">
@@ -18,25 +18,20 @@
             <div class="grid">
                 <label for="alamat">Alamat</label>
                 <div class="grid gap-4">
+                    <input type="hidden" name="wilayah" id="wilayah">
+
                     <select name="provinsi" id="provinsi" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
                         <option value="" disabled selected hidden>Pilih provinsi</option>
                     </select>
-                    <input type="hidden" name="namaProvinsi" id="namaProvinsi">
-
                     <select name="kabupaten" id="kabupaten" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
                         <option value="" disabled selected hidden>Pilih kabupaten</option>
                     </select>
-                    <input type="hidden" name="namaKabupaten" id="namaKabupaten">
-
                     <select name="kecamatan" id="kecamatan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
                         <option value="" disabled selected hidden>Pilih kecamatan</option>
                     </select>
-                    <input type="hidden" name="namaKecamatan" id="namaKecamatan">
-
                     <select name="kelurahan" id="kelurahan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
                         <option value="" disabled selected hidden>Pilih kelurahan</option>
                     </select>
-                    <input type="hidden" name="namaKelurahan" id="namaKelurahan">
                 </div>
             </div>
             <div class="grid">
@@ -62,67 +57,78 @@
         $(document).ready(function() {
             let baseUrl = "/perpustakaan/profil";
 
+            function updateWilayah() {
+                let wilayah = 
+                {
+                    provinsi: {
+                        id: $('#provinsi').val(),
+                        name: $('#provinsi option:selected').text()
+                    },
+                    kabupaten: {
+                        id: $('#kabupaten').val(),
+                        name: $('#kabupaten option:selected').text()
+                    },
+                    kecamatan: {
+                        id: $('#kecamatan').val(),
+                        name: $('#kecamatan option:selected').text()
+                    },
+                    kelurahan: {
+                        id: $('#kelurahan').val(),
+                        name: $('#kelurahan option:selected').text()
+                    }
+                };
+                $('#wilayah').val(JSON.stringify(wilayah));
+            }
+
             $.get(`${baseUrl}/provinsi`, function(data) {
                 $.each(data, function(index, value) {
-                    $('#provinsi').append(`<option value="${value.id}" data-nama="${value.name}">${value.name}</option>`);
+                    $('#provinsi').append(`<option value="${value.id}">${value.name}</option>`);
                 });
             });
 
             $('#provinsi').change(function() {
-                let provinsiId = $(this).val();
-                let namaProvinsi = $(this).find(':selected').data('nama');
-                $('#namaProvinsi').val(namaProvinsi);
-
+                let idProvinsi = $(this).val();
                 $('#kabupaten').empty().append('<option value="">Pilih Kabupaten</option>');
-                $('#namaKabupaten, #namaKecamatan, #namaKelurahan').val('');
 
-                if (provinsiId) {
-                    $.get(`${baseUrl}/kabupaten/${provinsiId}`, function(data) {
+                if (idProvinsi) {
+                    $.get(`${baseUrl}/kabupaten/${idProvinsi}`, function(data) {
                         $.each(data, function(index, value) {
-                            $('#kabupaten').append(`<option value="${value.id}" data-nama="${value.name}">${value.name}</option>`);
+                            $('#kabupaten').append(`<option value="${value.id}">${value.name}</option>`);
                         });
                     });
                 }
+                updateWilayah();
             });
 
             $('#kabupaten').change(function() {
-                let kabupatenId = $(this).val();
-                let namaKabupaten = $(this).find(':selected').data('nama');
-                $('#namaKabupaten').val(namaKabupaten);
-
+                let idKabupaten = $(this).val();
                 $('#kecamatan').empty().append('<option value="">Pilih Kecamatan</option>');
-                $('#namaKecamatan, #namaKelurahan').val('');
 
-                if (kabupatenId) {
-                    $.get(`${baseUrl}/kecamatan/${kabupatenId}`, function(data) {
+                if (idKabupaten) {
+                    $.get(`${baseUrl}/kecamatan/${idKabupaten}`, function(data) {
                         $.each(data, function(index, value) {
-                            $('#kecamatan').append(`<option value="${value.id}" data-nama="${value.name}">${value.name}</option>`);
+                            $('#kecamatan').append(`<option value="${value.id}">${value.name}</option>`);
                         });
                     });
                 }
+                updateWilayah();
             });
 
             $('#kecamatan').change(function() {
-                let kecamatanId = $(this).val();
-                let namaKecamatan = $(this).find(':selected').data('nama');
-                $('#namaKecamatan').val(namaKecamatan);
-
+                let idKecamatan = $(this).val();
                 $('#kelurahan').empty().append('<option value="">Pilih Kelurahan</option>');
-                $('#namaKelurahan').val('');
 
-                if (kecamatanId) {
-                    $.get(`${baseUrl}/kelurahan/${kecamatanId}`, function(data) {
+                if (idKecamatan) {
+                    $.get(`${baseUrl}/kelurahan/${idKecamatan}`, function(data) {
                         $.each(data, function(index, value) {
-                            $('#kelurahan').append(`<option value="${value.id}" data-nama="${value.name}">${value.name}</option>`);
+                            $('#kelurahan').append(`<option value="${value.id}">${value.name}</option>`);
                         });
                     });
                 }
+                updateWilayah();
             });
 
-            $('#kelurahan').change(function() {
-                let namaKelurahan = $(this).find(':selected').data('nama');
-                $('#namaKelurahan').val(namaKelurahan);
-            });
+            $('#kelurahan').change(updateWilayah);
         });
     </script>
 @endsection

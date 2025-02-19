@@ -68,11 +68,12 @@ class PeminjamController extends Controller
     {
         $user = Auth::user();
         $peminjam = Peminjam::where('email', $user->email)->first();
-        
+        $peminjam->alamat = json_decode($peminjam->alamat, true);
+
         return view('peminjam.profil', [
             'title' => "Profil",
             'user' => $user,
-            'peminjam' => $peminjam
+            'peminjam' => $peminjam,
         ]);
     }
 

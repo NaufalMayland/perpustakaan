@@ -36,7 +36,7 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('profil')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'profil'])->name('peminjam.profil');
         Route::get('/edit/{id}', [EditController::class, 'editProfilPeminjam'])->name('peminjam.editProfil');
-        Route::put('/edit-action', [EditController::class, 'editProfilPeminjamAction'])->name('peminjam.editProfilAction');
+        Route::put('/edit-action/{id}', [EditController::class, 'editProfilPeminjamAction'])->name('peminjam.editProfilAction');
         Route::get('/provinsi', [GetWilayahController::class, 'getProvinsi']);
         Route::get('/kabupaten/{provinsiId}', [GetWilayahController::class, 'getKabupaten']);
         Route::get('/kecamatan/{kabupatenId}', [GetWilayahController::class, 'getKecamatan']);
