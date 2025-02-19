@@ -1,4 +1,4 @@
-<div class="bg-white shadow-md w-64 h-screen sticky">
+<div class="bg-white shadow-md w-64 h-screen sticky top-0 left-0">
     <div class="flex gap-2 text-center text-blue-900 items-center justify-center p-8 font-bold text-lg">
         <i class="fa-solid fa-book-open-reader"></i>
         <h1>PERPUSTAKAAN</h1>

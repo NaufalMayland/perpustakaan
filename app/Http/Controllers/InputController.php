@@ -107,10 +107,10 @@ use Illuminate\Support\Facades\Hash;
             'deskripsi' => 'required',
         ]);
 
-        if ($request->hasFile('cover')) {
-            $imagePath = $request->file('cover')->store('cover', 'public');
+        if ($request->hasFile('cover_file')) {
+            $imagePath = $request->file('cover_file')->store('cover', 'public');
         } else {
-            $imagePath = null; 
+            $imagePath = $request->cover_url; 
         }
 
         Buku::insert([

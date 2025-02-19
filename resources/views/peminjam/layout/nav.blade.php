@@ -31,7 +31,7 @@
         <div>
             <a href="" class="text-black hover:text-blue-950">Peminjaman</a>
         </div>
-        <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center w-full hover:text-blue-950 gap-1 @if(Route::is('peminjam.*')) text-blue-950 @endif">
+        <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center w-full hover:text-blue-950 gap-1 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">
             <div class="">
                 <span class="">Koleksi</span>
             </div>

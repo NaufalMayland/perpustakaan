@@ -5,7 +5,11 @@
             @csrf
             @method('PUT')
             <div class="w-full lg:w-1/4 flex justify-center">
-                <img src="{{ asset('storage/'. ($buku->cover)) }}" alt="Cover Buku" class="w-full rounded bg-cover">
+                @if (Str::startsWith($buku->cover, 'http'))
+                    <img src="{{ $buku->cover }}" class="w-auto object-cover rounded" alt="{{ $buku->judul }}">
+                @else
+                    <img src="{{ asset('storage/' . $buku->cover) }}" class="w-auto object-cover rounded" alt="{{ $buku->judul }}"> 
+                @endif
             </div>
             <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm lg:text-base">
                 <div class="grid">

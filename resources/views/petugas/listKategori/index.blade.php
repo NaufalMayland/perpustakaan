@@ -38,7 +38,11 @@
                     @foreach ($dataListKategori as $item)
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
                             <td class="p-3 flex justify-center">
-                                <img src="{{ asset('storage/' . $item->cover) }}" class="w-20 object-cover rounded" alt="cover">
+                                @if (Str::startsWith($item->cover, 'http'))
+                                    <img src="{{ $item->cover }}" class="w-20 object-cover rounded" alt="{{ $item->judul }}">
+                                @else
+                                    <img src="{{ asset('storage/' . $item->cover) }}" class="w-20 object-cover rounded" alt="{{ $item->judul }}"> 
+                                @endif
                             </td>
                             <td class="p-3">{{ $item->judul }}</td>
                             <td class="p-3 capitalize">{{ $item->kategori }}</td>

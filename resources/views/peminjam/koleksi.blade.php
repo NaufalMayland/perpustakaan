@@ -8,7 +8,11 @@
                 </div> --}}
                 <div class="flex gap-2">
                     <div class="w-1/6">
-                        <img src="{{ asset('storage/'. $item->cover) }}" alt="" class="w-40 rounded">
+                        @if (Str::startsWith($item->cover, 'http'))
+                            <img src="{{ $item->cover }}" class="w-40 rounded" alt="{{ $item->judul }}">
+                        @else
+                            <img src="{{ asset('storage/' . $item->cover) }}" class="w-40 rounded" alt="{{ $item->judul }}">
+                        @endif
                     </div>
                     <div class="flex flex-col w-5/6">
                         <div class="">

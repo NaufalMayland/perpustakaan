@@ -3,7 +3,11 @@
 <div class="grid gap-10">
     <div class="flex flex-col lg:flex-row gap-8 items-start">
         <div class="w-full lg:w-1/3 flex justify-center">
-            <img src="{{ asset('storage/'. ($buku->buku->cover)) }}" alt="Cover Buku" class="lg:w-[70%] w-[50%] rounded bg-cover">
+            @if (Str::startsWith($buku->buku->cover, 'http'))
+                <img src="{{ $buku->buku->cover }}" class="lg:w-[70%] w-[50%] rounded bg-cover" alt="{{ $buku->buku->judul }}">
+            @else
+                <img src="{{ asset('storage/' . $buku->buku->cover) }}" class="lg:w-[70%] w-[50%] rounded bg-cover" alt="{{ $buku->buku->judul }}">
+            @endif
         </div>
 
         <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm lg:text-base">
@@ -45,14 +49,15 @@
         </div>
     </div>
     <div class="gap-4 grid">
-        <div class="text-xl font-bold border-b pb-2">Ulasan{{ "(".$ulasanCount.")" }}</div>
-        {{-- @if (Empty($ulasanKu))  --}}
-            <form action="{{ route('peminjam.addUlasanAction', $buku->buku->id) }}" method="POST" class="flex gap-3">
-                @csrf
-                <input type="text" name="ulasan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 s" placeholder="Berikan ulasanmu" autocomplete="off">
-                <button type="submit" class="bg-blue-900 hover:bg-blue-950 rounded-full py-2 px-5 text-white font-medium">Kirim</button>
-            </form>
-        {{-- @endif --}}
+        <div class="text-xl font-bold border-b pb-2">
+            <span>Ulasan{{ "(".$ulasanCount.")" }}</span>
+        </div>
+
+        <form action="{{ route('peminjam.addUlasanAction', $buku->buku->id) }}" method="POST" class="flex gap-3">
+            @csrf
+            <input type="text" name="ulasan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 s" placeholder="Berikan ulasanmu" autocomplete="off">
+            <button type="submit" class="bg-blue-900 hover:bg-blue-950 rounded-full py-2 px-5 text-white font-medium">Kirim</button>
+        </form>
         
         <div class=" grid grid-cols-3 gap-4">
             @foreach ($ulasanKu as $item) 
@@ -101,7 +106,11 @@
             @csrf
             <div class="flex gap-4">
                 <div class="flex w-1/6">
-                    <img src="{{ asset('storage/'. ($buku->buku->cover)) }}" alt="" class="w-auto rounded">
+                    @if (Str::startsWith($buku->buku->cover, 'http'))
+                        <img src="{{ $buku->buku->cover }}" class="w-auto rounded" alt="{{ $buku->buku->judul }}">
+                    @else
+                        <img src="{{ asset('storage/' . $buku->buku->cover) }}" class="w-auto rounded" alt="{{ $buku->buku->judul }}">
+                    @endif
                 </div>
                 <div class="w-5/6 flex flex-col gap-4">
                     <div class="grid">
