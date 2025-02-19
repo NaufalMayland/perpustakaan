@@ -118,11 +118,17 @@ class EditController extends Controller
     public function editProfilPeminjam($id)
     {
         $peminjam = Peminjam::findOrFail($id);
-        // dd($peminjam);
 
         return view('peminjam.editProfil', [
             'title' => "Edit Profil",
             'peminjam' => $peminjam
         ]);
+    }
+
+    public function editProfilPeminjamAction(Request $request)
+    {
+        dd($request->all());
+        // $peminjam = Peminjam::findOrFail($id);
+        return redirect()->route('peminjam.profil');
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\EditController;
+use App\Http\Controllers\GetWilayahController;
 use App\Http\Controllers\ImportExcelController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\PeminjamController;
@@ -35,6 +36,11 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('profil')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'profil'])->name('peminjam.profil');
         Route::get('/edit/{id}', [EditController::class, 'editProfilPeminjam'])->name('peminjam.editProfil');
+        Route::put('/edit-action', [EditController::class, 'editProfilPeminjamAction'])->name('peminjam.editProfilAction');
+        Route::get('/provinsi', [GetWilayahController::class, 'getProvinsi']);
+        Route::get('/kabupaten/{provinsiId}', [GetWilayahController::class, 'getKabupaten']);
+        Route::get('/kecamatan/{kabupatenId}', [GetWilayahController::class, 'getKecamatan']);
+        Route::get('/kelurahan/{kecamatanId}', [GetWilayahController::class, 'getKelurahan']);
     });
 
     Route::prefix('buku')->middleware('role:peminjam')->group(function () {
