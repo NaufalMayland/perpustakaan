@@ -17,8 +17,8 @@
                         <input type="Email" name="email" id="email" class="w-full focus:outline-none p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $peminjam->email }}" readonly>
                     </div>
                     <div class="grid">
-                        <label class="mb-1" for="email">Alamat</label>
-                        <input type="Email" name="email" id="email" class="w-full focus:outline-none p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $peminjam->alamat ?? "-" }}" readonly>
+                        <label class="mb-1" for="alamat">Alamat</label>
+                        <input type="text" name="alamat" id="alamat" class="w-full focus:outline-none p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $peminjam->alamat['kelurahan']['name'] ?? '-' }}, {{ $peminjam->alamat['kecamatan']['name'] ?? '-' }}, {{ $peminjam->alamat['kabupaten']['name'] ?? '-' }}, {{ $peminjam->alamat['provinsi']['name'] ?? '-' }}" readonly>
                     </div>
                     <div class="grid">
                         <label class="mb-1" for="email">Telepon</label>

@@ -101,6 +101,7 @@ class PetugasController extends Controller
     public function detailPeminjam($id)
     {
         $peminjam = Peminjam::findOrFail($id);
+        $peminjam->alamat = json_decode($peminjam->alamat, true);
 
         return view('petugas.user.dpeminjam.detailPeminjam', [
             'title' => "Detail",
@@ -146,11 +147,13 @@ class PetugasController extends Controller
     {
         $buku = Buku::where('id', $id)->first();
         $ulasan = Ulasan::with(['buku', 'peminjam'])->where('id_buku', $id)->get();
+        $check = Ulasan::where('id_buku', $id)->exists();
 
         return view('petugas.ulasan.detailUlasan', [
             'title' => "Ulasan",
+            'buku' => $buku,
             'ulasan' => $ulasan,
-            'buku' => $buku
+            'check' => $check,
         ]);
     }
 }

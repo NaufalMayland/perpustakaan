@@ -27,16 +27,16 @@
         </div>
     </div>
     <div class="bg-white p-4 rounded shadow-md mt-4">
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto rounded">
             <table id="bukuTable" class="min-w-full border border-gray-400 text-sm">
-                <thead class="bg-gray-400 w-full">
+                <thead class="w-full">
                     <tr class="text-gray-950">
-                        <th class="p-2 text-center font-bold uppercase relative">Cover</th>
-                        <th class="p-2 text-center font-bold uppercase relative">Judul</th>
-                        <th class="p-2 text-center font-bold uppercase relative">Penulis</th>
-                        <th class="p-2 text-center font-bold uppercase relative">Kode</th>
-                        <th class="p-2 text-center font-bold uppercase relative">Stok</th>
-                        <th class="p-2 text-center font-bold uppercase relative">Option</th>
+                        <th class="p-2 text-center uppercase relative">Cover</th>
+                        <th class="p-2 text-center uppercase relative">Judul</th>
+                        <th class="p-2 text-center uppercase relative">Penulis</th>
+                        <th class="p-2 text-center uppercase relative">Kode</th>
+                        <th class="p-2 text-center uppercase relative">Stok</th>
+                        <th class="p-2 text-center uppercase relative">Option</th>
                     </tr>
                 </thead>
                 <tbody class="w-full">
@@ -83,7 +83,7 @@
         }
 
         th {
-            text-align: left !important;    
+            text-align: left !important; 
         }
     </style>
 

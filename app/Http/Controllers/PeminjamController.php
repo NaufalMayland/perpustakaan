@@ -129,10 +129,14 @@ class PeminjamController extends Controller
 
     public function koleksiBuku()
     {
+        $user = Auth::user();
+        $peminjam = Peminjam::where('email', $user->email)->first();
+
         $koleksi = DB::table('koleksis')
         ->join('bukus', 'bukus.id', '=', 'koleksis.id_buku')
         ->join('list_kategoris', 'list_kategoris.id_buku', '=', 'bukus.id')
         ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->where('koleksis.id_peminjam', $peminjam->id)
         ->select(
             'bukus.id',
             'bukus.cover',

@@ -20,23 +20,23 @@
                 <div class="grid gap-4">
                     <input type="hidden" name="wilayah" id="wilayah">
 
-                    <select name="provinsi" id="provinsi" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
+                    <select name="provinsi" id="provinsi" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
                         <option value="" disabled selected hidden>Pilih provinsi</option>
                     </select>
-                    <select name="kabupaten" id="kabupaten" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
+                    <select name="kabupaten" id="kabupaten" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
                         <option value="" disabled selected hidden>Pilih kabupaten</option>
                     </select>
-                    <select name="kecamatan" id="kecamatan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
+                    <select name="kecamatan" id="kecamatan" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
                         <option value="" disabled selected hidden>Pilih kecamatan</option>
                     </select>
-                    <select name="kelurahan" id="kelurahan" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none">
+                    <select name="kelurahan" id="kelurahan" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
                         <option value="" disabled selected hidden>Pilih kelurahan</option>
                     </select>
                 </div>
             </div>
             <div class="grid">
                 <label for="telepon">Telepon</label>
-                <input type="text" name="telepon" id="telepon" min="1800" max="2100" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->telepon}}">
+                <input type="text" name="telepon" id="telepon" min="1800" max="2100" class="w-full p-2 rounded border bg-gray-100 border-gray-300" value="{{ $peminjam->telepon}}">
             </div>
             
             <div class="justify-between flex w-full items-center">

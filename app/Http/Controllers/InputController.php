@@ -193,11 +193,24 @@ use Illuminate\Support\Facades\Hash;
     public function addKoleksiAction($id)
     {
         $user = Auth::user();
+        $peminjam = Peminjam::where('email', $user->email)->first();
 
-        Koleksi::create([
-            'id_peminjam' => $user->id,
-            'id_buku' => $id,
-        ]);
+        $check = Koleksi::whereHas('buku', function ($query) use ($id) {
+            $query->where('id', $id);
+        })
+        ->whereHas('peminjam', function ($query) use ($peminjam) {
+            $query->where('id', $peminjam->id);
+        })
+        ->exists();
+
+        if ($check) {
+            return redirect()->back();
+        } else {
+            Koleksi::create([
+                'id_peminjam' => $peminjam->id,
+                'id_buku' => $id,
+            ]);
+        }
 
         return redirect()->back();
     }

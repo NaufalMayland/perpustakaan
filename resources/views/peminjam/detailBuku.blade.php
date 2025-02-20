@@ -2,15 +2,15 @@
 @section('content')
 <div class="grid gap-10">
     <div class="flex flex-col lg:flex-row gap-8 items-start">
-        <div class="w-full lg:w-1/3 flex justify-center">
+        <div class="w-full lg:w-1/5 flex justify-center">
             @if (Str::startsWith($buku->buku->cover, 'http'))
-                <img src="{{ $buku->buku->cover }}" class="lg:w-[70%] w-[50%] rounded bg-cover" alt="{{ $buku->buku->judul }}">
+                <img src="{{ $buku->buku->cover }}" class="lg:w-[auto rounded bg-cover" alt="{{ $buku->buku->judul }}">
             @else
-                <img src="{{ asset('storage/' . $buku->buku->cover) }}" class="lg:w-[70%] w-[50%] rounded bg-cover" alt="{{ $buku->buku->judul }}">
+                <img src="{{ asset('storage/' . $buku->buku->cover) }}" class="lg:w-[auto rounded bg-cover" alt="{{ $buku->buku->judul }}">
             @endif
         </div>
 
-        <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm lg:text-base">
+        <div class="w-full lg:w-4/5 flex flex-col gap-4 text-sm lg:text-base">
             <div class="text-center lg:text-left">
                 <span class="text-xl font-bold">{{ $buku->buku->judul}}</span>
             </div>
