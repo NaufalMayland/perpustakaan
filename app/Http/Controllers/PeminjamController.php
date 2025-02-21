@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
+use App\Models\Peminjaman;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -150,6 +151,19 @@ class PeminjamController extends Controller
         return view('peminjam.koleksi', [
             'title' => "Koleksi Buku",
             'koleksi' => $koleksi,
+        ]);
+    }
+
+    public function peminjamanBuku()
+    {
+        $user = Auth::user();
+        $peminjam = Peminjam::where('email', $user->email)->first();
+
+        $peminjaman = Peminjaman::with(['buku'])->where('id_peminjam', $peminjam->id)->get();
+        
+        return view('peminjam.peminjaman', [
+            'title' => "Peminjaman Buku",
+            'peminjaman' => $peminjaman,
         ]);
     }
 }

@@ -28,8 +28,17 @@
                 </div>
             </div>
         </div>
-        <div>
-            <a href="" class="text-black hover:text-blue-950">Peminjaman</a>
+        <div class="flex items-center w-full hover:text-blue-950 gap-1">
+            <a href="{{ route('peminjam.peminjamanBuku') }}" class="text-black hover:text-blue-950">Peminjaman</a>
+            @if ($countPeminjaman == 0) 
+                <div class="">
+                    <span></span>
+                </div>
+            @else
+                <div class="bg-blue-900 text-white rounded-full p-2 text-xs w-4 h-4 flex items-center justify-center">
+                    <span>{{ $countPeminjaman }}</span>
+                </div>
+            @endif
         </div>
         <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center w-full hover:text-blue-950 gap-1 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">
             <div class="">

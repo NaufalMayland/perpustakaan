@@ -4,9 +4,9 @@
     <div class="flex flex-col lg:flex-row gap-8 items-start">
         <div class="w-full lg:w-1/5 flex justify-center">
             @if (Str::startsWith($buku->buku->cover, 'http'))
-                <img src="{{ $buku->buku->cover }}" class="lg:w-[auto rounded bg-cover" alt="{{ $buku->buku->judul }}">
+                <img src="{{ $buku->buku->cover }}" class="lg:w-auto rounded bg-cover" alt="{{ $buku->buku->judul }}">
             @else
-                <img src="{{ asset('storage/' . $buku->buku->cover) }}" class="lg:w-[auto rounded bg-cover" alt="{{ $buku->buku->judul }}">
+                <img src="{{ asset('storage/' . $buku->buku->cover) }}" class="lg:w-auto rounded bg-cover" alt="{{ $buku->buku->judul }}">
             @endif
         </div>
 
@@ -14,7 +14,6 @@
             <div class="text-center lg:text-left">
                 <span class="text-xl font-bold">{{ $buku->buku->judul}}</span>
             </div>
-
             <div>
                 <p class="text-justify">{{ $buku->buku->deskripsi}}</p>
             </div>
@@ -42,8 +41,8 @@
                     </a>
                 </div>
                 <div class="flex flex-row mt-2 gap-4 items-center lg:text-base">
-                    <a href="#" class="bg-blue-900 hover:bg-blue-950 text-white py-2 px-20 rounded-full">Pinjam</a>
-                    <i class="fa-solid fa-plus text-sm cursor-pointer rounded-full py-2 px-4 border border-gray-300 hover:border-blue-900 bg-white hover:bg-blue-900 flex hover:text-white items-center justify-center transition-all ease-in-out"></i>
+                    @include('peminjam.modal.addPeminjaman')
+                    @include('peminjam.modal.addKoleksi')
                 </div>
             </div>
         </div>
@@ -99,7 +98,7 @@
     </div>
 </div>
 
-<div id="myModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end">
+{{-- <div id="myModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end">
     <div class="modal-content bg-white w-full p-6 transition-transform transform translate-y-full">
         <span class="close cursor-pointer text-gray-500 float-right">&times;</span>
         <form action="{{ route('peminjam.addKoleksiAction', $buku->buku->id) }}" method="POST">
@@ -161,7 +160,7 @@
             }, 300); 
         }
     });
-</script>
+</script> --}}
 
 @endsection
 

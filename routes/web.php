@@ -46,13 +46,18 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('buku')->middleware('role:peminjam')->group(function () {
         Route::get('/{id}', [PeminjamController::class, 'detailBuku'])->name('peminjam.detailBuku');
         Route::post('ulasan-action/{id}', [InputController::class, 'addUlasanAction'])->name('peminjam.addUlasanAction');
-        Route::post('simpan-koleksi/{id}', [InputController::class, 'addKoleksiAction'])->name('peminjam.addKoleksiAction');
         Route::delete('/destroy/{id}', [DeleteController::class, 'destroyUlasan'])->name('peminjam.destroyUlasan');
-
+        
     });
-
+    
     Route::prefix('koleksi')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'koleksiBuku'])->name('peminjam.koleksiBuku');
+        Route::post('simpan/{id}', [InputController::class, 'addKoleksiAction'])->name('peminjam.addKoleksiAction');
+    });
+    
+    Route::prefix('peminjaman')->middleware('role:peminjam')->group(function () {
+        Route::get('/', [PeminjamController::class, 'peminjamanBuku'])->name('peminjam.peminjamanBuku');
+        Route::post('pinjam-buku/{id}', [InputController::class, 'addPeminjamanAction'])->name('peminjam.addPeminjamanAction');
     });
 
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {
@@ -101,7 +106,6 @@ Route::prefix('perpustakaan')->group(function () {
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyKategori'])->name('petugas.kategori.destroyKategori');
             Route::get('/import', [ImportExcelController::class, 'importKategori'])->name('petugas.kategori.importKategori');
             Route::get('/print', [PrintController::class, 'printKategori'])->name('petugas.kategori.printKategori');
-
         });
 
         Route::prefix('listkategori')->middleware('rolePetugas:admin')->group(function (){

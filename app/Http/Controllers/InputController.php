@@ -214,4 +214,20 @@ use Illuminate\Support\Facades\Hash;
 
         return redirect()->back();
     }
+
+    public function addPeminjamanAction(Request $request, $id)
+    {
+        $user = Auth::user();
+        $peminjam = Peminjam::where('email', $user->email)->first();
+
+        Peminjaman::create([
+            'id_peminjam' => $peminjam->id,
+            'id_buku' => $id,
+            'tanggal_pinjam' => $request->tanggal_pinjam,
+            'tanggal_kembali' => $request->tanggal_kembali,
+            'jumlah' => $request->jumlah,
+        ]);
+
+        return redirect()->back();
+    }
 }

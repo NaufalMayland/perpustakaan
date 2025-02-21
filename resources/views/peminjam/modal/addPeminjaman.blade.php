@@ -1,11 +1,11 @@
-<button koleksi-modal-target="#koleksiModal" class="fa-solid fa-plus text-sm cursor-pointer rounded-full py-2 px-4 border border-gray-300 hover:border-blue-900 bg-white hover:bg-blue-900 flex hover:text-white items-center justify-center transition-all ease-in-out"></button>
+<button pinjam-modal-target="#pinjamModal" class="bg-blue-900 hover:bg-blue-950 text-white py-2 px-20 rounded-full">Pinjam</button>
 
-<div id="koleksiOverlay" class="fixed inset-0 bg-black bg-opacity-25 hidden min-h-screen"></div>
+<div id="pinjamOverlay" class="fixed inset-0 bg-black bg-opacity-25 hidden min-h-screen"></div>
 
-<div class="z-50 inset-0 hidden fixed " id="koleksiModal">
+<div class="z-50 inset-0 hidden fixed " id="pinjamModal">
     <div class="flex items-center justify-center min-h-screen">
         <div class="bg-white flex flex-col-reverse lg:flex-row rounded w-80 lg:w-auto">
-            <form id="koleksiForm" action="{{ route('peminjam.addKoleksiAction', $buku->buku->id) }}" method="POST" enctype="multipart/form-data" class="items-center grid gap-4 p-4">
+            <form id="pinjamForm" action="{{ route('peminjam.addPeminjamanAction', $buku->buku->id) }}" method="POST" enctype="multipart/form-data" class="items-center grid gap-4 p-4">
                 @csrf
                 <div class="flex flex-col lg:flex-row gap-4">
                     <div class="w-full lg:w-1/3 ">
@@ -24,7 +24,21 @@
                                 <span class="text-neutral-500 text-sm text-center lg:text-left">{{ "Stok: ".$buku->buku->stok}}</span>
                             </div>
                             <div class="justify-end items-start hidden lg:flex">
-                                <a class="fa-solid fa-xmark text-neutral-500 cursor-pointer text-sm" onclick="closeFormKoleksi()"></a>
+                                <a class="fa-solid fa-xmark text-neutral-500 cursor-pointer text-sm" onclick="closeFormPinjam()"></a>
+                            </div>
+                        </div>
+                        <div class="grid gap-4 w-full">
+                            <div class="grid">
+                                <label for="tanggal_pinjam">Tanggal pinjam</label>
+                                <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm">
+                            </div>
+                            <div class="grid">
+                                <label for="tanggal_kembali">Tanggal kembali</label>
+                                <input type="date" name="tanggal_kembali" id="tanggal_kembali" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm">
+                            </div>
+                            <div class="grid">
+                                <label for="jumlah">Jumlah</label>
+                                <input type="number" name="jumlah" id="jumlah" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm">
                             </div>
                         </div>
                         <div class="items-end flex w-full">
@@ -39,10 +53,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const button = document.querySelector('[koleksi-modal-target]');
-        const modal = document.querySelector(button.getAttribute('koleksi-modal-target'));
-        const overlay = document.getElementById('koleksiOverlay');
-        const form = document.getElementById('koleksiForm');
+        const button = document.querySelector('[pinjam-modal-target]');
+        const modal = document.querySelector(button.getAttribute('pinjam-modal-target'));
+        const overlay = document.getElementById('pinjamOverlay');
+        const form = document.getElementById('pinjamForm');
 
         button.addEventListener('click', function () {
             modal.classList.remove('hidden');
@@ -51,8 +65,8 @@
 
     });
 
-    function closeFormKoleksi() {
-        document.getElementById('koleksiModal').classList.add('hidden');
-        document.getElementById('koleksiOverlay').classList.add('hidden');
+    function closeFormPinjam() {
+        document.getElementById('pinjamModal').classList.add('hidden');
+        document.getElementById('pinjamOverlay').classList.add('hidden');
     }
 </script>
