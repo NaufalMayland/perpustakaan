@@ -30,15 +30,23 @@
                         <div class="grid gap-4 w-full">
                             <div class="grid">
                                 <label for="tanggal_pinjam">Tanggal pinjam</label>
-                                <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm">
+                                <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" required>
                             </div>
                             <div class="grid">
                                 <label for="tanggal_kembali">Tanggal kembali</label>
-                                <input type="date" name="tanggal_kembali" id="tanggal_kembali" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm">
+                                <input type="date" name="tanggal_kembali" id="tanggal_kembali" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" required>
                             </div>
                             <div class="grid">
                                 <label for="jumlah">Jumlah</label>
-                                <input type="number" name="jumlah" id="jumlah" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm">
+                                <div class="flex justify-between items-center border rounded bg-gray-100 border-gray-300 text-sm">
+                                    <div class="border-r bg-blue-900 hover:bg-blue-950 text-white border-gray-300 px-4 py-2 rounded-l cursor-pointer" onclick="kurangJumlah()">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </div>
+                                    <input type="number" name="jumlah" id="jumlah" class="no-spinner rounded w-full bg-gray-100 p-2 focus:outline-none" value="1" min="1">
+                                    <div class="border-l bg-blue-900 hover:bg-blue-950 text-white border-gray-300 px-4 py-2 rounded-r cursor-pointer" onclick="tambahJumlah()">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="items-end flex w-full">
@@ -50,7 +58,19 @@
         </div>
     </div>    
 </div>
+<style>
+    @layer utilities {
+    .no-spinner::-webkit-inner-spin-button,
+    .no-spinner::-webkit-outer-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0;
+    }
 
+    .no-spinner {
+        -moz-appearance: textfield !important;
+    }
+}
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const button = document.querySelector('[pinjam-modal-target]');
@@ -64,6 +84,18 @@
         });
 
     });
+
+    function kurangJumlah() {
+        const jumlah = document.getElementById('jumlah');
+        if (jumlah.value > 1) {
+            jumlah.value = parseInt(jumlah.value) - 1;
+        }
+    }
+
+    function tambahJumlah() {
+        const jumlah = document.getElementById('jumlah');
+        jumlah.value = parseInt(jumlah.value) + 1;
+    }
 
     function closeFormPinjam() {
         document.getElementById('pinjamModal').classList.add('hidden');

@@ -33,7 +33,6 @@
                     <tr class="text-gray-950">
                         <th class="p-2 text-center font-bold uppercase">Peminjam</th>
                         <th class="p-2 text-center font-bold uppercase">Buku</th>
-                        <th class="p-2 text-center font-bold uppercase">Petugas</th>
                         <th class="p-2 text-center font-bold uppercase">Jumlah</th>
                         <th class="p-2 text-center font-bold uppercase">Tanggal Peminjaman</th>
                         <th class="p-2 text-center font-bold uppercase">Tanggal Pengembalian</th>
@@ -43,16 +42,15 @@
                     </tr>
                 </thead>
                 <tbody class="w-full">
-                    {{-- @foreach ($dataBuku as $item) --}}
+                    @foreach ($peminjaman as $item)
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
-                            <td class="p-2 text-left">...</td>
-                            <td class="p-2 text-left">...</td>
-                            <td class="p-2 text-left">...</td>
-                            <td class="p-2 text-left">...</td>
-                            <td class="p-2 text-left">...</td>
-                            <td class="p-2 text-left">...</td>
-                            <td class="p-2 text-left">...</td>
-                            <td class="p-2 text-left">...</td>
+                            <td class="p-2 text-left">{{ $item->peminjam->nama }}</td>
+                            <td class="p-2 text-left">{{ $item->buku->judul }}</td>
+                            <td class="p-2 text-left">{{ $item->jumlah }}</td>
+                            <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_pinjam)->translatedFormat('j F Y') }}</td>
+                            <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_kembali)->translatedFormat('j F Y') }}</td>
+                            <td class="p-2 text-left">{{ $item->tanggal_dikembalikan ?? "-" }}</td>
+                            <td class="p-2 text-left capitalize">{{ $item->status }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
                                     <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
@@ -68,7 +66,7 @@
                                 </div>
                             </td>
                         </tr>
-                    {{-- @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

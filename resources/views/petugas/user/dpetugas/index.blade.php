@@ -29,7 +29,7 @@
     <div class="bg-white p-4 rounded shadow-md mt-4">
         <div class="">
             <table id="dpetugasTable" class="min-w-full border border-gray-400 text-sm">
-                <thead class="bg-gray-400 w-full">
+                <thead class="w-full">
                     <tr class="text-gray-950">
                         <th class="p-2 text-center font-bold uppercase relative">Nama</th>
                         <th class="p-2 text-center font-bold uppercase relative">Email</th>

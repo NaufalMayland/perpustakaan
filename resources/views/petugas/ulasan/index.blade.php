@@ -18,7 +18,7 @@
                                 <img src="{{ asset('storage/'. $item->cover) }}" class="w-20 object-cover rounded" alt="cover">
                             </td>
                             <td class="p-2">{{ $item->judul }}</td>
-                            <td class="p-2">{{ $item->kategori }}</td>
+                            <td class="p-2 capitalize">{{ $item->kategori }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
                                     <a href="{{ route('petugas.ulasan.detailUlasan', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">

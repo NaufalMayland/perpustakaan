@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="flex items-center w-full hover:text-blue-950 gap-1">
-            <a href="{{ route('peminjam.peminjamanBuku') }}" class="text-black hover:text-blue-950">Peminjaman</a>
+            <a href="{{ route('peminjam.peminjamanBuku') }}" class="hover:text-blue-950 @if(Route::is('peminjam.peminjamanBuku')) text-blue-950 @endif">Peminjaman</a>
             @if ($countPeminjaman == 0) 
                 <div class="">
                     <span></span>

@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
+use App\Models\Peminjaman;
 use App\Models\Petugas;
 use App\Models\Ulasan;
 use App\Models\User;
@@ -92,6 +93,7 @@ class PetugasController extends Controller
 
     public function dpeminjam() {
         $peminjam = Peminjam::all();
+        
         return view('petugas.user.dpeminjam.index', [
             'title' => "Peminjam",
             'peminjam' => $peminjam
@@ -110,8 +112,11 @@ class PetugasController extends Controller
     }
 
     public function peminjaman() {
+        $peminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->get();
+        
         return view('petugas.peminjaman.index', [
             'title' => "Peminjaman",
+            'peminjaman' => $peminjaman
         ]);
     }
 

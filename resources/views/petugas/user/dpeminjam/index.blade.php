@@ -33,15 +33,20 @@
                     <tr class="text-gray-950">
                         <th class="p-2 text-center font-bold uppercase relative">Nama</th>
                         <th class="p-2 text-center font-bold uppercase relative">Email</th>
+                        <th class="p-2 text-center font-bold uppercase relative">Alamat</th>
                         <th class="p-2 text-center font-bold uppercase relative">Telepon</th>
                         <th class="p-2 text-center font-bold uppercase relative">Option</th>
                     </tr>
                 </thead>
                 <tbody class="w-full">
                     @foreach ($peminjam as $item)
+                    @php
+                        $alamat = json_decode($item->alamat, true);
+                    @endphp
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
                             <td class="p-2">{{ $item->nama }}</td>
                             <td class="p-2">{{ $item->email }}</td>
+                            <td class="p-2">{{ $alamat['kelurahan']['name'] ?? '-' }}, {{ $alamat['kecamatan']['name'] ?? '-' }}, {{ $alamat['kabupaten']['name'] ?? '-' }}, {{ $alamat['provinsi']['name'] ?? '-' }}</td>
                             <td class="p-2">{{ $item->telepon ?? "-" }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
