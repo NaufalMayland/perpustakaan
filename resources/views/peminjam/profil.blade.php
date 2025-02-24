@@ -15,7 +15,10 @@
             </div>
             <div class="grid">
                 <label for="alamat">Alamat</label>
-                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->alamat['kelurahan']['name'] ?? '-' }}, {{ $peminjam->alamat['kecamatan']['name'] ?? '-' }}, {{ $peminjam->alamat['kabupaten']['name'] ?? '-' }}, {{ $peminjam->alamat['provinsi']['name'] ?? '-' }}" readonly>
+                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="
+                @if ($peminjam->alamat == !null )
+                {{ $peminjam->alamat['kelurahan']['name'] }}, {{ $peminjam->alamat['kecamatan']['name'] }}, {{ $peminjam->alamat['kabupaten']['name'] }}, {{ $peminjam->alamat['provinsi']['name'] }}
+                @endif" readonly>
             </div>
             <div class="grid">
                 <label for="telepon">Telepon</label>

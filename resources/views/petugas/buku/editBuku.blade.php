@@ -1,7 +1,7 @@
 @extends('petugas.layout.layout')
 @section('content')
     <div class="bg-white p-4 shadow-md rounded">
-        <form action="{{ route('petugas.buku.editBukuAction', $buku->id) }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start">
+        <form action="{{ route('petugas.buku.editBukuAction', $buku->id) }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="w-full lg:w-1/4 flex justify-center">
@@ -37,8 +37,25 @@
                     <input type="number" name="stok" id="stok" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $buku->stok }}" placeholder="Masukan stok" autocomplete="off" required>
                 </div>
                 <div class="grid text-sm">
-                    <label for="cover">Cover Buku</label>
-                    <input type="file" name="cover" id="cover" class="w-full rounded border bg-gray-100 border-gray-300 text-sm cursor-pointer file:cursor-pointer file:mr-2 file:py-2 file:text-sm file:rounded-l file:bg-blue-900 file:text-white file:border-none">
+                    <div class="flex items-center gap-2 text-sm">
+                        <label class="mb-1">Cover Buku</label>
+                        <div class="flex gap-4">
+                            <label>
+                                <input type="radio" name="cover_type" value="file" checked onclick="toggleCoverInput()"> File
+                            </label>
+                            <label>
+                                <input type="radio" name="cover_type" value="url" onclick="toggleCoverInput()"> URL
+                            </label>
+                        </div>
+                    </div>
+        
+                    <div class="text-sm" id="cover_file_input">
+                        <input type="file" name="cover_file" id="cover_file" class="w-full rounded border bg-gray-100 border-gray-300 text-sm cursor-pointer file:cursor-pointer file:mr-2 file:py-2 file:text-sm file:rounded-l file:bg-blue-900 file:text-white file:border-none">
+                    </div>
+                    
+                    <div class="text-sm hidden" id="cover_url_input">
+                        <input type="text" name="cover_url" id="cover_url" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukkan URL" autocomplete="off">
+                    </div>
                 </div>
                 <div class="grid text-sm">
                     <label for="deskripsi">Deskripsi Buku</label>
@@ -59,6 +76,20 @@
         </form>
     </div>
     <script>
+        function toggleCoverInput() {
+            let fileInput = document.getElementById('cover_file_input');
+            let urlInput = document.getElementById('cover_url_input');
+            let fileRadio = document.querySelector('input[name="cover_type"][value="file"]').checked;
+
+            if (fileRadio) {
+                fileInput.classList.remove('hidden');
+                urlInput.classList.add('hidden');
+            } else {
+                fileInput.classList.add('hidden');
+                urlInput.classList.remove('hidden');
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             var textarea = document.getElementById("deskripsi");
             textarea.style.height = textarea.scrollHeight + "px";

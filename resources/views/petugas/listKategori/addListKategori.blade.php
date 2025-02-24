@@ -26,7 +26,7 @@
                 <div class="flex flex-wrap gap-2">
                     @foreach ($dataKategori as $item) 
                         <div class="flex items-center space-x-2">
-                            <input type="checkbox" name="kategori[]" id="kategori_{{ $item->id }}" value="{{ $item->id }}" class="peer" hidden>
+                            <input type="radio" name="kategori[]" id="kategori_{{ $item->id }}" value="{{ $item->id }}" class="peer" hidden>
                             <label for="kategori_{{ $item->id }}" class="flex items-center w-auto px-4 py-1 border border-gray-300 rounded-full capitalize cursor-pointer text-sm bg-gray-100 text-black peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-900 transition-all duration-100">
                                 {{ $item->kategori }}
                             </label>

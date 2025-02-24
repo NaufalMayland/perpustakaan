@@ -55,7 +55,7 @@
                 </div>
                 
                 <div class="text-sm hidden" id="cover_url_input">
-                    <input type="text" name="cover_url" id="cover_url" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukkan URL ">
+                    <input type="text" name="cover_url" id="cover_url" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukkan URL" autocomplete="off">
                 </div>
             </div>
 

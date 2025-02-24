@@ -38,7 +38,7 @@
                         <th class="p-2 text-center font-bold uppercase">Tanggal Pengembalian</th>
                         <th class="p-2 text-center font-bold uppercase">Tanggal Dikembalikan</th>
                         <th class="p-2 text-center font-bold uppercase">Status</th>
-                        <th class="p-2 text-center font-bold uppercase">Option</th>
+                        {{-- <th class="p-2 text-center font-bold uppercase">Option</th> --}}
                     </tr>
                 </thead>
                 <tbody class="w-full">
@@ -50,8 +50,20 @@
                             <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_pinjam)->translatedFormat('j F Y') }}</td>
                             <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_kembali)->translatedFormat('j F Y') }}</td>
                             <td class="p-2 text-left">{{ $item->tanggal_dikembalikan ?? "-" }}</td>
-                            <td class="p-2 text-left capitalize">{{ $item->status }}</td>
-                            <td class="p-2">
+                            <td class="p-2 text-left ">
+                                <form action="{{ route('petugas.peminjaman.editStatusPeminjaman', $item->id) }}" method="POST" class="flex gap-2">
+                                @csrf
+                                @method('PUT')
+                                    <select name="status" id="status" class="capitalize border border-neutral-500 p-1 bg-white rounded focus:outline-none">
+                                        <option class="capitalize" value="proses" {{ $item->status == 'proses' ? 'selected' : '' }}>proses</option>
+                                        <option class="capitalize" value="siap diambil" {{ $item->status == 'siap diambil' ? 'selected' : '' }}>siap diambil</option>
+                                        <option class="capitalize" value="dipinjam" {{ $item->status == 'dipinjam' ? 'selected' : '' }}>dipinjam</option>
+                                        <option class="capitalize" value="dikembalikan" {{ $item->status == 'dikembalikan' ? 'selected' : '' }}>dikembalikan</option>
+                                    </select>
+                                    <button type="submit" class="fa-solid fa-check p-2 rounded bg-blue-900 text-white"></button>
+                                </form>
+                            </td>
+                            {{-- <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
                                     <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-pencil text-sm"></i>
@@ -59,12 +71,10 @@
                                     <form id="deleteBuku" action="" method="POST" class="">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="py-1 px-2 rounded text-center bg-red-500 hover:bg-red-600 text-white" onclick="deleteBuku()">
-                                            <i class="fa-solid fa-trash text-sm"></i>    
-                                        </button>
+                                        <button class="fa-solid fa-trash text-sm py-1 px-2 rounded text-center bg-red-500 hover:bg-red-600 text-white" onclick="deleteBuku()"></button>
                                     </form>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

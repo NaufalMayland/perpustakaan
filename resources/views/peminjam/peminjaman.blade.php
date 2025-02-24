@@ -5,10 +5,10 @@
             <div class="bg-white p-4 rounded shadow">
                 <div class="flex gap-2">
                     <div class="w-1/6">
-                        @if (Str::startsWith($item->cover, 'http'))
-                            <img src="{{ $item->buku->cover }}" class="w-40 rounded" alt="{{ $item->buku->judul }}">
+                        @if (Str::startsWith($item->buku->cover, 'http'))
+                            <img src="{{ $item->buku->cover }}" class="w-full h-full bg-cover rounded transition-all ease-in-out" alt="{{ $item->buku->judul }}">
                         @else
-                            <img src="{{ asset('storage/' . $item->buku->cover) }}" class="w-40 rounded" alt="{{ $item->buku->judul }}">
+                            <img src="{{ asset('storage/'. $item->buku->cover) }}" class="w-full h-full bg-cover rounded transition-all ease-in-out" alt="{{ $item->buku->judul }}"> 
                         @endif
                     </div>
                     <div class="flex flex-col w-5/6 justify-between">

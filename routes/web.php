@@ -139,6 +139,7 @@ Route::prefix('perpustakaan')->group(function () {
         Route::prefix('peminjaman')->middleware('rolePetugas:petugas')->group(function (){
             Route::get('/', [PetugasController::class, 'peminjaman'])->name('petugas.peminjaman.index');
             Route::get('/tambah', [InputController::class, 'addPeminjaman'])->name('petugas.peminjaman.addPeminjaman');
+            Route::put('/edit-status/{id}', [EditController::class, 'editStatusPeminjaman'])->name('petugas.peminjaman.editStatusPeminjaman');
             Route::get('/import', [ImportExcelController::class, 'importPeminjaman'])->name('petugas.peminjaman.importPeminjaman');
             Route::get('/print', [PrintController::class, 'printPeminjaman'])->name('petugas.peminjaman.printPeminjaman');
         });

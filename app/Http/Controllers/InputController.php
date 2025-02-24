@@ -108,7 +108,8 @@ use Illuminate\Support\Facades\Hash;
         ]);
 
         if ($request->hasFile('cover_file')) {
-            $imagePath = $request->file('cover_file')->store('cover', 'public');
+            $filename = time() . '.' . $request->file('cover_file')->getClientOriginalExtension();
+            $imagePath = $request->file('cover_file')->storeAs('cover', $filename, 'public');
         } else {
             $imagePath = $request->cover_url; 
         }
@@ -220,13 +221,20 @@ use Illuminate\Support\Facades\Hash;
         $user = Auth::user();
         $peminjam = Peminjam::where('email', $user->email)->first();
 
-        Peminjaman::create([
+        $peminjaman = Peminjaman::create([
             'id_peminjam' => $peminjam->id,
             'id_buku' => $id,
             'tanggal_pinjam' => $request->tanggal_pinjam,
             'tanggal_kembali' => $request->tanggal_kembali,
             'jumlah' => $request->jumlah,
         ]);
+
+        if($peminjaman){
+            $buku = Buku::where('id', $id)->first();
+            $buku->update([
+                'stok' => $buku->stok + $request->jumlah
+            ]);
+        }
 
         return redirect()->back();
     }
