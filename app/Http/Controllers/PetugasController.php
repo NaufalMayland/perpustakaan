@@ -17,8 +17,13 @@ use Illuminate\Support\Facades\DB;
 class PetugasController extends Controller
 {
     public function dashboard() {
+        $buku = Buku::withTrashed()->get();
+        $peminjaman = Peminjaman::withTrashed()->get();
+        
         return view('petugas.dashboard.index', [
             'title' => "Dashboard",
+            'buku' => $buku,
+            'peminjaman' => $peminjaman
         ]);
     }
 
