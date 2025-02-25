@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <div class="">
+    <div class="gap-4 grid">
         <div class="grid grid-cols-3 justify-between items-center gap-4">
             <a href="{{ route('petugas.buku.index') }}" class="bg-white border-r-2 grid gap-2 items-end border-red-600 rounded shadow p-4">
                 <div class="flex items-center gap-2">
@@ -29,6 +29,9 @@
                     <span class="text-xl">{{ $peminjaman->count() }}</span>
                 </div>
             </a>
+        </div>
+        <div class="bg-white rounded flex w-full shadow p-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis necessitatibus nobis optio magnam minus quas, porro exercitationem sed dolor tempore quia quidem rem? Natus alias est cumque tenetur ea laudantium?
         </div>
     </div>
 @endsection
