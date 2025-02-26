@@ -158,9 +158,8 @@ class PeminjamController extends Controller
     {
         $user = Auth::user();
         $peminjam = Peminjam::where('email', $user->email)->first();
+        $peminjaman = Peminjaman::with(['buku', 'peminjam'])->where('id_peminjam', $peminjam->id)->withTrashed()->get();
 
-        $peminjaman = Peminjaman::with(['buku'])->where('id_peminjam', $peminjam->id)->get();
-        
         return view('peminjam.peminjaman', [
             'title' => "Peminjaman Buku",
             'peminjaman' => $peminjaman,

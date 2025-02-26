@@ -57,6 +57,7 @@ Route::prefix('perpustakaan')->group(function () {
     
     Route::prefix('peminjaman')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'peminjamanBuku'])->name('peminjam.peminjamanBuku');
+        Route::delete('batal/{id}', [DeleteController::class, 'batalPeminjaman'])->name('peminjam.batalPeminjaman');
         Route::post('pinjam-buku/{id}', [InputController::class, 'addPeminjamanAction'])->name('peminjam.addPeminjamanAction');
     });
 

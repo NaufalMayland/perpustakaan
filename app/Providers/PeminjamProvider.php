@@ -31,7 +31,7 @@ class PeminjamProvider extends ServiceProvider
             $peminjam = Peminjam::where('email', $cekUser->email)->first();
             $kategori = Kategori::all();
             $countKoleksi = Koleksi::where('id_peminjam', $peminjam->id)->count();
-            $countPeminjaman = Peminjaman::where('id_peminjam', $peminjam->id)->count();
+            $countPeminjaman = Peminjaman::where('id_peminjam', $peminjam->id)->withTrashed()->count();
             
             $view->with([
                 'user' => $user,

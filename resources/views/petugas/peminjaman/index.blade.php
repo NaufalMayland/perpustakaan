@@ -28,7 +28,7 @@
     </div>
     <div class="bg-white p-4 rounded shadow-md mt-4">
         <div class="overflow-x-auto">
-            <table id="peminjamanTable" class="min-w-full border border-gray-400 text-sm">
+            <table id="peminjamanTable" class="min-w-full lg:w-full table-auto border border-gray-400 text-sm">
                 <thead class="w-full">
                     <tr class="text-gray-950">
                         <th class="p-2 text-center font-bold uppercase">Peminjam</th>
@@ -50,19 +50,31 @@
                             <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_pinjam)->translatedFormat('j F Y') }}</td>
                             <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_kembali)->translatedFormat('j F Y') }}</td>
                             <td class="p-2 text-left">{{ $item->tanggal_dikembalikan ?? "-" }}</td>
-                            <td class="p-2 text-left ">
-                                <form action="{{ route('petugas.peminjaman.editStatusPeminjaman', $item->id) }}" method="POST" class="flex gap-2">
-                                @csrf
-                                @method('PUT')
-                                    <select name="status" id="status" class="capitalize border border-neutral-500 p-1 bg-white rounded focus:outline-none">
-                                        <option class="capitalize" value="proses" {{ $item->status == 'proses' ? 'selected' : '' }}>proses</option>
-                                        <option class="capitalize" value="siap diambil" {{ $item->status == 'siap diambil' ? 'selected' : '' }}>siap diambil</option>
-                                        <option class="capitalize" value="dipinjam" {{ $item->status == 'dipinjam' ? 'selected' : '' }}>dipinjam</option>
-                                        <option class="capitalize" value="dikembalikan" {{ $item->status == 'dikembalikan' ? 'selected' : '' }}>dikembalikan</option>
-                                    </select>
-                                    <button type="submit" class="fa-solid fa-check p-2 rounded bg-blue-900 text-white"></button>
-                                </form>
+                            <td class="p-2 text-left">
+                                @if ($item->deleted_at == null)
+                                    <form action="{{ route('petugas.peminjaman.editStatusPeminjaman', $item->id) }}" method="POST" id="form-status-{{ $item->id }}" class="flex gap-2 justify-center items-center">
+                                        @csrf
+                                        @method('PUT')
+                                        <select name="status" id="status-{{ $item->id }}" class="capitalize border border-neutral-500 p-1 bg-white rounded focus:outline-none" 
+                                            onchange="document.getElementById('form-status-{{ $item->id }}').submit()">
+                                            <option class="capitalize" value="proses" {{ $item->status == 'proses' ? 'selected' : '' }}>proses</option>
+                                            <option class="capitalize" value="siap diambil" {{ $item->status == 'siap diambil' ? 'selected' : '' }}>siap diambil</option>
+                                            <option class="capitalize" value="dipinjam" {{ $item->status == 'dipinjam' ? 'selected' : '' }}>dipinjam</option>
+                                            <option class="capitalize" value="dikembalikan" {{ $item->status == 'dikembalikan' ? 'selected' : '' }}>dikembalikan</option>
+                                        </select>
+                                    </form>
+                                @else
+                                    <form action="" class="flex gap-2 items-center justify-center">
+                                        <div class="">
+                                            <span class="text-red-600 rounded p-2">Pembatalan</span>
+                                        </div>
+                                        <div class="">
+                                            <button type="submit" class="fa-solid fa-check text-white bg-blue-900 hover:bg-blue-950 rounded p-2"></button>
+                                        </div>
+                                    </form>
+                                @endif
                             </td>
+                            
                             {{-- <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
                                     <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">

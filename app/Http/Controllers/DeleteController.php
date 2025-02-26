@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
+use App\Models\Peminjaman;
 use App\Models\Petugas;
 use App\Models\Ulasan;
 use App\Models\User;
@@ -188,6 +189,14 @@ class DeleteController extends Controller
         $peminjam->forceDelete();
 
         return redirect()->route('petugas.user.dpeminjam.trashPeminjam');
+    }
+
+    public function batalPeminjaman($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+        $peminjaman->delete();
+        
+        return redirect()->back();
     }
 
     public function destroyUlasan($id)

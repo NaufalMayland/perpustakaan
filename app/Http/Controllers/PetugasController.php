@@ -117,7 +117,7 @@ class PetugasController extends Controller
     }
 
     public function peminjaman() {
-        $peminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->get();
+        $peminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->withTrashed()->get();
         
         return view('petugas.peminjaman.index', [
             'title' => "Peminjaman",
