@@ -199,6 +199,13 @@ class DeleteController extends Controller
         return redirect()->back();
     }
 
+    public function destroyPeminjaman($id)
+    {
+        Peminjaman::onlyTrashed()->find($id)->forceDelete();
+        
+        return redirect()->back();
+    }
+
     public function destroyUlasan($id)
     {
         $peminjam = Peminjam::where('email', Auth::user()->email)->first();

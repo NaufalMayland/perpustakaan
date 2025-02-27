@@ -64,7 +64,9 @@
                                         </select>
                                     </form>
                                 @else
-                                    <form action="" class="flex gap-2 items-center justify-center">
+                                    <form action="{{ route('petugas.peminjaman.destroyPeminjaman', $item->id) }}" method="POST" class="flex gap-2 items-center justify-center">
+                                        @csrf
+                                        @method('DELETE')
                                         <div class="">
                                             <span class="text-red-600 rounded p-2">Pembatalan</span>
                                         </div>

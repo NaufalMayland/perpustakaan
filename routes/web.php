@@ -47,7 +47,6 @@ Route::prefix('perpustakaan')->group(function () {
         Route::get('/{id}', [PeminjamController::class, 'detailBuku'])->name('peminjam.detailBuku');
         Route::post('ulasan-action/{id}', [InputController::class, 'addUlasanAction'])->name('peminjam.addUlasanAction');
         Route::delete('/destroy/{id}', [DeleteController::class, 'destroyUlasan'])->name('peminjam.destroyUlasan');
-        
     });
     
     Route::prefix('koleksi')->middleware('role:peminjam')->group(function () {
@@ -141,6 +140,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'peminjaman'])->name('petugas.peminjaman.index');
             Route::get('/tambah', [InputController::class, 'addPeminjaman'])->name('petugas.peminjaman.addPeminjaman');
             Route::put('/edit-status/{id}', [EditController::class, 'editStatusPeminjaman'])->name('petugas.peminjaman.editStatusPeminjaman');
+            Route::delete('/destroy/{id}', [DeleteController::class, 'destroyPeminjaman'])->name('petugas.peminjaman.destroyPeminjaman');
             Route::get('/import', [ImportExcelController::class, 'importPeminjaman'])->name('petugas.peminjaman.importPeminjaman');
             Route::get('/print', [PrintController::class, 'printPeminjaman'])->name('petugas.peminjaman.printPeminjaman');
         });
