@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PetugasSeeder::class,
             UserSeeder::class,
+            BukuSeeder::class,
             KategoriSeeder::class,
         ]);
     }

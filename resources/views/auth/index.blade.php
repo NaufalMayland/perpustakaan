@@ -14,7 +14,7 @@
         </div>
         <div class="w-full">
             <div class="flex justify-center items-center w-full">
-                <img src="{{ asset('storage/img/perpus.png') }}" alt="" class="lg:w-[70%] w-[50%]">
+                <img src="https://img.freepik.com/free-vector/people-library-flat-vector-illustration_74855-6607.jpg?t=st=1740754720~exp=1740758320~hmac=8b7240c937784e0ad618c2441dbc454e083ab6286120de8c78345459ceeaf394&w=1480" alt="" class="lg:w-[70%] w-[50%]">
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
     <div class="px-14 py-4 h-auto lg:h-screen flex items-center" id="about">
         <div class="flex lg:flex-row flex-col items-center gap-4">
             <div class="w-full justify-center flex">
-                <img src="{{ asset('storage/img/perpus.png') }}" alt="" class="lg:w-[70%] w-[50%]">
+                <img src="https://img.freepik.com/free-vector/people-library-flat-vector-illustration_74855-6607.jpg?t=st=1740754720~exp=1740758320~hmac=8b7240c937784e0ad618c2441dbc454e083ab6286120de8c78345459ceeaf394&w=1480" alt="" class="lg:w-[70%] w-[50%]">
             </div>
             <div class="w-full gap-4 flex flex-col">
                 <div class="text-center px-4">
