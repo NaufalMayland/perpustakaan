@@ -40,40 +40,40 @@ class EditController extends Controller
     }
 
     public function editBukuAction(Request $request, $id)
-{
-    $buku = Buku::findOrfail($id);
-    $request->validate([
-        'judul' => 'required',
-        'penulis' => 'required',
-        'penerbit' => 'required',
-        'tahun_terbit' => 'required',
-        'stok' => 'required',
-        'kode' => 'required',
-        'deskripsi' => 'required',
-        'cover_file' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'cover_url' => 'nullable',
-    ]);
+    {
+        $buku = Buku::findOrfail($id);
+        $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'stok' => 'required',
+            'kode' => 'required',
+            'deskripsi' => 'required',
+            'cover_file' => 'nullable',
+            'cover_url' => 'nullable',
+        ]);
 
-    if ($request->hasFile('cover_file')) {
-        $filename = time() . '.' . $request->file('cover_file')->getClientOriginalExtension();
-        $imagePath = $request->file('cover_file')->storeAs('cover', $filename, 'public');
-    } elseif ($request->cover_url) {
-        $imagePath = $request->cover_url;
+        if ($request->hasFile('cover_file')) {
+            $filename = time() . '.' . $request->file('cover_file')->getClientOriginalExtension();
+            $imagePath = $request->file('cover_file')->storeAs('cover', $filename, 'public');
+        } elseif ($request->cover_url) {
+            $imagePath = $request->cover_url;
+        }
+
+        $buku->update([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'deskripsi' => $request->deskripsi,
+            'tahun_terbit' => $request->tahun_terbit,
+            'kode' => $request->kode,
+            'stok' => $request->stok,
+            'cover' => $imagePath,
+        ]);
+
+        return redirect()->route('petugas.buku.detailBuku', $id);
     }
-
-    $buku->update([
-        'judul' => $request->judul,
-        'penulis' => $request->penulis,
-        'penerbit' => $request->penerbit,
-        'deskripsi' => $request->deskripsi,
-        'tahun_terbit' => $request->tahun_terbit,
-        'kode' => $request->kode,
-        'stok' => $request->stok,
-        'cover' => $imagePath,
-    ]);
-
-    return redirect()->route('petugas.buku.detailBuku', $id);
-}
 
 
     public function editKategori($id)

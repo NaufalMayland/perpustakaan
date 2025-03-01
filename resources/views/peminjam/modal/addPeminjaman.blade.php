@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="items-end flex w-full">
-                            <button type="submit" class="rounded-full bg-blue-900 hover:bg-blue-950 w-full text-white px-3 py-2">Simpan koleksi</button>
+                            <button type="submit" class="rounded-full bg-blue-900 hover:bg-blue-950 w-full text-white px-3 py-2">Pinjam</button>
                         </div>
                     </div>
                 </div>

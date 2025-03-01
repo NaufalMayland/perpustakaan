@@ -26,4 +26,14 @@ class Buku extends Model
     {
         return $this->hasMany(ListKategori::class, 'id_buku', 'id')->withTrashed();
     }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class, 'id_buku', 'id');
+    }
+    
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class, 'id_buku', 'id');
+    }
 }

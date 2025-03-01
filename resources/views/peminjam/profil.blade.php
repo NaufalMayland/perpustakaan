@@ -2,9 +2,18 @@
 @section('content')
     <div class="flex flex-col lg:flex-row gap-8 items-start">
         <div class="w-full lg:w-1/4 flex justify-center">
-            <img src="" alt="Cover Buku" class="w-full rounded bg-cover">
+            <img src="" alt="{{ $peminjam->nama }}" class="w-full rounded bg-cover">
         </div>
         <div class="w-full lg:w-3/4 flex flex-col gap-4  lg:text-base">
+            @if ($errors->any())
+                <div class="text-white bg-red-500 text-sm py-3 px-3 rounded text-left w-full">
+                    <ul>
+                        @foreach ($errors->all() as $item)
+                            <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="grid">
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" id="nama" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->nama }}" readonly>
@@ -15,10 +24,7 @@
             </div>
             <div class="grid">
                 <label for="alamat">Alamat</label>
-                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="
-                @if ($peminjam->alamat == !null )
-                {{ $peminjam->alamat['kelurahan']['name'] }}, {{ $peminjam->alamat['kecamatan']['name'] }}, {{ $peminjam->alamat['kabupaten']['name'] }}, {{ $peminjam->alamat['provinsi']['name'] }}
-                @endif" readonly>
+                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="@if ($peminjam->alamat == !null ){{ $peminjam->alamat['kelurahan']['name'] }}, {{ $peminjam->alamat['kecamatan']['name'] }}, {{ $peminjam->alamat['kabupaten']['name'] }}, {{ $peminjam->alamat['provinsi']['name'] }}@endif" readonly>
             </div>
             <div class="grid">
                 <label for="telepon">Telepon</label>

@@ -39,13 +39,11 @@
                         <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="password" id="password" autocomplete="off">
                     </div>
                 </div>
-                <div class="flex justify-between items-center mt-8">
-                    <div class="text-blue-900 hover:text-blue-950 text-sm">
-                        <a href="{{route('auth.login')}}">Sudah punya akun?</a>
-                    </div>
-                    <div class="">
-                        <button type="submit" class="text-sm font-semibold bg-blue-900 rounded text-white py-2 px-4 hover:bg-blue-950">Register</button>
-                    </div>
+                <div class="text-blue-900 hover:text-blue-950 text-sm">
+                    <a href="{{route('auth.login')}}">Sudah punya akun?</a>
+                </div>
+                <div class="flex w-full items-center mt-4">
+                    <button type="submit" class="text-sm font-semibold w-full bg-blue-900 rounded-full text-white py-2 px-4 hover:bg-blue-950">Register</button>
                 </div>
             </div>
         </form>

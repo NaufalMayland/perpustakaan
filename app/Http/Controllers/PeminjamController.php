@@ -16,21 +16,28 @@ class PeminjamController extends Controller
 {
     public function index()
     {
-        $buku = DB::table('list_kategoris')
+        $buku = Buku::withCount('peminjaman')
+        ->orderByDesc('peminjaman_count')
+        ->having('peminjaman_count', '>', 0)
+        ->get();
+
+        $bukuKategori = DB::table('list_kategoris')
         ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
         ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
-        ->whereNull('list_kategoris.deleted_at')
         ->select(
-            'bukus.id',
+            'kategoris.id as id_kategori',
+            'kategoris.kategori',
+            'bukus.id as id_buku',
             'bukus.cover',
-            'bukus.judul',
+            'bukus.judul'
         )
-        ->groupBy('bukus.id', 'bukus.judul')
-        ->get();
-        
+        ->get()
+        ->groupBy('id_kategori');
+
         return view('peminjam.index', [
             'title' => "Home",
             'buku' => $buku,
+            'bukuKategori' => $bukuKategori,
         ]);
     }
 

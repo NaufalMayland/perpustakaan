@@ -221,6 +221,15 @@ use Illuminate\Support\Facades\Hash;
         $user = Auth::user();
         $peminjam = Peminjam::where('email', $user->email)->first();
 
+        $checkProfil = Peminjam::where('email', $user->email)
+        ->where('alamat', null)
+        ->where('telepon', null)
+        ->exists();
+
+        if ($checkProfil == true) {
+            return redirect()->route('peminjam.profil')->withErrors('Lengkapi profil terlebih dahulu!');
+        }
+        
         $peminjaman = Peminjaman::create([
             'id_peminjam' => $peminjam->id,
             'id_buku' => $id,
@@ -232,7 +241,7 @@ use Illuminate\Support\Facades\Hash;
         if($peminjaman){
             $buku = Buku::where('id', $id)->first();
             $buku->update([
-                'stok' => $buku->stok + $request->jumlah
+                'stok' => $buku->stok - $request->jumlah
             ]);
         }
 

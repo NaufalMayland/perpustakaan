@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_peminjam');
             $table->unsignedBigInteger('id_buku');
-            $table->unsignedBigInteger('id_petugas');
+            $table->unsignedBigInteger('id_petugas')->nullable();
             $table->integer('jumlah');
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
