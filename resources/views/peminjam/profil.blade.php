@@ -2,7 +2,11 @@
 @section('content')
     <div class="flex flex-col lg:flex-row gap-8 items-start">
         <div class="w-full lg:w-1/4 flex justify-center">
-            <img src="" alt="{{ $peminjam->nama }}" class="w-full rounded bg-cover">
+            @if ($peminjam->foto == null) 
+                <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="{{ $peminjam->nama }}" class="size-60 rounded-full object-cover">
+            @else
+                <img src="{{ asset('storage/' . $peminjam->foto ) }}" alt="{{ $peminjam->nama }}" class="size-60 rounded-full object-cover">
+            @endif
         </div>
         <div class="w-full lg:w-3/4 flex flex-col gap-4  lg:text-base">
             @if ($errors->any())

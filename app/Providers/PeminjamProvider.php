@@ -36,6 +36,7 @@ class PeminjamProvider extends ServiceProvider
             $view->with([
                 'user' => $user,
                 'kategori' => $kategori,
+                'peminjam' => $peminjam,
                 'countKoleksi' => $countKoleksi,
                 'countPeminjaman' => $countPeminjaman,
             ]);

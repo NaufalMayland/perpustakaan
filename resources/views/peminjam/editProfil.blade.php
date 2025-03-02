@@ -1,11 +1,33 @@
 @extends('peminjam.layout.layout')
 @section('content')
-    <form action="{{ route('peminjam.editProfilAction', $peminjam->id) }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start">
+    <form action="{{ route('peminjam.editProfilAction', $peminjam->id) }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="w-full lg:w-1/4 flex justify-center">
-            <img src="" alt="Cover Buku" class="w-full rounded bg-cover">
-        </div>
+            @if ($peminjam->foto == null)
+                <input type="file" name="foto" id="foto" class="hidden" accept="image/*" onchange="openCropModal(event)">
+                <label for="foto" class="relative cursor-pointer group">
+                    <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="{{ $peminjam->nama }}" id="preview" class="size-60 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 113.182 3.182L7.05 19.663a4.5 4.5 0 01-1.591 1.045L3 21l.292-2.459a4.5 4.5 0 011.045-1.591L16.862 3.487z" />
+                        </svg>
+                    </div>
+                </label>
+                <input type="hidden" name="cropped_image" id="cropped_image">
+            @else
+                <input type="file" name="foto" id="foto" class="hidden" accept="image/*" onchange="openCropModal(event)">
+                <label for="foto" class="relative cursor-pointer group">
+                    <img src="{{ asset('storage/' . $peminjam->foto) }}" alt="{{ $peminjam->nama }}" id="preview" class="size-60 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 113.182 3.182L7.05 19.663a4.5 4.5 0 01-1.591 1.045L3 21l.292-2.459a4.5 4.5 0 011.045-1.591L16.862 3.487z" />
+                        </svg>
+                    </div>
+                </label>
+                <input type="hidden" name="cropped_image" id="cropped_image">
+            @endif
+        </div>  
         <div class="w-full lg:w-3/4 flex flex-col gap-4  lg:text-base">
             <div class="grid">
                 <label for="nama">Nama</label>
@@ -53,7 +75,84 @@
         </div>
     </form>
 
+    <div id="cropModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
+        <div class="bg-white p-4 rounded-lg w-96">
+            <div class="crop-container">
+                <img id="cropImage" class="max-w-full">
+            </div>
+            <div class="flex justify-between gap-4 mt-4">
+                <button type="button" onclick="closeCropModal()" class="bg-gray-300 px-4 py-2 rounded">Batal</button>
+                <button type="button" onclick="cropImage()" class="bg-blue-900 text-white px-4 py-2 rounded">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+
     <script>
+        let cropper;
+
+        function openCropModal(event) {
+            console.log('openCropModal triggered'); // Debug log
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const cropImage = document.getElementById('cropImage');
+                    cropImage.src = e.target.result;
+                    document.getElementById('cropModal').classList.remove('hidden');
+
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+
+                    cropper = new Cropper(cropImage, {
+                        aspectRatio: 1,
+                        viewMode: 1,
+                        autoCropArea: 1
+                    });
+
+                    console.log('Cropper initialized');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                console.log('No file selected');
+            }
+        }
+
+
+        function closeCropModal() {
+            document.getElementById('cropModal').classList.add('hidden');
+            if (cropper) cropper.destroy();
+        }
+
+        function cropImage() {
+            console.log('cropImage function triggered');
+
+            if (cropper) {
+                const canvas = cropper.getCroppedCanvas();
+                if (canvas) {
+                    const croppedData = canvas.toDataURL();
+                    const preview = document.getElementById('preview');
+
+                    if (preview) {
+                        preview.src = croppedData;
+                        document.getElementById('cropped_image').value = croppedData;
+
+                        console.log('Cropped image data:', croppedData); // Debug log
+                        document.getElementById('cropModal').classList.add('hidden');
+                    } else {
+                        console.log('Preview element not found!');
+                    }
+                } else {
+                    console.log('Canvas not created!');
+                }
+            } else {
+                console.log('Cropper not initialized!');
+            }
+        }
+
         $(document).ready(function() {
             let baseUrl = "/perpustakaan/profil";
 

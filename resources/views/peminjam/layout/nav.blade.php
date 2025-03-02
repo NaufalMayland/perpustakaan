@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex items-center w-full hover:text-blue-950 gap-1">
+        <div class="flex items-center hover:text-blue-950 gap-1">
             <a href="{{ route('peminjam.peminjamanBuku') }}" class="hover:text-blue-950 @if(Route::is('peminjam.peminjamanBuku')) text-blue-950 @endif">Peminjaman</a>
             @if ($countPeminjaman == 0) 
                 <div class="">
@@ -40,15 +40,11 @@
                 </div>
             @endif
         </div>
-        <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center w-full hover:text-blue-950 gap-1 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">
+        <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center hover:text-blue-950 gap-1 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">
             <div class="">
                 <span class="">Koleksi</span>
             </div>
-            @if ($countKoleksi == 0) 
-                <div class="">
-                    <span></span>
-                </div>
-            @else
+            @if ($countKoleksi > 0) 
                 <div class="bg-blue-900 text-white rounded-full p-2 text-xs w-4 h-4 flex items-center justify-center">
                     <span>{{ $countKoleksi }}</span>
                 </div>
@@ -56,7 +52,13 @@
         </a>
         <div class="relative">
             <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
-                <span class="">Profil</span>
+                <div class="">
+                    @if ($peminjam->foto == null)
+                        <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="" class="rounded-full w-8">
+                    @else
+                        <img src="{{ asset('storage/' . $peminjam->foto ) }}" alt="{{ $peminjam->nama }}" class="rounded-full w-8 object-cover">
+                    @endif
+                </div>
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>
             <div id="profilDropdown" class="absolute right-0 mt-2 w-40 bg-white border shadow-lg rounded hidden">

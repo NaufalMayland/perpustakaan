@@ -11,6 +11,7 @@ use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class EditController extends Controller
 {
@@ -158,11 +159,29 @@ class EditController extends Controller
     public function editProfilPeminjamAction(Request $request, $id)
     {
         $peminjam = Peminjam::findOrFail($id);
-        $peminjam->update([
-            'alamat' => $request->wilayah,
-            'telepon' => $request->telepon,
-        ]);
 
+        if ($request->has('cropped_image')) {
+            $files = glob(storage_path("app/public/fotoProfil/foto_{$peminjam->id}_*"));
+
+            foreach ($files as $file) {
+                unlink($file);
+            }
+        
+            $imageData = $request->input('cropped_image');
+            $image = explode(',', $imageData)[1];
+            $image = str_replace(' ', '+', $image);
+            $imageName = 'foto_' . $peminjam->id . '_' . time() . '.png';
+        
+            $path = 'fotoProfil/' . $imageName;
+        
+            Storage::disk('public')->put('fotoProfil/' . $imageName, base64_decode($image));
+        }
+        
+        $peminjam->foto = $path;
+        $peminjam->telepon = $request->telepon;
+        $peminjam->alamat = $request->wilayah;
+        $peminjam->save();
+    
         return redirect()->route('peminjam.profil');
     }
 
