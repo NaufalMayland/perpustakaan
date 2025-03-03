@@ -42,17 +42,25 @@
                 <div class="grid gap-4">
                     <input type="hidden" name="wilayah" id="wilayah">
 
+                    @php
+                        $alamat = json_decode($peminjam->alamat, true);
+                    @endphp
+
                     <select name="provinsi" id="provinsi" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
-                        <option value="" disabled selected hidden>Pilih provinsi</option>
+                        <option value="" disabled hidden>Pilih provinsi</option>
+                        <option value="{{ $alamat['provinsi']['id'] ?? '' }}" selected>{{ $alamat['provinsi']['name'] ?? 'Pilih provinsi' }}</option>
                     </select>
                     <select name="kabupaten" id="kabupaten" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
-                        <option value="" disabled selected hidden>Pilih kabupaten</option>
+                        <option value="" disabled hidden>Pilih kabupaten</option>
+                        <option value="{{ $alamat['kabupaten']['id'] ?? '' }}" selected>{{ $alamat['kabupaten']['name'] ?? 'Pilih kabupaten' }}</option>
                     </select>
                     <select name="kecamatan" id="kecamatan" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
-                        <option value="" disabled selected hidden>Pilih kecamatan</option>
+                        <option value="" disabled hidden>Pilih kecamatan</option>
+                        <option value="{{ $alamat['kecamatan']['id'] ?? '' }}" selected>{{ $alamat['kecamatan']['name'] ?? 'Pilih kecamatan' }}</option>
                     </select>
                     <select name="kelurahan" id="kelurahan" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
-                        <option value="" disabled selected hidden>Pilih kelurahan</option>
+                        <option value="" disabled hidden>Pilih kelurahan</option>
+                        <option value="{{ $alamat['kelurahan']['id'] ?? '' }}" selected>{{ $alamat['kelurahan']['name'] ?? 'Pilih kelurahan' }}</option>
                     </select>
                 </div>
             </div>
@@ -63,13 +71,13 @@
             
             <div class="justify-between flex w-full items-center">
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                    <a href="{{ route('peminjam.profil') }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">
+                    <a href="{{ route('peminjam.profil') }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">
                         <i class="fa-solid fa-arrow-left text-sm"></i>
                         <span>Kembali</span>
                     </a>
                 </div>
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                    <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded">Simpan</button>
+                    <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">Simpan</button>
                 </div>
             </div>
         </div>
@@ -81,8 +89,8 @@
                 <img id="cropImage" class="max-w-full">
             </div>
             <div class="flex justify-between gap-4 mt-4">
-                <button type="button" onclick="closeCropModal()" class="bg-gray-300 px-4 py-2 rounded">Batal</button>
-                <button type="button" onclick="cropImage()" class="bg-blue-900 text-white px-4 py-2 rounded">Simpan</button>
+                <button type="button" onclick="closeCropModal()" class="bg-neutral-500 text-white px-4 py-2 rounded-full">Batal</button>
+                <button type="button" onclick="cropImage()" class="bg-blue-900 text-white px-4 py-2 rounded-full">Simpan</button>
             </div>
         </div>
     </div>
@@ -94,7 +102,7 @@
         let cropper;
 
         function openCropModal(event) {
-            console.log('openCropModal triggered'); // Debug log
+            console.log('openCropModal triggered'); 
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -128,28 +136,15 @@
         }
 
         function cropImage() {
-            console.log('cropImage function triggered');
+            const canvas = cropper.getCroppedCanvas();
+            if (canvas) {
+                const preview = document.getElementById('preview');
+                preview.src = canvas.toDataURL();
+                document.getElementById('cropped_image').value = canvas.toDataURL();
+                document.getElementById('cropModal').classList.add('hidden');
 
-            if (cropper) {
-                const canvas = cropper.getCroppedCanvas();
-                if (canvas) {
-                    const croppedData = canvas.toDataURL();
-                    const preview = document.getElementById('preview');
-
-                    if (preview) {
-                        preview.src = croppedData;
-                        document.getElementById('cropped_image').value = croppedData;
-
-                        console.log('Cropped image data:', croppedData); // Debug log
-                        document.getElementById('cropModal').classList.add('hidden');
-                    } else {
-                        console.log('Preview element not found!');
-                    }
-                } else {
-                    console.log('Canvas not created!');
-                }
-            } else {
-                console.log('Cropper not initialized!');
+                const fotoInput = document.getElementById('foto');
+                fotoInput.value = '';
             }
         }
 
@@ -228,6 +223,8 @@
             });
 
             $('#kelurahan').change(updateWilayah);
+
+            updateWilayah();
         });
     </script>
 @endsection

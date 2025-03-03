@@ -160,24 +160,27 @@ class EditController extends Controller
     {
         $peminjam = Peminjam::findOrFail($id);
 
-        if ($request->has('cropped_image')) {
+        if ($request->has('cropped_image') && str_contains($request->cropped_image, ',')) {
             $files = glob(storage_path("app/public/fotoProfil/foto_{$peminjam->id}_*"));
-
+        
             foreach ($files as $file) {
                 unlink($file);
             }
         
             $imageData = $request->input('cropped_image');
-            $image = explode(',', $imageData)[1];
-            $image = str_replace(' ', '+', $image);
-            $imageName = 'foto_' . $peminjam->id . '_' . time() . '.png';
+            $imageParts = explode(',', $imageData);
+            if (count($imageParts) > 1) {
+                $image = str_replace(' ', '+', $imageParts[1]);
+                $imageName = 'foto_' . $peminjam->id . '_' . time() . '.png';
         
-            $path = 'fotoProfil/' . $imageName;
+                $path = 'fotoProfil/' . $imageName;
         
-            Storage::disk('public')->put('fotoProfil/' . $imageName, base64_decode($image));
+                Storage::disk('public')->put($path, base64_decode($image));
+        
+                $peminjam->foto = $path; 
+            }
         }
         
-        $peminjam->foto = $path;
         $peminjam->telepon = $request->telepon;
         $peminjam->alamat = $request->wilayah;
         $peminjam->save();
