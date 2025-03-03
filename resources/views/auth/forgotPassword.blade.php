@@ -11,7 +11,7 @@
 </head>
 <body class="bg-slate-50 font-['poppins']">
     <div class="w-auto h-screen items-center justify-center flex">
-        <form action="{{ route('auth.registerAction') }}" method="POST" class="w-fit bg-[#fff] shadow-md rounded px-6 py-8">
+        <form action="{{ route('auth.forgotPasswordAction') }}" method="POST" class="w-fit bg-[#fff] shadow-md rounded px-6 py-8">
             @csrf
             <div class="w-80">
                 <div class="text-2xl text-blue-900 font-bold w-full text-center mb-8">
@@ -28,15 +28,11 @@
                 @endif
                 <div class="grid text-sm gap-2 my-4">
                     <div class="grid">
-                        <label class="text-black" for="username">Username</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="text" id="username" name="username" autocomplete="off" value="{{ old('username') }}">
-                    </div>
-                    <div class="grid">
                         <label class="text-black" for="email">Email</label>
                         <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" autocomplete="off" value="{{ old('email') }}">
                     </div>
                     <div class="grid relative">
-                        <label class="text-black" for="password">Password</label>
+                        <label class="text-black" for="password">Password Baru</label>
                         <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="password" id="password" autocomplete="off" value="{{ old('password') }}">
                         <span class="absolute right-3 top-1/2 cursor-pointer" onclick="toggleVisibility('password', 'eyeIconPassword')">
                             <i id="eyeIconPassword" class="fas fa-eye text-neutral-500"></i>
@@ -51,10 +47,10 @@
                     </div>
                 </div>
                 <div class="text-blue-900 hover:text-blue-950 text-sm">
-                    <a href="{{ route('auth.login') }}">Sudah punya akun?</a>
+                    <a href="{{ route('auth.login') }}">Kembali</a>
                 </div>
                 <div class="flex w-full items-center mt-4">
-                    <button type="submit" class="text-sm font-semibold w-full bg-blue-900 rounded-full text-white py-2 px-4 hover:bg-blue-950">Register</button>
+                    <button type="submit" class="text-sm font-semibold w-full bg-blue-900 rounded-full text-white py-2 px-4 hover:bg-blue-950">Konfirmasi</button>
                 </div>
             </div>
         </form>

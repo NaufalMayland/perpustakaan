@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     @vite('resources/css/app.css')
     <title>Perpustakaan | {{$title}}</title>
 </head>
@@ -30,13 +31,17 @@
                         <label class="text-black" for="email">Email</label>
                         <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="off">
                     </div>
-                    <div class="grid">
+                    <div class="grid relative">
                         <label class="text-black" for="password">Password</label>
                         <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="password" id="password">
+                        <span class="absolute right-3 top-1/2 cursor-pointer" onclick="togglePasswordVisibility()">
+                            <i id="eyeIcon" class="fas fa-eye text-neutral-500"></i>
+                        </span>
                     </div>
                 </div>
-                <div class="text-blue-900 hover:text-blue-950 text-sm">
+                <div class="text-blue-900 hover:text-blue-950 text-sm flex items-center justify-between">
                     <a href="{{ route('auth.register') }}">Belum punya akun?</a>
+                    <a href="{{ route('auth.forgotPassword') }}">Lupa password</a>
                 </div>
                 <div class="flex w-full items-center mt-4">
                     <button type="submit" class="text-sm w-full font-semibold bg-blue-900 rounded-full text-white py-2 px-4 hover:bg-blue-950">Login</button>
@@ -44,5 +49,22 @@
             </div>
         </form>
     </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
 </body>
 </html>

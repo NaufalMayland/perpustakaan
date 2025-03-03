@@ -18,6 +18,8 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('login')->middleware('guest')->group(function (){
         Route::get('/', [ AuthController::class, 'login'])->name('auth.login');
         Route::post('/login-action', [ AuthController::class, 'loginAction'])->name('auth.loginAction');
+        Route::get('/forgot-password', [ AuthController::class, 'forgotPassword'])->name('auth.forgotPassword');
+        Route::post('/forgot-password-action', [ AuthController::class, 'forgotPasswordAction'])->name('auth.forgotPasswordAction');
     });
     
     Route::prefix('register')->middleware('guest')->group(function (){

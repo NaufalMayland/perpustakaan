@@ -64,10 +64,18 @@ class AuthController extends Controller
     {
         $cekUser = User::all();
 
+        $request->validate([
+            'password' => 'min:6'
+        ]);
+
         foreach($cekUser as $user){
             if($request->email == $user->email){
                 return redirect()->back()->withErrors('Email sudah tersedia, mohon gunakan email yang lain!')->withInput();
             }
+        }
+
+        if($request->konfirmasiPw !== $request->password){
+            return redirect()->back()->withErrors('Konfirmasi password salah')->withInput();
         }
 
         $dataRegist = User::create([
@@ -94,5 +102,31 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('auth.index');
+    }
+
+    public function forgotPassword()
+    {
+        return view('auth.forgotPassword', [
+            'title' => 'Login'
+        ]);
+    }
+
+    public function forgotPasswordAction(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if($user == null){
+            return redirect()->back()->withErrors('Pengguna tidak ditemukan')->withInput();
+        }
+
+        if($request->konfirmasiPw !== $request->password){
+            return redirect()->back()->withErrors('Konfirmasi password salah')->withInput();
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('auth.login');
     }
 }
