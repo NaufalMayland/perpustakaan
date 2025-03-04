@@ -7,10 +7,10 @@
             </a>
         </div>
     </div>
-    <form class="flex justify-center items-center border rounded" action="{{ route('peminjam.searchBuku') }}" method="GET">
+    <form class="flex justify-center items-center border rounded-full" action="{{ route('peminjam.searchBuku') }}" method="GET">
         @csrf
-        <input type="text" name="search" id="search" class="rounded px-4 py-2 focus:outline-none" value="{{ old('search') }}" placeholder="Search..." autocomplete="off">
-        <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white px-4 py-2 rounded-r cursor-pointer">
+        <input type="text" name="search" id="search" class="rounded-full px-4 py-2 focus:outline-none" value="{{ old('search') }}" placeholder="Search..." autocomplete="off">
+        <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white px-4 py-2 rounded-r-full cursor-pointer">
             <i class="fa-solid fa-magnifying-glass text-white"></i>
         </button>
     </form>
@@ -54,9 +54,9 @@
             <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
                 <div class="">
                     @if ($peminjam->foto == null)
-                        <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="" class="rounded-full w-8">
+                        <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="" class="rounded-full w-10">
                     @else
-                        <img src="{{ asset('storage/' . $peminjam->foto ) }}" alt="{{ $peminjam->nama }}" class="rounded-full w-8 object-cover">
+                        <img src="{{ asset('storage/' . $peminjam->foto ) }}" alt="{{ $peminjam->nama }}" class="rounded-full w-10 object-cover">
                     @endif
                 </div>
                 <i class="fa-solid fa-chevron-down text-xs"></i>

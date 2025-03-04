@@ -150,6 +150,7 @@ class PeminjamController extends Controller
             'bukus.cover',
             'bukus.judul',
             'bukus.penulis',
+            'bukus.stok',
             DB::raw("GROUP_CONCAT(kategoris.kategori SEPARATOR ', ') as kategori")
         )
         ->groupBy('bukus.id', 'bukus.judul')
