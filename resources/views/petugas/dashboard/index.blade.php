@@ -8,25 +8,25 @@
                     <span>Data Buku</span>
                 </div>
                 <div class="flex items-center justify-center">
-                    <span class="text-xl">{{ $buku->count() }}</span>
+                    <span class="text-xl font-bold">{{ $buku->count() }}</span>
                 </div>
             </a>
             <a href="{{ route('petugas.kategori.index') }}" class="bg-white border-r-2 grid gap-2 items-end border-yellow-500 rounded shadow p-4">
                 <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-book text-blue-900"></i>
+                    <i class="fa-solid fa-tags text-blue-900"></i>
                     <span>Data Kategori</span>
                 </div>
                 <div class="flex items-center justify-center">
-                    <span class="text-xl">22</span>
+                    <span class="text-xl font-bold">22</span>
                 </div>
             </a>
             <a href="{{ route('petugas.peminjaman.index') }}" class="bg-white border-r-2 grid gap-2 items-end border-green-600 rounded shadow p-4">
                 <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-hand-holding-heart text-blue-900"></i>
+                    <i class="fa-solid fa-handshake text-blue-900"></i>
                     <span>Data Peminjaman</span>
                 </div>
                 <div class="flex items-center justify-center">
-                    <span class="text-xl">{{ $peminjaman->count() }}</span>
+                    <span class="text-xl font-bold">{{ $peminjaman->count() }}</span>
                 </div>
             </a>
         </div>

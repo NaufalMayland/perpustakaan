@@ -63,6 +63,10 @@ Route::prefix('perpustakaan')->group(function () {
     });
 
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {
+        Route::prefix('profil')->group(function () {
+            Route::get('/', [PetugasController::class, 'profil'])->name('petugas.profil.index');
+        });
+
         Route::prefix('dashboard')->group(function () {
             Route::get('/', [PetugasController::class, 'dashboard'])->name('petugas.dashboard.index');
         });

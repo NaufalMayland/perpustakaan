@@ -16,6 +16,19 @@ use Illuminate\Support\Facades\DB;
 
 class PetugasController extends Controller
 {
+    public function profil()
+    {
+        $user = Auth::user();
+        $petugas = Petugas::where('email', $user->email)->first();
+        $petugas->alamat = json_decode($petugas->alamat, true);
+
+        return view('petugas.profil.index', [
+            'title' => "Profil",
+            'user' => $user,
+            'petugas' => $petugas,
+        ]);    
+    }
+
     public function dashboard() {
         $buku = Buku::withTrashed()->get();
         $peminjaman = Peminjaman::withTrashed()->get();
