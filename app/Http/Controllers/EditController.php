@@ -146,6 +146,16 @@ class EditController extends Controller
         
     }
 
+    public function editProfilPetugas($id)
+    {
+        $petugas = Petugas::findOrFail($id);
+
+        return view('petugas.profil.editProfil', [
+            'title' => "Edit Profil",
+            'petugas' => $petugas
+        ]);
+    }
+
     public function editProfilPeminjam($id)
     {
         $peminjam = Peminjam::findOrFail($id);
@@ -154,6 +164,38 @@ class EditController extends Controller
             'title' => "Edit Profil",
             'peminjam' => $peminjam
         ]);
+    }
+    
+    public function editProfilPetugasAction(Request $request, $id)
+    {
+        $petugas = petugas::findOrFail($id);
+
+        if ($request->has('cropped_image') && str_contains($request->cropped_image, ',')) {
+            $files = glob(storage_path("app/public/fotoProfil/foto_{$petugas->id}_*"));
+        
+            foreach ($files as $file) {
+                unlink($file);
+            }
+        
+            $imageData = $request->input('cropped_image');
+            $imageParts = explode(',', $imageData);
+            if (count($imageParts) > 1) {
+                $image = str_replace(' ', '+', $imageParts[1]);
+                $imageName = 'foto_' . 'petugas_' . $petugas->id . '_' . time() . '.png';
+        
+                $path = 'fotoProfil/' . $imageName;
+        
+                Storage::disk('public')->put($path, base64_decode($image));
+        
+                $petugas->foto = $path; 
+            }
+        }
+        
+        $petugas->telepon = $request->telepon;
+        $petugas->alamat = $request->wilayah;
+        $petugas->save();
+    
+        return redirect()->route('petugas.profil.index');
     }
 
     public function editProfilPeminjamAction(Request $request, $id)
@@ -171,7 +213,7 @@ class EditController extends Controller
             $imageParts = explode(',', $imageData);
             if (count($imageParts) > 1) {
                 $image = str_replace(' ', '+', $imageParts[1]);
-                $imageName = 'foto_' . $peminjam->id . '_' . time() . '.png';
+                $imageName = 'foto_' . 'peminjam_' . $peminjam->id . '_' . time() . '.png';
         
                 $path = 'fotoProfil/' . $imageName;
         

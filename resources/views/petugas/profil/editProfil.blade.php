@@ -1,13 +1,13 @@
-@extends('peminjam.layout.layout')
+@extends('petugas.layout.layout')
 @section('content')
-    <form action="{{ route('peminjam.editProfilAction', $peminjam->id) }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start" enctype="multipart/form-data">
+    <form action="{{ route('petugas.profil.editProfilAction', $petugas->id) }}" method="POST" class="bg-white rounded p-4 shadow flex flex-col lg:flex-row gap-8 items-start" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="w-full lg:w-1/4 flex justify-center">
-            @if ($peminjam->foto == null)
+            @if ($petugas->foto == null)
                 <input type="file" name="foto" id="foto" class="hidden" accept="image/*" onchange="openCropModal(event)">
                 <label for="foto" class="relative cursor-pointer group">
-                    <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="{{ $peminjam->nama }}" id="preview" class="size-60 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
+                    <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="{{ $petugas->nama }}" id="preview" class="size-52 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-100">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 113.182 3.182L7.05 19.663a4.5 4.5 0 01-1.591 1.045L3 21l.292-2.459a4.5 4.5 0 011.045-1.591L16.862 3.487z" />
@@ -18,7 +18,7 @@
             @else
                 <input type="file" name="foto" id="foto" class="hidden" accept="image/*" onchange="openCropModal(event)">
                 <label for="foto" class="relative cursor-pointer group">
-                    <img src="{{ asset('storage/' . $peminjam->foto) }}" alt="{{ $peminjam->nama }}" id="preview" class="size-60 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
+                    <img src="{{ asset('storage/' . $petugas->foto) }}" alt="{{ $petugas->nama }}" id="preview" class="size-52 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-100">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 113.182 3.182L7.05 19.663a4.5 4.5 0 01-1.591 1.045L3 21l.292-2.459a4.5 4.5 0 011.045-1.591L16.862 3.487z" />
@@ -28,14 +28,14 @@
                 <input type="hidden" name="cropped_image" id="cropped_image">
             @endif
         </div>  
-        <div class="w-full lg:w-3/4 flex flex-col gap-4  lg:text-base">
+        <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm">
             <div class="grid">
                 <label for="nama">Nama</label>
-                <input type="text" name="nama" id="nama" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->nama }}" readonly>
+                <input type="text" name="nama" id="nama" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $petugas->nama }}" readonly>
             </div>
             <div class="grid">
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->email }}" readonly>
+                <input type="text" name="email" id="email" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $petugas->email }}" readonly>
             </div>
             <div class="grid">
                 <label for="alamat">Alamat</label>
@@ -43,7 +43,7 @@
                     <input type="hidden" name="wilayah" id="wilayah">
 
                     @php
-                        $alamat = json_decode($peminjam->alamat, true);
+                        $alamat = json_decode($petugas->alamat, true);
                     @endphp
 
                     <select name="provinsi" id="provinsi" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
@@ -66,12 +66,12 @@
             </div>
             <div class="grid">
                 <label for="telepon">Telepon</label>
-                <input type="text" name="telepon" id="telepon" min="1800" max="2100" class="w-full p-2 rounded border bg-gray-100 border-gray-300" value="{{ $peminjam->telepon}}">
+                <input type="text" name="telepon" id="telepon" min="1800" max="2100" class="w-full p-2 rounded border bg-gray-100 border-gray-300" value="{{ $petugas->telepon}}">
             </div>
             
             <div class="justify-between flex w-full items-center">
                 <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                    <a href="{{ route('peminjam.profil') }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">
+                    <a href="{{ route('petugas.profil.index') }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">
                         <i class="fa-solid fa-arrow-left text-sm"></i>
                         <span>Kembali</span>
                     </a>
@@ -149,38 +149,38 @@
         }
 
         $(document).ready(function() {
-            let baseUrl = "/perpustakaan/profil";
+            let baseUrl = "/perpustakaan/petugas/profil";
 
             function updateWilayah() {
-            let provinsi = $('#provinsi').val();
-            let kabupaten = $('#kabupaten').val();
-            let kecamatan = $('#kecamatan').val();
-            let kelurahan = $('#kelurahan').val();
+                let provinsi = $('#provinsi').val();
+                let kabupaten = $('#kabupaten').val();
+                let kecamatan = $('#kecamatan').val();
+                let kelurahan = $('#kelurahan').val();
 
-            if (provinsi && kabupaten && kecamatan && kelurahan) {
-                let wilayah = {
-                    provinsi: {
-                        id: provinsi,
-                        name: $('#provinsi option:selected').text()
-                    },
-                    kabupaten: {
-                        id: kabupaten,
-                        name: $('#kabupaten option:selected').text()
-                    },
-                    kecamatan: {
-                        id: kecamatan,
-                        name: $('#kecamatan option:selected').text()
-                    },
-                    kelurahan: {
-                        id: kelurahan,
-                        name: $('#kelurahan option:selected').text()
-                    }
-                };
-                $('#wilayah').val(JSON.stringify(wilayah));
-            } else {
-                $('#wilayah').val('');
+                if (provinsi && kabupaten && kecamatan && kelurahan) {
+                    let wilayah = {
+                        provinsi: {
+                            id: provinsi,
+                            name: $('#provinsi option:selected').text()
+                        },
+                        kabupaten: {
+                            id: kabupaten,
+                            name: $('#kabupaten option:selected').text()
+                        },
+                        kecamatan: {
+                            id: kecamatan,
+                            name: $('#kecamatan option:selected').text()
+                        },
+                        kelurahan: {
+                            id: kelurahan,
+                            name: $('#kelurahan option:selected').text()
+                        }
+                    };
+                    $('#wilayah').val(JSON.stringify(wilayah));
+                } else {
+                    $('#wilayah').val('');
+                }
             }
-        }
 
 
             $.get(`${baseUrl}/provinsi`, function(data) {

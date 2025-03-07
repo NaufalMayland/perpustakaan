@@ -65,6 +65,12 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {
         Route::prefix('profil')->group(function () {
             Route::get('/', [PetugasController::class, 'profil'])->name('petugas.profil.index');
+            Route::get('/edit/{id}', [EditController::class, 'editProfilPetugas'])->name('petugas.profil.editProfil');
+            Route::put('/edit-action/{id}', [EditController::class, 'editProfilPetugasAction'])->name('petugas.profil.editProfilAction');
+            Route::get('/provinsi', [GetWilayahController::class, 'getProvinsi']);
+            Route::get('/kabupaten/{provinsiId}', [GetWilayahController::class, 'getKabupaten']);
+            Route::get('/kecamatan/{kabupatenId}', [GetWilayahController::class, 'getKecamatan']);
+            Route::get('/kelurahan/{kecamatanId}', [GetWilayahController::class, 'getKelurahan']);
         });
 
         Route::prefix('dashboard')->group(function () {
