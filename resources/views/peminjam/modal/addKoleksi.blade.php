@@ -11,9 +11,9 @@
                     <div class="w-full lg:w-1/3 ">
                         <div class="w-full h-full flex justify-center items-center">
                             @if (Str::startsWith($buku->buku->cover, 'http'))
-                            <img src="{{ $buku->buku->cover }}" class="w-[80%] flex items-center rounded bg-cover" alt="{{ $buku->buku->judul }}">
+                                <img src="{{ $buku->buku->cover }}" class="w-40 flex items-center rounded bg-cover" alt="{{ $buku->buku->judul }}">
                             @else
-                            <img src="{{ asset('storage/' . $buku->buku->cover) }}" class="w-[80%] flex items-center rounded bg-cover" alt="{{ $buku->buku->judul }}">
+                                <img src="{{ asset('storage/' . $buku->buku->cover) }}" class="w-40 flex items-center rounded bg-cover" alt="{{ $buku->buku->judul }}">
                             @endif
                         </div>
                     </div>

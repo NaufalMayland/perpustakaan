@@ -93,7 +93,7 @@
             text: 'Anda yakin untuk logout?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#2563eb',
+            confirmButtonColor: '#1E3A8A',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes'
         }).then((result) => {

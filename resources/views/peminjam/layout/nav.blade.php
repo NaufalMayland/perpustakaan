@@ -1,20 +1,23 @@
-<nav class="bg-white shadow py-2 px-6 flex justify-between items-center sticky top-0">
-    <div class="flex items-center justify-start gap-4">
-        <div class="flex items-center gap-2">
-            <a href="{{ route('peminjam.index') }}" class="font-bold text-lg text-blue-900">
-                <i class="fa-solid fa-book-open-reader"></i>
-                <span>MyLibrary</span>
-            </a>
-        </div>
+<nav class="bg-white shadow py-2 px-6 flex items-center justify-between sticky top-0">
+    <div class="flex items-center gap-4">
+        <a href="{{ route('peminjam.index') }}" class="font-bold text-lg text-blue-900 flex items-center gap-2">
+            <i class="fa-solid fa-book-open-reader"></i>
+            <span>MyLibrary</span>
+        </a>
     </div>
-    <form class="flex justify-center items-center border rounded-full" action="{{ route('peminjam.searchBuku') }}" method="GET">
-        @csrf
-        <input type="text" name="search" id="search" class="rounded-full px-4 py-2 focus:outline-none" value="{{ old('search') }}" placeholder="Search..." autocomplete="off">
-        <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white px-4 py-2 rounded-r-full cursor-pointer">
-            <i class="fa-solid fa-magnifying-glass text-white"></i>
-        </button>
-    </form>
-    <div class="flex gap-6 justify-end items-center">
+    <div class="hidden md:flex flex-1 justify-center">
+        <form class="flex items-center border rounded-full" action="{{ route('peminjam.searchBuku') }}" method="GET">
+            @csrf
+            <input type="text" name="search" id="search" class="rounded-full px-4 py-2 focus:outline-none" value="{{ old('search') }}" placeholder="Search..." autocomplete="off">
+            <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white px-4 py-2 rounded-r-full cursor-pointer">
+                <i class="fa-solid fa-magnifying-glass text-white"></i>
+            </button>
+        </form>
+    </div>
+    <button id="mobileMenuBtn" class="md:hidden text-blue-900">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div id="mobileMenu" class="hidden md:flex flex-col md:flex-row gap-6 justify-end items-center md:relative absolute top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow md:shadow-none p-4 md:p-0">
         <div class="relative">
             <button id="genreBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
                 <span>Genre</span>
@@ -28,37 +31,16 @@
                 </div>
             </div>
         </div>
-        <div class="flex items-center hover:text-blue-950 gap-1">
+        <div class="">
             <a href="{{ route('peminjam.peminjamanBuku') }}" class="hover:text-blue-950 @if(Route::is('peminjam.peminjamanBuku')) text-blue-950 @endif">Peminjaman</a>
-            @if ($countPeminjaman == 0) 
-                <div class="">
-                    <span></span>
-                </div>
-            @else
-                <div class="bg-blue-900 text-white rounded-full p-2 text-xs w-4 h-4 flex items-center justify-center">
-                    <span>{{ $countPeminjaman }}</span>
-                </div>
-            @endif
         </div>
-        <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center hover:text-blue-950 gap-1 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">
-            <div class="">
-                <span class="">Koleksi</span>
-            </div>
-            @if ($countKoleksi > 0) 
-                <div class="bg-blue-900 text-white rounded-full p-2 text-xs w-4 h-4 flex items-center justify-center">
-                    <span>{{ $countKoleksi }}</span>
-                </div>
-            @endif
-        </a>
+        <div class="">
+            <a href="{{ route('peminjam.koleksiBuku') }}" class="hover:text-blue-950 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">Koleksi</a>
+        </div>
         <div class="relative">
             <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
-                <div class="">
-                    @if ($peminjam->foto == null)
-                        <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="" class="rounded-full w-10">
-                    @else
-                        <img src="{{ asset('storage/' . $peminjam->foto ) }}" alt="{{ $peminjam->nama }}" class="rounded-full w-10 object-cover">
-                    @endif
-                </div>
+                <img src="{{ $peminjam->foto ? asset('storage/' . $peminjam->foto) : 'https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg' }}" alt="{{ $peminjam->nama }}" class="rounded-full w-10 object-cover hidden md:block">
+                <span class="block md:hidden">Profil</span>
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>
             <div id="profilDropdown" class="absolute right-0 mt-2 w-40 bg-white border shadow-lg rounded hidden">
@@ -73,6 +55,10 @@
 </nav>
 
 <script>
+    document.getElementById('mobileMenuBtn').addEventListener('click', function () {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+
     function setupDropdown(buttonId, dropdownId) {
         const button = document.getElementById(buttonId);
         const dropdown = document.getElementById(dropdownId);
@@ -98,7 +84,7 @@
             text: "Anda yakin untuk logout?",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#2563eb',
+            confirmButtonColor: '#1E3A8A',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes'
         }).then((result) => {
