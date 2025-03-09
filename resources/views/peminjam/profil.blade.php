@@ -1,6 +1,6 @@
 @extends('peminjam.layout.layout')
 @section('content')
-    <div class="flex flex-col lg:flex-row gap-8 items-start">
+    <div class="flex flex-col lg:flex-row gap-8 items-start bg-white rounded shadow p-4">
         <div class="w-full lg:w-1/4 flex justify-center">
             @if ($peminjam->foto == null) 
                 <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="{{ $peminjam->nama }}" class="size-60 rounded-full object-cover">
@@ -28,7 +28,7 @@
             </div>
             <div class="grid">
                 <label for="alamat">Alamat</label>
-                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="@if ($peminjam->alamat == !null ){{ $peminjam->alamat['kelurahan']['name'] }}, {{ $peminjam->alamat['kecamatan']['name'] }}, {{ $peminjam->alamat['kabupaten']['name'] }}, {{ $peminjam->alamat['provinsi']['name'] }}@endif" readonly>
+                <input type="text" name="alamat" id="alamat" class="w-full p-2 rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="@if ($peminjam->alamat == !null ){{ $peminjam->alamat['kelurahan']['name'] }}, {{ $peminjam->alamat['kecamatan']['name'] }}, {{ $peminjam->alamat['kabupaten']['name'] }}, {{ $peminjam->alamat['provinsi']['name'] }}@else - @endif" readonly>
             </div>
             <div class="grid">
                 <label for="telepon">Telepon</label>

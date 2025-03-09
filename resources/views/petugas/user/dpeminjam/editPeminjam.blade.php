@@ -22,7 +22,30 @@
                     </div>
                     <div class="grid">
                         <label class="mb-1" for="alamat">Alamat</label>
-                        <input type="text" name="alamat" id="alamat" class="w-full focus:outline-none p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="@if($peminjam->alamat == null) - @else{{ $peminjam->alamat['kelurahan']['name'] ?? '-' }}, {{ $peminjam->alamat['kecamatan']['name'] ?? '-' }}, {{ $peminjam->alamat['kabupaten']['name'] ?? '-' }}, {{ $peminjam->alamat['provinsi']['name'] ?? '-' }} @endif" readonly>
+                        <div class="grid gap-4">
+                            <input type="hidden" name="wilayah" id="wilayah">
+        
+                            @php
+                                $alamat = json_decode($peminjam->alamat, true);
+                            @endphp
+        
+                            <select name="provinsi" id="provinsi" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
+                                <option value="" disabled hidden>Pilih provinsi</option>
+                                <option value="{{ $alamat['provinsi']['id'] ?? '' }}" selected>{{ $alamat['provinsi']['name'] ?? 'Pilih provinsi' }}</option>
+                            </select>
+                            <select name="kabupaten" id="kabupaten" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
+                                <option value="" disabled hidden>Pilih kabupaten</option>
+                                <option value="{{ $alamat['kabupaten']['id'] ?? '' }}" selected>{{ $alamat['kabupaten']['name'] ?? 'Pilih kabupaten' }}</option>
+                            </select>
+                            <select name="kecamatan" id="kecamatan" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
+                                <option value="" disabled hidden>Pilih kecamatan</option>
+                                <option value="{{ $alamat['kecamatan']['id'] ?? '' }}" selected>{{ $alamat['kecamatan']['name'] ?? 'Pilih kecamatan' }}</option>
+                            </select>
+                            <select name="kelurahan" id="kelurahan" class="w-full p-2 rounded border bg-gray-100 border-gray-300">
+                                <option value="" disabled hidden>Pilih kelurahan</option>
+                                <option value="{{ $alamat['kelurahan']['id'] ?? '' }}" selected>{{ $alamat['kelurahan']['name'] ?? 'Pilih kelurahan' }}</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="grid">
                         <label class="mb-1" for="email">Telepon</label>
@@ -32,15 +55,14 @@
                 
                 <div class="justify-between flex w-full items-center">
                     <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                        <a href="{{ route('petugas.user.dpeminjam.index') }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">
+                        <a href="{{ route('petugas.user.dpeminjam.detailPeminjam', $peminjam->id) }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">
                             <i class="fa-solid fa-arrow-left text-sm"></i>
                             <span>Kembali</span>
                         </a>
                     </div>
                     <div class="flex flex-row mt-2 gap-4 items-center text-sm">
-                        <a href="{{ route('petugas.user.dpeminjam.editPeminjam', $peminjam->id) }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">
-                            <i class="fa-solid fa-pencil text-sm"></i>
-                            <span>Edit</span>
+                        <a href="" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-4 rounded-full">
+                            <span>Simpan</span>
                         </a>
                     </div>
                 </div>

@@ -126,9 +126,13 @@ class EditController extends Controller
         return redirect()->route('petugas.listKategori.index');
     }
 
-    public function editPeminjam()
+    public function editPeminjam($id)
     {
-        
+        $peminjam = Peminjam::findOrFail($id);
+        return view('petugas.user.dpeminjam.editPeminjam', [
+            'title' => "Edit",
+            'peminjam' => $peminjam 
+        ]);
     }
 
     public function editPeminjamAction()
@@ -136,9 +140,9 @@ class EditController extends Controller
         
     }
 
-    public function editPeminjaman()
+    public function editPeminjaman($id)
     {
-        
+
     }
 
     public function editPeminjamanAction()
@@ -238,5 +242,10 @@ class EditController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function ubahPasswordPeminjam(Request $request)
+    {
+        
     }
 }

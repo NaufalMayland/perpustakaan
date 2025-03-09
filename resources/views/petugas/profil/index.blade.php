@@ -28,7 +28,7 @@
             </div>
             <div class="grid">
                 <label for="alamat" class="text-sm">Alamat</label>
-                <input type="text" name="alamat" id="alamat" class="w-full p-2 text-sm rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="@if ($petugas->alamat == !null ){{ $petugas->alamat['kelurahan']['name'] }}, {{ $petugas->alamat['kecamatan']['name'] }}, {{ $petugas->alamat['kabupaten']['name'] }}, {{ $petugas->alamat['provinsi']['name'] }}@endif" readonly>
+                <input type="text" name="alamat" id="alamat" class="w-full p-2 text-sm rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="@if ($petugas->alamat == !null ){{ $petugas->alamat['kelurahan']['name'] }}, {{ $petugas->alamat['kecamatan']['name'] }}, {{ $petugas->alamat['kabupaten']['name'] }}, {{ $petugas->alamat['provinsi']['name'] }}@else - @endif" readonly>
             </div>
             <div class="grid">
                 <label for="telepon" class="text-sm">Telepon</label>

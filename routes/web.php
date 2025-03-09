@@ -138,6 +138,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'dpeminjam'])->name('petugas.user.dpeminjam.index');
             Route::get('/tambah', [InputController::class, 'addPeminjam'])->name('petugas.user.dpeminjam.addPeminjam');
             Route::post('/tambah-action', [InputController::class, 'addPeminjamAction'])->name('petugas.user.dpeminjam.addPeminjamAction');
+            Route::get('/edit/{id}', [EditController::class, 'editPeminjam'])->name('petugas.user.dpeminjam.editPeminjam');
             Route::get('/detail/{id}', [PetugasController::class, 'detailPeminjam'])->name('petugas.user.dpeminjam.detailPeminjam');
             Route::delete('/delete/{id}', [DeleteController::class, 'deletePeminjam'])->name('petugas.user.dpeminjam.deletePeminjam');
             Route::get('/trash', [DeleteController::class, 'trashPeminjam'])->name('petugas.user.dpeminjam.trashPeminjam');

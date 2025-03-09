@@ -1,4 +1,4 @@
-<nav class="bg-white shadow py-2 px-6 flex items-center justify-between sticky top-0">
+<nav class="bg-white shadow py-2 px-6 flex items-center justify-between sticky top-0 z-[999]">
     <div class="flex items-center gap-4">
         <a href="{{ route('peminjam.index') }}" class="font-bold text-lg text-blue-900 flex items-center gap-2">
             <i class="fa-solid fa-book-open-reader"></i>
@@ -39,7 +39,7 @@
         </div>
         <div class="relative">
             <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
-                <img src="{{ $peminjam->foto ? asset('storage/' . $peminjam->foto) : 'https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg' }}" alt="{{ $peminjam->nama }}" class="rounded-full w-10 object-cover hidden md:block">
+                <img src="{{ $peminjam->foto ? asset('storage/' . $peminjam->foto) : 'https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg' }}" alt="{{ $peminjam->nama }}" class="rounded-full w-8 object-cover hidden md:block">
                 <span class="block md:hidden">Profil</span>
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>

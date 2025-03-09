@@ -1,6 +1,6 @@
 @extends('peminjam.layout.layout')
 @section('content')
-    <form action="{{ route('peminjam.editProfilAction', $peminjam->id) }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start" enctype="multipart/form-data">
+    <form action="{{ route('peminjam.editProfilAction', $peminjam->id) }}" method="POST" class="flex flex-col lg:flex-row gap-8 items-start bg-white rounded shadow p-4" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="w-full lg:w-1/4 flex justify-center">
@@ -94,6 +94,10 @@
             </div>
         </div>
     </div>
+
+    <form action="" class="bg-white rounded shadow p-4 mt-4">
+        lorem
+    </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">

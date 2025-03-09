@@ -12,10 +12,6 @@
                     <i class="fa-solid fa-file-export"></i> 
                     <span class="hidden lg:block">Export</span>
                 </a>
-                <a href="{{ route('petugas.user.dpeminjam.importPeminjam') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-import"></i> 
-                    <span class="hidden lg:block">Import</span>
-                </a>
                 <a href="{{ route('petugas.user.dpeminjam.addPeminjam') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-plus"></i>
                     <span class="hidden lg:block">Tambah</span>
@@ -46,7 +42,13 @@
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
                             <td class="p-2">{{ $item->nama }}</td>
                             <td class="p-2">{{ $item->email }}</td>
-                            <td class="p-2">{{ $alamat['kelurahan']['name'] ?? '-' }}, {{ $alamat['kecamatan']['name'] ?? '-' }}, {{ $alamat['kabupaten']['name'] ?? '-' }}, {{ $alamat['provinsi']['name'] ?? '-' }}</td>
+                            <td class="p-2">
+                                @if ($item->alamat == null)
+                                    -
+                                @else
+                                    {{ $alamat['kelurahan']['name'] }}, {{ $alamat['kecamatan']['name'] }}, {{ $alamat['kabupaten']['name'] }}, {{ $alamat['provinsi']['name'] }}
+                                @endif
+                            </td>
                             <td class="p-2">{{ $item->telepon ?? "-" }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
