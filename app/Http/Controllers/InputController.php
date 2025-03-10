@@ -15,6 +15,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
     class InputController extends Controller
 {
@@ -116,6 +117,7 @@ use Illuminate\Support\Facades\Hash;
 
         Buku::insert([
             'judul' => $request->judul,
+            'slug' => Str::slug($request->judul),
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,

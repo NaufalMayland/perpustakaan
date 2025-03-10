@@ -40,21 +40,24 @@
                     <div class="flex items-center gap-2 text-sm">
                         <label class="mb-1">Cover Buku</label>
                         <div class="flex gap-4">
-                            <label>
-                                <input type="radio" name="cover_type" value="file" checked onclick="toggleCoverInput()"> File
+                            <label class="flex items-center gap-1">
+                                <input type="radio" name="cover_type" value="file" onclick="toggleCoverInput()"  @if(!Str::startsWith($buku->cover, 'http')) checked @endif> 
+                                <span>File</span>
+                                @if (!Str::startsWith($buku->cover, 'http'))
+                                    <input type="hidden" name="cover_url" value="{{ $buku->cover }}">
+                                @endif
                             </label>
-                            <label>
-                                <input type="radio" name="cover_type" value="url" onclick="toggleCoverInput()"> URL
+                            <label class="flex items-center gap-1">
+                                <input type="radio" name="cover_type" value="url" onclick="toggleCoverInput()" @if(Str::startsWith($buku->cover, 'http')) checked @endif> 
+                                <span>URL</span>
                             </label>
                         </div>
                     </div>
-        
-                    <div class="text-sm" id="cover_file_input">
+                    <div id="cover_file_input" class="{{ Str::startsWith($buku->cover, 'http') ? 'hidden' : '' }}">
                         <input type="file" name="cover_file" id="cover_file" class="w-full rounded border bg-gray-100 border-gray-300 text-sm cursor-pointer file:cursor-pointer file:mr-2 file:py-2 file:text-sm file:rounded-l file:bg-blue-900 file:text-white file:border-none">
                     </div>
-                    
-                    <div class="text-sm hidden" id="cover_url_input">
-                        <input type="text" name="cover_url" id="cover_url" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukkan URL" autocomplete="off">
+                    <div id="cover_url_input" class="{{ !Str::startsWith($buku->cover, 'http') ? 'hidden' : '' }}">
+                        <input type="text" name="cover_url" id="cover_url" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" placeholder="Masukkan URL" value="{{ Str::startsWith($buku->cover, 'http') ? $buku->cover : '' }}" autocomplete="off">
                     </div>
                 </div>
                 <div class="grid text-sm">

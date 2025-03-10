@@ -94,5 +94,13 @@
                 autoWidth: false,
             });
         });
+
+        function deleteBuku() {
+            Swal.fire({
+            icon: "success",
+            title: "Delete Success",
+            showConfirmButton: false,
+            });
+        }
     </script>
 @endsection
