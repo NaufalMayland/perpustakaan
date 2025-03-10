@@ -69,10 +69,10 @@ class PetugasController extends Controller
         ]);
     }
 
-    public function detailBuku($id)
+    public function detailBuku($slug)
     {
-        $buku = Buku::findOrFail($id);
-
+        $buku = Buku::where('slug', $slug)->first();
+        
         return view('petugas.buku.detailBuku', [
             'title' => "Detail",
             'buku' => $buku

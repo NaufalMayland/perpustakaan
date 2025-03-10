@@ -32,7 +32,7 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('home')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'index'])->name('peminjam.index');
         Route::get('/search', [PeminjamController::class, 'searchBuku'])->name('peminjam.searchBuku');
-        Route::get('/kategori/{id}', [PeminjamController::class, 'searchByKategori'])->name('peminjam.searchByKategori');
+        Route::get('/kategori/{slug}', [PeminjamController::class, 'searchByKategori'])->name('peminjam.searchByKategori');
     });
 
     Route::prefix('profil')->middleware('role:peminjam')->group(function () {
@@ -46,7 +46,7 @@ Route::prefix('perpustakaan')->group(function () {
     });
 
     Route::prefix('buku')->middleware('role:peminjam')->group(function () {
-        Route::get('/{id}', [PeminjamController::class, 'detailBuku'])->name('peminjam.detailBuku');
+        Route::get('/{slug}', [PeminjamController::class, 'detailBuku'])->name('peminjam.detailBuku');
         Route::post('ulasan-action/{id}', [InputController::class, 'addUlasanAction'])->name('peminjam.addUlasanAction');
         Route::delete('/destroy/{id}', [DeleteController::class, 'destroyUlasan'])->name('peminjam.destroyUlasan');
     });
@@ -95,8 +95,8 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'buku'])->name('petugas.buku.index');
             Route::get('/tambah', [InputController::class, 'addBuku'])->name('petugas.buku.addBuku');
             Route::post('/tambah-action', [InputController::class, 'addBukuAction'])->name('petugas.buku.addBukuAction');
-            Route::get('/detail/{id}', [PetugasController::class, 'detailBuku'])->name('petugas.buku.detailBuku');
-            Route::get('/edit/{id}', [EditController::class, 'editBuku'])->name('petugas.buku.editBuku');
+            Route::get('/detail/{slug}', [PetugasController::class, 'detailBuku'])->name('petugas.buku.detailBuku');
+            Route::get('/edit/{slug}', [EditController::class, 'editBuku'])->name('petugas.buku.editBuku');
             Route::put('/edit-action/{id}', [EditController::class, 'editBukuAction'])->name('petugas.buku.editBukuAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteBuku'])->name('petugas.buku.deleteBuku');
             Route::get('/trash', [DeleteController::class, 'trashBuku'])->name('petugas.buku.trashBuku');
@@ -110,7 +110,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::get('/', [PetugasController::class, 'kategori'])->name('petugas.kategori.index');
             Route::get('/tambah', [InputController::class, 'addKategori'])->name('petugas.kategori.addKategori');
             Route::post('/tambah-action', [InputController::class, 'addKategoriAction'])->name('petugas.kategori.addKategoriAction');
-            Route::get('/edit/{id}', [EditController::class, 'editKategori'])->name('petugas.kategori.editKategori');
+            Route::get('/edit/{slug}', [EditController::class, 'editKategori'])->name('petugas.kategori.editKategori');
             Route::put('/edit-action/{id}', [EditController::class, 'editKategoriAction'])->name('petugas.kategori.editKategoriAction');
             Route::delete('/delete/{id}', [DeleteController::class, 'deleteKategori'])->name('petugas.kategori.deleteKategori');
             Route::get('/trash', [DeleteController::class, 'trashKategori'])->name('petugas.kategori.trashKategori');

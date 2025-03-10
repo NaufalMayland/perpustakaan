@@ -41,7 +41,7 @@
                             <td class="p-3 capitalize">{{ $item->kategori }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="{{ route('petugas.kategori.editKategori', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
+                                    <a href="{{ route('petugas.kategori.editKategori', $item->slug) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-pencil text-sm"></i>
                                     </a>
                                     <form id="deleteKategori" action="{{ route('petugas.kategori.deleteKategori', $item->id) }}" method="POST" class="">

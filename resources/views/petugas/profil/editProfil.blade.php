@@ -4,29 +4,16 @@
         @csrf
         @method('PUT')
         <div class="w-full lg:w-1/4 flex justify-center">
-            @if ($petugas->foto == null)
-                <input type="file" name="foto" id="foto" class="hidden" accept="image/*" onchange="openCropModal(event)">
-                <label for="foto" class="relative cursor-pointer group">
-                    <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="{{ $petugas->nama }}" id="preview" class="size-52 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 113.182 3.182L7.05 19.663a4.5 4.5 0 01-1.591 1.045L3 21l.292-2.459a4.5 4.5 0 011.045-1.591L16.862 3.487z" />
-                        </svg>
-                    </div>
-                </label>
-                <input type="hidden" name="cropped_image" id="cropped_image">
-            @else
-                <input type="file" name="foto" id="foto" class="hidden" accept="image/*" onchange="openCropModal(event)">
-                <label for="foto" class="relative cursor-pointer group">
-                    <img src="{{ asset('storage/' . $petugas->foto) }}" alt="{{ $petugas->nama }}" id="preview" class="size-52 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 113.182 3.182L7.05 19.663a4.5 4.5 0 01-1.591 1.045L3 21l.292-2.459a4.5 4.5 0 011.045-1.591L16.862 3.487z" />
-                        </svg>
-                    </div>
-                </label>
-                <input type="hidden" name="cropped_image" id="cropped_image">
-            @endif
+            <input type="file" name="foto" id="foto" class="hidden" accept="image/*" onchange="openCropModal(event)">
+            <label for="foto" class="relative cursor-pointer group">
+                <img src="{{ $petugas->foto ? asset('storage/' . $petugas->foto) : 'https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg' }}" alt="{{ $petugas->nama }}" id="preview" class="size-52 rounded-full object-cover transition duration-100 ease-in-out group-hover:opacity-50">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 113.182 3.182L7.05 19.663a4.5 4.5 0 01-1.591 1.045L3 21l.292-2.459a4.5 4.5 0 011.045-1.591L16.862 3.487z" />
+                    </svg>
+                </div>
+            </label>
+            <input type="hidden" name="cropped_image" id="cropped_image">
         </div>  
         <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm">
             <div class="grid">

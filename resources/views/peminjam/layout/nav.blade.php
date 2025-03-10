@@ -1,4 +1,4 @@
-<nav class="bg-white shadow py-2 px-6 flex items-center justify-between sticky top-0 z-[999]">
+<nav class="bg-white shadow py-2 px-6 flex items-center justify-between sticky top-0 z-10">
     <div class="flex items-center gap-4">
         <a href="{{ route('peminjam.index') }}" class="font-bold text-lg text-blue-900 flex items-center gap-2">
             <i class="fa-solid fa-book-open-reader"></i>
@@ -26,17 +26,39 @@
             <div id="genreDropdown" class="absolute right-0 mt-2 w-96 bg-white border shadow-lg rounded hidden gap-2 px-4 py-2">
                 <div class="grid grid-cols-3 gap-2">
                     @foreach ($kategori as $item)
-                        <a href="{{ route('peminjam.searchByKategori', $item->id) }}" class="text-black capitalize hover:underline">{{ $item->kategori }}</a>
+                        <a href="{{ route('peminjam.searchByKategori', $item->slug) }}" class="text-black capitalize hover:underline">{{ $item->kategori }}</a>
                     @endforeach
                 </div>
             </div>
         </div>
-        <div class="">
-            <a href="{{ route('peminjam.peminjamanBuku') }}" class="hover:text-blue-950 @if(Route::is('peminjam.peminjamanBuku')) text-blue-950 @endif">Peminjaman</a>
-        </div>
-        <div class="">
-            <a href="{{ route('peminjam.koleksiBuku') }}" class="hover:text-blue-950 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">Koleksi</a>
-        </div>
+        <a href="{{ route('peminjam.peminjamanBuku') }}" class="flex items-center gap-1 hover:text-blue-950 @if(Route::is('peminjam.peminjamanBuku')) text-blue-950 @endif">
+            <div class="">
+                <span>Peminjaman</span>
+            </div>
+            @if ($countPeminjaman == 0)            
+                <div class="">
+                    <span></span>
+                </div>
+            @else
+                <div class="bg-blue-900 text-white rounded-full p-2 text-xs w-4 h-4 flex items-center justify-center">
+                    <span>{{ $countPeminjaman }}</span>
+                </div>
+            @endif
+        </a>
+        <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center gap-1 hover:text-blue-950 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">
+            <div class="">
+                <span>Koleksi</span>
+            </div>
+            @if ($countKoleksi == 0)            
+                <div class="">
+                    <span></span>
+                </div>
+            @else
+                <div class="bg-blue-900 text-white rounded-full p-2 text-xs w-4 h-4 flex items-center justify-center">
+                    <span>{{ $countKoleksi }}</span>
+                </div>
+            @endif
+        </a>
         <div class="relative">
             <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
                 <img src="{{ $peminjam->foto ? asset('storage/' . $peminjam->foto) : 'https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg' }}" alt="{{ $peminjam->nama }}" class="rounded-full w-8 object-cover hidden md:block">

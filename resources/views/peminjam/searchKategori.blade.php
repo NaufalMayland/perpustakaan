@@ -4,7 +4,7 @@
         <div class="flex flex-col gap-4">
             @if ($buku->isEmpty())
                 <div class="flex justify-between">
-                    <span class="capitalize flex text-left">Belumm ada buku kategori {{ $header->kategori }}</span>
+                    <span class="capitalize flex text-left">Belum ada buku kategori {{ $header->kategori }}</span>
                 </div>
             @else 
                 <div class="flex justify-between">

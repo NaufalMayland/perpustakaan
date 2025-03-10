@@ -13,6 +13,7 @@ class Kategori extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'kategori',
+        'slug',
     ];
 
     public function listKategori()

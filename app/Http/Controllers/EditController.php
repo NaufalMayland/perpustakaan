@@ -30,9 +30,9 @@ class EditController extends Controller
         
     }
 
-    public function editBuku($id)
+    public function editBuku($slug)
     {
-        $buku = Buku::findOrFail($id);
+        $buku = Buku::where('slug', $slug)->first();
 
         return view('petugas.buku.editBuku', [
             'title' => "Edit",
@@ -73,13 +73,13 @@ class EditController extends Controller
             'cover' => $imagePath,
         ]);
 
-        return redirect()->route('petugas.buku.detailBuku', $id);
+        return redirect()->route('petugas.buku.detailBuku', $buku->slug);
     }
 
 
-    public function editKategori($id)
+    public function editKategori($slug)
     {
-        $kategori = Kategori::findOrFail($id);
+        $kategori = Kategori::where('slug', $slug)->first();
 
         return view('petugas.kategori.editKategori', [
             'title' => "Edit",

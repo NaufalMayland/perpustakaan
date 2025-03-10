@@ -55,7 +55,7 @@
                             <td class="p-2">{{ $item->stok }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="{{ route('petugas.buku.detailBuku', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
+                                    <a href="{{ route('petugas.buku.detailBuku', $item->slug) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-eye text-sm"></i>
                                     </a>
                                     <form id="deleteBuku" action="{{ route('petugas.buku.deleteBuku', $item->id) }}" method="POST" class="">

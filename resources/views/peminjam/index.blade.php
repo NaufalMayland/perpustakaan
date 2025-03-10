@@ -8,7 +8,7 @@
                 </div>
                 <div class="w-full grid grid-cols-8 gap-4">
                     @foreach ($buku as $item) 
-                        <a href="{{ route('peminjam.detailBuku', $item->id) }}" class="flex flex-col">
+                        <a href="{{ route('peminjam.detailBuku', $item->slug) }}" class="flex flex-col">
                             @if (Str::startsWith($item->cover, 'http'))
                                 <img src="{{ $item->cover }}" class="w-full h-full bg-cover rounded transition-all ease-in-out" alt="{{ $item->judul }}">
                             @else
@@ -26,7 +26,7 @@
                 </div>
                 <div class="w-full grid grid-cols-8 gap-4">
                     @foreach ($dataBuku as $item) 
-                        <a href="{{ route('peminjam.detailBuku', $item->id_buku) }}" class="flex flex-col">
+                        <a href="{{ route('peminjam.detailBuku', $item->slug) }}" class="flex flex-col">
                             @if (Str::startsWith($item->cover, 'http'))
                                 <img src="{{ $item->cover }}" class="w-full h-full bg-cover rounded transition-all ease-in-out" alt="{{ $item->judul }}">
                             @else

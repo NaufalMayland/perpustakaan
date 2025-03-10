@@ -15,7 +15,7 @@
                 <div class="bg-white p-4 rounded shadow">
                     <div class="flex gap-2">
                         <div class="w-1/6">
-                            <a href="{{ route('peminjam.detailBuku', $item->id) }}" class="p-2 flex items-center">
+                            <a href="{{ route('peminjam.detailBuku', $item->slug) }}" class="p-2 flex items-center">
                                 @if (Str::startsWith($item->cover, 'http'))
                                     <img src="{{ $item->cover }}" class="w-full h-full bg-cover rounded transition-all ease-in-out" alt="{{ $item->judul }}">
                                 @else

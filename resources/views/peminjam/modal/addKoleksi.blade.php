@@ -1,8 +1,8 @@
 <button koleksi-modal-target="#koleksiModal" class="fa-solid fa-plus text-sm cursor-pointer rounded-full py-2 px-4 border border-gray-300 hover:border-blue-900 bg-white hover:bg-blue-900 flex hover:text-white items-center justify-center transition-all ease-in-out"></button>
 
-<div id="koleksiOverlay" class="fixed inset-0 bg-black bg-opacity-25 hidden min-h-screen"></div>
+<div id="koleksiOverlay" class="fixed inset-0 bg-black bg-opacity-25 hidden min-h-screen z-30"></div>
 
-<div class="z-50 inset-0 hidden fixed " id="koleksiModal">
+<div class="z-40 inset-0 hidden fixed " id="koleksiModal">
     <div class="flex items-center justify-center min-h-screen">
         <div class="bg-white flex flex-col-reverse lg:flex-row rounded w-80 lg:w-auto">
             <form id="koleksiForm" action="{{ route('peminjam.addKoleksiAction', $buku->buku->id) }}" method="POST" enctype="multipart/form-data" class="items-center grid gap-4 p-4">

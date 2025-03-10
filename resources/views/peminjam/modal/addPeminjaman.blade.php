@@ -1,8 +1,8 @@
 <button pinjam-modal-target="#pinjamModal" class="bg-blue-900 hover:bg-blue-950 text-white py-2 px-20 rounded-full">Pinjam</button>
 
-<div id="pinjamOverlay" class="fixed inset-0 bg-black bg-opacity-25 hidden min-h-screen"></div>
+<div id="pinjamOverlay" class="fixed inset-0 bg-black bg-opacity-25 hidden min-h-screen z-30"></div>
 
-<div class="z-50 inset-0 hidden fixed " id="pinjamModal">
+<div class="z-40 inset-0 hidden fixed " id="pinjamModal">
     <div class="flex items-center justify-center min-h-screen">
         <div class="bg-white flex flex-col-reverse lg:flex-row rounded w-80 lg:w-auto">
             <form id="pinjamForm" action="{{ route('peminjam.addPeminjamanAction', $buku->buku->id || $item->id) }}" method="POST" enctype="multipart/form-data" class="items-center grid gap-4 p-4">

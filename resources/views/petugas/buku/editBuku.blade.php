@@ -63,13 +63,13 @@
                 </div>
                 <div class="justify-between flex w-full items-center mt-2">
                     <div class="flex">
-                        <a href="{{ route('petugas.buku.detailBuku', $buku->id) }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-3 rounded text-sm">
+                        <a href="{{ route('petugas.buku.detailBuku', $buku->slug) }}" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-3 rounded-full text-sm">
                             <i class="fa-solid fa-arrow-left text-sm"></i>
                             <span>Kembali</span>
                         </a>
                     </div>      
                     <div class="flex">
-                        <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-3 rounded text-sm">Simpan</button>
+                        <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white flex w-full items-center gap-2 py-2 px-3 rounded-full text-sm">Simpan</button>
                     </div>      
                 </div>
             </div>

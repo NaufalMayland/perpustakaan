@@ -13,6 +13,7 @@ class Buku extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'judul',
+        'slug',
         'penulis',
         'penerbit',
         'deskripsi',

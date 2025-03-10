@@ -5,7 +5,6 @@
                 <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="Profil" class="w-20 rounded-full">
             @else 
                 <img src="{{ asset('storage/' . $sesPetugas->foto ) }}" alt="Profil" class="w-20 rounded-full object-cover">
-            
             @endif
         </a>
         <div class="flex flex-col">
