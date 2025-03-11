@@ -119,6 +119,10 @@ class AuthController extends Controller
             return redirect()->back()->withErrors('Pengguna tidak ditemukan')->withInput();
         }
 
+        $request->validate([
+            'password' => 'min:6'
+        ]);
+
         if($request->konfirmasiPw !== $request->password){
             return redirect()->back()->withErrors('Konfirmasi password salah')->withInput();
         }
@@ -128,5 +132,25 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('auth.login');
+    }
+
+    public function ubahPasswordPeminjam(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'min:6'
+        ]);
+
+        $peminjam = Peminjam::findOrFail($id);
+        $user = User::where('email', $peminjam->email)->first();    
+
+        if($request->konfirmasiPassword !== $request->password){
+            return redirect()->back()->with('errors', 'Konfirmasi password salah');
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back();
     }
 }

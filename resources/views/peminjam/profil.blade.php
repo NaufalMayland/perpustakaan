@@ -8,13 +8,11 @@
                 <img src="{{ asset('storage/' . $peminjam->foto ) }}" alt="{{ $peminjam->nama }}" class="size-60 rounded-full object-cover">
             @endif
         </div>
-        <div class="w-full lg:w-3/4 flex flex-col gap-4  lg:text-base">
-            @if ($errors->any())
-                <div class="text-white bg-red-500 text-sm py-3 px-3 rounded text-left w-full">
+        <div class="w-full lg:w-3/4 flex flex-col gap-4 lg:text-base">
+            @if (session('error'))
+                <div class="text-white bg-red-500 text-sm p-3 rounded text-left w-full">
                     <ul>
-                        @foreach ($errors->all() as $item)
-                            <li>{{ $item }}</li>
-                        @endforeach
+                        <li>{{ session('error') }}</li>
                     </ul>
                 </div>
             @endif
@@ -51,4 +49,51 @@
             </div>
         </div>
     </div>
+    
+    <form action="{{ route('peminjam.ubahPasswordPeminjam', $peminjam->id) }}" method="POST" class="bg-white rounded shadow p-4 mt-4 gap-4 grid">
+        @csrf
+        @if (session('errors'))
+            <div class="text-white bg-red-500 text-sm p-3 rounded text-left w-full">
+                <ul>
+                    <li>{{ session('errors') }}</li>
+                </ul>
+            </div>
+        @endif
+        <div class="grid relative">
+            <label class="text-black" for="password">Password Baru</label>
+            <input class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" type="password" name="password" id="password" autocomplete="off">
+            <span class="absolute right-3 top-1/2 cursor-pointer" onclick="toggleVisibility('password', 'eyeIconPassword')">
+                <i id="eyeIconPassword" class="fas fa-eye text-neutral-500"></i>
+            </span>
+        </div>
+        <div class="grid relative">
+            <label class="text-black" for="konfirmasiPassword">Konfirmasi Password</label>
+            <input class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" type="password" name="konfirmasiPassword" id="konfirmasiPassword" autocomplete="off">
+            <span class="absolute right-3 top-1/2 cursor-pointer" onclick="toggleVisibility('konfirmasiPassword', 'eyeIconKonfirmasi')">
+                <i id="eyeIconKonfirmasi" class="fas fa-eye text-neutral-500"></i>
+            </span>
+        </div>
+        <div class="flex justify-end text-sm">
+            <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white flex items-center gap-2 py-2 px-4 rounded-full">
+                <span>Simpan</span>
+            </butt>
+        </div>
+    </form>
+
+    <script>
+        function toggleVisibility(inputId, eyeIconId) {
+            const input = document.getElementById(inputId);
+            const eyeIcon = document.getElementById(eyeIconId);
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
 @endsection

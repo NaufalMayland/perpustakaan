@@ -37,6 +37,7 @@ Route::prefix('perpustakaan')->group(function () {
 
     Route::prefix('profil')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'profil'])->name('peminjam.profil');
+        Route::post('/ubah-password/{id}', [AuthController::class, 'ubahPasswordPeminjam'])->name('peminjam.ubahPasswordPeminjam');
         Route::get('/edit/{id}', [EditController::class, 'editProfilPeminjam'])->name('peminjam.editProfil');
         Route::put('/edit-action/{id}', [EditController::class, 'editProfilPeminjamAction'])->name('peminjam.editProfilAction');
         Route::get('/provinsi', [GetWilayahController::class, 'getProvinsi']);
@@ -58,7 +59,7 @@ Route::prefix('perpustakaan')->group(function () {
     
     Route::prefix('peminjaman')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'peminjamanBuku'])->name('peminjam.peminjamanBuku');
-        Route::delete('batal/{id}', [DeleteController::class, 'batalPeminjaman'])->name('peminjam.batalPeminjaman');
+        Route::put('/pembatalan/{id}', [EditController::class, 'editStatusPeminjaman'])->name('peminjaman.editStatusPeminjaman');
         Route::post('pinjam-buku/{id}', [InputController::class, 'addPeminjamanAction'])->name('peminjam.addPeminjamanAction');
     });
 

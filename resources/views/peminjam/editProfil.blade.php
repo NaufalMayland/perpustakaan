@@ -82,10 +82,6 @@
         </div>
     </div>
 
-    <form action="" class="bg-white rounded shadow p-4 mt-4">
-        lorem
-    </form>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
 

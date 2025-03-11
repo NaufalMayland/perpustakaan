@@ -63,8 +63,23 @@
                 <label class="mb-1" for="deskripsi">Deskripsi Buku</label>
                 <textarea name="deskripsi" id="deskripsi" class="border-gray-300 border bg-gray-100 rounded p-2" required oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';"></textarea>
             </div>
+            
+            <div class="flex flex-wrap gap-2 mt-2">
+                @foreach ($kategori as $item) 
+                <div class="flex items-center space-x-2">
+                        <input type="radio" name="kategori" id="kategori_{{ $item->id }}" value="{{ $item->id }}" class="peer" hidden>
+                        <label for="kategori_{{ $item->id }}" class="flex items-center w-auto px-4 py-1 border border-gray-300 rounded-full capitalize cursor-pointer text-sm bg-gray-100 text-black peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-900 transition-all duration-100">
+                            {{ $item->kategori }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+
             <div class="flex justify-end">
-                <button class="bg-blue-900 py-2 px-3 text-sm rounded text-white">Tambah</button>
+                <button class="flex items-center gap-1 bg-blue-900 hover:bg-blue-950 py-2 px-3 text-sm rounded-full text-white">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Tambah</span>
+                </button>
             </div>
         </div>
     </form>

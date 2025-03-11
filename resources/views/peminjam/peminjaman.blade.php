@@ -42,18 +42,24 @@
                                 </div>
                                 <div class="flex text-sm items-center gap-2">
                                     <span>Status:</span>
-                                    <span class="text-green-500 capitalize">{{ $item->status }}</span>
+                                    @if ($item->status == "dibatalkan") 
+                                        <span class="text-red-500 capitalize">Dibatalkan</span>
+                                    @else
+                                        <span class="text-green-500 capitalize">{{ $item->status }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('peminjam.batalPeminjaman', $item->id) }}" class="flex items-center justify-between gap-2 mt-4">
+                    <form method="POST" action="{{ route('peminjaman.editStatusPeminjaman', $item->id) }}" class="flex items-center justify-between gap-2 mt-4">
                         @csrf
-                        @method('DELETE')
-                        @if ($item->deleted_at == null)
-                            <button type="submit" class="capitalize w-full rounded-full text-center text-white bg-blue-900 hover:bg-blue-950 p-2">Batalkan</button>
-                        @else
-                            <span class="capitalize w-full rounded-full text-center text-white bg-blue-900 hover:bg-blue-950 p-2">Menunggu pembatalan</span>
+                        @method('PUT')
+                        @if ($item->status == "dibatalkan")
+                            <input type="text" hidden name="status" id="status" value="proses">
+                            <button type="submit" class="capitalize w-full rounded-full text-center text-white bg-blue-900 hover:bg-blue-950 p-2">Batalkan pembatalan</button>
+                        @else 
+                            <input type="text" hidden name="status" id="status" value="dibatalkan">
+                            <button type="submit" class="capitalize w-full rounded-full text-center text-white bg-blue-900 hover:bg-blue-950 p-2">Batal peminjaman</button>
                         @endif
                     </form>
                 </div>

@@ -5,7 +5,7 @@
             <span>MyLibrary</span>
         </a>
     </div>
-    <div class="hidden md:flex flex-1 justify-center">
+    <div class="hidden lg:flex flex-1 justify-center">
         <form class="flex items-center border rounded-full" action="{{ route('peminjam.searchBuku') }}" method="GET">
             @csrf
             <input type="text" name="search" id="search" class="rounded-full px-4 py-2 focus:outline-none" value="{{ old('search') }}" placeholder="Search..." autocomplete="off">
@@ -14,10 +14,10 @@
             </button>
         </form>
     </div>
-    <button id="mobileMenuBtn" class="md:hidden text-blue-900">
+    <button id="mobileMenuBtn" class="lg:hidden text-blue-900">
         <i class="fa-solid fa-bars"></i>
     </button>
-    <div id="mobileMenu" class="hidden md:flex flex-col md:flex-row gap-6 justify-end items-center md:relative absolute top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow md:shadow-none p-4 md:p-0">
+    <div id="mobileMenu" class="hidden lg:flex flex-col lg:flex-row gap-6 justify-end items-center lg:relative absolute top-full left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow lg:shadow-none p-4 lg:p-0">
         <div class="relative">
             <button id="genreBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
                 <span>Genre</span>
@@ -61,8 +61,8 @@
         </a>
         <div class="relative">
             <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
-                <img src="{{ $peminjam->foto ? asset('storage/' . $peminjam->foto) : 'https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg' }}" alt="{{ $peminjam->nama }}" class="rounded-full w-8 object-cover hidden md:block">
-                <span class="block md:hidden">Profil</span>
+                <img src="{{ $peminjam->foto ? asset('storage/' . $peminjam->foto) : 'https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg' }}" alt="{{ $peminjam->nama }}" class="rounded-full w-8 object-cover hidden lg:block">
+                <span class="block lg:hidden">Profil</span>
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>
             <div id="profilDropdown" class="absolute right-0 mt-2 w-40 bg-white border shadow-lg rounded hidden">

@@ -191,14 +191,6 @@ class DeleteController extends Controller
         return redirect()->route('petugas.user.dpeminjam.trashPeminjam');
     }
 
-    public function batalPeminjaman($id)
-    {
-        $peminjaman = Peminjaman::findOrFail($id);
-        $peminjaman->delete();
-        
-        return redirect()->back();
-    }
-
     public function destroyPeminjaman($id)
     {
         Peminjaman::onlyTrashed()->find($id)->forceDelete();

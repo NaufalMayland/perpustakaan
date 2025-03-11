@@ -91,8 +91,10 @@ use Illuminate\Support\Str;
 
     public function addBuku()
     {
+        $kategori = Kategori::all();
         return view('petugas.buku.addBuku', [
-            'title' => "Tambah Data"
+            'title' => "Tambah Data",
+            'kategori' => $kategori
         ]);
     }
 
@@ -115,7 +117,7 @@ use Illuminate\Support\Str;
             $imagePath = $request->cover_url; 
         }
 
-        Buku::insert([
+        $buku = Buku::create([
             'judul' => $request->judul,
             'slug' => Str::slug($request->judul),
             'penulis' => $request->penulis,
@@ -126,6 +128,13 @@ use Illuminate\Support\Str;
             'deskripsi' => $request->deskripsi,
             'cover' => $imagePath,
         ]);
+
+        if($buku){
+            ListKategori::insert([
+                'id_buku' => $buku->id,
+                'id_kategori' => $request->kategori
+            ]);
+        }
 
         return redirect()->route('petugas.buku.index');
     }
@@ -229,7 +238,7 @@ use Illuminate\Support\Str;
         ->exists();
 
         if ($checkProfil == true) {
-            return redirect()->route('peminjam.profil')->withErrors('Lengkapi profil terlebih dahulu!');
+            return redirect()->route('peminjam.profil')->with('error', 'Lengkapi profil terlebih dahulu!');
         }
         
         $peminjaman = Peminjaman::create([

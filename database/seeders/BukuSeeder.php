@@ -68,7 +68,7 @@ class BukuSeeder extends Seeder
                 'tahun_terbit' => '2019',
                 'kode' => 'B0005',
                 'stok' => '100',
-                'cover' => 'https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/items/9786237210214_Sejarah-Ringkas-Terbaik-Dunia-Kuno-Empat-Benua.jpgq',
+                'cover' => 'https://books.google.co.id/books/publisher/content?id=6MX1DwAAQBAJ&hl=id&pg=PP1&img=1&zoom=3&bul=1&sig=ACfU3U3PWw-fbN-2AMoygksHke3SLC4SjQ&w=1280',
             ],
         ];
 
