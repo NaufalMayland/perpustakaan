@@ -193,7 +193,7 @@ class DeleteController extends Controller
 
     public function destroyPeminjaman($id)
     {
-        Peminjaman::onlyTrashed()->find($id)->forceDelete();
+        Peminjaman::findOrFail($id)->forceDelete();
         
         return redirect()->back();
     }

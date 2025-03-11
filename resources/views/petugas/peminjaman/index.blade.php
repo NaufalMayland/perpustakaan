@@ -51,7 +51,7 @@
                             <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_kembali)->translatedFormat('j F Y') }}</td>
                             <td class="p-2 text-left">{{ $item->tanggal_dikembalikan ?? "-" }}</td>
                             <td class="p-2 text-left">
-                                @if ($item->deleted_at == null)
+                                @if ($item->status !== "dibatalkan")
                                     <form action="{{ route('petugas.peminjaman.editStatusPeminjaman', $item->id) }}" method="POST" id="form-status-{{ $item->id }}" class="flex gap-2 justify-center items-center">
                                         @csrf
                                         @method('PUT')

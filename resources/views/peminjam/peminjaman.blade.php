@@ -23,7 +23,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="flex flex-col w-5/6 justify-start lg:justify-between">
+                        <div class="flex flex-col w-5/6 justify-start gap-2">
                             <div class="grid">
                                 <span class="font-bold">{{ $item->buku->judul }}</span>
                             </div>
@@ -51,19 +51,43 @@
                             </div>
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('peminjaman.editStatusPeminjaman', $item->id) }}" class="flex items-center justify-between gap-2 mt-4">
-                        @csrf
-                        @method('PUT')
-                        @if ($item->status == "dibatalkan")
-                            <input type="text" hidden name="status" id="status" value="proses">
-                            <button type="submit" class="capitalize w-full rounded-full text-center text-white bg-blue-900 hover:bg-blue-950 p-2">Batalkan pembatalan</button>
-                        @else 
-                            <input type="text" hidden name="status" id="status" value="dibatalkan">
-                            <button type="submit" class="capitalize w-full rounded-full text-center text-white bg-blue-900 hover:bg-blue-950 p-2">Batal peminjaman</button>
+                    <div class="mt-4">
+                        @if ($item->status == 'proses' || $item->status == 'siap diambil' || $item->status == 'dibatalkan') 
+                            <form id="form-batal-{{ $item->id }}" method="POST" action="{{ route('peminjaman.editStatusPeminjaman', $item->id) }}" class="flex items-center justify-between gap-2">
+                                @csrf
+                                @method('PUT')
+                                @if ($item->status !== 'dibatalkan') 
+                                    <input type="text" hidden name="status" value="dibatalkan">
+                                    <button type="button" onclick="konfirmasiBatal('{{ $item->id }}')" class="capitalize w-full rounded-full text-center text-white bg-blue-900 hover:bg-blue-950 p-2">Batal peminjaman</button>
+                                @else
+                                    <span class="capitalize w-full rounded-full text-center text-white bg-red-500 p-2">Menunggu pembatalan</span>
+                                @endif
+                            </form>
+                        @elseif($item->status == 'dipinjam')
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="capitalize w-full rounded-full text-center text-white bg-blue-900 hover:bg-blue-950 p-2">Pengajuan peminjaman</span>
+                            </div>
                         @endif
-                    </form>
+                    </div>
                 </div>
             @endforeach
         </div>
     @endif
+
+<script>
+    function konfirmasiBatal(id) {
+        Swal.fire({
+            title: 'Batalkan peminjaman?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1E3A8A',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, batalkan!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('form-batal-' + id).submit();
+            }
+        })
+    }
+</script>
 @endsection
