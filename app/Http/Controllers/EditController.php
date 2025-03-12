@@ -237,9 +237,13 @@ class EditController extends Controller
 
     public function editStatusPeminjaman(Request $request, $id)
     {
+        $user = Auth::user();
+        $petugas = Petugas::where('email', $user->email)->first();
         $peminjaman = Peminjaman::findOrFail($id);
+
         $peminjaman->update([
-            'status' => $request->status
+            'id_petugas' => $petugas->id,
+            'status' => $request->status 
         ]);
 
         return redirect()->back();

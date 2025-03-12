@@ -38,7 +38,6 @@
                         <th class="p-2 text-center font-bold uppercase">Tanggal Pengembalian</th>
                         <th class="p-2 text-center font-bold uppercase">Tanggal Dikembalikan</th>
                         <th class="p-2 text-center font-bold uppercase">Status</th>
-                        {{-- <th class="p-2 text-center font-bold uppercase">Option</th> --}}
                     </tr>
                 </thead>
                 <tbody class="w-full">

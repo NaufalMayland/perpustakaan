@@ -86,12 +86,28 @@
         const modal = document.querySelector(button.getAttribute('pinjam-modal-target'));
         const overlay = document.getElementById('pinjamOverlay');
         const form = document.getElementById('pinjamForm');
+        const tanggalPinjam = document.getElementById('tanggal_pinjam');
+        const tanggalKembali = document.getElementById('tanggal_kembali');
+
+        const today = new Date().toISOString().split('T')[0];
+        tanggalPinjam.setAttribute('min', today);
+
+        tanggalPinjam.addEventListener('change', function () {
+            const selectedDate = new Date(this.value);
+            const maxReturnDate = new Date(selectedDate);
+            maxReturnDate.setDate(maxReturnDate.getDate() + 7);
+
+            const minReturnDate = this.value;
+            const maxReturnDateStr = maxReturnDate.toISOString().split('T')[0];
+
+            tanggalKembali.setAttribute('min', minReturnDate);
+            tanggalKembali.setAttribute('max', maxReturnDateStr);
+        });
 
         button.addEventListener('click', function () {
             modal.classList.remove('hidden');
             overlay.classList.remove('hidden');
         });
-
     });
 
     function kurangJumlah() {
@@ -110,4 +126,5 @@
         document.getElementById('pinjamModal').classList.add('hidden');
         document.getElementById('pinjamOverlay').classList.add('hidden');
     }
+
 </script>

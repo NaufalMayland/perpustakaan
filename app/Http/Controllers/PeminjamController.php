@@ -174,7 +174,7 @@ class PeminjamController extends Controller
         ->get();
 
         return view('peminjam.koleksi', [
-            'title' => "Koleksi Buku",
+            'title' => "Koleksi",
             'koleksi' => $koleksi,
         ]);
     }
@@ -186,8 +186,18 @@ class PeminjamController extends Controller
         $peminjaman = Peminjaman::with(['buku', 'peminjam'])->where('id_peminjam', $peminjam->id)->withTrashed()->get();
 
         return view('peminjam.peminjaman', [
-            'title' => "Peminjaman Buku",
+            'title' => "Peminjaman",
             'peminjaman' => $peminjaman,
+        ]);
+    }
+
+    public function detailPeminjaman($id)
+    {
+        $peminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->findOrFail($id);
+
+        return view('peminjam.detailPeminjaman', [
+            'title' => "Detail",
+            'peminjaman' => $peminjaman
         ]);
     }
 }

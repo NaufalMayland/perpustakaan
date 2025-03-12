@@ -20,15 +20,15 @@
 
             <div class="flex flex-col gap-2">
                 <div>
-                    <span class="font-semibold">Penulis:</span>
+                    <span class="font-bold">Penulis:</span>
                     <span>{{ $buku->buku->penulis}}</span>
                 </div>
                 <div>
-                    <span class="font-semibold">Tahun Terbit:</span>
+                    <span class="font-bold">Tahun Terbit:</span>
                     <span>{{ $buku->buku->tahun_terbit}}</span>
                 </div>
                 <div>
-                    <span class="font-semibold">Kategori:</span>
+                    <span class="font-bold">Kategori:</span>
                     <span class="capitalize">{{ $getKategori }}</span>
                 </div>
             </div>

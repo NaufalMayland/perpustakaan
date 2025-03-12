@@ -59,6 +59,7 @@ Route::prefix('perpustakaan')->group(function () {
     
     Route::prefix('peminjaman')->middleware('role:peminjam')->group(function () {
         Route::get('/', [PeminjamController::class, 'peminjamanBuku'])->name('peminjam.peminjamanBuku');
+        Route::get('detail/{id}', [PeminjamController::class, 'detailPeminjaman'])->name('peminjam.detailPeminjaman');
         Route::put('/pembatalan/{id}', [EditController::class, 'editStatusPeminjaman'])->name('peminjaman.editStatusPeminjaman');
         Route::post('pinjam-buku/{id}', [InputController::class, 'addPeminjamanAction'])->name('peminjam.addPeminjamanAction');
     });
