@@ -258,4 +258,9 @@ use Illuminate\Support\Str;
 
         return redirect()->back();
     }
+
+    public function addDenda(Request $request)
+    {
+        dd($request->all());
+    }
 }

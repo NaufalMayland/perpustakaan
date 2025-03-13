@@ -37,6 +37,7 @@
                         <th class="p-2 text-center font-bold uppercase">Tanggal Peminjaman</th>
                         <th class="p-2 text-center font-bold uppercase">Tanggal Pengembalian</th>
                         <th class="p-2 text-center font-bold uppercase">Tanggal Dikembalikan</th>
+                        <th class="p-2 text-center font-bold uppercase">Perpanjangan</th>
                         <th class="p-2 text-center font-bold uppercase">Status</th>
                     </tr>
                 </thead>
@@ -48,21 +49,10 @@
                             <td class="p-2 text-left">{{ $item->jumlah }}</td>
                             <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_pinjam)->translatedFormat('j F Y') }}</td>
                             <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->tanggal_kembali)->translatedFormat('j F Y') }}</td>
-                            <td class="p-2 text-left">{{ $item->tanggal_dikembalikan ?? "-" }}</td>
+                            <td class="p-2 text-left">{{ $item->tanggal_dikembalikan ? \Carbon\Carbon::parse($item->tanggal_dikembalikan)->translatedFormat('j F Y') : "-" }}</td>
+                            <td class="p-2 text-left">{{ $item->perpanjangan ? $item->perpanjangan." Hari" : "-"}}</td>
                             <td class="p-2 text-left">
-                                @if ($item->status !== "dibatalkan")
-                                    <form action="{{ route('petugas.peminjaman.editStatusPeminjaman', $item->id) }}" method="POST" id="form-status-{{ $item->id }}" class="flex gap-2 justify-center items-center">
-                                        @csrf
-                                        @method('PUT')
-                                        <select name="status" id="status-{{ $item->id }}" class="capitalize border border-neutral-500 p-1 bg-white rounded focus:outline-none" 
-                                            onchange="document.getElementById('form-status-{{ $item->id }}').submit()">
-                                            <option class="capitalize" value="proses" {{ $item->status == 'proses' ? 'selected' : '' }}>proses</option>
-                                            <option class="capitalize" value="siap diambil" {{ $item->status == 'siap diambil' ? 'selected' : '' }}>siap diambil</option>
-                                            <option class="capitalize" value="dipinjam" {{ $item->status == 'dipinjam' ? 'selected' : '' }}>dipinjam</option>
-                                            <option class="capitalize" value="dikembalikan" {{ $item->status == 'dikembalikan' ? 'selected' : '' }}>dikembalikan</option>
-                                        </select>
-                                    </form>
-                                @else
+                                @if ($item->status == "dibatalkan")
                                     <form action="{{ route('petugas.peminjaman.destroyPeminjaman', $item->id) }}" method="POST" class="flex gap-2 items-center justify-center">
                                         @csrf
                                         @method('DELETE')
@@ -73,25 +63,69 @@
                                             <button type="submit" class="fa-solid fa-check text-white bg-blue-900 hover:bg-blue-950 rounded p-2"></button>
                                         </div>
                                     </form>
+                                @elseif($item->status == "menunggu perpanjangan")
+                                    <form action="{{ route('petugas.peminjaman.perpanjangan', $item->id) }}" method="POST" class="flex gap-2 items-center justify-center">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="">
+                                            <span class="text-blue-900 rounded p-2">{{ 'Perpanjang '. $item->perpanjangan .' Hari'  }}</span>
+                                        </div>
+                                        <div class="">
+                                            <button type="submit" class="fa-solid fa-check text-white bg-blue-900 hover:bg-blue-950 rounded p-2"></button>
+                                        </div>
+                                    </form>
+                                @else
+                                    <form action="{{ route('petugas.peminjaman.editStatusPeminjaman', $item->id) }}" method="POST" id="form-status-{{ $item->id }}" class="flex gap-2 justify-center items-center">
+                                        @csrf
+                                        @method('PUT')
+                                        <select name="status" id="status-{{ $item->id }}" class="capitalize border border-neutral-500 p-1 bg-white rounded focus:outline-none" 
+                                            data-id="{{ $item->id }}">
+                                            <option class="capitalize" value="proses" {{ $item->status == 'proses' ? 'selected' : '' }}>proses</option>
+                                            <option class="capitalize" value="siap diambil" {{ $item->status == 'siap diambil' ? 'selected' : '' }}>siap diambil</option>
+                                            <option class="capitalize" value="dipinjam" {{ $item->status == 'dipinjam' ? 'selected' : '' }}>dipinjam</option>
+                                            <option class="capitalize" value="diperpanjang" {{ $item->status == 'diperpanjang' ? 'selected' : '' }} disable hidden>diperpanjang</option>
+                                            <option class="capitalize" value="dikembalikan" {{ $item->status == 'dikembalikan' ? 'selected' : '' }}>dikembalikan</option>
+                                        </select>
+                                    </form>
                                 @endif
                             </td>
-                            
-                            {{-- <td class="p-2">
-                                <div class="flex gap-2 justify-center items-center">
-                                    <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
-                                        <i class="fa-solid fa-pencil text-sm"></i>
-                                    </a>
-                                    <form id="deleteBuku" action="" method="POST" class="">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="fa-solid fa-trash text-sm py-1 px-2 rounded text-center bg-red-500 hover:bg-red-600 text-white" onclick="deleteBuku()"></button>
-                                    </form>
-                                </div>
-                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div id="dendaModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+        <div class="bg-white p-5 rounded-md shadow-lg w-96">
+            <div class="text-center">
+                <h3 class="text-lg font-medium text-gray-900">Apakah ada denda?</h3>
+                <div class="mt-4">
+                    <form id="dendaForm" action="" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="peminjaman_id" id="peminjaman_id">
+                        <input type="text" name="status" value="dikembalikan" hidden>
+                        <div class="flex justify-start mb-4 gap-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="denda" value="ya" class="form-radio" onchange="toggleDendaInput(this)">
+                                <span class="ml-2">Ya</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="denda" value="tidak" class="form-radio" onchange="toggleDendaInput(this)">
+                                <span class="ml-2">Tidak</span>
+                            </label>
+                        </div>
+                        <div id="dendaInput" class="hidden mb-4">
+                            <input type="text" name="status_denda" placeholder="Masukkan status denda" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div class="flex justify-between">
+                            <button type="button" class="bg-gray-500 text-white px-3 py-2 rounded-full mr-2" onclick="closeModal()">Batal</button>
+                            <button type="submit" class="bg-blue-900 text-white px-3 py-2 rounded-full">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -108,13 +142,46 @@
         }
     </style>
 
-    <script>
-        $(document).ready(function() {
-            $('#peminjamanTable').DataTable({
-                responsive: true,
-                autoWidth: false,
-                
-            });
+<script>
+    $(document).ready(function() {
+        $('#peminjamanTable').DataTable({
+            responsive: true,
+            autoWidth: false,
         });
-    </script>
+
+        // Event listener untuk perubahan select option
+        $('select[name="status"]').change(function() {
+            if ($(this).val() === 'dikembalikan') {
+                // Ambil ID peminjaman dari atribut data-id
+                const peminjamanId = $(this).data('id');
+
+                // Set action form sesuai dengan ID peminjaman
+                $('#dendaForm').attr('action', $(this).closest('form').attr('action'));
+
+                // Tambahkan input hidden untuk menyimpan ID peminjaman
+                $('#dendaForm').append(`<input type="hidden" name="peminjaman_id" value="${peminjamanId}">`);
+
+                // Tampilkan modal
+                $('#dendaModal').removeClass('hidden');
+            } else {
+                // Jika bukan opsi "dikembalikan", submit form langsung
+                $(this).closest('form').submit();
+            }
+        });
+    });
+
+    // Fungsi untuk menampilkan atau menyembunyikan input denda
+    function toggleDendaInput(radio) {
+        if (radio.value === 'ya') {
+            $('#dendaInput').removeClass('hidden');
+        } else {
+            $('#dendaInput').addClass('hidden');
+        }
+    }
+
+    // Fungsi untuk menutup modal
+    function closeModal() {
+        $('#dendaModal').addClass('hidden');
+    }
+</script>
 @endsection

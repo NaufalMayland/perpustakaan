@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Denda;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
@@ -139,8 +140,11 @@ class PetugasController extends Controller
     }
 
     public function denda() {
+        $denda = Denda::with(['peminjaman.buku', 'peminjaman.peminjam'])->get();
+        
         return view('petugas.denda.index', [
             'title' => "Denda",
+            'denda' => $denda,
         ]);
     }
 

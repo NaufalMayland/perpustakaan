@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
             $table->date('tanggal_dikembalikan')->nullable();
+            $table->integer('perpanjangan')->nullable();
             $table->string('status')->default('proses');
             $table->softDeletes();
             $table->timestamps();

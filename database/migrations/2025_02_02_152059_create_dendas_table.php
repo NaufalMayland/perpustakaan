@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('dendas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_peminjaman');
+            $table->string('status');
             $table->softDeletes();
             $table->timestamps();
+        });
+
+        Schema::table('dendas', function (Blueprint $table) {
+            $table->foreign('id_peminjaman')->references('id')->on('peminjamans');
         });
     }
 

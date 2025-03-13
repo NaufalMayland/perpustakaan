@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Denda;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
 use App\Models\Peminjaman;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -241,16 +243,51 @@ class EditController extends Controller
         $petugas = Petugas::where('email', $user->email)->first();
         $peminjaman = Peminjaman::findOrFail($id);
 
+        if($request->status == "dikembalikan"){
+            $peminjaman->update([
+                'id_petugas' => $petugas ? $petugas->id : null,
+                'tanggal_dikembalikan' => Carbon::now()->format('Y-m-d'),
+                'status' => 'dikembalikan'
+            ]);
+
+            if($request->denda == "ya"){
+                Denda::create([
+                    'id_peminjaman' => $request->peminjaman_id,
+                    'status' => $request->status_denda,
+                ]);
+            }
+        } else{
+            $peminjaman->update([
+                'id_petugas' => $petugas ? $petugas->id : null,
+                'status' => $request->status 
+            ]);
+        }
+
+        return redirect()->back();
+    }
+
+    public function RequestPerpanjangan(Request $request, $id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+
         $peminjaman->update([
-            'id_petugas' => $petugas->id,
-            'status' => $request->status 
+            'status' => "menunggu perpanjangan",
+            'perpanjangan' => $request->perpanjangan
         ]);
 
         return redirect()->back();
     }
 
-    public function ubahPasswordPeminjam(Request $request)
+    public function perpanjangan($id)
     {
+        $peminjaman = Peminjaman::findOrFail($id);
+        $tanggalPerpanjangan = Carbon::parse($peminjaman->tanggal_kembali)->addDay($peminjaman->perpanjangan)->format('Y-m-d');
         
+        $peminjaman->update([
+            'tanggal_kembali' => $tanggalPerpanjangan, 
+            'status' => "diperpanjang", 
+        ]);
+
+        return redirect()->back();
     }
 }

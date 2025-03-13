@@ -9,6 +9,7 @@ use App\Models\Peminjam;
 use App\Models\Peminjaman;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -102,20 +103,24 @@ class PeminjamController extends Controller
 
     public function searchBuku(Request $request)
     {
-        $buku = DB::table('list_kategoris')
-        ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
-        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
-        ->whereNull('list_kategoris.deleted_at')
-        ->when($request->search, function ($query) use ($request) {
-            $query->where('bukus.judul', 'like', '%' . $request->search . '%');
-        })
-        ->select(
-            'bukus.id',
-            'bukus.cover',
-            'bukus.judul'
-        )
-        ->groupBy('bukus.id', 'bukus.judul', 'bukus.cover')
-        ->get();
+        if($request->search !== null){
+            $buku = DB::table('list_kategoris')
+            ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
+            ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+            ->whereNull('list_kategoris.deleted_at')
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('bukus.judul', 'like', '%' . $request->search . '%');
+            })
+            ->select(
+                'bukus.id',
+                'bukus.cover',
+                'bukus.judul'
+            )
+            ->groupBy('bukus.id', 'bukus.judul', 'bukus.cover')
+            ->get();
+        } else{
+            return redirect()->back();
+        }
 
         return view('peminjam.searchBuku', [
             'title' => "Home",
@@ -195,9 +200,16 @@ class PeminjamController extends Controller
     {
         $peminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->findOrFail($id);
 
+        $tanggalKembali = Carbon::parse($peminjaman->tanggal_kembali);
+        $hariPerpanjangan = $tanggalKembali->subDay()->format('Y-m-d');
+        $hariSekarang = Carbon::now()->format('Y-m-d');
+
+        $perpanjangan = $hariPerpanjangan == $hariSekarang;
+        
         return view('peminjam.detailPeminjaman', [
             'title' => "Detail",
-            'peminjaman' => $peminjaman
+            'peminjaman' => $peminjaman,
+            'perpanjangan' => $perpanjangan,
         ]);
     }
 }

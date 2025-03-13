@@ -9,7 +9,7 @@
         <div class="grid w-full lg:flex gap-2">
             @foreach ($peminjaman as $item) 
                 <div class="relative bg-white p-4 shadow rounded w-80">
-                    <span class="absolute top-2 right-2 bg-green-500 text-white px-3 py-2 rounded-full capitalize">{{ $item->status }}</span>
+                    <span class="absolute top-0 text-sm right-0 bg-green-500 text-white px-3 py-2 rounded-l-full capitalize">{{ $item->status }}</span>
                     <div class="grid gap-4">
                         <div class="w-full rounded flex justify-center">
                             @if (Str::startsWith($item->buku->cover, 'http'))
@@ -37,7 +37,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex justify-center text-center">
+                        <div class="flex justify-center text-center gap-2">
+                            @if ($item->status == "proses" || $item->status == "siap diambil" || $item->status == "dibatalkan")
+                                <form id="form-batal-{{ $item->id }}" method="POST" action="{{ route('peminjaman.editStatusPeminjaman', $item->id) }}" class="flex items-center justify-between gap-2">
+                                    @csrf
+                                    @method('PUT')
+                                    @if ($item->status !== 'dibatalkan') 
+                                        <input type="text" hidden name="status" value="dibatalkan">
+                                        <button type="button" onclick="konfirmasiBatal('{{ $item->id }}')" class="capitalize w-full rounded-full text-center border border-red-500 text-red-500 hover:text-white bg-white hover:bg-red-500 py-2 px-3 flex items-center gap-1">
+                                            <i class="fa-solid fa-xmark"></i>
+                                            <span>Batal</span>
+                                        </button>
+                                    @else
+                                        <span class="capitalize w-full rounded-full text-center text-white bg-red-500 py-2 px-3">Pembatalan</span>
+                                    @endif
+                                </form>
+                            @endif
                             <a href="{{ route('peminjam.detailPeminjaman', $item->id) }}" class="flex justify-center items-center bg-blue-900 hover:bg-blue-950 py-2 px-3 gap-1 rounded-full text-white">
                                 <i class="fa-solid fa-eye"></i>
                                 <span>Detail</span>

@@ -62,6 +62,7 @@ Route::prefix('perpustakaan')->group(function () {
         Route::get('detail/{id}', [PeminjamController::class, 'detailPeminjaman'])->name('peminjam.detailPeminjaman');
         Route::put('/pembatalan/{id}', [EditController::class, 'editStatusPeminjaman'])->name('peminjaman.editStatusPeminjaman');
         Route::post('pinjam-buku/{id}', [InputController::class, 'addPeminjamanAction'])->name('peminjam.addPeminjamanAction');
+        Route::put('/perpanjangan/{id}', [EditController::class, 'requestPerpanjangan'])->name('peminjaman.requestPerpanjangan');
     });
 
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {
@@ -158,6 +159,8 @@ Route::prefix('perpustakaan')->group(function () {
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyPeminjaman'])->name('petugas.peminjaman.destroyPeminjaman');
             Route::get('/import', [ImportExcelController::class, 'importPeminjaman'])->name('petugas.peminjaman.importPeminjaman');
             Route::get('/print', [PrintController::class, 'printPeminjaman'])->name('petugas.peminjaman.printPeminjaman');
+            Route::put('/perpanjangan/{id}', [EditController::class, 'perpanjangan'])->name('petugas.peminjaman.perpanjangan');
+            Route::post('/denda', [InputController::class, 'addDenda'])->name('petugas.peminjaman.addDenda');
         });
 
         Route::prefix('denda')->middleware('rolePetugas:petugas')->group(function (){
