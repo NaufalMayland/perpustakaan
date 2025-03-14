@@ -131,11 +131,26 @@ class PetugasController extends Controller
     }
 
     public function peminjaman() {
-        $peminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->withTrashed()->get();
+        $peminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->whereNot('status', 'dikembalikan')->get();
         
         return view('petugas.peminjaman.index', [
             'title' => "Peminjaman",
             'peminjaman' => $peminjaman
+        ]);
+    }
+
+    public function riwayatPeminjaman()
+    {
+        $riwayatPeminjaman = Peminjaman::where('status', 'dikembalikan')->get();
+
+        $riwayatPeminjaman->each(function ($peminjaman) {
+            $peminjaman->has_denda = Denda::where('id_peminjaman', $peminjaman->id)->exists();
+        });
+
+        return view('petugas.riwayatPeminjaman.index', [
+            'title' => "Riwayat Peminjaman",
+            'riwayatPeminjaman' => $riwayatPeminjaman,
+            'hasDenda' => $riwayatPeminjaman->pluck('has_denda')
         ]);
     }
 

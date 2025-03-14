@@ -244,11 +244,18 @@ class EditController extends Controller
         $peminjaman = Peminjaman::findOrFail($id);
 
         if($request->status == "dikembalikan"){
-            $peminjaman->update([
+            $dikembalikan = $peminjaman->update([
                 'id_petugas' => $petugas ? $petugas->id : null,
                 'tanggal_dikembalikan' => Carbon::now()->format('Y-m-d'),
                 'status' => 'dikembalikan'
             ]);
+
+            if($dikembalikan){
+                $buku = Buku::findOrFail($peminjaman->id_buku);
+                $buku->update([
+                    'stok' => $buku->stok + $peminjaman->jumlah
+                ]);
+            }
 
             if($request->denda == "ya"){
                 Denda::create([

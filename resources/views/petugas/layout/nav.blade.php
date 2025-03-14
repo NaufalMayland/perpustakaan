@@ -60,6 +60,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('petugas.riwayatPeminjaman.index') }}" class="py-3 pl-5 space-x-3 flex items-center hover:bg-blue-50 hover:border-l-4 hover:border-blue-900 transition-all duration-150 ease-in-out @if(Route::is('petugas.riwayatPeminjaman.*')) bg-blue-50 border-blue-900 border-l-4 @endif">
+                        <i class="fa-solid text-blue-900 fa-clock"></i>
+                        <span>Riwayat Peminjaman</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('petugas.denda.index') }}" class="py-3 pl-5 space-x-3 flex items-center hover:bg-blue-50 hover:border-l-4 hover:border-blue-900 transition-all duration-150 ease-in-out @if(Route::is('petugas.denda.*')) bg-blue-50 border-blue-900 border-l-4 @endif">
                         <i class="fa-solid text-blue-900 fa-money-bill-wave"></i>
                         <span>Denda</span>

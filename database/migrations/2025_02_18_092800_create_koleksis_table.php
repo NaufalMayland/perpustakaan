@@ -17,6 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_buku');
             $table->timestamps();
         });
+
+        Schema::table('koleksis', function (Blueprint $table) {
+            $table->foreign('id_peminjam')->references('id')->on('peminjams');
+            $table->foreign('id_buku')->references('id')->on('bukus');
+        });
     }
 
     /**

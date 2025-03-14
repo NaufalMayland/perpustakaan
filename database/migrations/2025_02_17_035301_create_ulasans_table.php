@@ -19,6 +19,11 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::table('ulasans', function (Blueprint $table) {
+            $table->foreign('id_buku')->references('id')->on('bukus');
+            $table->foreign('id_peminjam')->references('id')->on('peminjams');
+        });
     }
 
     /**

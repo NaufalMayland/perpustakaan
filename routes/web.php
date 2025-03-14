@@ -162,6 +162,9 @@ Route::prefix('perpustakaan')->group(function () {
             Route::put('/perpanjangan/{id}', [EditController::class, 'perpanjangan'])->name('petugas.peminjaman.perpanjangan');
             Route::post('/denda', [InputController::class, 'addDenda'])->name('petugas.peminjaman.addDenda');
         });
+        Route::prefix('riwayat-peminjaman')->middleware('rolePetugas:petugas')->group(function (){
+            Route::get('/', [PetugasController::class, 'riwayatPeminjaman'])->name('petugas.riwayatPeminjaman.index');
+        });
 
         Route::prefix('denda')->middleware('rolePetugas:petugas')->group(function (){
             Route::get('/', [PetugasController::class, 'denda'])->name('petugas.denda.index');
