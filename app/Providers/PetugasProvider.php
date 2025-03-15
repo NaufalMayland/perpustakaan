@@ -22,7 +22,7 @@ class PetugasProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['petugas.layout.layout', 'petugas.layout.nav'], function($view){
+        View::composer(['petugas.layout.layout', 'petugas.layout.nav', 'petugas.dashboard.index'], function($view){
             $user = Auth::user();
             $sesPetugas = Petugas::where('email', $user->email)->first();
 

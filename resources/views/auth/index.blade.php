@@ -1,15 +1,15 @@
 @extends('auth.layout.layout')
 @section('content')
-    <div class="flex justify-between flex-col-reverse lg:flex-row bg-white px-14 py-4 gap-4 items-center lg:h-screen h-auto">
+    <div class="flex justify-between flex-col-reverse lg:flex-row bg-white px-14 py-4 gap-4 items-center lg:h-screen h-auto" id="about">
         <div class="grid w-full">
             <div class="mb-6">
                 <h1 class="text-3xl lg:text-left text-center font-bold text-blue-900">MyLibrary</h1>
             </div>
-            <div class="lg:text-justify text-center text-base" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At nemo inventore eaque dolore sit ducimus iusto ipsam doloremque ipsa nihil. Doloribus eius dolorum perferendis sunt hic voluptate harum, cupiditate in!</p>
+            <div class="lg:text-left text-center text-base" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
+                <p>Selamat datang di MyLibrary, tempat di mana pengetahuan dan imajinasi bertemu. Kami menyediakan berbagai koleksi buku berkualitas untuk memenuhi kebutuhan bacaan Anda. Temukan buku favorit Anda, pinjam dengan mudah, dan nikmati pengalaman membaca tanpa batas. Mari jelajahi dunia literasi bersama kami!</p>
             </div>
             <div class="lg:text-left text-center mt-4" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
-                <a href="#about" class="bg-blue-900 py-2 px-4 text-white text-base rounded-l-full rounded-br-full rounded-tr-full shadow-none hover:rounded-tr-none hover:shadow hover:shadow-blue-900/50 transition-all duration-100 ease-in-out">Read more</a>
+                <a href="#readmore" class="bg-blue-900 py-2 px-4 text-white text-base rounded-l-full rounded-br-full rounded-tr-full shadow-none hover:rounded-tr-none hover:shadow hover:shadow-blue-900/50 transition-all duration-100 ease-in-out">Read more</a>
             </div>
         </div>
         <div class="w-full">
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    <div class="px-14 py-4 h-auto lg:h-screen flex items-center" id="about">
+    <div class="px-14 py-4 h-auto lg:h-screen flex items-center" id="readmore">
         <div class="flex lg:flex-row flex-col items-center gap-4">
             <div class="w-full justify-center flex">
                 <img src="https://img.freepik.com/free-vector/people-library-flat-vector-illustration_74855-6607.jpg?t=st=1740754720~exp=1740758320~hmac=8b7240c937784e0ad618c2441dbc454e083ab6286120de8c78345459ceeaf394&w=1480" alt="" class="lg:w-[70%] w-[50%]">
@@ -68,12 +68,12 @@
                     <span class="text-3xl font-bold"><span class="text-blue-900">MyLibrary</span> bukan sekedar perpustakaan digital</span>
                 </div>
                 <div class="text-base text-center" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="850">
-                    <p>MyLibrary adalah layanan peminjaman buku yang memudahkan kamu untuk mencari dan memesan buku secara online. Setelah memesan, kamu bisa datang langsung ke toko untuk mengambil buku pinjamanmu.</p>
+                    <p>MyLibrary adalah layanan peminjaman buku yang memudahkan kamu untuk mencari dan melaukan peminjaman buku secara online. Setelah melakukan peminjaman, petugas akan mengonfirmasi peminjamanmu dan kamu bisa datang langsung ke toko untuk mengambil buku pinjamanmu.</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="px-14 h-auto">
+    <div class="px-14 h-auto" id="keunggulan">
         <div class="bg-blue-900 rounded shadow p-4 border" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
             <div class="text-white font-semibold text-3xl text-center flex items-center justify-center p-10">
                 <h1>MyLibrary, Makes You Eazy!</h1>
@@ -106,12 +106,7 @@
             </a>
         </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#1e3a8a" fill-opacity="1" d="M0,224L80,218.7C160,213,320,203,480,213.3C640,224,800,256,960,272C1120,288,1280,288,1360,288L1440,288L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
-    <div class="px-14 py-4 flex bg-blue-900">
-        <div class="flex text-center justify-center items-center w-full">
-            {{-- <span class="text-white font-bold text-3xl">MyLibrary</span> --}}
-        </div>
-    </div>
+
     <script>
         AOS.init();
     </script>

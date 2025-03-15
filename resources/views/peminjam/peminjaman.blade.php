@@ -6,9 +6,9 @@
             <span class="text-neutral-400 mt-4">Tidak ada peminjaman</span>    
         </div> 
     @else
-        <div class="grid w-full lg:flex gap-2">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             @foreach ($peminjaman as $item) 
-                <div class="relative bg-white p-4 shadow rounded w-80">
+                <div class="relative bg-white p-4 shadow rounded">
                     <span class="absolute top-0 text-sm right-0 bg-green-500 text-white px-3 py-2 rounded-l-full capitalize">{{ $item->status }}</span>
                     <div class="grid gap-4">
                         <div class="w-full rounded flex justify-center">

@@ -12,10 +12,6 @@
                     <i class="fa-solid fa-file-export"></i> 
                     <span class="hidden lg:block">Export</span>
                 </button>
-                <a href="{{ route('petugas.user.dpetugas.importPetugas') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
-                    <i class="fa-solid fa-file-import"></i> 
-                    <span class="hidden lg:block">Import</span>
-                </a>
                 <a href="{{ route('petugas.user.dpetugas.addPetugas') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-plus"></i>
                     <span class="hidden lg:block">Tambah</span>

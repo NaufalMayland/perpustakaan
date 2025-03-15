@@ -11,6 +11,7 @@ use App\Models\Peminjaman;
 use App\Models\Petugas;
 use App\Models\Ulasan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -33,11 +34,18 @@ class PetugasController extends Controller
     public function dashboard() {
         $buku = Buku::withTrashed()->get();
         $peminjaman = Peminjaman::withTrashed()->get();
+        $denda = Denda::all();
+        $peminjamanToday = Peminjaman::with(['buku', 'peminjam', 'petugas'])
+        ->whereDate('created_at', Carbon::today())
+        ->whereNot('status', 'dikembalikan')
+        ->get();
         
         return view('petugas.dashboard.index', [
             'title' => "Dashboard",
             'buku' => $buku,
-            'peminjaman' => $peminjaman
+            'peminjaman' => $peminjaman,
+            'denda' => $denda,
+            'peminjamanToday' => $peminjamanToday,
         ]);
     }
 
