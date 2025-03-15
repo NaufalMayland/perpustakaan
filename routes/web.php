@@ -12,7 +12,7 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PrintController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AuthController::class, 'index'])->name('auth.index')->middleware('guest');
+Route::get('/', [AuthController::class, 'index'])->name('auth.index')->middleware('guest'); 
 
 Route::prefix('perpustakaan')->group(function () {
     Route::prefix('login')->middleware('guest')->group(function (){
