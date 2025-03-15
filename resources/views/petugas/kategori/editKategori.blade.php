@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <form method="POST" action="{{ route('petugas.kategori.editKategoriAction', $kategori->id) }}" class="bg-white p-4 shadow-md rounded" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('petugas.kategori.editKategoriAction', $kategori->id) }}" class="bg-white p-4 shadow rounded" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         @if ($errors->any())

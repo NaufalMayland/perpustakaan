@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <div class="bg-white p-4 shadow-md rounded">
+    <div class="bg-white p-4 shadow rounded">
         <div class="flex flex-col lg:flex-row gap-8 items-start">
             <div class="w-full lg:w-1/4 flex justify-center">
                 @if ($petugas->foto == null) 
@@ -49,4 +49,34 @@
             </div>
         </div>
     </div>
+
+    <form action="{{ route('petugas.ubahPasswordPetugas', $petugas->id) }}" method="POST" class="bg-white rounded shadow p-4 mt-4 gap-4 text-sm grid">
+        @csrf
+        @if (session('errors'))
+            <div class="text-white bg-red-500 text-sm p-3 rounded text-left w-full">
+                <ul>
+                    <li>{{ session('errors') }}</li>
+                </ul>
+            </div>
+        @endif
+        <div class="grid relative">
+            <label class="text-black" for="password">Password Baru</label>
+            <input class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" type="password" name="password" id="password" autocomplete="off">
+            <span class="absolute right-3 top-1/2 cursor-pointer" onclick="toggleVisibility('password', 'eyeIconPassword')">
+                <i id="eyeIconPassword" class="fas fa-eye text-neutral-500"></i>
+            </span>
+        </div>
+        <div class="grid relative">
+            <label class="text-black" for="konfirmasiPassword">Konfirmasi Password</label>
+            <input class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" type="password" name="konfirmasiPassword" id="konfirmasiPassword" autocomplete="off">
+            <span class="absolute right-3 top-1/2 cursor-pointer" onclick="toggleVisibility('konfirmasiPassword', 'eyeIconKonfirmasi')">
+                <i id="eyeIconKonfirmasi" class="fas fa-eye text-neutral-500"></i>
+            </span>
+        </div>
+        <div class="flex justify-end text-sm">
+            <button type="submit" class="bg-blue-900 hover:bg-blue-950 text-white flex items-center gap-2 py-2 px-4 rounded-full">
+                <span>Simpan</span>
+            </butt>
+        </div>
+    </form>
 @endsection

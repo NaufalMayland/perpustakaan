@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <div class="bg-white p-4 shadow-md rounded">
+    <div class="bg-white p-4 shadow rounded">
         <div class="flex flex-col lg:flex-row gap-8 items-start">
             <div class="w-full lg:w-1/4 flex justify-center">
                 @if (Str::startsWith($buku->cover, 'http'))

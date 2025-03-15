@@ -11,7 +11,7 @@
 </head>
 <body class="bg-slate-50 font-['poppins']">
     <div class="w-auto h-screen items-center justify-center flex">
-        <form action="{{route('auth.loginAction')}}" method="POST" class="w-fit bg-[#fff] shadow-md rounded px-6 py-8">
+        <form action="{{route('auth.loginAction')}}" method="POST" class="w-fit bg-[#fff] shadow rounded px-6 py-8">
             @csrf
             <div class="w-80">
                 <div class="text-2xl text-blue-900 font-bold w-full text-center mb-8">

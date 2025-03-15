@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <div class="bg-white p-4 rounded shadow-md mt-4">
+    <div class="bg-white p-4 rounded shadow mt-4">
         <div class="overflow-x-auto">
             <table id="trashBuku" class="min-w-full border border-gray-400 text-sm">
                 <thead class="bg-gray-400 w-full">

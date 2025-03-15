@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peminjam;
+use App\Models\Petugas;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -135,6 +136,46 @@ class AuthController extends Controller
     }
 
     public function ubahPasswordPeminjam(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'min:6'
+        ]);
+
+        $peminjam = Peminjam::findOrFail($id);
+        $user = User::where('email', $peminjam->email)->first();    
+
+        if($request->konfirmasiPassword !== $request->password){
+            return redirect()->back()->with('errors', 'Konfirmasi password salah');
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function ubahPasswordPetugas(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'min:6'
+        ]);
+
+        $petugas = Petugas::findOrFail($id);
+        $user = User::where('email', $petugas->email)->first();    
+
+        if($request->konfirmasiPassword !== $request->password){
+            return redirect()->back()->with('errors', 'Konfirmasi password salah');
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function ubahPasswordDpeminjam(Request $request, $id)
     {
         $request->validate([
             'password' => 'min:6'

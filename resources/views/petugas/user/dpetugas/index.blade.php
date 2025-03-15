@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <div class="bg-white p-4 rounded shadow-md">
+    <div class="bg-white p-4 rounded shadow">
         <div class="flex justify-between items-center overflow-auto">
             <h2 class="font-semibold text-lg">Data {{ $title }}</h2>
             <div class="flex gap-2 text-sm">
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-white p-4 rounded shadow-md mt-4">
+    <div class="bg-white p-4 rounded shadow mt-4">
         <div class="">
             <table id="dpetugasTable" class="min-w-full border border-gray-400 text-sm">
                 <thead class="w-full">

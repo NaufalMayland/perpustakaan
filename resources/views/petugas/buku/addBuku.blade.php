@@ -1,6 +1,6 @@
 @extends('petugas.layout.layout')
 @section('content')
-    <form method="POST" action="{{ route('petugas.buku.addBukuAction') }}" class="bg-white p-4 shadow-md rounded" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('petugas.buku.addBukuAction') }}" class="bg-white p-4 shadow rounded" enctype="multipart/form-data">
         @csrf
         @if ($errors->any())
             <div class="bg-red-500 text-white text-sm p-3 rounded text-center w-full">

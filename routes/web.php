@@ -69,6 +69,7 @@ Route::prefix('perpustakaan')->group(function () {
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {
         Route::prefix('profil')->group(function () {
             Route::get('/', [PetugasController::class, 'profil'])->name('petugas.profil.index');
+            Route::post('/ubah-password/{id}', [AuthController::class, 'ubahPasswordPetugas'])->name('petugas.ubahPasswordPetugas');
             Route::get('/edit/{id}', [EditController::class, 'editProfilPetugas'])->name('petugas.profil.editProfil');
             Route::put('/edit-action/{id}', [EditController::class, 'editProfilPetugasAction'])->name('petugas.profil.editProfilAction');
             Route::get('/provinsi', [GetWilayahController::class, 'getProvinsi']);
@@ -153,6 +154,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/tambah-action', [InputController::class, 'addPeminjamAction'])->name('petugas.user.dpeminjam.addPeminjamAction');
             Route::get('/edit/{id}', [EditController::class, 'editPeminjam'])->name('petugas.user.dpeminjam.editPeminjam');
             Route::get('/detail/{id}', [PetugasController::class, 'detailPeminjam'])->name('petugas.user.dpeminjam.detailPeminjam');
+            Route::post('/ubah-password/{id}', [AuthController::class, 'ubahPasswordDpeminjam'])->name('petugas.user.dpeminjam.ubahPasswordDpeminjam');
             Route::delete('/delete/{id}', [DeleteController::class, 'deletePeminjam'])->name('petugas.user.dpeminjam.deletePeminjam');
             Route::get('/trash', [DeleteController::class, 'trashPeminjam'])->name('petugas.user.dpeminjam.trashPeminjam');
             Route::post('/restore/{id}', [DeleteController::class, 'restorePeminjam'])->name('petugas.user.dpeminjam.restorePeminjam');
