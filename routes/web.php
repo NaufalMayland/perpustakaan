@@ -12,7 +12,6 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PrintController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', [PeminjamController::class, 'home'])->name('peminjam.home.index')->middleware('multirole');
 Route::get('/', [AuthController::class, 'index'])->name('auth.index')->middleware('guest');
 
 Route::prefix('perpustakaan')->group(function () {
