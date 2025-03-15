@@ -113,6 +113,8 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/restore/{id}', [DeleteController::class, 'restoreBuku'])->name('petugas.buku.restoreBuku');
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyBuku'])->name('petugas.buku.destroyBuku');
             Route::get('/import', [ImportExcelController::class, 'importBuku'])->name('petugas.buku.importBuku');
+            Route::get('/download-template', [ImportExcelController::class, 'downloadTemplateBuku'])->name('petugas.buku.downloadTemplateBuku');
+            Route::post('/import-action', [ImportExcelController::class, 'importBukuAction'])->name('petugas.buku.importBukuAction');
             Route::get('/export', [ExportController::class, 'exportBuku'])->name('petugas.buku.exportBuku');
             Route::get('/print', [PrintController::class, 'printBuku'])->name('petugas.buku.printBuku');
         });
@@ -128,6 +130,8 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/restore/{id}', [DeleteController::class, 'restoreKategori'])->name('petugas.kategori.restoreKategori');
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyKategori'])->name('petugas.kategori.destroyKategori');
             Route::get('/import', [ImportExcelController::class, 'importKategori'])->name('petugas.kategori.importKategori');
+            Route::get('/download-template', [ImportExcelController::class, 'downloadTemplateKategori'])->name('petugas.kategori.downloadTemplateKategori');
+            Route::post('/import-action', [ImportExcelController::class, 'importKategoriAction'])->name('petugas.kategori.importKategoriAction');
             Route::get('/export', [ExportController::class, 'exportKategori'])->name('petugas.kategori.exportKategori');
             Route::get('/print', [PrintController::class, 'printKategori'])->name('petugas.kategori.printKategori');
         });
