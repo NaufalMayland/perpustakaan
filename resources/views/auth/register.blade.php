@@ -29,22 +29,22 @@
                 <div class="grid text-sm gap-2 my-4">
                     <div class="grid">
                         <label class="text-black" for="username">Username</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="text" id="username" name="username" autocomplete="off" value="{{ old('username') }}">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="text" id="username" name="username" autocomplete="off" value="{{ old('username') }}" placeholder="Masukan username">
                     </div>
                     <div class="grid">
                         <label class="text-black" for="email">Email</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" autocomplete="off" value="{{ old('email') }}">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="email" id="email" name="email" autocomplete="off" value="{{ old('email') }}" placeholder="example@gmail.com">
                     </div>
                     <div class="grid relative">
                         <label class="text-black" for="password">Password</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="password" id="password" autocomplete="off" value="{{ old('password') }}">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="password" id="password" autocomplete="off" value="{{ old('password') }}" placeholder="Masukan Password">
                         <span class="absolute right-3 top-1/2 cursor-pointer" onclick="toggleVisibility('password', 'eyeIconPassword')">
                             <i id="eyeIconPassword" class="fas fa-eye text-neutral-500"></i>
                         </span>
                     </div>
                     <div class="grid relative">
                         <label class="text-black" for="konfirmasiPw">Konfirmasi Password</label>
-                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="konfirmasiPw" id="konfirmasiPw" autocomplete="off">
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="password" name="konfirmasiPw" id="konfirmasiPw" autocomplete="off" placeholder="Konfirmasi Password">
                         <span class="absolute right-3 top-1/2 cursor-pointer" onclick="toggleVisibility('konfirmasiPw', 'eyeIconKonfirmasi')">
                             <i id="eyeIconKonfirmasi" class="fas fa-eye text-neutral-500"></i>
                         </span>

@@ -17,7 +17,7 @@
                 <input type="text" name="kategori" id="kategori" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('kategori') }}" placeholder="Masukan judul buku" autocomplete="off" required>
             </div>
             <div class="flex justify-end">
-                <button class="bg-blue-900 py-2 px-3 text-sm rounded text-white">Tambah</button>
+                <button class="bg-blue-900 py-2 px-3 text-sm rounded-full text-white">Tambah</button>
             </div>
         </div>
     </form>

@@ -14,6 +14,7 @@ use App\Models\Ulasan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -28,6 +29,11 @@ use Illuminate\Support\Str;
 
     public function addPetugasAction(Request $request) 
     {
+        $request->validate([
+            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
+            'password' => 'min:6'
+        ]);
+
         $cekUser = User::all();
         
         foreach($cekUser as $user){
@@ -65,6 +71,11 @@ use Illuminate\Support\Str;
 
     public function addPeminjamAction(Request $request)
     {
+        $request->validate([
+            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
+            'password' => 'min:6'
+        ]);
+        
         $cekUser = User::all();
         
         foreach($cekUser as $user){
@@ -157,7 +168,17 @@ use Illuminate\Support\Str;
 
     public function addListKategori()
     {
-        $dataBuku = Buku::withoutTrashed()->get();
+        $dataBuku = DB::table('bukus')
+        ->leftJoin('list_kategoris', 'bukus.id', '=', 'list_kategoris.id_buku')
+        ->whereNull('list_kategoris.id_buku')
+        ->select(
+            'bukus.id',
+            'bukus.judul',
+            'bukus.slug',
+            'bukus.kode',
+        )
+        ->get();
+
         $dataKategori = Kategori::withoutTrashed()->get();
 
         return view('petugas.listKategori.addListKategori', [

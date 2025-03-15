@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function loginAction(Request $request)
     {
         $cek = $request->validate([
-            'email' => 'required',
+            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
             'password' => 'required',
         ]);
 
@@ -66,6 +66,7 @@ class AuthController extends Controller
         $cekUser = User::all();
 
         $request->validate([
+            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
             'password' => 'min:6'
         ]);
 
@@ -121,6 +122,7 @@ class AuthController extends Controller
         }
 
         $request->validate([
+            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
             'password' => 'min:6'
         ]);
 
