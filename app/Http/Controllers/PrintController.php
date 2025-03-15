@@ -61,16 +61,25 @@ class PrintController extends Controller
 
     public function printPeminjaman()
     {
-        $peminjaman = Peminjaman::with(['peminjam', 'buku', 'petugas'])->get();
+        $peminjaman = Peminjaman::with(['peminjam', 'buku', 'petugas'])->whereNot('status', 'dikembalikan')->get();
         return view('petugas.peminjaman.printPeminjaman', [
             'title' => "Print",
             'peminjaman' => $peminjaman
         ]);
     }
 
+    public function printRiwayatPeminjaman()
+    {
+        $riwayatPeminjaman = Peminjaman::with(['peminjam', 'buku', 'petugas'])->where('status', 'dikembalikan')->get();
+        return view('petugas.riwayatPeminjaman.printRiwayatPeminjaman', [
+            'title' => "Print",
+            'riwayatPeminjaman' => $riwayatPeminjaman
+        ]);
+    }
+
     public function printDenda()
     {
-        $denda = Denda::all();
+        $denda = Denda::with(['peminjaman.buku', 'peminjaman.peminjam'])->get();
         return view('petugas.denda.printDenda', [
             'title' => "Print",
             'denda' => $denda

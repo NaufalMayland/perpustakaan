@@ -33,18 +33,20 @@
                         <td class="text-sm text-center uppercase font-bold p-2">Buku</td>
                         <td class="text-sm text-center uppercase font-bold p-2">Tanggal Pinjam</td>
                         <td class="text-sm text-center uppercase font-bold p-2">Tanggal Kembali</td>
+                        <td class="text-sm text-center uppercase font-bold p-2">Tanggal Dikembalikan</td>
                         <td class="text-sm text-center uppercase font-bold p-2">Perpanjangan</td>
                         <td class="text-sm text-center uppercase font-bold p-2">Status</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($peminjaman as $item)
+                    @foreach ($riwayatPeminjaman as $item)
                         <tr>
                             <td class="text-sm p-2 text-center">{{ $i++ }}</td>
                             <td class="text-sm p-2">{{ $item->peminjam->nama }}</td>
                             <td class="text-sm p-2">{{ $item->buku->judul }}</td>
                             <td class="text-sm p-2">{{ \Carbon\Carbon::parse($item->tanggal_pinjam)->translatedFormat('j F Y') }}</td>
                             <td class="text-sm p-2">{{ \Carbon\Carbon::parse($item->tanggal_kembali)->translatedFormat('j F Y') }}</td>
+                            <td class="text-sm p-2">{{ \Carbon\Carbon::parse($item->tanggal_dikembalikan)->translatedFormat('j F Y') }}</td>
                             <td class="text-sm p-2">{{ $item->perpanjangan ? $item->perpanjangan : '-' }}</td>
                             <td class="text-sm p-2 capitalize">{{ $item->status }}</td>
                         </tr>

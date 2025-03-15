@@ -34,8 +34,8 @@
                         <th class="p-2 text-center font-bold uppercase">Peminjam</th>
                         <th class="p-2 text-center font-bold uppercase">Buku</th>
                         <th class="p-2 text-center font-bold uppercase">Jumlah</th>
-                        <th class="p-2 text-center font-bold uppercase">Tanggal Peminjaman</th>
-                        <th class="p-2 text-center font-bold uppercase">Tanggal Pengembalian</th>
+                        <th class="p-2 text-center font-bold uppercase">Tanggal Pinjam</th>
+                        <th class="p-2 text-center font-bold uppercase">Tanggal Kembali</th>
                         <th class="p-2 text-center font-bold uppercase">Tanggal Dikembalikan</th>
                         <th class="p-2 text-center font-bold uppercase">Perpanjangan</th>
                         <th class="p-2 text-center font-bold uppercase">Status</th>

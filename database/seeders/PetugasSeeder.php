@@ -15,20 +15,15 @@ class PetugasSeeder extends Seeder
     {
         $data = [
             [
-                'nama' => "petugas1",
-                'email' => "petugas1@gmail.com",
+                'nama' => "Somebody's Pleasure",
+                'email' => "naufal123@gmail.com",
                 'role' => 'admin'
             ],
             [
-                'nama' => "petugas2",
-                'email' => "petugas2@gmail.com",
+                'nama' => "Risalah Hati",
+                'email' => "maylandri123@gmail.com",
                 'role' => 'petugas'
             ],
-            [
-                'nama' => "petugas3",
-                'email' => "petugas3@gmail.com",
-                'role' => 'petugas'
-            ]
         ];
 
         Petugas::insert($data);

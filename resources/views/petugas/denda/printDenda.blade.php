@@ -29,15 +29,26 @@
                 <thead>
                     <tr>
                         <td class="text-sm text-center font-bold p-2">NO</td>
-                        <td class="text-sm text-center font-bold p-2">BUKU PINJAMAN</td>
                         <td class="text-sm text-center font-bold p-2">PEMINJAM</td>
-                        <td class="text-sm text-center font-bold p-2">STATUS</td>
+                        <td class="text-sm text-center font-bold p-2">BUKU PINJAMAN</td>
+                        <td class="text-sm text-center font-bold p-2">TANGGAL PINJAM</td>
+                        <td class="text-sm text-center font-bold p-2">TANGGAL KEMBALI</td>
+                        <td class="text-sm text-center font-bold p-2">TANGGAL DIKEMBALIKAN</td>
+                        <td class="text-sm text-center font-bold p-2">JUMLAH</td>
+                        <td class="text-sm text-center font-bold p-2">STATUS DENDA</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($denda as $item)
                         <tr>
-                            <td class="text-sm p-2 text-center">{{$i++}}</td>
+                            <td class="text-sm p-2">{{ $i++ }}</td>
+                            <td class="text-sm p-2">{{ $item->peminjaman->peminjam->nama }}</td>
+                            <td class="text-sm p-2">{{ $item->peminjaman->buku->judul }}</td>
+                            <td class="text-sm p-2">{{ \Carbon\Carbon::parse($item->peminjaman->tanggal_pinjam)->translatedFormat('j F Y') }}</td>
+                            <td class="text-sm p-2">{{ \Carbon\Carbon::parse($item->peminjaman->tanggal_kembali)->translatedFormat('j F Y') }}</td>
+                            <td class="text-sm p-2">{{ \Carbon\Carbon::parse($item->peminjaman->tanggal_dikembalikan)->translatedFormat('j F Y') }}</td>
+                            <td class="text-sm p-2">{{ $item->peminjaman->jumlah }}</td>
+                            <td class="text-sm p-2">{{ $item->status }}</td>
                         </tr>
                     @endforeach
                 </tbody>

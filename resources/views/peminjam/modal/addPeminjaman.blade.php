@@ -5,7 +5,7 @@
 <div class="z-40 inset-0 hidden fixed " id="pinjamModal">
     <div class="flex items-center justify-center min-h-screen">
         <div class="bg-white flex flex-col-reverse lg:flex-row rounded w-80 lg:w-auto">
-            <form id="pinjamForm" action="{{ route('peminjam.addPeminjamanAction', $buku->buku->id) }}" method="POST" enctype="multipart/form-data" class="items-center grid gap-4 p-4">
+            <form id="pinjamForm" action="{{ route('peminjam.PeminjamanAction', $buku->buku->id) }}" method="POST" enctype="multipart/form-data" class="items-center grid gap-4 p-4">
                 @csrf
                 @if ($errors->any())
                     <div class="text-white bg-red-500 text-sm py-3 px-3 rounded text-left w-full">

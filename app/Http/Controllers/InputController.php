@@ -183,9 +183,45 @@ use Illuminate\Support\Str;
 
     public function addPeminjaman()
     {
+        $user = Auth::user();
+        $petugas = Petugas::where('email', $user->email)->first();
+
         return view('petugas.peminjaman.addPeminjaman', [
             'title' => "Tambah Data",
+            'petugas' => $petugas,
         ]);
+    }
+
+    public function addPeminjamanAction(Request $request)
+    {
+        $peminjam = Peminjam::where('email', $request->peminjam)->first();
+        $buku = Buku::where('kode', $request->buku)->first();
+
+        if($peminjam == null){
+            return redirect()->back()->withErrors('Peminjam tidak ditemukan!');
+        } 
+
+        if($buku == null){
+            return redirect()->back()->withErrors('Buku tidak ditemukan!');
+        } 
+
+        $peminjaman = Peminjaman::create([
+            'id_peminjam' => $peminjam->id,
+            'id_buku' => $buku->id,
+            'id_petugas' => $request->petugas,
+            'tanggal_pinjam' => $request->tanggal_pinjam,
+            'tanggal_kembali' => $request->tanggal_kembali,
+            'jumlah' => $request->jumlah,
+        ]);
+
+        if($peminjaman){
+            $buku = Buku::where('kode', $request->buku)->first();
+            $buku->update([
+                'stok' => $buku->stok - $request->jumlah
+            ]);
+        }
+
+        return redirect()->route('petugas.peminjaman.index');
     }
 
     public function addUlasanAction(Request $request, $id)
@@ -227,7 +263,7 @@ use Illuminate\Support\Str;
         return redirect()->back();
     }
 
-    public function addPeminjamanAction(Request $request, $id)
+    public function PeminjamanAction(Request $request, $id)
     {
         $user = Auth::user();
         $peminjam = Peminjam::where('email', $user->email)->first();

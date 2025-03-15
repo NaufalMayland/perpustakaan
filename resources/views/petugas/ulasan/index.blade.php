@@ -15,17 +15,17 @@
                     @foreach ($buku as $item)
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
                             <td class="p-2 flex justify-center">
-                                @if (Str::startsWith($item->cover, 'http'))
-                                    <img src="{{ $item->cover }}" class="w-20 object-cover rounded" alt="{{ $item->judul }}">
+                                @if (Str::startsWith($item->buku->cover, 'http'))
+                                    <img src="{{ $item->buku->cover }}" class="w-20 object-cover rounded" alt="{{ $item->buku->judul }}">
                                 @else
-                                    <img src="{{ asset('storage/' . $item->cover) }}" class="w-20 object-cover rounded" alt="{{ $item->judul }}">
+                                    <img src="{{ asset('storage/' . $item->buku->cover) }}" class="w-20 object-cover rounded" alt="{{ $item->buku->judul }}">
                                 @endif
                             </td>
-                            <td class="p-2">{{ $item->judul }}</td>
-                            <td class="p-2 capitalize">{{ $item->kategori }}</td>
+                            <td class="p-2">{{ $item->buku->judul }}</td>
+                            <td class="p-2 capitalize">{{ $item->kategori->kategori }}</td>
                             <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
-                                    <a href="{{ route('petugas.ulasan.detailUlasan', $item->id) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
+                                    <a href="{{ route('petugas.ulasan.detailUlasan', $item->buku->slug) }}" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-eye text-sm"></i>
                                     </a>
                                 </div>

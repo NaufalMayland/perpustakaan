@@ -1,13 +1,13 @@
 <div class="bg-white shadow-lg w-auto h-screen sticky top-0 left-0 flex flex-col">
     <div class="flex items-center justify-center gap-2 p-6">
-        <a href="{{ route('petugas.profil.index') }}" class="flex">
+        <a href="{{ route('petugas.profil.index') }}" class="flex w-1/5">
             @if ($sesPetugas->foto == null) 
                 <img src="https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg" alt="Profil" class="w-20 rounded-full">
             @else 
                 <img src="{{ asset('storage/' . $sesPetugas->foto ) }}" alt="Profil" class="w-20 rounded-full object-cover">
             @endif
         </a>
-        <div class="flex flex-col">
+        <div class="flex flex-col w-4/5">
             <h2 class="text-blue-900 font-bold text-sm">{{ $sesPetugas->nama }}</h2>
             <p class="text-xs text-gray-500">{{ $sesPetugas->email }}</p>
         </div>

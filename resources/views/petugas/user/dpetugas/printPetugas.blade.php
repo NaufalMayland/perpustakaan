@@ -38,13 +38,22 @@
                 </thead>
                 <tbody>
                     @foreach ($petugas as $item)
+                        @php
+                            $alamat = json_decode($item->alamat, true);
+                        @endphp
                         <tr>
                             <td class="text-sm p-2 text-center">{{$i++}}</td>
-                            <td class="text-sm p-2">{{$item->nama}}</td>
-                            <td class="text-sm p-2">{{$item->email}}</td>
-                            <td class="text-sm p-2">{{$item->alamat}} @if ($item->alamat == null) - @endif</td>
-                            <td class="text-sm p-2">{{$item->telepon}} @if ($item->telepon == null) - @endif</td>
-                            <td class="text-sm p-2">{{$item->role}}</td>
+                            <td class="text-sm p-2">{{ $item->nama }}</td>
+                            <td class="text-sm p-2">{{ $item->email }}</td>
+                            <td class="text-sm p-2">
+                                @if ($item->alamat == null)
+                                    -
+                                @else
+                                    {{ $alamat['kelurahan']['name'] }}, {{ $alamat['kecamatan']['name'] }}, {{ $alamat['kabupaten']['name'] }}, {{ $alamat['provinsi']['name'] }}
+                                @endif
+                            </td>
+                            <td class="text-sm p-2">{{ $item->telepon ? $item->telepon : "-" }}</td>
+                            <td class="text-sm p-2">{{ $item->role }}</td>
                         </tr>
                     @endforeach
                 </tbody>

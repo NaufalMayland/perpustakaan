@@ -166,19 +166,7 @@ class PetugasController extends Controller
 
     public function ulasan() 
     {
-        $buku = DB::table('list_kategoris')
-        ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
-        ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
-        ->whereNull('list_kategoris.deleted_at')
-        ->select(
-            'bukus.id',
-            'bukus.cover',
-            'bukus.judul',
-            DB::raw("GROUP_CONCAT(list_kategoris.id SEPARATOR ', ') as id_list"),
-            DB::raw("GROUP_CONCAT(kategoris.kategori SEPARATOR ', ') as kategori")
-        )
-        ->groupBy('bukus.id', 'bukus.judul')
-        ->get();
+        $buku = ListKategori::with(['buku', 'kategori'])->get();
 
         return view('petugas.ulasan.index', [
             'title' => "Ulasan",
@@ -186,11 +174,11 @@ class PetugasController extends Controller
         ]);
     }
 
-    public function detailUlasan($id)
+    public function detailUlasan($slug)
     {
-        $buku = Buku::where('id', $id)->first();
-        $ulasan = Ulasan::with(['buku', 'peminjam'])->where('id_buku', $id)->get();
-        $check = Ulasan::where('id_buku', $id)->exists();
+        $buku = Buku::where('slug', $slug)->first();
+        $ulasan = Ulasan::with(['buku', 'peminjam'])->where('id_buku', $buku->id)->get();
+        $check = Ulasan::where('id_buku', $buku->id)->exists();
 
         return view('petugas.ulasan.detailUlasan', [
             'title' => "Ulasan",
