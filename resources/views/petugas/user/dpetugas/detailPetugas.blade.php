@@ -21,8 +21,9 @@
                         <input type="Email" name="email" id="email" class="w-full focus:outline-none p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $petugas->email }}" readonly>
                     </div>
                     <div class="grid">
-                        <label class="mb-1" for="email">Alamat</label>
-                        <input type="Email" name="email" id="email" class="w-full focus:outline-none p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $petugas->alamat ?? "-" }}" readonly>
+                        <label class="mb-1" for="alamat">Alamat</label>
+                        <input type="text" name="alamat" id="alamat" class="w-full p-2 text-sm rounded border capitalize bg-gray-100 border-gray-300 focus:outline-none" value="@if ($petugas->alamat == !null ){{ $petugas->alamat['kelurahan']['name'] }}, {{ $petugas->alamat['kecamatan']['name'] }}, {{ $petugas->alamat['kabupaten']['name'] }}, {{ $petugas->alamat['provinsi']['name'] }}@else - @endif" readonly>
+
                     </div>
                     <div class="grid">
                         <label class="mb-1" for="email">Telepon</label>

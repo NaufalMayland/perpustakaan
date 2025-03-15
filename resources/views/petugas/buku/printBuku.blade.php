@@ -41,14 +41,14 @@
                 <tbody>
                     @foreach ($buku as $item)
                         <tr>
-                            <td class="text-sm p-2 text-center">{{$i++}}</td>
-                            <td class="text-sm p-2">{{$item->judul}}</td>
-                            <td class="text-sm p-2">{{$item->penulis}}</td>
-                            <td class="text-sm p-2">{{$item->penerbit}}</td>
-                            <td class="text-sm p-2">{{$item->tahun_terbit}}</td>
-                            <td class="text-sm p-2">{{$item->deskripsi}}</td>
-                            <td class="text-sm p-2">{{$item->kode}}</td>
-                            <td class="text-sm p-2">{{$item->stok}}</td>
+                            <td class="text-sm p-2 text-center">{{ $i++}}</td>
+                            <td class="text-sm p-2">{{ $item->judul }}</td>
+                            <td class="text-sm p-2">{{ $item->penulis }}</td>
+                            <td class="text-sm p-2">{{ $item->penerbit }}</td>
+                            <td class="text-sm p-2">{{ $item->tahun_terbit }}</td>
+                            <td class="text-sm p-2">{{ $item->deskripsi }}</td>
+                            <td class="text-sm p-2">{{ $item->kode }}</td>
+                            <td class="text-sm p-2">{{ $item->stok }}</td>
                         </tr>
                     @endforeach
                 </tbody>

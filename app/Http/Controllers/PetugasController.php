@@ -54,6 +54,7 @@ class PetugasController extends Controller
     public function detailPetugas($id)
     {
         $petugas = Petugas::findOrFail($id);
+        $petugas->alamat = json_decode($petugas->alamat, true);
         
         return view('petugas.user.dpetugas.detailPetugas', [
             'title' => "Detail",

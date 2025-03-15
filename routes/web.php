@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\EditController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\GetWilayahController;
 use App\Http\Controllers\ImportExcelController;
 use App\Http\Controllers\InputController;
@@ -86,11 +87,17 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/tambah-action', [InputController::class, 'addPetugasAction'])->name('petugas.user.dpetugas.addPetugasAction');
             Route::get('/detail/{id}', [PetugasController::class, 'detailPetugas'])->name('petugas.user.dpetugas.detailPetugas');
             Route::get('edit/{id}', [EditController::class, 'editPetugas'])->name('petugas.user.dpetugas.editPetugas');
+            Route::put('/edit-action/{id}', [EditController::class, 'editPetugasAction'])->name('petugas.user.dpetugas.editPetugasAction');
+            Route::get('/provinsi', [GetWilayahController::class, 'getProvinsi']);
+            Route::get('/kabupaten/{provinsiId}', [GetWilayahController::class, 'getKabupaten']);
+            Route::get('/kecamatan/{kabupatenId}', [GetWilayahController::class, 'getKecamatan']);
+            Route::get('/kelurahan/{kecamatanId}', [GetWilayahController::class, 'getKelurahan']);
             Route::delete('/delete/{id}', [DeleteController::class, 'deletePetugas'])->name('petugas.user.dpetugas.deletePetugas');
             Route::get('/trash', [DeleteController::class, 'trashPetugas'])->name('petugas.user.dpetugas.trashPetugas');
             Route::post('/restore/{id}', [DeleteController::class, 'restorePetugas'])->name('petugas.user.dpetugas.restorePetugas');
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyPetugas'])->name('petugas.user.dpetugas.destroyPetugas');
             Route::get('/import', [ImportExcelController::class, 'importPetugas'])->name('petugas.user.dpetugas.importPetugas');
+            Route::get('/export', [ExportController::class, 'exportPetugas'])->name('petugas.user.dpetugas.exportPetugas');
             Route::get('/print', [PrintController::class, 'printPetugas'])->name('petugas.user.dpetugas.printPetugas');
         });
         
@@ -106,6 +113,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/restore/{id}', [DeleteController::class, 'restoreBuku'])->name('petugas.buku.restoreBuku');
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyBuku'])->name('petugas.buku.destroyBuku');
             Route::get('/import', [ImportExcelController::class, 'importBuku'])->name('petugas.buku.importBuku');
+            Route::get('/export', [ExportController::class, 'exportBuku'])->name('petugas.buku.exportBuku');
             Route::get('/print', [PrintController::class, 'printBuku'])->name('petugas.buku.printBuku');
         });
 
@@ -120,6 +128,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/restore/{id}', [DeleteController::class, 'restoreKategori'])->name('petugas.kategori.restoreKategori');
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyKategori'])->name('petugas.kategori.destroyKategori');
             Route::get('/import', [ImportExcelController::class, 'importKategori'])->name('petugas.kategori.importKategori');
+            Route::get('/export', [ExportController::class, 'exportKategori'])->name('petugas.kategori.exportKategori');
             Route::get('/print', [PrintController::class, 'printKategori'])->name('petugas.kategori.printKategori');
         });
 
@@ -134,6 +143,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::post('/restore/{id}', [DeleteController::class, 'restoreListKategori'])->name('petugas.listKategori.restoreListKategori');
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyListKategori'])->name('petugas.listKategori.destroyListKategori');
             Route::get('/import', [ImportExcelController::class, 'importListKategori'])->name('petugas.listKategori.importListKategori');
+            Route::get('/export', [ExportController::class, 'exportListKategori'])->name('petugas.listKategori.exportListKategori');
             Route::get('/print', [PrintController::class, 'printListKategori'])->name('petugas.ListKategori.printListKategori');
         });
         
@@ -149,6 +159,7 @@ Route::prefix('perpustakaan')->group(function () {
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyPeminjam'])->name('petugas.user.dpeminjam.destroyPeminjam');
             Route::get('/print', [PrintController::class, 'printPeminjam'])->name('petugas.user.dpeminjam.printPeminjam');
             Route::get('/import', [ImportExcelController::class, 'importPeminjam'])->name('petugas.user.dpeminjam.importPeminjam');
+            Route::get('/export', [ExportController::class, 'exportPeminjam'])->name('petugas.user.dpeminjam.exportPeminjam');
             Route::get('/template', [ImportExcelController::class, 'templatePeminjam'])->name('petugas.user.dpeminjam.templatePeminjam');
         });
         
@@ -158,16 +169,19 @@ Route::prefix('perpustakaan')->group(function () {
             Route::put('/edit-status/{id}', [EditController::class, 'editStatusPeminjaman'])->name('petugas.peminjaman.editStatusPeminjaman');
             Route::delete('/destroy/{id}', [DeleteController::class, 'destroyPeminjaman'])->name('petugas.peminjaman.destroyPeminjaman');
             Route::get('/import', [ImportExcelController::class, 'importPeminjaman'])->name('petugas.peminjaman.importPeminjaman');
+            Route::get('/export', [ExportController::class, 'exportPeminjaman'])->name('petugas.peminjaman.exportPeminjaman');
             Route::get('/print', [PrintController::class, 'printPeminjaman'])->name('petugas.peminjaman.printPeminjaman');
             Route::put('/perpanjangan/{id}', [EditController::class, 'perpanjangan'])->name('petugas.peminjaman.perpanjangan');
             Route::post('/denda', [InputController::class, 'addDenda'])->name('petugas.peminjaman.addDenda');
         });
         Route::prefix('riwayat-peminjaman')->middleware('rolePetugas:petugas')->group(function (){
             Route::get('/', [PetugasController::class, 'riwayatPeminjaman'])->name('petugas.riwayatPeminjaman.index');
+            Route::get('/export', [ExportController::class, 'exportRiwayatPeminjaman'])->name('petugas.riwayatPeminjaman.exportRiwayatPeminjaman');
         });
 
         Route::prefix('denda')->middleware('rolePetugas:petugas')->group(function (){
             Route::get('/', [PetugasController::class, 'denda'])->name('petugas.denda.index');
+            Route::get('/export', [ExportController::class, 'exportDenda'])->name('petugas.denda.exportDenda');
         });
 
         Route::prefix('ulasan')->middleware('rolePetugas:petugas')->group(function (){

@@ -27,9 +27,36 @@ class EditController extends Controller
         ]);
     }
 
-    public function editPetugasAction()
+    public function editPetugasAction(Request $request, $id)
     {
+        $petugas = petugas::findOrFail($id);
+
+        if ($request->has('cropped_image') && str_contains($request->cropped_image, ',')) {
+            $files = glob(storage_path("app/public/fotoProfil/foto_{$petugas->id}_*"));
         
+            foreach ($files as $file) {
+                unlink($file);
+            }
+        
+            $imageData = $request->input('cropped_image');
+            $imageParts = explode(',', $imageData);
+            if (count($imageParts) > 1) {
+                $image = str_replace(' ', '+', $imageParts[1]);
+                $imageName = 'foto_' . 'petugas_' . $petugas->id . '_' . time() . '.png';
+        
+                $path = 'fotoProfil/' . $imageName;
+        
+                Storage::disk('public')->put($path, base64_decode($image));
+        
+                $petugas->foto = $path; 
+            }
+        }
+        
+        $petugas->telepon = $request->telepon;
+        $petugas->alamat = $request->wilayah;
+        $petugas->save();
+    
+        return redirect()->route('petugas.user.dpetugas.editPetugas', $petugas->id);
     }
 
     public function editBuku($slug)

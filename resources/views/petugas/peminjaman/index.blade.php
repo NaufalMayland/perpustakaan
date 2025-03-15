@@ -8,10 +8,10 @@
                     <i class="fa-solid fa-print"></i> 
                     <span class="hidden lg:block">Print</span>
                 </a>
-                <a href="#" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
+                <button onclick="openExportModal()" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-file-export"></i> 
                     <span class="hidden lg:block">Export</span>
-                </a>
+                </button>
                 <a href="{{ route('petugas.peminjaman.importPeminjaman') }}" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-file-import"></i> 
                     <span class="hidden lg:block">Import</span>
@@ -96,34 +96,55 @@
         </div>
     </div>
 
-    <div id="dendaModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-        <div class="bg-white p-5 rounded-md shadow-lg w-96">
-            <div class="text-center">
-                <h3 class="text-lg font-medium text-gray-900">Apakah ada denda?</h3>
-                <div class="mt-4">
-                    <form id="dendaForm" action="" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <input type="hidden" name="peminjaman_id" id="peminjaman_id">
-                        <input type="text" name="status" value="dikembalikan" hidden>
-                        <div class="flex justify-start mb-4 gap-2">
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="denda" value="ya" class="form-radio" onchange="toggleDendaInput(this)">
-                                <span class="ml-2">Ya</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="denda" value="tidak" class="form-radio" onchange="toggleDendaInput(this)">
-                                <span class="ml-2">Tidak</span>
-                            </label>
-                        </div>
-                        <div id="dendaInput" class="hidden mb-4">
-                            <input type="text" name="status_denda" placeholder="Masukkan status denda" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        </div>
-                        <div class="flex justify-between">
-                            <button type="button" class="bg-gray-500 text-white px-3 py-2 rounded-full mr-2" onclick="closeModal()">Batal</button>
-                            <button type="submit" class="bg-blue-900 text-white px-3 py-2 rounded-full">Submit</button>
-                        </div>
-                    </form>
+    <div id="exportModal" class="hidden">
+        <div class="flex items-center justify-center fixed inset-0 bg-gray-900 bg-opacity-50">
+            <div class="bg-white p-4 rounded-lg w-80 text-sm">
+                <h3 class="text-lg font-semibold mb-4">Pilih Format Export</h3>
+                <form method="GET" action="{{ route('petugas.peminjaman.exportPeminjaman') }}">
+                    @csrf
+                    <select name="format" class="w-full p-2 rounded border">
+                        <option value="pdf">PDF</option>
+                        <option value="excel">Excel</option>
+                    </select>
+                    <div class="flex justify-between mt-4 gap-2">
+                        <button type="button" onclick="closeExportModal()" class="px-4 py-2 bg-neutral-500 hover:bg-neutral-600 text-white rounded-full">Batal</button>
+                        <button type="submit" class="px-4 py-2 bg-blue-900 hover:bg-blue-950 text-white rounded-full">Export</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="dendaModal" class="hidden">
+        <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+            <div class="bg-white p-5 rounded-md shadow-lg w-96">
+                <div class="text-center">
+                    <h3 class="text-lg font-medium text-gray-900">Apakah ada denda?</h3>
+                    <div class="mt-4">
+                        <form id="dendaForm" action="" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="peminjaman_id" id="peminjaman_id">
+                            <input type="text" name="status" value="dikembalikan" hidden>
+                            <div class="flex justify-start mb-4 gap-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="denda" value="ya" class="form-radio" onchange="toggleDendaInput(this)">
+                                    <span class="ml-2">Ya</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="denda" value="tidak" class="form-radio" onchange="toggleDendaInput(this)">
+                                    <span class="ml-2">Tidak</span>
+                                </label>
+                            </div>
+                            <div id="dendaInput" class="hidden mb-4">
+                                <input type="text" name="status_denda" placeholder="Masukkan status denda" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            </div>
+                            <div class="flex justify-between">
+                                <button type="button" class="bg-gray-500 text-white px-3 py-2 rounded-full mr-2" onclick="closeModal()">Batal</button>
+                                <button type="submit" class="bg-blue-900 text-white px-3 py-2 rounded-full">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,46 +163,46 @@
         }
     </style>
 
-<script>
-    $(document).ready(function() {
-        $('#peminjamanTable').DataTable({
-            responsive: true,
-            autoWidth: false,
+    <script>
+        $(document).ready(function() {
+            $('#peminjamanTable').DataTable({
+                responsive: true,
+                autoWidth: false,
+            });
+
+            $('select[name="status"]').change(function() {
+                if ($(this).val() === 'dikembalikan') {
+                    const peminjamanId = $(this).data('id');
+
+                    $('#dendaForm').attr('action', $(this).closest('form').attr('action'));
+
+                    $('#dendaForm').append(`<input type="hidden" name="peminjaman_id" value="${peminjamanId}">`);
+
+                    $('#dendaModal').removeClass('hidden');
+                } else {
+                    $(this).closest('form').submit();
+                }
+            });
         });
 
-        // Event listener untuk perubahan select option
-        $('select[name="status"]').change(function() {
-            if ($(this).val() === 'dikembalikan') {
-                // Ambil ID peminjaman dari atribut data-id
-                const peminjamanId = $(this).data('id');
-
-                // Set action form sesuai dengan ID peminjaman
-                $('#dendaForm').attr('action', $(this).closest('form').attr('action'));
-
-                // Tambahkan input hidden untuk menyimpan ID peminjaman
-                $('#dendaForm').append(`<input type="hidden" name="peminjaman_id" value="${peminjamanId}">`);
-
-                // Tampilkan modal
-                $('#dendaModal').removeClass('hidden');
+        function toggleDendaInput(radio) {
+            if (radio.value === 'ya') {
+                $('#dendaInput').removeClass('hidden');
             } else {
-                // Jika bukan opsi "dikembalikan", submit form langsung
-                $(this).closest('form').submit();
+                $('#dendaInput').addClass('hidden');
             }
-        });
-    });
-
-    // Fungsi untuk menampilkan atau menyembunyikan input denda
-    function toggleDendaInput(radio) {
-        if (radio.value === 'ya') {
-            $('#dendaInput').removeClass('hidden');
-        } else {
-            $('#dendaInput').addClass('hidden');
         }
-    }
 
-    // Fungsi untuk menutup modal
-    function closeModal() {
-        $('#dendaModal').addClass('hidden');
-    }
-</script>
+        function closeModal() {
+            $('#dendaModal').addClass('hidden');
+        }
+        
+        function openExportModal() {
+            document.getElementById('exportModal').classList.remove('hidden');
+        }
+
+        function closeExportModal() {
+            document.getElementById('exportModal').classList.add('hidden');
+        }
+    </script>
 @endsection
