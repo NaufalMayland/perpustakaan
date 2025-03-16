@@ -20,7 +20,7 @@
     <div id="mobileMenu" class="hidden lg:flex flex-col lg:flex-row gap-6 justify-end items-center lg:relative absolute top-full left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow lg:shadow-none p-4 lg:p-0">
         <div class="relative">
             <button id="genreBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
-                <span>Genre</span>
+                <span>Kategori</span>
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>
             <div id="genreDropdown" class="absolute right-0 mt-2 w-96 bg-white border shadow-lg rounded hidden gap-2 px-4 py-2">

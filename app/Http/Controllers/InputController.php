@@ -161,6 +161,7 @@ use Illuminate\Support\Str;
     {
         Kategori::updateOrCreate([
             'kategori' => $request->kategori,
+            'slug' => Str::slug($request->kategori),
         ]);
         
         return redirect()->route('petugas.kategori.index');
@@ -190,6 +191,9 @@ use Illuminate\Support\Str;
 
     public function addListKategoriAction(Request $request)
     {
+        $request->validate([
+            'kategori' => 'required'
+        ]);
         $checkedKategori = $request->kategori ?? [];
 
         foreach ($checkedKategori as $kategori) {

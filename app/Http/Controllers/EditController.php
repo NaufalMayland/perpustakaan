@@ -71,7 +71,6 @@ class EditController extends Controller
 
     public function editBukuAction(Request $request, $id)
     {
-        dd($request->all());
         $buku = Buku::findOrfail($id);
         $request->validate([
             'judul' => 'required',

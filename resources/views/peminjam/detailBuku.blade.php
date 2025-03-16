@@ -31,6 +31,10 @@
                         <span class="font-bold">Kategori:</span>
                         <span class="capitalize">{{ $getKategori }}</span>
                     </div>
+                    <div>
+                        <span class="font-bold">Stok:</span>
+                        <span class="capitalize">{{ $buku->buku->stok }}</span>
+                    </div>
                 </div>
                 
                 <div class="justify-between flex w-full">
@@ -41,8 +45,12 @@
                         </a>
                     </div>
                     <div class="flex flex-row mt-2 gap-4 items-center lg:text-base">
-                        @include('peminjam.modal.addPeminjaman')
-                        @include('peminjam.modal.addKoleksi')
+                        @if ($buku->buku->stok == '0')
+                            <span class="bg-neutral-500 text-white py-2 px-20 rounded-full">Stok habis</span>
+                        @else 
+                            @include('peminjam.modal.addPeminjaman')
+                            @include('peminjam.modal.addKoleksi')
+                        @endif
                     </div>
                 </div>
             </div>

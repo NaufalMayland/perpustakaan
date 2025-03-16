@@ -25,6 +25,7 @@ class PeminjamController extends Controller
         $bukuKategori = DB::table('list_kategoris')
         ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
         ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
+        ->whereNull('bukus.deleted_at')
         ->select(
             'kategoris.id as id_kategori',
             'kategoris.kategori',
@@ -166,6 +167,7 @@ class PeminjamController extends Controller
         ->join('list_kategoris', 'list_kategoris.id_buku', '=', 'bukus.id')
         ->join('kategoris', 'kategoris.id', '=', 'list_kategoris.id_kategori')
         ->where('koleksis.id_peminjam', $peminjam->id)
+        ->whereNull('bukus.deleted_at')
         ->select(
             'bukus.id',
             'bukus.cover',

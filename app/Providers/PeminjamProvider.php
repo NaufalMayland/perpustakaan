@@ -42,7 +42,12 @@ class PeminjamProvider extends ServiceProvider
             ->distinct()
             ->get();
 
-            $countKoleksi = Koleksi::where('id_peminjam', $peminjam->id)->count();
+            $countKoleksi = Koleksi::where('id_peminjam', $peminjam->id)
+            ->whereHas('buku', function($query){
+                $query->whereNull('deleted_at');
+            })
+            ->count();
+            
             $countPeminjaman = Peminjaman::where('id_peminjam', $peminjam->id)->withTrashed()->count();
             
             $view->with([

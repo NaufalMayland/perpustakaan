@@ -52,9 +52,26 @@ class DeleteController extends Controller
     public function deleteBuku($id)
     {
         $buku = Buku::find($id);
-        $buku->delete();
+        $peminjaman = Peminjaman::where('id_buku', $id)->first();
 
-        return redirect()->route('petugas.buku.index');
+        $check = Peminjaman::where('id_buku', $id)->exists();
+
+        if ($check == false) {
+            $buku->delete();
+        } elseif($check == true && $peminjaman->status == 'proses'){
+            $buku->delete();
+            $deletePeminjaman = $peminjaman->forceDelete();
+            if ($deletePeminjaman) {
+                $buku->update([
+                    'stok' => $buku->stok + $peminjaman->jumlah
+                ]);
+            }
+        }
+        elseif($peminjaman->status == 'siap diambil' || $peminjaman->status == 'dipinjam' || $peminjaman->status == 'diperpanjang'){
+            return redirect()->back()->with('errors', 'Buku sedang dipinjam');
+        }
+
+        return redirect()->route('petugas.buku.index')->with('success', 'Buku berhasil dihapus');
     }
 
     public function trashBuku()
