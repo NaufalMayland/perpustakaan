@@ -92,6 +92,20 @@
         </div>
     </div>
 
+    @if (session('success'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: "{{ session('success') }}",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            });
+        </script>
+    @endif
+
     <div id="exportModal" class="hidden">
         <div class="flex items-center justify-center fixed inset-0 bg-gray-900 bg-opacity-50">
             <div class="bg-white p-4 rounded-lg w-80 text-sm">
@@ -133,7 +147,7 @@
                                 </label>
                             </div>
                             <div id="dendaInput" class="hidden mb-4">
-                                <input type="text" name="status_denda" placeholder="Masukkan status denda" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <input type="text" name="status_denda" placeholder="Masukkan status denda" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" autocomplete="off">
                             </div>
                             <div class="flex justify-between">
                                 <button type="button" class="bg-gray-500 text-white px-3 py-2 rounded-full mr-2" onclick="closeModal()">Batal</button>

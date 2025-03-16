@@ -60,6 +60,20 @@
         </div>
     </div>
 
+    @if (session('success'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: "{{ session('success') }}",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            });
+        </script>
+    @endif
+
     <div id="exportModal" class="hidden">
         <div class="flex items-center justify-center fixed inset-0 bg-gray-900 bg-opacity-50">
             <div class="bg-white p-4 rounded-lg w-80 text-sm">

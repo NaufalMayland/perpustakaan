@@ -45,6 +45,11 @@
                 </div>
             @endif
         </a>
+        <a href="" class="flex items-center gap-1 hover:text-blue-950 @if(Route::is('peminjam.peminjamanBuku')) text-blue-950 @endif">
+            <div class="">
+                <span>Riwayat</span>
+            </div>
+        </a>
         <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center gap-1 hover:text-blue-950 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">
             <div class="">
                 <span>Koleksi</span>

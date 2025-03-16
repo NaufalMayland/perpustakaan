@@ -296,7 +296,7 @@ class EditController extends Controller
             ]);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', $request->status);
     }
 
     public function RequestPerpanjangan(Request $request, $id)

@@ -27,7 +27,6 @@
                         <th class="p-2 text-center font-bold uppercase relative">Tanggal Dikembalikan</th>
                         <th class="p-2 text-center font-bold uppercase relative">Jumlah</th>
                         <th class="p-2 text-center font-bold uppercase relative">Status Denda</th>
-                        <th class="p-2 text-center font-bold uppercase relative">Option</th>
                     </tr>
                 </thead>
                 <tbody class="w-full">
@@ -40,13 +39,13 @@
                             <td class="p-2 text-left">{{ \Carbon\Carbon::parse($item->peminjaman->tanggal_dikembalikan)->translatedFormat('j F Y') }}</td>
                             <td class="p-2 text-left">{{ $item->peminjaman->jumlah }}</td>
                             <td class="p-2 text-left">{{ $item->status }}</td>
-                            <td class="p-2">
+                            {{-- <td class="p-2">
                                 <div class="flex gap-2 justify-center items-center">
                                     <a href="" class="py-1 px-2 rounded text-center bg-blue-900 hover:bg-blue-950 text-white">
                                         <i class="fa-solid fa-pencil text-sm"></i>
                                     </a>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

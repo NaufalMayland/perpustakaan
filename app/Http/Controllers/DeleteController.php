@@ -20,7 +20,7 @@ class DeleteController extends Controller
         $user = Petugas::findOrFail($id);
         $user->delete();
         
-        return redirect()->route('petugas.user.dpetugas.index');
+        return redirect()->route('petugas.user.dpetugas.index')->with('success', 'Petugas berhasil dihapus');
     }
 
     public function trashPetugas() 
@@ -104,7 +104,7 @@ class DeleteController extends Controller
         $kategori = Kategori::find($id);
         $kategori->delete();
 
-        return redirect()->route('petugas.kategori.index');
+        return redirect()->route('petugas.kategori.index')->with('success', 'Kategori berhasil dihapus');
     }
 
     public function trashKategori()
@@ -136,7 +136,7 @@ class DeleteController extends Controller
     public function deleteListKategori($id){
         $listKategori = ListKategori::where('id_buku', $id)->delete(); 
 
-        return redirect()->route('petugas.listKategori.index');
+        return redirect()->route('petugas.listKategori.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function trashListKategori()
@@ -179,7 +179,7 @@ class DeleteController extends Controller
         $user = Peminjam::find($id);
         $user->delete();
         
-        return redirect()->route('petugas.user.dpeminjam.index');
+        return redirect()->route('petugas.user.dpeminjam.index')->with('success', 'Peminjam berhasil dihapus');
     }
 
     public function trashPeminjam()

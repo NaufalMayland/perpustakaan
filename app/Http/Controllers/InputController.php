@@ -285,7 +285,7 @@ use Illuminate\Support\Str;
             ]);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Ditambahkan ke koleksi!');
     }
 
     public function PeminjamanAction(Request $request, $id)
@@ -317,7 +317,7 @@ use Illuminate\Support\Str;
             ]);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Peminjaman berhasil!');
     }
 
     public function addDenda(Request $request)
