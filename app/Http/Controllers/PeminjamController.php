@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Denda;
 use App\Models\Kategori;
 use App\Models\ListKategori;
 use App\Models\Peminjam;
@@ -190,7 +191,12 @@ class PeminjamController extends Controller
     {
         $user = Auth::user();
         $peminjam = Peminjam::where('email', $user->email)->first();
-        $peminjaman = Peminjaman::with(['buku', 'peminjam'])->where('id_peminjam', $peminjam->id)->withTrashed()->get();
+
+        $peminjaman = Peminjaman::with(['buku', 'peminjam'])
+        ->where('id_peminjam', $peminjam->id)
+        ->whereNot('status', 'dikembalikan')
+        ->withTrashed()
+        ->get();
 
         return view('peminjam.peminjaman', [
             'title' => "Peminjaman",
@@ -212,6 +218,35 @@ class PeminjamController extends Controller
             'title' => "Detail",
             'peminjaman' => $peminjaman,
             'perpanjangan' => $perpanjangan,
+        ]);
+    }
+
+    public function riwayat()
+    {
+        $user = Auth::user();
+        $peminjam = Peminjam::where('email', $user->email)->first();
+
+        $riwayat = Peminjaman::with(['buku', 'peminjam'])
+        ->where('id_peminjam', $peminjam->id)
+        ->where('status', 'dikembalikan')
+        ->withTrashed()
+        ->get();
+
+        return view('peminjam.riwayat', [
+            'title' => "Riwayat",
+            'riwayat' => $riwayat,
+        ]);
+    }
+
+    public function detailRiwayat($id)
+    {
+        $riwayat = Peminjaman::with(['buku', 'peminjam', 'petugas'])->findOrFail($id);
+        $denda = Denda::where('id_peminjaman', $riwayat->id)->first();
+
+        return view('peminjam.detailRiwayat', [
+            'title' => "Detail",
+            'riwayat' => $riwayat,
+            'denda' => $denda,
         ]);
     }
 }

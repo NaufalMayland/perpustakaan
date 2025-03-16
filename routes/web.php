@@ -65,6 +65,11 @@ Route::prefix('perpustakaan')->group(function () {
         Route::put('/perpanjangan/{id}', [EditController::class, 'requestPerpanjangan'])->name('peminjaman.requestPerpanjangan');
     });
 
+    Route::prefix('riwayat')->middleware('role:peminjam')->group(function () {
+        Route::get('/', [PeminjamController::class, 'riwayat'])->name('peminjam.riwayat');
+        Route::get('detail/{id}', [PeminjamController::class, 'detailRiwayat'])->name('peminjam.detailRiwayat');
+    });
+
     Route::prefix('petugas')->middleware('role:petugas')->group(function () {
         Route::prefix('profil')->group(function () {
             Route::get('/', [PetugasController::class, 'profil'])->name('petugas.profil.index');

@@ -48,7 +48,10 @@ class PeminjamProvider extends ServiceProvider
             })
             ->count();
             
-            $countPeminjaman = Peminjaman::where('id_peminjam', $peminjam->id)->withTrashed()->count();
+            $countPeminjaman = Peminjaman::where('id_peminjam', $peminjam->id)
+            ->whereNot('status', 'dikembalikan')
+            ->withTrashed()
+            ->count();
             
             $view->with([
                 'user' => $user,
