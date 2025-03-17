@@ -15,8 +15,8 @@
     <title>{{ $title }}</title>
 </head>
 <body class="font-['poppins']">
-    <div id="loading-screen" class="fixed inset-0 bg-blue-900 flex flex-col items-center justify-center z-50 transition-opacity duration-500">
-        <div class="text-center text-white">
+    <div id="loading-screen" class="fixed inset-0 bg-white flex flex-col items-center justify-center z-50 transition-opacity duration-500">
+        <div class="text-center text-blue-900">
             <p id="typing-text" class="text-3xl font-bold"></p>
         </div>
     </div>

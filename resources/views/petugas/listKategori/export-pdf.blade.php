@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Data Buku</title>
+    <title>Data List Kategori</title>
     <style>
         table {
             width: 100%;
@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <h2>Daftar Buku</h2>
+    <h2>Daftar List Kategori</h2>
     <table>
         <thead>
             <tr>

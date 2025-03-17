@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Data Petugas</title>
+    <title>Data Peminjam</title>
     <style>
         table {
             width: 100%;
@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <h2>Daftar Petugas</h2>
+    <h2>Daftar Peminjam</h2>
     <table>
         <thead>
             <tr>
@@ -27,14 +27,13 @@
                 <th>Email</th>
                 <th>Alamat</th>
                 <th>Telepon</th>
-                <th>Hak Akses</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $i = 1;
             @endphp
-            @foreach($dataPetugas as $item)
+            @foreach($dataPeminjam as $item)
             @php
                 $alamat = json_decode($item->alamat, true);
             @endphp
@@ -50,7 +49,6 @@
                     @endif
                 </td>
                 <td>{{ $item->telepon ?? "-" }}</td>
-                <td>{{ $item->role }}</td>
             </tr>
             @endforeach
         </tbody>

@@ -308,7 +308,7 @@ class EditController extends Controller
             'perpanjangan' => $request->perpanjangan
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Perpanjangan');
     }
 
     public function perpanjangan($id)

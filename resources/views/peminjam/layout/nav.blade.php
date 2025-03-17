@@ -45,12 +45,12 @@
                 </div>
             @endif
         </a>
-        <a href="{{ route('peminjam.riwayat') }}" class="flex items-center gap-1 hover:text-blue-950 @if(Route::is('peminjam.riwayat')) text-blue-950 @endif">
+        <a href="{{ route('peminjam.riwayat') }}" class="flex items-center gap-1 hover:text-blue-950 @if(Route::is('peminjam.riwayat.*')) text-blue-950 @endif">
             <div class="">
                 <span>Riwayat</span>
             </div>
         </a>
-        <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center gap-1 hover:text-blue-950 @if(Route::is('peminjam.koleksiBuku')) text-blue-950 @endif">
+        <a href="{{ route('peminjam.koleksiBuku') }}" class="flex items-center gap-1 hover:text-blue-950 @if(Route::is('peminjam.koleksiBuku.*')) text-blue-950 @endif">
             <div class="">
                 <span>Koleksi</span>
             </div>
