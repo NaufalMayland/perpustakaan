@@ -80,6 +80,20 @@
         </div>
     </form>
 
+    @if (session('success'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: "{{ session('success') }}",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            });
+        </script>
+    @endif
+    
     <script>
         function toggleVisibility(inputId, eyeIconId) {
             const input = document.getElementById(inputId);

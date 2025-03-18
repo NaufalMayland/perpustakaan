@@ -12,9 +12,24 @@ class RiwayatPeminjamanExport implements FromCollection, WithHeadings, WithMappi
     /**
     * @return \Illuminate\Support\Collection
     */
+    protected $filterBulan;
+
+    public function __construct($filterBulan)
+    {
+        $this->filterBulan = $filterBulan;
+    }
+
     public function collection()
     {
-        return Peminjaman::with(['buku', 'peminjam', 'petugas'])->where('status', 'dikembalikan')->get();
+        $query = Peminjaman::with(['buku', 'peminjam', 'petugas'])
+                    ->where('status', 'dikembalikan');
+
+        if ($this->filterBulan && $this->filterBulan !== 'semua') {
+            $query->whereMonth('created_at', $this->filterBulan)
+                  ->whereYear('created_at', now()->year);
+        }
+
+        return $query->get();
     }
 
     public function headings(): array

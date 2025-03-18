@@ -18,6 +18,7 @@ use App\Models\Peminjam;
 use App\Models\Peminjaman;
 use App\Models\Petugas;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -85,7 +86,17 @@ class ExportController extends Controller
 
     public function exportPeminjaman(Request $request)
     {
-        $dataPeminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->whereNot('status', 'dikembalikan')->get();
+        $query = Peminjaman::with(['buku', 'peminjam', 'petugas'])
+        ->whereNot('status', 'dikembalikan');
+
+        $filterBulan = $request->input('filterBulan');
+
+        if ($request->filterBulan && $request->filterBulan !== 'semua') {
+            $query->whereMonth('created_at', $filterBulan)
+                ->whereYear('created_at', Carbon::now()->year);
+        }
+
+        $dataPeminjaman = $query->get();
 
         if($request->format == 'pdf'){
             $pdf = Pdf::loadView('petugas.peminjaman.export-pdf', compact('dataPeminjaman'));
@@ -97,25 +108,44 @@ class ExportController extends Controller
 
     public function exportRiwayatPeminjaman(Request $request)
     {
-        $dataRiwayatPeminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->where('status', 'dikembalikan')->get();
+        $query = Peminjaman::with(['buku', 'peminjam', 'petugas'])->where('status', 'dikembalikan');
+        
+        $filterBulan = $request->input('filterBulan', 'semua');
+
+        if ($filterBulan && $filterBulan !== 'semua') {
+            $query->whereMonth('created_at', $filterBulan)
+                  ->whereYear('created_at', Carbon::now()->year);
+        }
+    
+        $dataRiwayatPeminjaman = $query->get();
 
         if($request->format == 'pdf'){
             $pdf = Pdf::loadView('petugas.riwayatPeminjaman.export-pdf', compact('dataRiwayatPeminjaman'));
             return $pdf->download('data_riwayat_peminjaman.pdf');
         } else {
-            return Excel::download(new RiwayatPeminjamanExport, 'data_riwayat_peminjaman.xlsx');
+            return Excel::download(new RiwayatPeminjamanExport($filterBulan), 'data_riwayat_peminjaman.xlsx');
         } 
     }
 
     public function exportDenda(Request $request)
     {
-        $dataDenda = Denda::with(['peminjaman.buku', 'peminjaman.peminjam'])->get();
+        $filterBulan = $request->input('filterBulan', 'semua');
+
+        $query = Denda::with(['peminjaman.buku', 'peminjaman.peminjam']);
+
+        if ($filterBulan && $filterBulan !== 'semua') {
+            $query->whereMonth('created_at', $filterBulan)
+                ->whereYear('created_at', Carbon::now()->year);
+        }
+
+        $dataDenda = $query->get();
 
         if($request->format == 'pdf'){
             $pdf = Pdf::loadView('petugas.denda.export-pdf', compact('dataDenda'));
             return $pdf->download('data_denda.pdf');
         } else {
-            return Excel::download(new DendaExport, 'data_denda.xlsx');
-        } 
+            return Excel::download(new DendaExport($filterBulan), 'data_denda.xlsx');
+        }
     }
+
 }

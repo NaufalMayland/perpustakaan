@@ -10,6 +10,7 @@ use App\Models\Peminjam;
 use App\Models\Peminjaman;
 use App\Models\Petugas;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PrintController extends Controller
@@ -68,18 +69,32 @@ class PrintController extends Controller
         ]);
     }
 
-    public function printRiwayatPeminjaman()
+    public function printRiwayatPeminjaman(Request $request)
     {
-        $riwayatPeminjaman = Peminjaman::with(['peminjam', 'buku', 'petugas'])->where('status', 'dikembalikan')->get();
+        $query = Peminjaman::with(['buku', 'peminjam', 'petugas'])->where('status', 'dikembalikan');
+
+        if ($request->filterBulan && $request->filterBulan !== 'semua') {
+            $query->whereMonth('created_at', $request->filterBulan)
+                  ->whereYear('created_at', Carbon::now()->year);
+        }
+    
+        $riwayatPeminjaman = $query->get();
         return view('petugas.riwayatPeminjaman.printRiwayatPeminjaman', [
             'title' => "Print",
             'riwayatPeminjaman' => $riwayatPeminjaman
         ]);
     }
 
-    public function printDenda()
+    public function printDenda(Request $request)
     {
-        $denda = Denda::with(['peminjaman.buku', 'peminjaman.peminjam'])->get();
+        $query = Denda::with(['peminjaman.buku', 'peminjaman.peminjam']);
+
+        if ($request->filterBulan && $request->filterBulan !== 'semua') {
+            $query->whereMonth('created_at', $request->filterBulan)
+                  ->whereYear('created_at', Carbon::now()->year);
+        }
+    
+        $denda = $query->get();
         return view('petugas.denda.printDenda', [
             'title' => "Print",
             'denda' => $denda

@@ -139,7 +139,8 @@ class PetugasController extends Controller
         ]);
     }
 
-    public function peminjaman() {
+    public function peminjaman(Request $request)
+    {
         $peminjaman = Peminjaman::with(['buku', 'peminjam', 'petugas'])->whereNot('status', 'dikembalikan')->get();
         
         return view('petugas.peminjaman.index', [
@@ -148,9 +149,18 @@ class PetugasController extends Controller
         ]);
     }
 
-    public function riwayatPeminjaman()
+    public function riwayatPeminjaman(Request $request)
     {
-        $riwayatPeminjaman = Peminjaman::where('status', 'dikembalikan')->get();
+        $query = Peminjaman::where('status', 'dikembalikan');
+
+        $filterBulan = $request->input('filterBulan');
+
+        if ($filterBulan && $filterBulan !== 'semua') {
+            $query->whereMonth('created_at', $filterBulan)
+                ->whereYear('created_at', Carbon::now()->year);
+        }
+
+        $riwayatPeminjaman = $query->get();
 
         $riwayatPeminjaman->each(function ($peminjaman) {
             $peminjaman->has_denda = Denda::where('id_peminjaman', $peminjaman->id)->exists();
@@ -159,12 +169,23 @@ class PetugasController extends Controller
         return view('petugas.riwayatPeminjaman.index', [
             'title' => "Riwayat Peminjaman",
             'riwayatPeminjaman' => $riwayatPeminjaman,
-            'hasDenda' => $riwayatPeminjaman->pluck('has_denda')
         ]);
     }
 
-    public function denda() {
-        $denda = Denda::with(['peminjaman.buku', 'peminjaman.peminjam'])->get();
+    public function denda(Request $request) {
+        $query = Denda::with(['peminjaman.buku', 'peminjaman.peminjam']);
+        $filterBulan = $request->input('filterBulan');
+
+        if ($filterBulan && $filterBulan !== 'semua') {
+            $query->whereMonth('created_at', $filterBulan)
+                ->whereYear('created_at', Carbon::now()->year);
+        }
+
+        $denda = $query->get();
+
+        $denda->each(function ($peminjaman) {
+            $peminjaman->has_denda = Denda::where('id_peminjaman', $peminjaman->id)->exists();
+        });
         
         return view('petugas.denda.index', [
             'title' => "Denda",

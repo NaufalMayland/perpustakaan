@@ -154,7 +154,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Password berhasil diubah');
     }
 
     public function ubahPasswordPetugas(Request $request, $id)
@@ -174,7 +174,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Password berhasil diubah');
     }
 
     public function ubahPasswordDpeminjam(Request $request, $id)

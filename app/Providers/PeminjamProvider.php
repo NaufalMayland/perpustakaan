@@ -34,6 +34,8 @@ class PeminjamProvider extends ServiceProvider
 
             $notifKembali = Peminjaman::with(['buku', 'peminjam', 'petugas'])
             ->where('id_peminjam', $peminjam->id)
+            ->whereDate('tanggal_kembali', Carbon::tomorrow())
+            ->orWhereDate('tanggal_kembali', Carbon::toDay())
             ->whereNot('status', 'dikembalikan')
             ->get();
 

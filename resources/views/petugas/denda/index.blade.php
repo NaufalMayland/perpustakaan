@@ -2,9 +2,19 @@
 @section('content')
     <div class="bg-white p-4 rounded shadow">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-lg">Data {{ $title }}</h2>
+            <div class="flex gap-2 items-center">
+                <h2 class="font-semibold text-lg">Data {{ $title }}</h2>
+                <form action="{{ route('petugas.denda.index') }}" method="GET" id="filterPeminjaman">
+                    @csrf
+                    <select name="filterBulan" id="filterBulan" class="capitalize border border-neutral-500 p-1 bg-white rounded focus:outline-none" onchange="this.form.submit()">
+                        <option value="semua" {{ request('filterBulan') == 'semua' ? 'selected' : '' }}>Semua</option>
+                        <option value="{{ now()->month }}" {{ request('filterBulan') == now()->month ? 'selected' : '' }}>Bulan Ini</option>
+                        <option value="{{ now()->subMonth()->month }}" {{ request('filterBulan') == now()->subMonth()->month ? 'selected' : '' }}>Bulan Kemarin</option>
+                    </select>
+                </form>
+            </div>
             <div class="flex gap-2 text-sm">
-                <a href="{{ route('petugas.denda.printDenda') }}" target="_blank" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
+                <a href="{{ route('petugas.denda.printDenda', ['filterBulan' => request('filterBulan', 'semua')]) }}" target="_blank" class="px-4 py-2 rounded bg-blue-900 text-white flex items-center gap-2 hover:bg-blue-950">
                     <i class="fa-solid fa-print"></i> 
                     <span class="hidden lg:block">Print</span>
                 </a>
@@ -59,10 +69,13 @@
                 <h3 class="text-lg font-semibold mb-4">Pilih Format Export</h3>
                 <form method="GET" action="{{ route('petugas.denda.exportDenda') }}">
                     @csrf
+                    <input type="hidden" name="filterBulan" id="filterBulanExport" value="{{ request('filterBulan', 'semua') }}">
+                
                     <select name="format" class="w-full p-2 rounded border">
                         <option value="pdf">PDF</option>
                         <option value="excel">Excel</option>
                     </select>
+                    
                     <div class="flex justify-between mt-4 gap-2">
                         <button type="button" onclick="closeExportModal()" class="px-4 py-2 bg-neutral-500 hover:bg-neutral-600 text-white rounded-full">Batal</button>
                         <button type="submit" class="px-4 py-2 bg-blue-900 hover:bg-blue-950 text-white rounded-full">Export</button>
@@ -86,6 +99,11 @@
     </style>
 
     <script>
+        function exportData(format) {
+            let bulan = document.getElementById('filterBulan').value;
+            window.location.href = "{{ route('petugas.denda.exportDenda') }}?format=" + format + "&filterBulan=" + bulan;
+        }
+
         $(document).ready(function() {
             $('#dendaTable').DataTable({
                 responsive: true,

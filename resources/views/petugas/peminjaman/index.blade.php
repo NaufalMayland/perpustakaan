@@ -170,7 +170,7 @@
         }
     </style>
 
-    <script>
+    <script>        
         $(document).ready(function() {
             $('#peminjamanTable').DataTable({
                 responsive: true,
