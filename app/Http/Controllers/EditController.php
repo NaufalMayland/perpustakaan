@@ -56,7 +56,7 @@ class EditController extends Controller
         $petugas->alamat = $request->wilayah;
         $petugas->save();
     
-        return redirect()->route('petugas.user.dpetugas.editPetugas', $petugas->id);
+        return redirect()->route('petugas.user.dpetugas.detailPetugas', $petugas->id)->with('success', 'Data berhasil diubah!');
     }
 
     public function editBuku($slug)
@@ -102,7 +102,7 @@ class EditController extends Controller
             'cover' => $imagePath,
         ]);
 
-        return redirect()->route('petugas.buku.detailBuku', $buku->slug);
+        return redirect()->route('petugas.buku.detailBuku', $buku->slug)->with('success', 'Data berhasil diubah!');
     }
 
 
@@ -121,7 +121,7 @@ class EditController extends Controller
         $kategori = Kategori::findOrFail($id);
         $kategori->update($request->all());
 
-        return redirect()->route('petugas.kategori.index');
+        return redirect()->route('petugas.kategori.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function editListKategori($id)
@@ -147,7 +147,7 @@ class EditController extends Controller
             'id_kategori' => $request->kategori
         ]);
 
-        return redirect()->route('petugas.listKategori.index');
+        return redirect()->route('petugas.listKategori.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function editPeminjam($id)
@@ -208,7 +208,7 @@ class EditController extends Controller
         $petugas->alamat = $request->wilayah;
         $petugas->save();
     
-        return redirect()->route('petugas.profil.index');
+        return redirect()->route('petugas.profil.index')->with('success', 'Data berhasil diubah!');
     }
 
     public function editProfilPeminjamAction(Request $request, $id)
@@ -240,7 +240,7 @@ class EditController extends Controller
         $peminjam->alamat = $request->wilayah;
         $peminjam->save();
     
-        return redirect()->route('peminjam.profil');
+        return redirect()->route('peminjam.profil')->with('success', 'Data berhasil diubah!');
     }
 
     public function editStatusPeminjaman(Request $request, $id)
@@ -276,7 +276,7 @@ class EditController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', $request->status);
+        return redirect()->back()->with('success', $request->status)->with('success', 'Data berhasil diubah!');
     }
 
     public function RequestPerpanjangan(Request $request, $id)
@@ -288,7 +288,7 @@ class EditController extends Controller
             'perpanjangan' => $request->perpanjangan
         ]);
 
-        return redirect()->back()->with('success', 'Perpanjangan');
+        return redirect()->back()->with('success', 'Perpanjangan')->with('success', 'Diperpanjang, menunggu konfirmasi petugas');
     }
 
     public function perpanjangan($id)
@@ -301,6 +301,6 @@ class EditController extends Controller
             'status' => "diperpanjang", 
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Diperpanjang');
     }
 }

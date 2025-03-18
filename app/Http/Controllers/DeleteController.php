@@ -20,7 +20,7 @@ class DeleteController extends Controller
         $user = Petugas::findOrFail($id);
         $user->delete();
         
-        return redirect()->route('petugas.user.dpetugas.index')->with('success', 'Petugas berhasil dihapus');
+        return redirect()->route('petugas.user.dpetugas.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function trashPetugas() 
@@ -38,7 +38,7 @@ class DeleteController extends Controller
         $restore = Petugas::onlyTrashed()->find($id);
         $restore->restore();
 
-        return redirect()->route('petugas.user.dpetugas.trashPetugas');
+        return redirect()->route('petugas.user.dpetugas.trashPetugas')->with('success', 'Data berhasil direstore');
     }
 
     public function destroyPetugas($id)
@@ -46,7 +46,7 @@ class DeleteController extends Controller
         $petugas = Petugas::onlyTrashed()->find($id);
         $petugas->forceDelete();
 
-        return redirect()->route('petugas.user.dpetugas.trashPetugas');
+        return redirect()->route('petugas.user.dpetugas.trashPetugas')->with('success', 'Data berhasil dihapus');
     }
 
     public function deleteBuku($id)
@@ -71,7 +71,7 @@ class DeleteController extends Controller
             return redirect()->back()->with('errors', 'Buku sedang dipinjam');
         }
 
-        return redirect()->route('petugas.buku.index')->with('success', 'Buku berhasil dihapus');
+        return redirect()->route('petugas.buku.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function trashBuku()
@@ -89,7 +89,7 @@ class DeleteController extends Controller
            $restore = Buku::onlyTrashed()->find($id);
            $restore->restore();
 
-           return redirect()->route('petugas.buku.trashBuku');
+           return redirect()->route('petugas.buku.trashBuku')->with('success', 'Data berhasil direstore');
     }
 
     public function destroyBuku($id)
@@ -97,14 +97,14 @@ class DeleteController extends Controller
         $buku = Buku::onlyTrashed()->find($id);
         $buku->forceDelete();
 
-        return redirect()->route('petugas.buku.trashBuku');
+        return redirect()->route('petugas.buku.trashBuku')->with('success', 'Data berhasil dihapus');
     }
 
     public function deleteKategori($id){
         $kategori = Kategori::find($id);
         $kategori->delete();
 
-        return redirect()->route('petugas.kategori.index')->with('success', 'Kategori berhasil dihapus');
+        return redirect()->route('petugas.kategori.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function trashKategori()
@@ -122,7 +122,7 @@ class DeleteController extends Controller
         $restore = Kategori::onlyTrashed()->find($id);
         $restore->restore();
 
-        return redirect()->route('petugas.kategori.trashKategori');
+        return redirect()->route('petugas.kategori.trashKategori')->with('success', 'Data berhasil direstore');
     }
 
     public function destroyKategori($id)
@@ -130,7 +130,7 @@ class DeleteController extends Controller
         $kategori = Kategori::onlyTrashed()->find($id);
         $kategori->forceDelete();
 
-        return redirect()->route('petugas.kategori.trashKategori');
+        return redirect()->route('petugas.kategori.trashKategori')->with('success', 'Data berhasil dihapus');
     }
 
     public function deleteListKategori($id){
@@ -165,14 +165,14 @@ class DeleteController extends Controller
     {
         $restore = ListKategori::onlyTrashed()->where('id_buku', $id)->restore();
 
-        return redirect()->route('petugas.listKategori.trashListKategori');
+        return redirect()->route('petugas.listKategori.trashListKategori')->with('success', 'Data berhasil direstore');
     }
 
     public function destroyListKategori($id)
     {
         $listKategori = ListKategori::onlyTrashed()->where('id_buku', $id)->forceDelete();
 
-        return redirect()->route('petugas.listKategori.trashListKategori');
+        return redirect()->route('petugas.listKategori.trashListKategori')->with('success', 'Data berhasil dihapus');
     }
 
     public function deletePeminjam($id){
@@ -197,7 +197,7 @@ class DeleteController extends Controller
         $restore = Peminjam::onlyTrashed()->find($id);
         $restore->restore();
 
-        return redirect()->route('petugas.user.dpeminjam.trashPeminjam');
+        return redirect()->route('petugas.user.dpeminjam.trashPeminjam')->with('success', 'Data berhasil direstore');
     }
 
     public function destroyPeminjam($id)
@@ -205,7 +205,7 @@ class DeleteController extends Controller
         $peminjam = Peminjam::onlyTrashed()->find($id);
         $peminjam->forceDelete();
 
-        return redirect()->route('petugas.user.dpeminjam.trashPeminjam');
+        return redirect()->route('petugas.user.dpeminjam.trashPeminjam')->with('success', 'Data berhasil dihapus');
     }
 
     public function destroyPeminjaman($id)
@@ -221,6 +221,6 @@ class DeleteController extends Controller
         
         Ulasan::findOrFail($id)->forceDelete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Ulasan berhasil dihapus');
     }
 }

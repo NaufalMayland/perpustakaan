@@ -57,7 +57,7 @@ use Illuminate\Support\Str;
             ]);
         }
 
-        return redirect(route('petugas.user.dpetugas.index'));
+        return redirect()->route('petugas.user.dpetugas.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function addPeminjam()
@@ -97,7 +97,7 @@ use Illuminate\Support\Str;
             ]);
         }
 
-        return redirect(route('petugas.user.dpeminjam.index'));
+        return redirect()->route('petugas.user.dpeminjam.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function addBuku()
@@ -147,7 +147,7 @@ use Illuminate\Support\Str;
             ]);
         }
 
-        return redirect()->route('petugas.buku.index');
+        return redirect()->route('petugas.buku.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function addKategori()
@@ -164,7 +164,7 @@ use Illuminate\Support\Str;
             'slug' => Str::slug($request->kategori),
         ]);
         
-        return redirect()->route('petugas.kategori.index');
+        return redirect()->route('petugas.kategori.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function addListKategori()
@@ -203,7 +203,7 @@ use Illuminate\Support\Str;
             ]);
         }
 
-        return redirect()->route('petugas.listKategori.index');
+        return redirect()->route('petugas.listKategori.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function addPeminjaman()
@@ -237,6 +237,7 @@ use Illuminate\Support\Str;
             'tanggal_pinjam' => $request->tanggal_pinjam,
             'tanggal_kembali' => $request->tanggal_kembali,
             'jumlah' => $request->jumlah,
+            'status' => $request->status,
         ]);
 
         if($peminjaman){
@@ -246,7 +247,7 @@ use Illuminate\Support\Str;
             ]);
         }
 
-        return redirect()->route('petugas.peminjaman.index');
+        return redirect()->route('petugas.peminjaman.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function addUlasanAction(Request $request, $id)

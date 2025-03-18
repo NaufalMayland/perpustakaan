@@ -16,9 +16,6 @@
                     <i class="fa-solid fa-plus"></i>
                     <span class="hidden lg:block">Tambah</span>
                 </a>
-                <a href="" class="px-4 py-2 rounded bg-red-500 text-white flex items-center gap-2 hover:bg-red-600">
-                    <i class="fa-solid fa-trash-can-arrow-up"></i>
-                </a>
             </div>
         </div>
     </div>

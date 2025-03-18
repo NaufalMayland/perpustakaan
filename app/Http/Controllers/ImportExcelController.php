@@ -31,7 +31,7 @@ class ImportExcelController extends Controller
 
         Excel::import(new ImportBuku, $request->file('file'));
 
-        return redirect()->route('petugas.buku.index');
+        return redirect()->route('petugas.buku.index')->with('success', 'Data berhasil diimport!');
     }
 
     public function importKategori()
@@ -54,6 +54,6 @@ class ImportExcelController extends Controller
 
         Excel::import(new ImportKategori, $request->file('file'));
 
-        return redirect()->route('petugas.kategori.index');
+        return redirect()->route('petugas.kategori.index')->with('success', 'Data berhasil diimport!');
     }
 }
