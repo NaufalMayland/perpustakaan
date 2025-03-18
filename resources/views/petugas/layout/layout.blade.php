@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
     @vite('resources/css/app.css')
-    <title>Perpustakaan | {{$title}}</title>
+    <title>MyLibrary | {{$title}}</title>
 </head>
 <body class="font-['poppins'] bg-gray-50">
     <div class="flex">

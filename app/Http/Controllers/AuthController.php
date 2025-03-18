@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function index()
     {
         return view('auth.index', [
-            'title' => "Perpustakaan",
+            'title' => "MyLibrary",
         ]);
     }
     public function login()
@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function loginAction(Request $request)
     {
         $cek = $request->validate([
-            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
+            'email' => ['required', 'lowercase', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
             'password' => 'required',
         ]);
 
@@ -66,7 +66,7 @@ class AuthController extends Controller
         $cekUser = User::all();
 
         $request->validate([
-            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
+            'email' => ['required', 'lowercase', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/i'],
             'password' => 'min:6'
         ]);
 

@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Koleksi;
 use App\Models\Peminjam;
 use App\Models\Peminjaman;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
@@ -30,7 +31,12 @@ class PeminjamProvider extends ServiceProvider
             $user = Auth::check();
             $cekUser = Auth::user();
             $peminjam = Peminjam::where('email', $cekUser->email)->first();
-            
+
+            $notifKembali = Peminjaman::with(['buku', 'peminjam', 'petugas'])
+            ->where('id_peminjam', $peminjam->id)
+            ->whereNot('status', 'dikembalikan')
+            ->get();
+
             $kategori = DB::table('kategoris')
             ->join('list_kategoris', 'list_kategoris.id_kategori', '=', 'kategoris.id')
             ->join('bukus', 'bukus.id', '=', 'list_kategoris.id_buku')
@@ -57,6 +63,7 @@ class PeminjamProvider extends ServiceProvider
                 'user' => $user,
                 'kategori' => $kategori,
                 'peminjam' => $peminjam,
+                'notifKembali' => $notifKembali,
                 'countKoleksi' => $countKoleksi,
                 'countPeminjaman' => $countPeminjaman,
             ]);

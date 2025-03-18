@@ -127,10 +127,9 @@ class EditController extends Controller
     public function editListKategori($id)
     {
         $buku = Buku::where('id', $id)->first();
-        // dd($buku);
         $kategori = Kategori::all();
 
-        $selectedKategori = ListKategori::where('id_buku', $id)->pluck('id_kategori')->toArray();
+        $selectedKategori = ListKategori::where('id_buku', $id)->first();
 
         return view('petugas.listKategori.editListKategori', [
             'title' => "Edit",
@@ -142,15 +141,11 @@ class EditController extends Controller
 
     public function editListKategoriAction(Request $request, $id)
     {
-        $checkedKategori = $request->kategori ?? [];
-        $listKategori = ListKategori::where('id_buku', $id)->forceDelete();
-        
-        foreach($checkedKategori as $kategori) {
-            ListKategori::create([
-                'id_buku' => $id,
-                'id_kategori' => $kategori
-            ]);
-        }
+        $listkateori = ListKategori::where('id_buku', $id)->first();
+        $listkateori->update([
+            'id_buku' => $id,
+            'id_kategori' => $request->kategori
+        ]);
 
         return redirect()->route('petugas.listKategori.index');
     }
@@ -162,21 +157,6 @@ class EditController extends Controller
             'title' => "Edit",
             'peminjam' => $peminjam 
         ]);
-    }
-
-    public function editPeminjamAction()
-    {
-        
-    }
-
-    public function editPeminjaman($id)
-    {
-
-    }
-
-    public function editPeminjamanAction()
-    {
-        
     }
 
     public function editProfilPetugas($id)

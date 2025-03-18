@@ -100,7 +100,7 @@
     </div>
     <div class="flex text-center justify-center items-center mt-10">
         <div class="flex items-center">
-            <a href="{{ route('peminjam.index') }}" class="bg-white py-2 px-6 rounded-full border border-blue-900 flex gap-2 items-center hover:bg-blue-950 hover:text-white transition-all duration-100 ease-in-out" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
+            <a href="{{ route('peminjam.index') }}" class="bg-white py-2 px-6 rounded-full border border-blue-900 flex gap-2 items-center hover:bg-blue-900 hover:text-white transition-all duration-100 ease-in-out" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="900">
                 <span class="">Coba sekarang</span>
                 <i class="fa-solid fa-arrow-right text-lg "></i>
             </a>

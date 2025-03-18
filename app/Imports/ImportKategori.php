@@ -16,6 +16,12 @@ class ImportKategori implements ToModel, WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
+        $checkKategori = Kategori::where('kategori', $row['kategori'])->first();
+
+        if ($checkKategori) {
+            return null;
+        }
+
         return new Kategori([
             'kategori' => $row['kategori'],
             'slug' => Str::slug($row['kategori']),

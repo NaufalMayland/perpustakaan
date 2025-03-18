@@ -18,6 +18,14 @@ class ImportBuku implements ToModel, WithHeadingRow, WithValidation
 
     public function model(array $row)
     {
+        $checkBuku = Buku::where('judul', $row['judul_buku'])
+        ->orWhere('kode', $row['kode_buku'])
+        ->first();
+
+        if ($checkBuku) {
+            return null;
+        }
+
         return new Buku([
             'judul' => $row['judul_buku'],
             'slug' => Str::slug($row['judul_buku']),

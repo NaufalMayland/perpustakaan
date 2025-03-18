@@ -70,14 +70,16 @@
         </div>
     </form>
 
-    <div id="cropModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-20">
-        <div class="bg-white p-4 rounded-lg w-96">
-            <div class="crop-container">
-                <img id="cropImage" class="max-w-full">
-            </div>
-            <div class="flex justify-between gap-4 mt-4">
-                <button type="button" onclick="closeCropModal()" class="bg-neutral-500 text-white px-4 py-2 rounded-full">Batal</button>
-                <button type="button" onclick="cropImage()" class="bg-blue-900 text-white px-4 py-2 rounded-full">Simpan</button>
+    <div class="hidden" id="cropModal">
+        <div id="cropModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-20">
+            <div class="bg-white p-4 rounded-lg w-96">
+                <div class="crop-container">
+                    <img id="cropImage" class="max-w-full">
+                </div>
+                <div class="flex justify-between gap-4 mt-4">
+                    <button type="button" onclick="closeCropModal()" class="bg-neutral-500 text-white px-4 py-2 rounded-full">Batal</button>
+                    <button type="button" onclick="cropImage()" class="bg-blue-900 text-white px-4 py-2 rounded-full">Simpan</button>
+                </div>
             </div>
         </div>
     </div>
@@ -136,7 +138,7 @@
         }
 
         $(document).ready(function() {
-            let baseUrl = "/perpustakaan/profil";
+            let baseUrl = "/mylibrary/profil";
 
             function updateWilayah() {
             let provinsi = $('#provinsi').val();

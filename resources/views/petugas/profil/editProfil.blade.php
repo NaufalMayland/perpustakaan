@@ -138,7 +138,7 @@
         }
 
         $(document).ready(function() {
-            let baseUrl = "/perpustakaan/petugas/profil";
+            let baseUrl = "/mylibrary/petugas/profil";
 
             function updateWilayah() {
                 let provinsi = $('#provinsi').val();

@@ -51,7 +51,7 @@
                                     <div class="border-r bg-blue-900 hover:bg-blue-950 text-white border-gray-300 px-4 py-2 rounded-l cursor-pointer" onclick="kurangJumlah()">
                                         <i class="fa-solid fa-minus"></i>
                                     </div>
-                                    <input type="number" name="jumlah" id="jumlah" class="no-spinner rounded w-full bg-gray-100 p-2 focus:outline-none" value="1" min="1">
+                                    <input type="number" name="jumlah" id="jumlah" class="no-spinner rounded w-full bg-gray-100 p-2 focus:outline-none" value="1" min="1" max="3">
                                     <div class="border-l bg-blue-900 hover:bg-blue-950 text-white border-gray-300 px-4 py-2 rounded-r cursor-pointer" onclick="tambahJumlah()">
                                         <i class="fa-solid fa-plus"></i>
                                     </div>
@@ -119,7 +119,9 @@
 
     function tambahJumlah() {
         const jumlah = document.getElementById('jumlah');
-        jumlah.value = parseInt(jumlah.value) + 1;
+        if (parseInt(jumlah.value) < 3) {
+            jumlah.value = parseInt(jumlah.value) + 1;
+        }
     }
 
     function closeFormPinjam() {

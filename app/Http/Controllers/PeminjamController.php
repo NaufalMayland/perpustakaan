@@ -116,9 +116,10 @@ class PeminjamController extends Controller
             ->select(
                 'bukus.id',
                 'bukus.cover',
-                'bukus.judul'
+                'bukus.judul',
+                'bukus.slug'
             )
-            ->groupBy('bukus.id', 'bukus.judul', 'bukus.cover')
+            ->groupBy('bukus.id','bukus.slug', 'bukus.judul', 'bukus.cover')
             ->get();
         } else{
             return redirect()->back();
@@ -146,7 +147,7 @@ class PeminjamController extends Controller
             'bukus.judul',
             'bukus.slug'
         )
-        ->groupBy('bukus.id', 'bukus.judul', 'bukus.cover')
+        ->groupBy('bukus.id', 'bukus.slug', 'bukus.judul', 'bukus.cover')
         ->get(); 
 
         $header = Kategori::where('slug', $slug)->first();

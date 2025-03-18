@@ -23,7 +23,7 @@
                 <span>Kategori</span>
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>
-            <div id="genreDropdown" class="absolute right-0 mt-2 w-96 bg-white border shadow-lg rounded hidden gap-2 px-4 py-2">
+            <div id="genreDropdown" class="absolute right-0 mt-2 w-96 bg-white border shadow rounded hidden gap-2 px-4 py-2">
                 <div class="grid grid-cols-3 gap-2">
                     @foreach ($kategori as $item)
                         <a href="{{ route('peminjam.searchByKategori', $item->slug) }}" class="text-black capitalize hover:underline">{{ $item->kategori }}</a>
@@ -65,12 +65,46 @@
             @endif
         </a>
         <div class="relative">
+            <button id="notifBtn" class="relative flex items-center gap-2 text-black hover:text-blue-950">
+                <div class="relative">
+                    <i class="fa-solid fa-bell text-xl"></i>
+                    @if ($notifKembali->isNotEmpty()) 
+                        <span class="absolute top-0 -right-1 w-3 h-3 bg-red-600 rounded-full"></span>
+                    @endif
+                </div>
+            </button>
+            
+            <div id="notifDropdown" class="absolute right-0 mt-2 w-80 bg-white border shadow rounded hidden gap-2">
+                @if ($notifKembali->isNotEmpty()) 
+                    <div class="grid gap-2 text-sm">
+                        @foreach ($notifKembali as $item)
+                            @if ($item->tanggal_kembali == \Carbon\Carbon::tomorrow()->toDateString()) 
+                                <div class="py-2 px-4">
+                                    <span class="">Buku <strong>{{ $item->buku->judul }}</strong> harus dikembalikan besok</span>
+                                </div>
+                                <hr class="border-neutral-300 mx-4">
+                            @elseif($item->tanggal_kembali == \Carbon\Carbon::toDay()->toDateString())
+                                <div class="py-2 px-4">
+                                    <span class="">Buku <strong>{{ $item->buku->judul }}</strong> harus dikembalikan hari ini</span>
+                                </div>
+                                <hr class="border-neutral-300 mx-4">
+                            @endif
+                        @endforeach
+                    </div>
+                @else
+                    <div class="py-2 px-4">
+                        <span class="">Tidak ada notifikasi</span>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="relative">
             <button id="profilBtn" class="flex items-center gap-2 text-black hover:text-blue-950">
                 <img src="{{ $peminjam->foto ? asset('storage/' . $peminjam->foto) : 'https://i.pinimg.com/736x/29/b8/d2/29b8d250380266eb04be05fe21ef19a7.jpg' }}" alt="{{ $peminjam->nama }}" class="rounded-full w-8 object-cover hidden lg:block">
                 <span class="block lg:hidden">Profil</span>
                 <i class="fa-solid fa-chevron-down text-xs"></i>
             </button>
-            <div id="profilDropdown" class="absolute right-0 mt-2 w-40 bg-white border shadow-lg rounded hidden">
+            <div id="profilDropdown" class="absolute right-0 mt-2 w-40 bg-white border shadow rounded hidden">
                 <a href="{{ route('peminjam.profil') }}" class="block w-full text-left px-4 py-2 text-black hover:text-blue-950 hover:bg-gray-100">Profil</a>
                 <form id="logoutForm" action="{{ route('auth.logout') }}" method="POST" hidden>
                     @csrf
@@ -102,8 +136,9 @@
         });
     }
 
-    setupDropdown('profilBtn', 'profilDropdown');
     setupDropdown('genreBtn', 'genreDropdown');
+    setupDropdown('notifBtn', 'notifDropdown');
+    setupDropdown('profilBtn', 'profilDropdown');
 
     function confirmLogout() {
         Swal.fire({

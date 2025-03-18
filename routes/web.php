@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('auth.index')->middleware('guest'); 
 
-Route::prefix('perpustakaan')->group(function () {
+Route::prefix('mylibrary')->group(function () {
     Route::prefix('login')->middleware('guest')->group(function (){
         Route::get('/', [ AuthController::class, 'login'])->name('auth.login');
         Route::post('/login-action', [ AuthController::class, 'loginAction'])->name('auth.loginAction');

@@ -25,7 +25,7 @@
                 <div class="flex flex-wrap gap-2">
                     @foreach ($kategori as $item) 
                         <div class="flex items-center space-x-2">
-                            <input type="checkbox" name="kategori[]" id="kategori_{{ $item->id }}" value="{{ $item->id }}" class="peer" {{ in_array($item->id, $selectedKategori ?? []) ? 'checked' : '' }} hidden>
+                            <input type="radio" name="kategori" id="kategori_{{ $item->id }}" value="{{ $item->id }}" class="peer" {{ $item->id == $selectedKategori->id_kategori ? 'checked' : '' }} hidden>
                             <label for="kategori_{{ $item->id }}" class="flex items-center w-auto px-4 py-1 border border-gray-300 rounded-full capitalize cursor-pointer text-sm bg-gray-100 text-black peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-900 transition-all duration-100">
                                 {{ $item->kategori }}
                             </label>
@@ -34,7 +34,7 @@
                 </div>                
             </div>
             <div class="flex justify-end">
-                <button class="bg-blue-900 py-2 px-3 text-sm rounded text-white">Simpan</button>
+                <button class="bg-blue-900 py-2 px-3 text-sm rounded-full text-white">Simpan</button>
             </div>
         </div>
     </form>

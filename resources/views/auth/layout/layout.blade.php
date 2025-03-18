@@ -38,7 +38,7 @@
                 <a href="#" class="hover:text-gray-300"><i class="fa-brands fa-instagram text-xl"></i></a>
             </div>
             <div class="text-center md:text-right text-sm mt-4 md:mt-0">
-                &copy; 2025 MyLibrary. All rights reserved.
+                &copy; 2025 MyLibrary
             </div>
         </div>
     </div>
