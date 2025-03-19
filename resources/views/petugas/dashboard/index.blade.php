@@ -108,6 +108,41 @@
         </div>
     </div>
 
+    <div id="dendaModal" class="hidden">
+        <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+            <div class="bg-white p-5 rounded-md shadow-lg w-96">
+                <div class="text-center">
+                    <h3 class="text-lg font-medium text-gray-900">Apakah ada denda?</h3>
+                    <div class="mt-4">
+                        <form id="dendaForm" action="" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="peminjaman_id" id="peminjaman_id">
+                            <input type="text" name="status" value="dikembalikan" hidden>
+                            <div class="flex justify-start mb-4 gap-2">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="denda" value="ya" class="form-radio" onchange="toggleDendaInput(this)">
+                                    <span class="ml-2">Ya</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="denda" value="tidak" class="form-radio" onchange="toggleDendaInput(this)">
+                                    <span class="ml-2">Tidak</span>
+                                </label>
+                            </div>
+                            <div id="dendaInput" class="hidden mb-4">
+                                <input type="text" name="status_denda" placeholder="Masukkan status denda" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" autocomplete="off">
+                            </div>
+                            <div class="flex justify-between">
+                                <button type="button" class="bg-gray-500 text-white px-3 py-2 rounded-full mr-2" onclick="closeModal()">Batal</button>
+                                <button type="submit" class="bg-blue-900 text-white px-3 py-2 rounded-full">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @if (session('success'))
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -154,14 +189,6 @@
 
         function closeModal() {
             $('#dendaModal').addClass('hidden');
-        }
-        
-        function openExportModal() {
-            document.getElementById('exportModal').classList.remove('hidden');
-        }
-
-        function closeExportModal() {
-            document.getElementById('exportModal').classList.add('hidden');
         }
     </script>
 @endsection

@@ -25,9 +25,12 @@ class DendaExport implements FromCollection, WithHeadings, WithMapping
         $query = Denda::with(['peminjaman.buku', 'peminjaman.peminjam']);
 
         if ($this->filterBulan && $this->filterBulan !== 'semua') {
-            $query->whereMonth('created_at', $this->filterBulan)
-                  ->whereYear('created_at', Carbon::now()->year);
+            $query->whereHas('peminjaman', function ($q) {
+                $q->whereMonth('tanggal_pinjam', $this->filterBulan)
+                  ->whereYear('tanggal_pinjam', Carbon::now()->year);
+            });
         }
+        
 
         return $query->get();
     }

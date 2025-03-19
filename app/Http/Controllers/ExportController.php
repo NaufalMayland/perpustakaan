@@ -113,8 +113,8 @@ class ExportController extends Controller
         $filterBulan = $request->input('filterBulan', 'semua');
 
         if ($filterBulan && $filterBulan !== 'semua') {
-            $query->whereMonth('created_at', $filterBulan)
-                  ->whereYear('created_at', Carbon::now()->year);
+            $query->whereMonth('tanggal_pinjam', $filterBulan)
+                  ->whereYear('tanggal_pinjam', Carbon::now()->year);
         }
     
         $dataRiwayatPeminjaman = $query->get();
@@ -134,8 +134,10 @@ class ExportController extends Controller
         $query = Denda::with(['peminjaman.buku', 'peminjaman.peminjam']);
 
         if ($filterBulan && $filterBulan !== 'semua') {
-            $query->whereMonth('created_at', $filterBulan)
-                ->whereYear('created_at', Carbon::now()->year);
+            $query->whereHas('peminjaman', function ($query) use ($filterBulan) {
+                $query->whereMonth('tanggal_pinjam', $filterBulan)
+                    ->whereYear('tanggal_pinjam', Carbon::now()->year);
+            });
         }
 
         $dataDenda = $query->get();

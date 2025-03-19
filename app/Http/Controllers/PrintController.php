@@ -73,9 +73,11 @@ class PrintController extends Controller
     {
         $query = Peminjaman::with(['buku', 'peminjam', 'petugas'])->where('status', 'dikembalikan');
 
-        if ($request->filterBulan && $request->filterBulan !== 'semua') {
-            $query->whereMonth('created_at', $request->filterBulan)
-                  ->whereYear('created_at', Carbon::now()->year);
+        $filterBulan = $request->input('filterBulan');
+
+        if ($filterBulan && $filterBulan !== 'semua') {
+            $query->whereMonth('tanggal_pinjam', $filterBulan)
+                  ->whereYear('tanggal_pinjam', Carbon::now()->year);
         }
     
         $riwayatPeminjaman = $query->get();
@@ -89,9 +91,13 @@ class PrintController extends Controller
     {
         $query = Denda::with(['peminjaman.buku', 'peminjaman.peminjam']);
 
-        if ($request->filterBulan && $request->filterBulan !== 'semua') {
-            $query->whereMonth('created_at', $request->filterBulan)
-                  ->whereYear('created_at', Carbon::now()->year);
+        $filterBulan = $request->input('filterBulan');
+
+        if ($filterBulan && $filterBulan !== 'semua') {
+            $query->whereHas('peminjaman', function ($query) use ($filterBulan) {
+                $query->whereMonth('tanggal_pinjam', $filterBulan)
+                    ->whereYear('tanggal_pinjam', Carbon::now()->year);
+            });
         }
     
         $denda = $query->get();

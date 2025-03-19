@@ -25,8 +25,8 @@ class RiwayatPeminjamanExport implements FromCollection, WithHeadings, WithMappi
                     ->where('status', 'dikembalikan');
 
         if ($this->filterBulan && $this->filterBulan !== 'semua') {
-            $query->whereMonth('created_at', $this->filterBulan)
-                  ->whereYear('created_at', now()->year);
+            $query->whereMonth('tanggal_pinjam', $this->filterBulan)
+                  ->whereYear('tanggal_pinjam', now()->year);
         }
 
         return $query->get();
