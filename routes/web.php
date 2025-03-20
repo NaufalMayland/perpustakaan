@@ -154,7 +154,7 @@ Route::prefix('mylibrary')->group(function () {
             Route::get('/print', [PrintController::class, 'printListKategori'])->name('petugas.ListKategori.printListKategori');
         });
         
-        Route::prefix('peminjam')->middleware('rolePetugas:petugas')->group(function () {
+        Route::prefix('peminjam')->middleware('rolePetugas:petugas')->group(function () { 
             Route::get('/', [PetugasController::class, 'dpeminjam'])->name('petugas.user.dpeminjam.index');
             Route::get('/tambah', [InputController::class, 'addPeminjam'])->name('petugas.user.dpeminjam.addPeminjam');
             Route::post('/tambah-action', [InputController::class, 'addPeminjamAction'])->name('petugas.user.dpeminjam.addPeminjamAction');
