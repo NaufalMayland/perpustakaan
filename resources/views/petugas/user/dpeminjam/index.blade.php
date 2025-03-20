@@ -27,6 +27,7 @@
             <table id="dpeminjamTable" class="min-w-full border border-gray-400 text-sm">
                 <thead class="w-full">
                     <tr class="text-gray-950">
+                        <th class="p-2 text-center font-bold uppercase relative">NIK</th>
                         <th class="p-2 text-center font-bold uppercase relative">Nama</th>
                         <th class="p-2 text-center font-bold uppercase relative">Email</th>
                         <th class="p-2 text-center font-bold uppercase relative">Alamat</th>
@@ -40,6 +41,7 @@
                         $alamat = json_decode($item->alamat, true);
                     @endphp
                         <tr class="border-b border-gray-400 hover:bg-gray-50">
+                            <td class="p-2">{{ $item->id }}</td>
                             <td class="p-2">{{ $item->nama }}</td>
                             <td class="p-2">{{ $item->email }}</td>
                             <td class="p-2">

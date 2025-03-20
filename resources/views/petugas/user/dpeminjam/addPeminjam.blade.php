@@ -13,6 +13,10 @@
         @endif
         <div class="grid gap-4 text-sm mt-4">
             <div class="grid">
+                <label for="nik">NIK</label>
+                <input type="text" name="nik" id="nik" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('nik') }}" placeholder="Masukan username" autocomplete="off" required>
+            </div>
+            <div class="grid">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" class="w-full p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('username') }}" placeholder="Masukan username" autocomplete="off" required>
             </div>

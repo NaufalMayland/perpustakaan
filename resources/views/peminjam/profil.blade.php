@@ -17,6 +17,10 @@
                 </div>
             @endif
             <div class="grid">
+                <label for="nik">NIK</label>
+                <input type="text" name="nik" id="nik" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->id }}" readonly>
+            </div>
+            <div class="grid">
                 <label for="nama">Nama</label>
                 <input type="text" name="nama" id="nama" class="w-full p-2 rounded border bg-gray-100 border-gray-300 focus:outline-none" value="{{ $peminjam->nama }}" readonly>
             </div>

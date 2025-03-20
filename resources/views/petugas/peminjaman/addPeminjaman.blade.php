@@ -14,7 +14,7 @@
         <div class="grid gap-4 text-sm mt-4">
             <div class="grid">
                 <label for="peminjam">Peminjam</label>
-                <input type="email" name="peminjam" id="peminjam" class="w-full py-2 px-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('peminjam') }}" placeholder="Email peminjam" autocomplete="off" required>
+                <input type="number" name="peminjam" id="peminjam" class="w-full py-2 px-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ old('peminjam') }}" placeholder="NIK peminjam" autocomplete="off" required>
             </div>
             <div class="grid">
                 <label for="buku">Buku</label>
@@ -39,7 +39,7 @@
                     <div class="border-r bg-blue-900 hover:bg-blue-950 text-white border-gray-300 px-4 py-2 rounded-l cursor-pointer" onclick="kurangJumlah()">
                         <i class="fa-solid fa-minus"></i>
                     </div>
-                    <input type="number" name="jumlah" id="jumlah" class="no-spinner rounded w-full bg-gray-100 p-2 focus:outline-none" value="1" min="1" required>
+                    <input type="number" name="jumlah" id="jumlah" class="no-spinner rounded w-full bg-gray-100 p-2 focus:outline-none" value="1" min="1" max="3" required>
                     <div class="border-l bg-blue-900 hover:bg-blue-950 text-white border-gray-300 px-4 py-2 rounded-r cursor-pointer" onclick="tambahJumlah()">
                         <i class="fa-solid fa-plus"></i>
                     </div>
@@ -90,7 +90,9 @@
 
         function tambahJumlah() {
             const jumlah = document.getElementById('jumlah');
-            jumlah.value = parseInt(jumlah.value) + 1;
+            if (parseInt(jumlah.value) < 3) {
+                jumlah.value = parseInt(jumlah.value) + 1;
+            }
         }
     </script>
 @endsection

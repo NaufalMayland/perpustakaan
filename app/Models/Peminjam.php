@@ -12,6 +12,7 @@ class Peminjam extends Model
     protected $table = "peminjams";
     protected $dates = ['deleted_at'];
     protected $fillable = [
+        'id',
         'nama',
         'email',
         'alamat',

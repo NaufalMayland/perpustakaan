@@ -28,6 +28,10 @@
                 @endif
                 <div class="grid text-sm gap-2 my-4">
                     <div class="grid">
+                        <label class="text-black" for="nik">NIK</label>
+                        <input class="border border-gray-500 py-2 px-3 rounded w-full" type="text" id="nik" name="nik" autocomplete="off" value="{{ old('nik') }}" placeholder="Masukan NIK">
+                    </div>
+                    <div class="grid">
                         <label class="text-black" for="username">Username</label>
                         <input class="border border-gray-500 py-2 px-3 rounded w-full" type="text" id="username" name="username" autocomplete="off" value="{{ old('username') }}" placeholder="Masukan username">
                     </div>

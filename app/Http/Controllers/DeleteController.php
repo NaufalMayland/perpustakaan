@@ -210,7 +210,14 @@ class DeleteController extends Controller
 
     public function destroyPeminjaman($id)
     {
-        Peminjaman::findOrFail($id)->forceDelete();
+        $peminjaman = Peminjaman::findOrFail($id);
+        $delete = $peminjaman->forceDelete();
+        if ($delete) {
+            $buku = Buku::findOrFail($peminjaman->id_buku);
+            $buku->update([
+                'stok' => $buku->stok + $peminjaman->jumlah
+            ]);
+        }
         
         return redirect()->back();
     }

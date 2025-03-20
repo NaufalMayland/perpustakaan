@@ -47,6 +47,7 @@
                     <div class="flex flex-row mt-2 gap-4 items-center lg:text-base">
                         @if ($buku->buku->stok == '0')
                             <span class="bg-neutral-500 text-white py-2 px-20 rounded-full">Stok habis</span>
+                            @include('peminjam.modal.addKoleksi')
                         @else 
                             @include('peminjam.modal.addPeminjaman')
                             @include('peminjam.modal.addKoleksi')

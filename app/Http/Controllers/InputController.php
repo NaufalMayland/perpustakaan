@@ -92,6 +92,7 @@ use Illuminate\Support\Str;
 
         if($user){
             Peminjam::create([
+                'id' => $request->nik,
                 'nama' => $request->username,
                 'email' => $request->email,
             ]);
@@ -219,7 +220,7 @@ use Illuminate\Support\Str;
 
     public function addPeminjamanAction(Request $request)
     {
-        $peminjam = Peminjam::where('email', $request->peminjam)->first();
+        $peminjam = Peminjam::where('id', $request->peminjam)->first();
         $buku = Buku::where('kode', $request->buku)->first();
 
         if($peminjam == null){

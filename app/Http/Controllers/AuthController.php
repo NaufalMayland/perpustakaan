@@ -88,6 +88,7 @@ class AuthController extends Controller
 
         if($dataRegist){
             Peminjam::create([
+                'id' => $request->nik,
                 'nama' => $request->username,
                 'email' => $request->email,
             ]);

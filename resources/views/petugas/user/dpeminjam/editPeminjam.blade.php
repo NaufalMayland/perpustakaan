@@ -13,6 +13,10 @@
             <div class="w-full lg:w-3/4 flex flex-col gap-4 text-sm lg:text-base">
                 <div class="grid gap-4 text-sm mt-4">
                     <div class="grid">
+                        <label class="mb-1" for="id">NIK</label>
+                        <input type="text" name="id" id="id" class="w-full focus:outline-none p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $peminjam->id }}" readonly>
+                    </div>
+                    <div class="grid">
                         <label class="mb-1" for="username">Username</label>
                         <input type="text" name="username" id="username" class="w-full focus:outline-none p-2 rounded border bg-gray-100 border-gray-300 text-sm" value="{{ $peminjam->nama }}" readonly>
                     </div>
