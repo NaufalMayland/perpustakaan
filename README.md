@@ -1,7 +1,30 @@
-# README
+Sebelum menjalankan sistem perpustakaan nya, pastikan sudah menjalankan langkah-langah di bawah ini:
+## Install Package
+```
+composer install
+npm install
+```
 
-pertama import `perpustakaan.sql`, karena migration belum menyesuaikan dengan struktur database yang baru, atau bisa langsung ke website [Perpustakaan](http://localhost:8000)
+## Generate Key
+```
+php artisan key:generate
+```
+
+## Migration 
+```
+php artisan migarte --seed
+```
 
 ## Akun Demo
 
 ### Admin
+> `sadmin123@gmail.com`  
+> `123456`
+
+### Petugas
+> `petugas123@gmail.com`  
+> `123456`
+
+### Peminjam
+> `peminjam123@gmail.com`  
+> `123456`
