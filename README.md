@@ -12,7 +12,7 @@ php artisan key:generate
 
 ## Migration 
 ```
-php artisan migarte --seed
+php artisan migrate --seed
 ```
 
 ## Akun Demo
