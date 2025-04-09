@@ -15,13 +15,13 @@ class PetugasSeeder extends Seeder
     {
         $data = [
             [
-                'nama' => "Somebody's Pleasure",
-                'email' => "naufal123@gmail.com",
+                'nama' => "Superadmin",
+                'email' => "sadmin123@gmail.com",
                 'role' => 'admin'
             ],
             [
-                'nama' => "Risalah Hati",
-                'email' => "maylandri123@gmail.com",
+                'nama' => "Petugas",
+                'email' => "petugas123@gmail.com",
                 'role' => 'petugas'
             ],
         ];
